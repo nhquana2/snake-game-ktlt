@@ -1,10 +1,14 @@
 //Snake game 23CLC01
 
 #include <iostream>
+#include "snakegame.h"
 
+using namespace std;
 
 int main()
 {
-    std::cout << "Snake game demo!\n";
+    FixConsoleWindow();
+    cout << "Snake game test";
+
     return 0;
 }
