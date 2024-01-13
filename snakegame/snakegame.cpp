@@ -2,8 +2,9 @@
 
 #include <iostream>
 
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Snake game demo!\n";
     return 0;
 }
