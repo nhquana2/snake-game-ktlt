@@ -7,8 +7,14 @@ using namespace std;
 
 int main()
 {
+    
+    system("color 70");
     FixConsoleWindow();
-    cout << "Snake game test";
-
+    
+    //nhquan: test;
+    GoToXY(119, 29);
+    cout << "h";
+    while (1);
+    //end nhquan test
     return 0;
 }
