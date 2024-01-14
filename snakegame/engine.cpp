@@ -38,9 +38,7 @@ void StartGame() {
 }
 
 void PauseGame(HANDLE t) {
-	system("color 70");
-	TerminateThread(t, 0);
-	
+	system("phucthai");
 }
 
 void ExitGame(HANDLE t) {
