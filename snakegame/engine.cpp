@@ -30,6 +30,11 @@ void ResetData() {
 void luaquandumdi{
 
 };
+
+void tomy() {
+	return;
+}
+
 void StartGame() {
 	system("cls");
 	ResetData(); // Intialize original data
