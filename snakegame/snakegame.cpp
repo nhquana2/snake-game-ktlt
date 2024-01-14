@@ -17,7 +17,7 @@ int STATE; // State of snake: dead or alive
 using namespace std;
 
 void ThreadFunc() {
-    cout << "helo";
+    cout << "Khong bao gio ngu quen";
 }
 
 int main()
