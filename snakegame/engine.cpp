@@ -36,7 +36,7 @@ void StartGame() {
 }
 
 void PauseGame(HANDLE t) {
-	system("cls");
+	system("color 70");
 	TerminateThread(t, 0);
 }
 
