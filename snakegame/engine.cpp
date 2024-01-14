@@ -36,8 +36,7 @@ void StartGame() {
 }
 
 void PauseGame(HANDLE t) {
-	system("demo 1 1 1 1 1 1");
-	TerminateThread(t, 0);
+	system("phucthai");
 }
 
 void ExitGame(HANDLE t) {
