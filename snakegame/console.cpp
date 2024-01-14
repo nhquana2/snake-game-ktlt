@@ -1,5 +1,9 @@
 #include "snakegame.h"
 #include <iostream>
+#include <conio.h>
+#include <dos.h>
+#include <thread>
+
 using namespace std;
 
 void FixConsoleWindow() {
@@ -18,10 +22,25 @@ void FixConsoleWindow() {
 	//nhquan: make the console screen buffer size and console window size equal to hide scrollbar
 	SetConsoleScreenBufferSize(hConsole, bufferSize);
 	SetConsoleWindowInfo(hConsole, TRUE, &windowSize);
-
 }
+
+
 void GoToXY(int x, int y) {
 	COORD coord;
 	coord.X = x, coord.Y = y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+void DrawBoard(int x, int y, int width, int height) {
+	GoToXY(x, y); cout << '\xc9';
+	for (int i = 1; i < width-1; i++) cout << '\xcd';
+	cout << '\xbb';
+	GoToXY(x, y + height - 1);
+	for (int i = 0; i < width; i++) cout << '\xcd';
+	for (int i = y + 1; i < y + height; ++i) {
+		GoToXY(x, i); 
+		if (i != y + height - 1) cout << '\xba'; else cout << '\xc8';
+		GoToXY(x + width - 1, i); 
+		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
+	}
 }
