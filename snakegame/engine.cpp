@@ -36,8 +36,7 @@ void StartGame() {
 }
 
 void PauseGame(HANDLE t) {
-	system("cls");
-	TerminateThread(t, 0);
+	
 }
 
 void ExitGame(HANDLE t) {
