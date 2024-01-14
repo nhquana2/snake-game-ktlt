@@ -27,13 +27,6 @@ void ResetData() {
 
 	GenerateFood();
 }
-void luaquandumdi{
-
-};
-
-void tomy() {
-	return;
-}
 
 void StartGame() {
 	system("cls");
@@ -43,13 +36,10 @@ void StartGame() {
 }
 
 void PauseGame(HANDLE t) {
-	system("phucthai");
+	system("cls");
+	TerminateThread(t, 0);
 }
 
 void ExitGame(HANDLE t) {
 	SuspendThread(t);
-}
-
-void nhquan() {
-	return;
 }

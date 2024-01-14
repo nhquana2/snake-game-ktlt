@@ -25,8 +25,9 @@ int main()
     system("color 70");
     FixConsoleWindow();
     StartGame();
- 
+
     PrintFile(10, 4, "title.txt");
+    while (1);
 
     //======= test thread handle
     /*thread t1(ThreadFunc);
