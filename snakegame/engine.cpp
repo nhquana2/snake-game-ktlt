@@ -27,7 +27,9 @@ void ResetData() {
 
 	GenerateFood();
 }
+void luaquandumdi{
 
+};
 void StartGame() {
 	system("cls");
 	ResetData(); // Intialize original data
