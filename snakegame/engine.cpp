@@ -36,7 +36,7 @@ void StartGame() {
 }
 
 void PauseGame(HANDLE t) {
-	
+	system("phucthai");
 }
 
 void ExitGame(HANDLE t) {
