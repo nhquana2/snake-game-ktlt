@@ -31,6 +31,6 @@ void ResetData() {
 void StartGame() {
 	system("cls");
 	ResetData(); // Intialize original data
-	DrawBoard(3, 5, 70, 20); // Draw game
+	DrawBoard(3, 7, 70, 20); // Draw game
 	STATE = 1;//Start running Thread
 }

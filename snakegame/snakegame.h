@@ -19,11 +19,14 @@ extern int FOOD_INDEX; // current food-index
 extern int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 extern int STATE; // State of snake: dead or alive
 
+//Console and Graphic functions
 void FixConsoleWindow();
 void GoToXY(int x, int y);
+void DrawBoard(int x, int y, int width, int height);
+void PrintFile(int x, int y, const char* FileName);
 
+//Logic and game engine functions
 bool IsValidFood(int x, int y);
 void GenerateFood();
 void ResetData();
 void StartGame();
-void DrawBoard(int x, int y, int width, int height);

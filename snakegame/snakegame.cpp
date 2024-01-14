@@ -16,11 +16,28 @@ int STATE; // State of snake: dead or alive
 
 using namespace std;
 
+void ThreadFunc() {
+    cout << "helo";
+}
+
 int main()
 {
     system("color 70");
     FixConsoleWindow();
     StartGame();
+ 
+    PrintFile(10, 4, "title.txt");
+
+    //======= test thread handle
+    /*thread t1(ThreadFunc);
+    HANDLE handle_t1 = t1.native_handle();
+
+    SuspendThread(t1.native_handle());
+    Sleep(1000);
+    ResumeThread(t1.native_handle());
+
+    t1.join();*/
+    //======= end test thread handle
 
 
     return 0;

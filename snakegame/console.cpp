@@ -1,5 +1,7 @@
 #include "snakegame.h"
 #include <iostream>
+#include <string>
+#include <fstream>
 #include <conio.h>
 #include <dos.h>
 #include <thread>
@@ -11,6 +13,9 @@ void FixConsoleWindow() {
 	LONG style = GetWindowLong(consoleWindow, GWL_STYLE);
 	style = style & ~(WS_MAXIMIZEBOX) & ~(WS_THICKFRAME);
 	SetWindowLong(consoleWindow, GWL_STYLE, style);
+
+	SetConsoleTitle(L"Snake Game");
+	//SetConsoleOutputCP(852);
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -32,6 +37,7 @@ void GoToXY(int x, int y) {
 }
 
 void DrawBoard(int x, int y, int width, int height) {
+	//nhquan: print characters using code page 437
 	GoToXY(x, y); cout << '\xc9';
 	for (int i = 1; i < width-1; i++) cout << '\xcd';
 	cout << '\xbb';
@@ -42,5 +48,19 @@ void DrawBoard(int x, int y, int width, int height) {
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xc8';
 		GoToXY(x + width - 1, i); 
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
+	}
+}
+
+void PrintFile(int x, int y, const char* FileName) {
+	ifstream ifs;
+	int st_x = x, st_y = y;
+	ifs.open(FileName);
+	if (!ifs.good()) return;
+	char c;
+	GoToXY(x, y);
+	while (ifs.get(c)) {
+		cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
 	}
 }
