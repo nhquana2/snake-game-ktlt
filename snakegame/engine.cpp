@@ -34,3 +34,12 @@ void StartGame() {
 	DrawBoard(3, 5, 70, 20); // Draw game
 	STATE = 1;//Start running Thread
 }
+
+void PauseGame(HANDLE t) {
+	system("cls");
+	TerminateThread(t, 0);
+}
+
+void ExitGame(HANDLE t) {
+	SuspendThread(t);
+}
