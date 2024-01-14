@@ -42,3 +42,7 @@ void PauseGame(HANDLE t) {
 void ExitGame(HANDLE t) {
 	SuspendThread(t);
 }
+
+void nhquan() {
+	return;
+}
