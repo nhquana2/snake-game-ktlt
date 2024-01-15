@@ -26,7 +26,8 @@ int main()
     FixConsoleWindow();
     StartGame();
 
-    PrintFile(10, 4, "title.txt");
+    PrintFile((120 - getWeightAsciiArt("title.txt")) / 2, 3, "title.txt");
+    
     while (1);
 
     //======= test thread handle

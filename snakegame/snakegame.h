@@ -25,6 +25,9 @@ void GoToXY(int x, int y);
 void DrawBoard(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
 
+int getWeightAsciiArt(const char* FileName);
+int getHeightAsciiArt(const char* FileName);
+
 //Logic and game engine functions
 bool IsValidFood(int x, int y);
 void GenerateFood();

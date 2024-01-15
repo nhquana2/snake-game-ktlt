@@ -64,3 +64,37 @@ void PrintFile(int x, int y, const char* FileName) {
 		GoToXY(x, y);
 	}
 }
+
+int getWeightAsciiArt(const char* FileName) {
+	//cuong: this func return max_weight of ascii art
+	ifstream ifs;
+	ifs.open(FileName);
+	if (!ifs.good()) return 0;
+	char c;
+	int weight = 0;
+	int h = getHeightAsciiArt(FileName);
+	while (h != 0) {
+		int weight_tmp = 0;
+		while (ifs.get(c)) {
+			weight_tmp++;
+			if (c == '\n') break;
+		}
+		if (weight_tmp > weight) weight = weight_tmp;
+		h--;
+	}
+	return --weight;
+}
+
+int getHeightAsciiArt(const char* FileName) {
+	//cuong: this func return height of ascii art
+	ifstream ifs;
+	ifs.open(FileName);
+	if (!ifs.good()) return 0;
+	char c;
+	int height = 0; 
+	while (ifs.get(c)) {
+		if (c == '\n') height++;
+	}
+	return ++height;
+}
+
