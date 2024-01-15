@@ -5,6 +5,7 @@
 
 //Global variables
 POINT snake[40];
+POINT board[400];
 POINT food[6];
 int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
 int MOVING;//used to determine the direction my snake moves (At a moment, there  are three directions my snake can move)
@@ -22,6 +23,8 @@ int main()
     system("color 70");
     FixConsoleWindow();
     StartGame();
+
+    DrawSnakeAndFood("1"); // test only
 
     PrintFile((120 - getWeightAsciiArt("title.txt")) / 2, 3, "title.txt");
     DrawGate(3,3);

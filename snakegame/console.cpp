@@ -14,8 +14,11 @@ void FixConsoleWindow() {
 	style = style & ~(WS_MAXIMIZEBOX) & ~(WS_THICKFRAME);
 	SetWindowLong(consoleWindow, GWL_STYLE, style);
 
-	SetConsoleTitle(L"Snake Game");
-	//SetConsoleOutputCP(852);
+	//Set console title for snake game which appears on top
+	SetConsoleTitle(L"Snake Game - 23CLC01");
+
+	//Console code page: 437 OEM - US
+	SetConsoleOutputCP(437);
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -29,7 +32,7 @@ void FixConsoleWindow() {
 	SetConsoleWindowInfo(hConsole, TRUE, &windowSize);
 }
 
-
+//Go to specific location in console
 void GoToXY(int x, int y) {
 	COORD coord;
 	coord.X = x, coord.Y = y;

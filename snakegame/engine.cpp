@@ -1,4 +1,7 @@
 #include "snakegame.h"
+#include <iostream>
+
+using namespace std;
 
 bool IsValidFood(int x, int y) {
 	for (int i = 0; i < SIZE_SNAKE; ++i) {
@@ -29,10 +32,10 @@ void ResetData() {
 }
 
 void StartGame() {
-	system("cls");
+	system("cls"); //Clear screen
 	ResetData(); // Intialize original data
-	DrawBoard(3, 7, 70, 20); // Draw game
-	STATE = 1;//Start running Thread
+	DrawBoard(3, 7, 70, 20); // Draw board game
+	STATE = 1; //Start running Thread
 }
 
 void ExitGame(HANDLE t) {
@@ -50,9 +53,9 @@ void ProcessDead() {
 	printf("Dead, press anykey to continue!");
 }
 
-void DrawSnakeAndFood(char* str) {
-	GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y);//Cho con tro nhap nhay
-	printf(".");//Draw food
+void DrawSnakeAndFood(const char* str) {
+	GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
+	printf("F"); //Draw food
 	for (int i = 0; i < SIZE_SNAKE; i++)
 	{
 		GoToXY(snake[i].x, snake[i].y);
