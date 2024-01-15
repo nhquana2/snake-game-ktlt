@@ -16,9 +16,6 @@ int STATE; // State of snake: dead or alive
 
 using namespace std;
 
-void ThreadFunc() {
-    cout << "Khong bao gio ngu quen";
-}
 
 int main()
 {
@@ -27,7 +24,7 @@ int main()
     StartGame();
 
     PrintFile((120 - getWeightAsciiArt("title.txt")) / 2, 3, "title.txt");
-    
+    DrawGate(3,3);
     while (1);
 
     //======= test thread handle

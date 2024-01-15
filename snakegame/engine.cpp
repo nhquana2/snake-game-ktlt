@@ -60,6 +60,21 @@ void DrawSnakeAndFood(char* str) {
 	}
 }
 
+void Eat() {
+	snake[SIZE_SNAKE] = food[FOOD_INDEX];
+	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)
+	{
+		FOOD_INDEX = 0;
+		SIZE_SNAKE = 6;
+		SPEED++;
+		GenerateFood();
+	}
+	else
+	{
+		FOOD_INDEX++;
+		SIZE_SNAKE++;
+	}
+}
 //Move functions
 
 void MoveRight()
@@ -135,5 +150,28 @@ void MoveDown()
 
 		}
 		snake[SIZE_SNAKE - 1].y++;
+	}
+}
+void ThreadFunc() {
+	while (1) {
+		if (STATE == 1) {
+			//DrawSnakeAndFood();
+			switch (MOVING) {
+				case 'A':
+				MoveLeft();
+				break;
+				case 'D':
+				MoveRight();
+				break;
+				case 'W':
+				MoveUp();
+				break;
+				case 'S':
+				MoveDown();
+				break;
+				}
+			//DrawSnakeAndFood();
+			Sleep(1000 / SPEED);
+		}
 	}
 }

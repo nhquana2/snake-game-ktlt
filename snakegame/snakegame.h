@@ -24,6 +24,7 @@ void FixConsoleWindow();
 void GoToXY(int x, int y);
 void DrawBoard(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
+void DrawGate(int gate_height, int gate_width);
 
 int getWeightAsciiArt(const char* FileName);
 int getHeightAsciiArt(const char* FileName);
@@ -33,3 +34,5 @@ bool IsValidFood(int x, int y);
 void GenerateFood();
 void ResetData();
 void StartGame();
+void ThreadFunc();
+void Eat();

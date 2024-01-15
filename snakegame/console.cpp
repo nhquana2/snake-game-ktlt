@@ -1,4 +1,4 @@
-#include "snakegame.h"
+﻿#include "snakegame.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -50,7 +50,27 @@ void DrawBoard(int x, int y, int width, int height) {
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
 	}
 }
-
+void DrawGate(int gate_height,int gate_width)
+{
+	int x, y;
+	srand(time(NULL));
+	do
+	{
+		x = rand() % (70 - 5) + 50;//random coordinates such that the gate is inside the playzone
+		y = rand() % (20 - 5) + 50;
+	} while (x <= 70|| y <= 20);// continue the loop if they out of the playzone
+	GoToXY(x, y);
+	for (int i = 0; i < gate_height; i++)
+	{
+		for (int j = 0; j < gate_width; j++)
+		{
+			if (i == gate_height - 1 && j== gate_width/2)//chừa 1 lỗ trong 1 khối vd 3x3 để làm cái cổng
+				continue;
+			cout << "*";
+		}
+		cout << endl;
+	}
+}
 void PrintFile(int x, int y, const char* FileName) {
 	ifstream ifs;
 	int st_x = x, st_y = y;
