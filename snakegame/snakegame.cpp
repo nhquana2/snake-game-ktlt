@@ -26,7 +26,7 @@ int main()
 
     DrawSnakeAndFood("1"); // test only
 
-    PrintFile((120 - getWeightAsciiArt("title.txt")) / 2, 3, "title.txt");
+    PrintFile((120 - GetWidthtAsciiArt("title.txt")) / 2, 3, "title.txt");
     DrawGate(3,3);
     while (1);
 

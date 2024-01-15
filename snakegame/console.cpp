@@ -88,14 +88,14 @@ void PrintFile(int x, int y, const char* FileName) {
 	}
 }
 
-int getWeightAsciiArt(const char* FileName) {
-	//cuong: this func return max_weight of ascii art
+int GetWidthtAsciiArt(const char* FileName) {
+	//cuong: this func return max_widht of ascii art
 	ifstream ifs;
 	ifs.open(FileName);
 	if (!ifs.good()) return 0;
 	char c;
 	int weight = 0;
-	int h = getHeightAsciiArt(FileName);
+	int h = GetHeightAsciiArt(FileName);
 	while (h != 0) {
 		int weight_tmp = 0;
 		while (ifs.get(c)) {
@@ -108,7 +108,7 @@ int getWeightAsciiArt(const char* FileName) {
 	return --weight;
 }
 
-int getHeightAsciiArt(const char* FileName) {
+int GetHeightAsciiArt(const char* FileName) {
 	//cuong: this func return height of ascii art
 	ifstream ifs;
 	ifs.open(FileName);
