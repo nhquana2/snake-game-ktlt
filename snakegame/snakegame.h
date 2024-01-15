@@ -30,8 +30,8 @@ void PrintFile(int x, int y, const char* FileName);
 void DrawGate(int GateHeight, int GateWidth);
 void DrawSnakeAndFood(const char* str);
 
-int getWeightAsciiArt(const char* FileName);
-int getHeightAsciiArt(const char* FileName);
+int GetWidthtAsciiArt(const char* FileName);
+int GetHeightAsciiArt(const char* FileName);
 
 //Logic and game engine functions
 bool IsValidFood(int x, int y);
