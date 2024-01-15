@@ -3,6 +3,13 @@
 
 using namespace std;
 
+void BoardInit(int x, int y) {
+	for (int i = 0; i < WIDTH_BOARD; i++) {
+		board[i].x = x;
+		board[i].y = y;
+		x++; y++;
+	}
+}
 bool IsValidFood(int x, int y) {
 	for (int i = 0; i < SIZE_SNAKE; ++i) {
 		if (snake[i].x == x && snake[i].y == y) return false;
@@ -32,15 +39,16 @@ void ResetData() {
 }
 
 void StartGame() {
+	BoardInit(5, 10);
 	system("cls"); //Clear screen
 	ResetData(); // Intialize original data
-	DrawBoard(3, 7, 70, 20); // Draw board game
+	DrawBoard(board[0].x, board[0].y, HEIGHT_BOARD, WIDTH_BOARD); // Draw board game
 	STATE = 1; //Start running Thread
 }
 
 void ExitGame(HANDLE t) {
 	system("cls");
-	TerminateThread(t, 0);
+	TerminateThread(t, 0);//no ok
 }
 
 void PauseGame(HANDLE t) {

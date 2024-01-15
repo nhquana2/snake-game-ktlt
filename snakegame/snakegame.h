@@ -8,7 +8,8 @@
 #define MAX_SIZE_FOOD 6
 #define MAX_BOARD_SIZE 400
 #define MAX_SPEED 20
-
+#define HEIGHT_BOARD 70
+#define WIDTH_BOARD 20
 //Global variables (definition using extern keyword)
 extern POINT snake[MAX_SIZE_SNAKE];
 extern POINT food[MAX_SIZE_FOOD];
@@ -26,7 +27,7 @@ void FixConsoleWindow();
 void GoToXY(int x, int y);
 void DrawBoard(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
-void DrawGate(int gate_height, int gate_width);
+void DrawGate(int GateHeight, int GateWidth);
 void DrawSnakeAndFood(const char* str);
 
 int getWeightAsciiArt(const char* FileName);
