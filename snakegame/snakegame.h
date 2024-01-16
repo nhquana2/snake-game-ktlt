@@ -3,14 +3,18 @@
 #include <thread>
 #include <string>
 #include <conio.h>
+#include <thread>
+#include <dos.h>
+#include <fstream>
+#include <iostream>
 
 //Global constant
 #define MAX_SIZE_SNAKE 40
 #define MAX_SIZE_FOOD 6
 #define MAX_BOARD_SIZE 400
 #define MAX_SPEED 20
-#define HEIGHT_BOARD 70
-#define WIDTH_BOARD 20
+#define HEIGHT_BOARD 20
+#define WIDTH_BOARD 70
 //Global variables (definition using extern keyword)
 extern POINT snake[MAX_SIZE_SNAKE];
 extern POINT food[MAX_SIZE_FOOD];
@@ -23,6 +27,9 @@ extern int FOOD_INDEX; // current food-index
 extern int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 extern int STATE; // State of snake: dead or alive
 extern int SIZE_BOARD;
+
+//Utility
+int RandomInRange(int a, int b);
 
 //Console and Graphic functions
 void FixConsoleWindow();

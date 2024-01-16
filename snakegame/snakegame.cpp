@@ -25,7 +25,6 @@ int main()
    FixConsoleWindow();
    StartGame();
 
-   DrawSnakeAndFood("1"); // test only
     //thread t1(ThreadFunc);
     //HANDLE handle_t1 = t1.native_handle();
 
@@ -35,7 +34,7 @@ int main()
     /*for (int i = 0; i < SIZE_BOARD; ++i) {
         cout << board[i].x << " " << board[i].y << "\n";
     }*/
-    //DrawGate(3,3);
+    DrawGate(3, 3);
 
     int temp;
     /*while (1) {

@@ -1,10 +1,4 @@
 ﻿#include "snakegame.h"
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <conio.h>
-#include <dos.h>
-#include <thread>
 
 using namespace std;
 
@@ -56,22 +50,19 @@ void DrawBoard(int x, int y, int width, int height) {
 void DrawGate(int GateHeight,int GateWidth)
 {
 	int x, y;
-	srand(time(NULL));
-	do
-	{
-		x = rand() % (board[0].x + HEIGHT_BOARD);//random coordinates such that the gate is inside the playzone
-		y = rand() % (board[0].y + WIDTH_BOARD);
-	} while (x <= board[0].x+ GateHeight || y <= board[0].y+GateWidth);// continue the loop if they out of the playzone
+	x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 1 - GateWidth - 1); //random coordinates such that the gate is inside the playzone
+	y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 1 - GateHeight - 1);
+
 	GoToXY(x, y);
-	for (int i = 0; i < GateHeight; i++)
+	for (int i = 0; i < GateWidth; i++)
 	{
-		for (int j = 0; j < GateWidth; j++)
+		for (int j = 0; j < GateHeight; j++)
 		{
-			if (i == GateHeight - 1 && j== GateWidth/2)//chừa 1 lỗ trong 1 khối vd 3x3 để làm cái cổng
+			if (i == GateWidth - 1 && j== GateHeight/2)//chừa 1 lỗ trong 1 khối vd 3x3 để làm cái cổng
 				continue;
 			cout << "*";
 		}
-		cout << endl;
+		GoToXY(x, ++y);
 	}
 }
 

@@ -3,6 +3,11 @@
 
 using namespace std;
 
+int RandomInRange(int a, int b) {
+	srand(time(NULL));
+	return a + rand() % (b - a + 1);
+}
+
 void BoardInit(int x, int y, int width, int height) {
 	int pos = 0;
 	board[pos] = { x, y };
