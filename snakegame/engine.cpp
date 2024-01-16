@@ -97,7 +97,7 @@ void Eat() {
 
 void MoveRight()
 {
-	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_CONSOLE)//if snake hit the wall
+	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x)//if snake hit the wall
 	{
 		ProcessDead();
 	}
@@ -116,7 +116,7 @@ void MoveRight()
 
 void MoveLeft()
 {
-	if (snake[SIZE_SNAKE - 1].x -1 == WIDTH_CONSOLE)
+	if (snake[SIZE_SNAKE - 1].x -1 == WIDTH_BOARD+board[0].x)
 	{
 		ProcessDead();
 	}
@@ -135,7 +135,7 @@ void MoveLeft()
 
 void MoveUp()
 {
-	if (snake[SIZE_SNAKE - 1].y - 1 == HEIGH_CONSOLE)
+	if (snake[SIZE_SNAKE - 1].y - 1 == HEIGHT_BOARD+board[0].y)
 	{
 		ProcessDead();
 	}
@@ -154,7 +154,7 @@ void MoveUp()
 
 void MoveDown()
 {
-	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGH_CONSOLE)
+	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y)
 	{
 		ProcessDead();
 	}
