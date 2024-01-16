@@ -14,6 +14,7 @@ int HEIGH_CONSOLE, WIDTH_CONSOLE;// Width and height of console-screen
 int FOOD_INDEX; // current food-index
 int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 int STATE; // State of snake: dead or alive
+int SIZE_BOARD;
 
 using namespace std;
 
@@ -25,14 +26,19 @@ int main()
    StartGame();
 
    DrawSnakeAndFood("1"); // test only
-    thread t1(ThreadFunc);
-    HANDLE handle_t1 = t1.native_handle();
+    //thread t1(ThreadFunc);
+    //HANDLE handle_t1 = t1.native_handle();
 
     //PrintFile((120 - GetWidthtAsciiArt("title.txt")) / 2, 3, "title.txt");
+    //GoToXY(0, 0);
+    //cout << SIZE_BOARD << "\n";
+    /*for (int i = 0; i < SIZE_BOARD; ++i) {
+        cout << board[i].x << " " << board[i].y << "\n";
+    }*/
     //DrawGate(3,3);
 
     int temp;
-    while (1) {
+    /*while (1) {
         temp = toupper(_getch());
         if (STATE == 1) {
             if (temp == 'P') {
@@ -60,7 +66,7 @@ int main()
                 return 0;
             }
         }
-    }
+    }*/
 
     //======= test thread handle
     /*

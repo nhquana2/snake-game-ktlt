@@ -22,6 +22,7 @@ extern int HEIGH_CONSOLE, WIDTH_CONSOLE;// Width and height of console-screen
 extern int FOOD_INDEX; // current food-index
 extern int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 extern int STATE; // State of snake: dead or alive
+extern int SIZE_BOARD;
 
 //Console and Graphic functions
 void FixConsoleWindow();
@@ -41,5 +42,6 @@ void ResetData();
 void StartGame();
 void ExitGame(HANDLE t);
 void PauseGame(HANDLE t);
+void BoardInit(int x, int y, int width, int height);
 void ThreadFunc();
 void Eat();

@@ -3,12 +3,23 @@
 
 using namespace std;
 
-void BoardInit(int x, int y) {
-	for (int i = 0; i < WIDTH_BOARD; i++) {
-		board[i].x = x;
-		board[i].y = y;
-		x++; y++;
+void BoardInit(int x, int y, int width, int height) {
+	int pos = 0;
+	board[pos] = { x, y };
+	for (int i = 0; i < width; ++i) {
+		board[pos] = { x + i, y };
+		++pos;
 	}
+	for (int i = 0; i < width; ++i) {
+		board[pos] = { x + i, y + height - 1 };
+		++pos;
+	}
+	for (int i = y + 1; i < y + height - 1; ++i) {
+		board[pos] = { x , i }; ++pos;
+		board[pos] = { x + width - 1, i };
+		++pos;
+	}
+	SIZE_BOARD = pos;
 }
 bool IsValidFood(int x, int y) {
 	for (int i = 0; i < SIZE_SNAKE; ++i) {
@@ -39,10 +50,11 @@ void ResetData() {
 }
 
 void StartGame() {
-	BoardInit(5, 10);
+	//BoardInit(5, 10);
 	system("cls"); //Clear screen
 	ResetData(); // Intialize original data
-	DrawBoard(board[0].x, board[0].y, HEIGHT_BOARD, WIDTH_BOARD); // Draw board game
+	BoardInit(3, 7, WIDTH_BOARD, HEIGHT_BOARD);
+	DrawBoard(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
 	STATE = 1; //Start running Thread
 }
 
@@ -59,16 +71,6 @@ void ProcessDead() {
 	STATE = 0;
 	GoToXY(0, HEIGH_CONSOLE + 2);
 	printf("Dead, press anykey to continue!");
-}
-
-void DrawSnakeAndFood(const char* str) {
-	GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
-	printf("F"); //Draw food
-	for (int i = 0; i < SIZE_SNAKE; i++)
-	{
-		GoToXY(snake[i].x, snake[i].y);
-		printf(str);
-	}
 }
 
 void Eat() {

@@ -59,8 +59,8 @@ void DrawGate(int GateHeight,int GateWidth)
 	srand(time(NULL));
 	do
 	{
-		x = rand() % (board[0].x) + HEIGHT_BOARD;//random coordinates such that the gate is inside the playzone
-		y = rand() % (board[0].y) + WIDTH_BOARD;
+		x = rand() % (board[0].x + HEIGHT_BOARD);//random coordinates such that the gate is inside the playzone
+		y = rand() % (board[0].y + WIDTH_BOARD);
 	} while (x <= board[0].x+ GateHeight || y <= board[0].y+GateWidth);// continue the loop if they out of the playzone
 	GoToXY(x, y);
 	for (int i = 0; i < GateHeight; i++)
@@ -74,6 +74,17 @@ void DrawGate(int GateHeight,int GateWidth)
 		cout << endl;
 	}
 }
+
+void DrawSnakeAndFood(const char* str) {
+	GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
+	printf("F"); //Draw food
+	for (int i = 0; i < SIZE_SNAKE; i++)
+	{
+		GoToXY(snake[i].x, snake[i].y);
+		printf(str);
+	}
+}
+
 void PrintFile(int x, int y, const char* FileName) {
 	ifstream ifs;
 	int st_x = x, st_y = y;
