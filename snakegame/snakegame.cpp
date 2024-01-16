@@ -34,8 +34,8 @@ int main()
     /*for (int i = 0; i < SIZE_BOARD; ++i) {
         cout << board[i].x << " " << board[i].y << "\n";
     }*/
-    DrawGate(3, 3);
-
+    DrawGate(3,2);
+    while (1);
     int temp;
     /*while (1) {
         temp = toupper(_getch());
