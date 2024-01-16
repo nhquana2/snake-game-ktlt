@@ -42,7 +42,7 @@ void DrawSnakeAndFood(const char* str);
 
 int GetWidthtAsciiArt(const char* FileName);
 int GetHeightAsciiArt(const char* FileName);
-
+void GetWidthnHeighAsciiArt(const char* FileName, int& width, int& height);
 //Logic and game engine functions
 bool IsValidFood(int x, int y);
 void GenerateFood();

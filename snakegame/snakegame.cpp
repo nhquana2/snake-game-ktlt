@@ -25,6 +25,10 @@ int main()
    FixConsoleWindow();
    StartGame();
 
+   int w, h;
+   GetWidthnHeighAsciiArt("title.txt", w, h);
+   cout << w <<" "<< h;
+
     //thread t1(ThreadFunc);
     //HANDLE handle_t1 = t1.native_handle();
 
