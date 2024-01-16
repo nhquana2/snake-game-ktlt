@@ -27,6 +27,7 @@ extern int FOOD_INDEX; // current food-index
 extern int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 extern int STATE; // State of snake: dead or alive
 extern int SIZE_BOARD;
+extern POINT WIN_POINT;
 
 //Utility
 int RandomInRange(int a, int b);

@@ -15,7 +15,7 @@ int FOOD_INDEX; // current food-index
 int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 int STATE; // State of snake: dead or alive
 int SIZE_BOARD;
-
+POINT WIN_POINT;
 using namespace std;
 
 

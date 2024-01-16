@@ -60,6 +60,7 @@ void DrawGate(int GateHeight,int GateWidth)
 	GoToXY(x, y + GateHeight-1); cout << '\xbd';
 	GoToXY(x - 1, y); cout << '\xc4';
 	GoToXY(x - 1, y + GateHeight-1 ); cout << '\xc4';
+	WIN_POINT = { x,y + 1 };
 }
 
 void DrawSnakeAndFood(const char* str) {
@@ -118,4 +119,5 @@ int GetHeightAsciiArt(const char* FileName) {
 	}
 	return ++height;
 }
+
 
