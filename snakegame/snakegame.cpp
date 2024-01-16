@@ -16,6 +16,7 @@ int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may b
 int STATE; // State of snake: dead or alive
 int SIZE_BOARD;
 POINT WIN_POINT;
+int LEVEL;
 using namespace std;
 
 
@@ -35,6 +36,7 @@ int main()
         cout << board[i].x << " " << board[i].y << "\n";
     }*/
     DrawGate(2,3);
+    
     while (1);
     int temp;
     /*while (1) {

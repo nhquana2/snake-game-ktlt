@@ -37,8 +37,8 @@ void GenerateFood() {
 	srand(time(NULL));
 	for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
 		do {
-			x = rand() % (WIDTH_CONSOLE - 1) + 1;
-			y = rand() % (HEIGH_CONSOLE - 1) + 1;
+			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 1 );
+			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 1 );
 		} while (!IsValidFood(x, y));
 		food[i] = { x , y };
 	}
@@ -46,7 +46,7 @@ void GenerateFood() {
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 1; FOOD_INDEX = 0, 
 	WIDTH_CONSOLE = 120, HEIGH_CONSOLE = 30, SIZE_SNAKE = 6;
-
+	LEVEL = 1;
 	snake[0] = { 10, 5 }; snake[1] = { 11, 5 };
 	snake[2] = { 12, 5 }; snake[3] = { 13, 5 };
 	snake[4] = { 14, 5 }; snake[5] = { 15, 5 };
@@ -56,6 +56,9 @@ void ResetData() {
 
 void StartGame() {
 	//BoardInit(5, 10);
+	WIN_POINT.x = 0;
+	WIN_POINT.y = 0;
+	//set the coordinates of win point to {0,0} so that it lies outside of the board and the snake cannot touch it until the gate is drawed
 	system("cls"); //Clear screen
 	ResetData(); // Intialize original data
 	BoardInit(3, 7, WIDTH_BOARD, HEIGHT_BOARD);
@@ -78,6 +81,12 @@ void ProcessDead() {
 	printf("Dead, press anykey to continue!");
 }
 
+void LevelUp() {//need fix
+	//process when the snkae eat enough food and open the gate
+	//when the head ò the snake hit the win point
+	LEVEL += 1;
+	SPEED += 5;
+}
 void Eat() {
 	snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)
@@ -188,6 +197,10 @@ void ThreadFunc() {
 				MoveDown();
 				break;
 				}
+			if (snake[SIZE_SNAKE - 1].x - 1 == WIN_POINT.x && snake[SIZE_SNAKE - 1].y == WIN_POINT.y)
+			{
+				LevelUp();//check if the player eat enough food
+			}
 			DrawSnakeAndFood("*");
 			Sleep(1000 / SPEED);
 		}

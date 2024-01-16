@@ -28,7 +28,7 @@ extern int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum siz
 extern int STATE; // State of snake: dead or alive
 extern int SIZE_BOARD;
 extern POINT WIN_POINT;
-
+extern int LEVEL;
 //Utility
 int RandomInRange(int a, int b);
 
