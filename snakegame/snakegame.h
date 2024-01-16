@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <thread>
 #include <string>
+#include <conio.h>
 
 //Global constant
 #define MAX_SIZE_SNAKE 40
@@ -38,5 +39,7 @@ bool IsValidFood(int x, int y);
 void GenerateFood();
 void ResetData();
 void StartGame();
+void ExitGame(HANDLE t);
+void PauseGame(HANDLE t);
 void ThreadFunc();
 void Eat();
