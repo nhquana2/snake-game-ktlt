@@ -158,7 +158,7 @@ void MoveDown()
 void ThreadFunc() {
 	while (1) {
 		if (STATE == 1) {
-			//DrawSnakeAndFood();
+			DrawSnakeAndFood(" ");
 			switch (MOVING) {
 				case 'A':
 				MoveLeft();
@@ -173,7 +173,7 @@ void ThreadFunc() {
 				MoveDown();
 				break;
 				}
-			//DrawSnakeAndFood();
+			DrawSnakeAndFood("*");
 			Sleep(1000 / SPEED);
 		}
 	}
