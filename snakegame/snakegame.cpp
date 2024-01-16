@@ -34,7 +34,7 @@ int main()
     /*for (int i = 0; i < SIZE_BOARD; ++i) {
         cout << board[i].x << " " << board[i].y << "\n";
     }*/
-    DrawGate(3,2);
+    DrawGate(2,3);
     while (1);
     int temp;
     /*while (1) {

@@ -47,19 +47,19 @@ void DrawBoard(int x, int y, int width, int height) {
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
 	}
 }
-void DrawGate(int GateHeight,int GateWidth)
+void DrawGate(int GateWidth,int GateHeight)
 {
 	int x, y;
 	x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 1 - GateWidth - 1); //random coordinates such that the gate is inside the playzone
 	y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 1 - GateHeight - 1);
 
-	GoToXY(x, y); cout << '\xb7';
-	for (int i = 1; i < GateHeight - 1; i++) {
-		GoToXY(x, y + i); cout << '\xb3';
-	}
-	GoToXY(x, y + GateHeight-1); cout << '\xbd';
-	GoToXY(x - 1, y); cout << '\xc4';
-	GoToXY(x - 1, y + GateHeight-1 ); cout << '\xc4';
+	GoToXY(x, y); cout << '\xc4';
+	GoToXY(x+1, y ); cout << '\xb7';
+	GoToXY(x + 1, y + 1); cout << '\xb3';
+	GoToXY(x + 1, y + 2); cout << '\xbd';
+	GoToXY(x, y + 2); cout << '\xc4';
+	
+	
 }
 
 void DrawSnakeAndFood(const char* str) {
