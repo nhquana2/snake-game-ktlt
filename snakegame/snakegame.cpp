@@ -39,14 +39,14 @@ int main()
     /*for (int i = 0; i < SIZE_BOARD; ++i) {
         cout << board[i].x << " " << board[i].y << "\n";
     }*/
-    DrawGate(2,3);
-    
-    while (1);
-    int temp;
+    //DrawGate(2,3);
+    //while (1);
+    char temp;
     /*while (1) {
         temp = toupper(_getch());
         if (STATE == 1) {
             if (temp == 'P') {
+                cout << temp;
                 PauseGame(handle_t1);
             }
             else if (temp == 27) {
