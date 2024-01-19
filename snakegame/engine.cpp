@@ -39,14 +39,14 @@ void GenerateFood() {
 	srand(time(NULL));
 	for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
 		do {
-			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 1 );
-			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 1 );
+			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2 );
+			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2 );
 		} while (!IsValidFood(x, y));
 		food[i] = { x , y };
 	}
 }
 void ResetData() {
-	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 1; FOOD_INDEX = 0, 
+	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0, 
 	WIDTH_CONSOLE = 120, HEIGH_CONSOLE = 30, SIZE_SNAKE = 6;
 	LEVEL = 1;
 	snake[0] = { 10, 5 }; snake[1] = { 11, 5 };
@@ -117,7 +117,7 @@ bool Suicide(int x,int y)
 }
 void MoveRight()
 {
-	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//if snake hit the wall
+	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//if snake hit the wall
 	{
 		ProcessDead();
 	}
@@ -174,7 +174,7 @@ void MoveUp()
 
 void MoveDown()
 {
-	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y||Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
+	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y - 1 || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
 	{
 		ProcessDead();
 	}
