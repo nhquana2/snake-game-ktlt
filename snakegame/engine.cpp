@@ -136,7 +136,7 @@ void MoveRight()
 
 void MoveLeft()
 {
-	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x)
+	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x || Suicide(snake[SIZE_SNAKE - 1].x-1, snake[SIZE_SNAKE - 1].y))
 	{
 		ProcessDead();
 	}
@@ -155,7 +155,7 @@ void MoveLeft()
 
 void MoveUp()
 {
-	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y)
+	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y - 1))
 	{
 		ProcessDead();
 	}
