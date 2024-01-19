@@ -30,8 +30,8 @@ int main()
    GetWidthnHeighAsciiArt("title.txt", w, h);
    cout << w <<" "<< h;
 
-    //thread t1(ThreadFunc);
-    //HANDLE handle_t1 = t1.native_handle();
+    thread t1(ThreadFunc);
+    HANDLE handle_t1 = t1.native_handle();
 
     //PrintFile((120 - GetWidthtAsciiArt("title.txt")) / 2, 3, "title.txt");
     //GoToXY(0, 0);
@@ -42,11 +42,13 @@ int main()
     //DrawGate(2,3);
     //while (1);
     char temp;
-    /*while (1) {
+    while (1) {
         temp = toupper(_getch());
+        if (temp == char(-32)) {
+            temp = toupper(_getch()); continue;
+        }
         if (STATE == 1) {
             if (temp == 'P') {
-                cout << temp;
                 PauseGame(handle_t1);
             }
             else if (temp == 27) {
@@ -71,7 +73,7 @@ int main()
                 return 0;
             }
         }
-    }*/
+    }
 
     //======= test thread handle
     /*

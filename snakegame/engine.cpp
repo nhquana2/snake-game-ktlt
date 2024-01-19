@@ -125,7 +125,7 @@ void MoveRight()
 
 void MoveLeft()
 {
-	if (snake[SIZE_SNAKE - 1].x -1 == WIDTH_BOARD+board[0].x)
+	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x)
 	{
 		ProcessDead();
 	}
@@ -144,7 +144,7 @@ void MoveLeft()
 
 void MoveUp()
 {
-	if (snake[SIZE_SNAKE - 1].y - 1 == HEIGHT_BOARD+board[0].y)
+	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y)
 	{
 		ProcessDead();
 	}
