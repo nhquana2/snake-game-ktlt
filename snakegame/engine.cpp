@@ -209,7 +209,7 @@ void ThreadFunc() {
 				break;
 				}
 			
-			DrawSnakeAndFood("*");
+			DrawSnakeAndFood(MSSV);
 			Sleep(1000 / SPEED);
 		}
 		if (STATE == 2) {

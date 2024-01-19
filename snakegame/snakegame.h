@@ -16,6 +16,7 @@
 #define HEIGHT_BOARD 20
 #define WIDTH_BOARD 70
 //Global variables (definition using extern keyword)
+extern const char* MSSV;
 extern POINT snake[MAX_SIZE_SNAKE];
 extern POINT food[MAX_SIZE_FOOD];
 extern POINT board[MAX_BOARD_SIZE];

@@ -65,10 +65,11 @@ void DrawGate(int GateWidth,int GateHeight)
 void DrawSnakeAndFood(const char* str) {
 	GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
 	printf("F"); //Draw food
+	int len = strlen(str);
 	for (int i = 0; i < SIZE_SNAKE; i++)
 	{
 		GoToXY(snake[i].x, snake[i].y);
-		printf(str);
+		cout << str[(i % len)];
 	}
 }
 
