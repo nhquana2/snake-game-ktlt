@@ -80,7 +80,7 @@ void PauseGame(HANDLE t) {
 void ProcessDead() {
 	STATE = 0;
 	GoToXY(0, HEIGH_CONSOLE + 2);
-	printf("Dead, press anykey to continue!");
+	printf("Dead, press Y to continue!");
 }
 
 void LevelUp() {//need fix
@@ -211,6 +211,9 @@ void ThreadFunc() {
 			
 			DrawSnakeAndFood("*");
 			Sleep(1000 / SPEED);
+		}
+		if (STATE == 2) {
+			break;
 		}
 	}
 }

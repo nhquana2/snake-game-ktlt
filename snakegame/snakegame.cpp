@@ -19,6 +19,9 @@ POINT WIN_POINT;
 int LEVEL;
 using namespace std;
 
+void demo() {
+    return;
+}
 
 int main()
 {
@@ -48,7 +51,6 @@ int main()
 
     char temp;
     while (1) {
-        //cout << RandomInRange(8, 26) << " " << "\n";
         temp = toupper(_getch());
         if (temp == char(-32)) {
             temp = toupper(_getch()); continue;
@@ -58,7 +60,9 @@ int main()
                 PauseGame(handle_t1);
             }
             else if (temp == 27) {
-                ExitGame(handle_t1);
+                //ExitGame(handle_t1);
+                STATE = 2;
+                t1.join();
                 return 0;
             }
             else {
@@ -75,16 +79,18 @@ int main()
         else {
             if (temp == 'Y') StartGame();
             else {
-                ExitGame(handle_t1);
+                //ExitGame(handle_t1);
+                STATE = 2;
+                t1.join();
                 return 0;
             }
         }
     }
 
     //======= test thread handle
-    /*
+    
 
-    SuspendThread(t1.native_handle());
+    /*SuspendThread(t1.native_handle());
     Sleep(1000);
     ResumeThread(t1.native_handle());
 
