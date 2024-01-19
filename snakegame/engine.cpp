@@ -22,6 +22,8 @@ void BoardInit(int x, int y, int width, int height) {
 	for (int i = y + 1; i < y + height - 1; ++i) {
 		board[pos] = { x , i }; ++pos;
 		board[pos] = { x + width - 1, i };
+
+
 		++pos;
 	}
 	SIZE_BOARD = pos;
@@ -84,6 +86,7 @@ void ProcessDead() {
 void LevelUp() {//need fix
 	//process when the snkae eat enough food and open the gate
 	//when the head ò the snake hit the win point
+	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
 }
@@ -91,9 +94,10 @@ void Eat() {
 	snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)
 	{
-		FOOD_INDEX = 0;
-		SIZE_SNAKE = 6;
-		SPEED++;
+		//FOOD_INDEX = 0;
+		//SIZE_SNAKE = 6;
+		//SPEED++;
+		LevelUp();
 		GenerateFood();
 	}
 	else
@@ -103,10 +107,17 @@ void Eat() {
 	}
 }
 //Move functions
-
+bool Suicide(int x,int y)
+{
+	for (int i = 0; i < SIZE_SNAKE; i++) {
+		if (x == snake[i].x && y == snake[i].y)
+			return true;
+	}
+	return false;
+}
 void MoveRight()
 {
-	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x)//if snake hit the wall
+	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//if snake hit the wall
 	{
 		ProcessDead();
 	}
@@ -125,7 +136,7 @@ void MoveRight()
 
 void MoveLeft()
 {
-	if (snake[SIZE_SNAKE - 1].x -1 == WIDTH_BOARD+board[0].x)
+	if (snake[SIZE_SNAKE - 1].x -1 == WIDTH_BOARD+board[0].x || Suicide(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
 	{
 		ProcessDead();
 	}
@@ -144,7 +155,7 @@ void MoveLeft()
 
 void MoveUp()
 {
-	if (snake[SIZE_SNAKE - 1].y - 1 == HEIGHT_BOARD+board[0].y)
+	if (snake[SIZE_SNAKE - 1].y - 1 == HEIGHT_BOARD+board[0].y || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
 	{
 		ProcessDead();
 	}
@@ -163,7 +174,7 @@ void MoveUp()
 
 void MoveDown()
 {
-	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y)
+	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y||Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
 	{
 		ProcessDead();
 	}
@@ -197,10 +208,7 @@ void ThreadFunc() {
 				MoveDown();
 				break;
 				}
-			if (snake[SIZE_SNAKE - 1].x - 1 == WIN_POINT.x && snake[SIZE_SNAKE - 1].y == WIN_POINT.y)
-			{
-				LevelUp();//check if the player eat enough food
-			}
+			
 			DrawSnakeAndFood("*");
 			Sleep(1000 / SPEED);
 		}
