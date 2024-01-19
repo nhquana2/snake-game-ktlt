@@ -41,8 +41,14 @@ int main()
     }*/
     //DrawGate(2,3);
     //while (1);
+
+    //for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
+    //   cout << food[i].x << " " << food[i].y << "\n";
+    //}
+
     char temp;
     while (1) {
+        //cout << RandomInRange(8, 26) << " " << "\n";
         temp = toupper(_getch());
         if (temp == char(-32)) {
             temp = toupper(_getch()); continue;

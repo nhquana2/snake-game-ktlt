@@ -4,7 +4,7 @@
 using namespace std;
 
 int RandomInRange(int a, int b) {
-	srand(time(NULL));
+	//srand(time(NULL));
 	return a + rand() % (b - a + 1);
 }
 
@@ -62,8 +62,8 @@ void StartGame() {
 	WIN_POINT.y = 0;
 	//set the coordinates of win point to {0,0} so that it lies outside of the board and the snake cannot touch it until the gate is drawed
 	system("cls"); //Clear screen
-	ResetData(); // Intialize original data
 	BoardInit(3, 7, WIDTH_BOARD, HEIGHT_BOARD);
+	ResetData(); // Intialize original data
 	DrawBoard(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
 	STATE = 1; //Start running Thread
 }
