@@ -24,14 +24,18 @@ int main()
 {
    system("color 70");
    FixConsoleWindow();
+
    StartGame();
 
   // int w, h;
   // GetWidthnHeighAsciiArt("title.txt", w, h);
   // cout << w <<" "<< h;
 
+    //cout << time(NULL) << "\n";
+
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
+
 
     //PrintFile((120 - GetWidthtAsciiArt("title.txt")) / 2, 3, "title.txt");
     //GoToXY(0, 0);

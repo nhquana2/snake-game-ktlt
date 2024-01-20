@@ -18,7 +18,7 @@ void FixConsoleWindow() {
 
 	//cout << GetLargestConsoleWindowSize(hConsole).X; //max based on system
 
-	COORD bufferSize = { 120, 30 }; //120x30: default size
+	COORD bufferSize = { 180, 40 }; //120x30: default size
 	SMALL_RECT windowSize = { 0, 0, bufferSize.X - 1, bufferSize.Y - 1 };
 
 	//nhquan: make the console screen buffer size and console window size equal to hide scrollbar
@@ -33,7 +33,7 @@ void GoToXY(int x, int y) {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-void DrawBoard(int x, int y, int width, int height) {
+void DrawRectangle(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
 	GoToXY(x, y); cout << '\xc9';
 	for (int i = 1; i < width-1; i++) cout << '\xcd';
@@ -87,7 +87,7 @@ void PrintFile(int x, int y, const char* FileName) {
 	}
 }
 
-void GetWidthnHeighAsciiArt(const char* FileName, int &width, int &height) {
+void GetWidthAndHeightFile(const char* FileName, int &width, int &height) {
 	ifstream ifs;
 	ifs.open(FileName);
 	if (!ifs.good()) return;

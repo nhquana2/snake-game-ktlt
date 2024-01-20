@@ -7,14 +7,15 @@
 #include <dos.h>
 #include <fstream>
 #include <iostream>
+#include <ctime>
 
 //Global constant
 #define MAX_SIZE_SNAKE 40
 #define MAX_SIZE_FOOD 6
 #define MAX_BOARD_SIZE 400
 #define MAX_SPEED 20
-#define HEIGHT_BOARD 20
-#define WIDTH_BOARD 70
+#define HEIGHT_BOARD 30
+#define WIDTH_BOARD 120
 //Global variables (definition using extern keyword)
 extern const char* MSSV;
 extern POINT snake[MAX_SIZE_SNAKE];
@@ -36,14 +37,13 @@ int RandomInRange(int a, int b);
 //Console and Graphic functions
 void FixConsoleWindow();
 void GoToXY(int x, int y);
-void DrawBoard(int x, int y, int width, int height);
+void DrawRectangle(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
 void DrawGate(int GateHeight, int GateWidth);
 void DrawSnakeAndFood(const char* str);
 
-int GetWidthtAsciiArt(const char* FileName);
-int GetHeightAsciiArt(const char* FileName);
-void GetWidthnHeighAsciiArt(const char* FileName, int& width, int& height);
+void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
+
 //Logic and game engine functions
 bool IsValidFood(int x, int y);
 void GenerateFood();

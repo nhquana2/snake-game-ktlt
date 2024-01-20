@@ -47,11 +47,11 @@ void GenerateFood() {
 }
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0, 
-	WIDTH_CONSOLE = 120, HEIGH_CONSOLE = 30, SIZE_SNAKE = 6;
+	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
 	LEVEL = 1;
-	snake[0] = { 10, 5 }; snake[1] = { 11, 5 };
-	snake[2] = { 12, 5 }; snake[3] = { 13, 5 };
-	snake[4] = { 14, 5 }; snake[5] = { 15, 5 };
+	snake[0] = { 10, 10 }; snake[1] = { 11, 10 };
+	snake[2] = { 12, 10 }; snake[3] = { 13, 10 };
+	snake[4] = { 14, 10 }; snake[5] = { 15, 10 };
 
 	GenerateFood();
 }
@@ -62,9 +62,15 @@ void StartGame() {
 	WIN_POINT.y = 0;
 	//set the coordinates of win point to {0,0} so that it lies outside of the board and the snake cannot touch it until the gate is drawed
 	system("cls"); //Clear screen
-	BoardInit(3, 7, WIDTH_BOARD, HEIGHT_BOARD);
+	BoardInit(3, 9, WIDTH_BOARD, HEIGHT_BOARD);
 	ResetData(); // Intialize original data
-	DrawBoard(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
+	DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
+
+	DrawRectangle(board[0].x + WIDTH_BOARD + 2, board[0].y, 30, HEIGHT_BOARD); // Draw board game
+
+	int title_width, title_height;
+	GetWidthAndHeightFile("title.txt", title_width, title_height);
+	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 	STATE = 1; //Start running Thread
 }
 
