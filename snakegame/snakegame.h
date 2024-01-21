@@ -30,6 +30,7 @@ extern int HEIGH_CONSOLE, WIDTH_CONSOLE;// Width and height of console-screen
 extern int FOOD_INDEX; // current food-index
 extern int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 extern int STATE; // State of snake: dead or alive
+extern int SCREEN;
 extern int SIZE_BOARD;
 extern POINT WIN_POINT;
 extern int LEVEL;
@@ -39,11 +40,13 @@ int RandomInRange(int a, int b);
 //Console and Graphic functions
 void FixConsoleWindow();
 void GoToXY(int x, int y);
+void ClearScreen(int x1, int y1, int x2, int y2);
 void DrawRectangle(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
 void DrawGate(int GateHeight, int GateWidth);
 void DrawSnakeAndFood(const char* str);
 void GenerateBigFood();
+void DrawMenu();
 
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 

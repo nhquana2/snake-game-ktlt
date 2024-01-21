@@ -33,6 +33,16 @@ void GoToXY(int x, int y) {
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
+void ClearScreen(int x1, int y1, int x2, int y2) {
+	GoToXY(x1, y1);
+	for (int j = y1; j <= y2; ++j) {
+		GoToXY(x1, j);
+		for (int i = x1; i <= x2; ++i) {
+			cout << " ";
+		}
+	}
+}
+
 void DrawRectangle(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
 	GoToXY(x, y); cout << '\xc9';
@@ -71,6 +81,11 @@ void DrawSnakeAndFood(const char* str) {
 		GoToXY(snake[i].x, snake[i].y);
 		cout << str[(i % len)];
 	}
+}
+
+void DrawMenu() {
+	ClearScreen(3, 9, WIDTH_CONSOLE-1, HEIGH_CONSOLE-1);
+	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGH_CONSOLE - 9 - 1);
 }
 
 void PrintFile(int x, int y, const char* FileName) {
