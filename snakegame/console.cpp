@@ -84,7 +84,11 @@ void DrawSnakeAndFood(const char* str) {
 }
 
 void DrawMenu() {
-	ClearScreen(3, 9, WIDTH_CONSOLE-1, HEIGH_CONSOLE-1);
+	//ClearScreen(3, 9, WIDTH_CONSOLE-1, HEIGH_CONSOLE-1);
+	system("cls");
+	int title_width, title_height;
+	GetWidthAndHeightFile("title.txt", title_width, title_height);
+	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGH_CONSOLE - 9 - 1);
 }
 

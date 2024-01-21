@@ -16,7 +16,7 @@ int HEIGH_CONSOLE, WIDTH_CONSOLE;// Width and height of console-screen
 int FOOD_INDEX; // current food-index
 int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 int STATE; // State of snake: dead or alive
-int SCREEN = 1;
+int SCREEN = 2;
 int SIZE_BOARD;
 POINT WIN_POINT;
 int LEVEL;
@@ -26,17 +26,14 @@ int main()
 {
     system("color 70");
     FixConsoleWindow();
-
-    StartGame();
-
+    ResetData();
+    DrawMenu();
+    STATE = 0;
+    //StartGame();
     //GenerateBigFood();
 
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
-
-    //PrintFile((120 - GetWidthtAsciiArt("title.txt")) / 2, 3, "title.txt");
-    //GoToXY(0, 0);
-    //cout << SIZE_BOARD << "\n";
 
     char temp;
     while (1) {
@@ -90,6 +87,7 @@ int main()
                 StartGame();
             }
             if (temp == 'Q') {
+                STATE = 2;
                 t1.join();
                 return 0;
             }
