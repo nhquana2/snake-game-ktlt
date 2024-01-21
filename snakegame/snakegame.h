@@ -10,6 +10,7 @@
 #include <ctime>
 
 //Global constant
+#define BIG_FOOD_SIZE 3
 #define MAX_SIZE_SNAKE 40
 #define MAX_SIZE_FOOD 6
 #define MAX_BOARD_SIZE 400
@@ -41,6 +42,7 @@ void DrawRectangle(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
 void DrawGate(int GateHeight, int GateWidth);
 void DrawSnakeAndFood(const char* str);
+void GenerateBigFood();
 
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 

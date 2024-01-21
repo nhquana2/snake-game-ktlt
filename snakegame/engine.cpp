@@ -40,10 +40,38 @@ void GenerateFood() {
 	for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
 		do {
 			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2 );
-			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2 );
+			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2);
 		} while (!IsValidFood(x, y));
 		food[i] = { x , y };
 	}
+}
+void GenerateBigFood() {
+	int x, y;
+	//srand(time(NULL));
+	for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
+		do {
+			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2- BIG_FOOD_SIZE);
+			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2- BIG_FOOD_SIZE);
+		} while (!IsValidFood(x, y));
+	}
+	GoToXY(x, y);
+	for (int i = 0; i < BIG_FOOD_SIZE; i++)
+	{
+		for (int j = 0; j < BIG_FOOD_SIZE; j++)
+		{
+			cout << "?";
+		}
+		GoToXY(x,y+i+1);
+	}
+	long long time1 = time(NULL);
+	while (1)
+	{
+		if (time(NULL) - time1 == 3)
+		{
+			break
+		}
+	}
+
 }
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0, 
@@ -89,21 +117,25 @@ void ProcessDead() {
 	printf("Dead, press Y to continue!");
 }
 
-void LevelUp() {//need fix
+bool LevelUp() {//bool levelup de 
 	//process when the snkae eat enough food and open the gate
 	//when the head ò the snake hit the win point
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
+	GenerateBigFood();
 }
 void Eat() {
 	snake[SIZE_SNAKE] = food[FOOD_INDEX];
-	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)
+	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
 		//FOOD_INDEX = 0;
 		//SIZE_SNAKE = 6;
 		//SPEED++;
-		LevelUp();
+		//ve gate
+		//check chui vao gate chua
+		//neu chui vao lo roi thi goi ham levelup
+		LevelUp();//ham levelup se mang gia tri bool va goi ham generatebigfood cung mang gia tri bool, check neu co in big food ra man hinh k
 		GenerateFood();
 	}
 	else

@@ -32,10 +32,10 @@ int main()
   // cout << w <<" "<< h;
 
     //cout << time(NULL) << "\n";
+    GenerateBigFood();
 
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
-
 
     //PrintFile((120 - GetWidthtAsciiArt("title.txt")) / 2, 3, "title.txt");
     //GoToXY(0, 0);
