@@ -74,7 +74,7 @@ void GenerateBigFood() {
 
 }
 void ResetData() {
-	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0, 
+	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
 	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
 	LEVEL = 1;
 	snake[0] = { 10, 10 }; snake[1] = { 11, 10 };
@@ -119,7 +119,7 @@ void ProcessDead() {
 
 bool LevelUp() {//bool levelup de 
 	//process when the snkae eat enough food and open the gate
-	//when the head ò the snake hit the win point
+	//when the head ï¿½ the snake hit the win point
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
@@ -136,6 +136,7 @@ void Eat() {
 		//check chui vao gate chua
 		//neu chui vao lo roi thi goi ham levelup
 		LevelUp();//ham levelup se mang gia tri bool va goi ham generatebigfood cung mang gia tri bool, check neu co in big food ra man hinh k
+		if (WIN_POINT.x==0 && WIN_POINT.y==0) DrawGate(2, 3);//Neu da co gate inside area board roi thi khong DrawGate nua
 		GenerateFood();
 	}
 	else
@@ -155,6 +156,19 @@ bool Suicide(int x,int y)
 }
 void MoveRight()
 {
+	//Snake touch Win point
+	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && snake[SIZE_SNAKE - 1].y == WIN_POINT.y)
+	{
+		LevelUp();
+		printf("LevelUP");
+		ProcessDead();//thay the bang next round
+	}
+	//Snake touch Gate
+	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && (snake[SIZE_SNAKE - 1].y == WIN_POINT.y + 1 || snake[SIZE_SNAKE - 1].y == WIN_POINT.y - 1))
+	{
+		ProcessDead();
+	}
+	///////
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//if snake hit the wall
 	{
 		ProcessDead();
@@ -174,6 +188,12 @@ void MoveRight()
 
 void MoveLeft()
 {
+	//Snake Touch Gate
+	if (snake[SIZE_SNAKE - 1].x - 1 == WIN_POINT.x + 1 && (snake[SIZE_SNAKE - 1].y == WIN_POINT.y + 1 || snake[SIZE_SNAKE - 1].y == WIN_POINT.y - 1 || snake[SIZE_SNAKE - 1].y == WIN_POINT.y))
+	{
+		ProcessDead();
+	}
+	///////////
 	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x || Suicide(snake[SIZE_SNAKE - 1].x-1, snake[SIZE_SNAKE - 1].y))
 	{
 		ProcessDead();
@@ -193,6 +213,11 @@ void MoveLeft()
 
 void MoveUp()
 {
+	//Snake touch Gate
+	if (snake[SIZE_SNAKE - 1].y - 1==WIN_POINT.y+1&&(snake[SIZE_SNAKE-1].x==WIN_POINT.x|| snake[SIZE_SNAKE - 1].x== WIN_POINT.x+1)) {
+		ProcessDead();
+	}
+	//////
 	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y - 1))
 	{
 		ProcessDead();
@@ -212,6 +237,11 @@ void MoveUp()
 
 void MoveDown()
 {
+	//Snake touch gate
+	if (snake[SIZE_SNAKE - 1].y + 1 == WIN_POINT.y - 1 && (snake[SIZE_SNAKE - 1].x == WIN_POINT.x || snake[SIZE_SNAKE - 1].x == WIN_POINT.x + 1)) {
+		ProcessDead();
+	}
+	////
 	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y - 1 || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
 	{
 		ProcessDead();
