@@ -4,6 +4,7 @@
 #include "snakegame.h"
 
 //Global variables
+POINT gate[WIDTH_GATE * HEIGHT_GATE - 1];
 POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[40];
 POINT board[400];

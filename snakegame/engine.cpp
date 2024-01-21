@@ -110,6 +110,53 @@ void GenerateBigFood() {//return true if bigfood is on the board,else false
 		}
 	}
 }
+bool CheckValidGate(int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		if (!IsValidFood(gate[i].x, gate[i].y))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+int InitGate()//return size of gate
+{
+	int x, y;
+	int pos = 0;
+	while (1) {
+		pos = 0;
+		x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 1 - WIDTH_GATE - 1); //random coordinates such that the gate is inside the playzone
+		y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 1 - HEIGHT_GATE - 1);
+
+		//GoToXY(x, y);
+		gate[pos] = { x,y };
+		pos++;
+		//cout << '\xc4';
+		//GoToXY(x + 1, y); 
+		gate[pos] = { x + 1,y };
+		pos++;
+		//cout << '\xb7';
+		//GoToXY(x + 1, y + 1);
+		gate[pos] = { x + 1,y + 1 };
+		pos++;
+		//cout << '\xb3';
+		//GoToXY(x + 1, y + 2);
+		gate[pos] = { x + 1,y + 2 };
+		pos++;
+		//cout << '\xbd';
+		//GoToXY(x, y + 2);
+		gate[pos] = { x,y + 2 };
+		pos++;
+		//cout << '\xc4';
+		if (CheckValidGate(pos)) {
+			break;
+		}
+	}
+	WIN_POINT = { x,y + 1 };
+	return pos;
+}
 
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
@@ -175,7 +222,7 @@ void Eat() {
 		//check chui vao gate chua
 		//neu chui vao lo roi thi goi ham levelup
 		//ham levelup se mang gia tri bool va goi ham generatebigfood cung mang gia tri bool, check neu co in big food ra man hinh k
-		if (WIN_POINT.x==0 && WIN_POINT.y==0) DrawGate(2, 3);//Neu da co gate inside area board roi thi khong DrawGate nua
+		if (WIN_POINT.x==0 && WIN_POINT.y==0) DrawGate();//Neu da co gate inside area board roi thi khong DrawGate nua
 		//GenerateFood();
 	}
 	else

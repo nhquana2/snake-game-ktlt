@@ -10,6 +10,8 @@
 #include <ctime>
 
 //Global constant
+#define WIDTH_GATE 2
+#define HEIGHT_GATE 3
 #define BIG_FOOD_SIZE 3
 #define MAX_SIZE_SNAKE 40
 #define MAX_SIZE_FOOD 6
@@ -19,6 +21,7 @@
 #define WIDTH_BOARD 120
 //Global variables (definition using extern keyword)
 extern const char* MSSV;
+extern POINT gate[WIDTH_GATE * HEIGHT_GATE-1];//-1 because of the win point
 extern POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 extern POINT snake[MAX_SIZE_SNAKE];
 extern POINT food[MAX_SIZE_FOOD];
@@ -43,7 +46,7 @@ void GoToXY(int x, int y);
 void ClearScreen(int x1, int y1, int x2, int y2);
 void DrawRectangle(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
-void DrawGate(int GateHeight, int GateWidth);
+void DrawGate();
 void DrawSnakeAndFood(const char* str);
 void GenerateBigFood();
 void DrawMenu();
@@ -60,3 +63,4 @@ void PauseGame(HANDLE t);
 void BoardInit(int x, int y, int width, int height);
 void ThreadFunc();
 void Eat();
+int InitGate();//return size of gate

@@ -57,18 +57,20 @@ void DrawRectangle(int x, int y, int width, int height) {
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
 	}
 }
-void DrawGate(int GateWidth,int GateHeight)
-{
-	int x, y;
-	x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 1 - GateWidth - 1); //random coordinates such that the gate is inside the playzone
-	y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 1 - GateHeight - 1);
 
-	GoToXY(x, y); cout << '\xc4';
-	GoToXY(x+1, y ); cout << '\xb7';
-	GoToXY(x + 1, y + 1); cout << '\xb3';
-	GoToXY(x + 1, y + 2); cout << '\xbd';
-	GoToXY(x, y + 2); cout << '\xc4';
-	WIN_POINT = { x,y + 1 };
+void DrawGate()
+{
+	int size = InitGate();
+	GoToXY(gate[0].x, gate[0].y);
+	cout << '\xc4';
+	GoToXY(gate[1].x, gate[1].y);
+	cout << '\xb7';
+	GoToXY(gate[2].x, gate[2].y);
+	cout << '\xb3';
+	GoToXY(gate[3].x, gate[3].y);
+	cout << '\xbd';
+	GoToXY(gate[4].x, gate[4].y);
+	cout << '\xc4';
 	
 }
 
