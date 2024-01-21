@@ -62,6 +62,25 @@ void DeleteBigFood(int x, int y)
 	}
 
 }
+bool CheckBigFood(int x,int y)
+{
+	for (int i = 0; i < BIG_FOOD_SIZE; i++)
+	{
+		for (int j = 0; j < BIG_FOOD_SIZE; j++)
+		{
+			//cout << " ";
+			if (x == big_food[i][j].x && y == big_food[i][j].y)
+			{
+				SIZE_SNAKE+=3;
+				//FOOD_INDEX++;
+				return true;
+			}
+		}
+		//GoToXY(x, y + i + 1);
+		//break;
+	}
+	return false;
+}
 void GenerateBigFood() {//return true if bigfood is on the board,else false
 	int x, y;//need to be write with thread because the while loop paused the thread
 	//srand(time(NULL));
@@ -191,6 +210,11 @@ void MoveRight()
 	{
 		ProcessDead();
 	}
+	//check if the snake touch the big food
+	if (CheckBigFood(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//check big food, if true increase the speed
+	{//delete big food, parameters is its coordinates
+		DeleteBigFood(big_food[0][0].x, big_food[0][0].x);
+	}
 	///////
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//if snake hit the wall
 	{
@@ -217,6 +241,11 @@ void MoveLeft()
 		ProcessDead();
 	}
 	///////////
+	if (CheckBigFood(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
+	{
+		DeleteBigFood(big_food[0][0].x, big_food[0][0].x);
+	}
+
 	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x || Suicide(snake[SIZE_SNAKE - 1].x-1, snake[SIZE_SNAKE - 1].y))
 	{
 		ProcessDead();
@@ -241,6 +270,10 @@ void MoveUp()
 		ProcessDead();
 	}
 	//////
+	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
+	{
+		DeleteBigFood(big_food[0][0].x, big_food[0][0].x);
+	}
 	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y - 1))
 	{
 		ProcessDead();
@@ -265,6 +298,10 @@ void MoveDown()
 		ProcessDead();
 	}
 	////
+	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y+1))
+	{
+		DeleteBigFood(big_food[0][0].x, big_food[0][0].x);
+	}
 	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y - 1 || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
 	{
 		ProcessDead();
