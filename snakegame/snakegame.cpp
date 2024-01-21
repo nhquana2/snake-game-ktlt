@@ -4,6 +4,7 @@
 #include "snakegame.h"
 
 //Global variables
+POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[40];
 POINT board[400];
 POINT food[6];

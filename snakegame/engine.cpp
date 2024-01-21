@@ -45,13 +45,30 @@ void GenerateFood() {
 		food[i] = { x , y };
 	}
 }
-void GenerateBigFood() {
-	int x, y;
+void DeleteBigFood(int x, int y)
+{
+	GoToXY(x, y);
+
+	for (int i = 0; i < BIG_FOOD_SIZE; i++)
+	{
+		for (int j = 0; j < BIG_FOOD_SIZE; j++)
+		{
+			cout << " ";
+			big_food[i][j] = { 0, HEIGH_CONSOLE + 2 };
+
+		}
+		GoToXY(x, y + i + 1);
+		//break;
+	}
+
+}
+void GenerateBigFood() {//return true if bigfood is on the board,else false
+	int x, y;//need to be write with thread because the while loop paused the thread
 	//srand(time(NULL));
 	for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
 		do {
-			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2- BIG_FOOD_SIZE);
-			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2- BIG_FOOD_SIZE);
+			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2 - BIG_FOOD_SIZE);
+			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2 - BIG_FOOD_SIZE);
 		} while (!IsValidFood(x, y));
 	}
 	GoToXY(x, y);
@@ -60,19 +77,21 @@ void GenerateBigFood() {
 		for (int j = 0; j < BIG_FOOD_SIZE; j++)
 		{
 			cout << "?";
+			big_food[i][j] = { x + i,y + j };
 		}
-		GoToXY(x,y+i+1);
+		GoToXY(x, y + i + 1);
 	}
 	long long time1 = time(NULL);
 	while (1)
 	{
 		if (time(NULL) - time1 == 3)
 		{
-			break
+			DeleteBigFood(x, y);
+			break;
 		}
 	}
-
 }
+
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
 	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
@@ -117,13 +136,13 @@ void ProcessDead() {
 	printf("Dead, press Y to continue!");
 }
 
-bool LevelUp() {//bool levelup de 
+void LevelUp() {//bool levelup de 
 	//process when the snkae eat enough food and open the gate
 	//when the head � the snake hit the win point
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
-	GenerateBigFood();
+	//GenerateBigFood();
 }
 void Eat() {
 	snake[SIZE_SNAKE] = food[FOOD_INDEX];
@@ -135,9 +154,9 @@ void Eat() {
 		//ve gate
 		//check chui vao gate chua
 		//neu chui vao lo roi thi goi ham levelup
-		LevelUp();//ham levelup se mang gia tri bool va goi ham generatebigfood cung mang gia tri bool, check neu co in big food ra man hinh k
+		//ham levelup se mang gia tri bool va goi ham generatebigfood cung mang gia tri bool, check neu co in big food ra man hinh k
 		if (WIN_POINT.x==0 && WIN_POINT.y==0) DrawGate(2, 3);//Neu da co gate inside area board roi thi khong DrawGate nua
-		GenerateFood();
+		//GenerateFood();
 	}
 	else
 	{
@@ -159,9 +178,13 @@ void MoveRight()
 	//Snake touch Win point
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && snake[SIZE_SNAKE - 1].y == WIN_POINT.y)
 	{
+		//check if the player ate the big food (big food only be drawed if level up function is called)
 		LevelUp();
-		printf("LevelUP");
-		ProcessDead();//thay the bang next round
+		//printf("LevelUP");
+		//ProcessDead();//thay the bang next round
+		//thay the bang next round xong r thi tao thuc an lon
+		GenerateBigFood();
+		GenerateFood();
 	}
 	//Snake touch Gate
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && (snake[SIZE_SNAKE - 1].y == WIN_POINT.y + 1 || snake[SIZE_SNAKE - 1].y == WIN_POINT.y - 1))
