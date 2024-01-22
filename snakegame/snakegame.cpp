@@ -18,6 +18,7 @@ int FOOD_INDEX; // current food-index
 int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 int STATE; // State of snake: dead or alive
 int SCREEN = 2;
+int MENU_OPTION = 0;
 int SIZE_BOARD;
 POINT WIN_POINT;
 int LEVEL;
@@ -80,14 +81,23 @@ int main()
         }
         if (SCREEN == 2) {
             temp = toupper(_getch());
+
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
             }
-            if (temp == 'N') {
+            if (temp == 'W') {
+                MENU_OPTION = (MENU_OPTION - 1 + 5) % 5; // 5 options in total
+                DrawMenu();
+            }
+            if (temp == 'S') {
+                MENU_OPTION = (MENU_OPTION + 1) % 5; // 5 options in total
+                DrawMenu();
+            }
+            if (temp == 'N' || (temp == 13 && MENU_OPTION == 0)) {
                 SCREEN = 1;
                 StartGame();
             }
-            if (temp == 'Q') {
+            if (temp == 'Q' || (temp == 13 && MENU_OPTION == 4)) {
                 STATE = 2;
                 t1.join();
                 return 0;
