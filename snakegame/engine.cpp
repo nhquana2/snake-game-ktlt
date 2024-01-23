@@ -157,7 +157,13 @@ int InitGate()//return size of gate
 	WIN_POINT = { x,y + 1 };
 	return pos;
 }
-
+void RespawnSnake()
+{
+	for (int i = 0; i < SIZE_SNAKE; i++)
+	{
+		snake[i] = { 10 + i,10 };
+	}
+}
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
 	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
@@ -165,7 +171,6 @@ void ResetData() {
 	snake[0] = { 10, 10 }; snake[1] = { 11, 10 };
 	snake[2] = { 12, 10 }; snake[3] = { 13, 10 };
 	snake[4] = { 14, 10 }; snake[5] = { 15, 10 };
-
 	GenerateFood();
 }
 
@@ -209,6 +214,7 @@ void LevelUp() {//bool levelup de
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
+	RespawnSnake();
 	//GenerateBigFood();
 }
 void Eat() {
