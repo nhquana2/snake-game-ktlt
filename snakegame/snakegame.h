@@ -38,6 +38,7 @@ extern int MENU_OPTION;
 extern int SIZE_BOARD;
 extern POINT WIN_POINT;
 extern int LEVEL;
+extern int TIME;
 //Utility
 int RandomInRange(int a, int b);
 

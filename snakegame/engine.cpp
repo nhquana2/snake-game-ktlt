@@ -161,6 +161,7 @@ int InitGate()//return size of gate
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
 	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
+	TIME = 0;
 	LEVEL = 1;
 	snake[0] = { 10, 10 }; snake[1] = { 11, 10 };
 	snake[2] = { 12, 10 }; snake[3] = { 13, 10 };
@@ -387,6 +388,7 @@ void ThreadFunc() {
 			
 			DrawSnakeAndFood(MSSV);
 			Sleep(1000 / SPEED);
+			TIME += 1000 / SPEED;
 		}
 		if (STATE == 2) {
 			break;

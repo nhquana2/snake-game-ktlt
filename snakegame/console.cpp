@@ -100,6 +100,8 @@ void DrawSnakeAndFood(const char* str) {
 		GoToXY(snake[i].x, snake[i].y);
 		cout << str[(i % len)];
 	}
+	GoToXY(0, 0);
+	cout << TIME;
 }
 
 void PrintFile(int x, int y, const char* FileName) {
