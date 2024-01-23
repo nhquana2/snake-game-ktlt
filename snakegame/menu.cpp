@@ -45,7 +45,7 @@ void DrawMenu() {
 
 void DrawAboutScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGH_CONSOLE - 9 - 1 - 3);
-	GoToXY(4, 10);
+	GoToXY(10, 12);
 	cout << "About us";
 
 }

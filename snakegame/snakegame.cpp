@@ -8,7 +8,7 @@ POINT gate[WIDTH_GATE * HEIGHT_GATE - 1];
 POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[40];
 POINT board[400];
-POINT food[6];
+POINT food[MAX_SIZE_FOOD];
 const char* MSSV = "23127106231274582312723123127332";
 int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
 int MOVING;//used to determine the direction my snake moves (At a moment, there  are three directions my snake can move)
@@ -23,7 +23,7 @@ int SCREEN = 2;
 //SCREEN 3: LOAD GAME
 //SCREEN 4: SETTINGS
 //SCREEN 5: ABOUT
-int MENU_OPTION = 0;
+int MENU_OPTION = 0; //current option, change with W and S key
 int SIZE_BOARD;
 int TIME;
 int SCORE;
@@ -48,7 +48,8 @@ int main()
 
     char temp;
     while (1) {
-        if (SCREEN == 1) {
+        //SCREEN: PLAY
+        if (SCREEN == 1) { 
             temp = toupper(_getch());
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
@@ -83,11 +84,13 @@ int main()
                     return 0;
                 }
                 if (temp == 'M') {
-                    SCREEN = 2;
+                    SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
                 }
             }
         }
+
+        //SCREEN: MAIN MENU
         if (SCREEN == 2) {
             temp = toupper(_getch());
 
@@ -102,12 +105,13 @@ int main()
                 MENU_OPTION = (MENU_OPTION + 1) % 5; // 5 options in total
                 DrawMenu();
             }
+            //temp == 13 -> Enter key
             if (temp == 'N' || (temp == 13 && MENU_OPTION == 0)) {
-                SCREEN = 1;
+                SCREEN = 1; //SCREEN: PLAY
                 StartGame();
             }
             if (temp == 'Q' || (temp == 13 && MENU_OPTION == 4)) {
-                STATE = 2;
+                STATE = 2; //break ThreadFunc
                 t1.join();
                 return 0;
             }

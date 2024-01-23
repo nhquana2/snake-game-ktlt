@@ -14,7 +14,7 @@
 #define HEIGHT_GATE 3
 #define BIG_FOOD_SIZE 3
 #define MAX_SIZE_SNAKE 40
-#define MAX_SIZE_FOOD 6
+#define MAX_SIZE_FOOD 2
 #define MAX_BOARD_SIZE 400
 #define MAX_SPEED 20
 #define HEIGHT_BOARD 30

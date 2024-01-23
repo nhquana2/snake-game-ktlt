@@ -93,7 +93,7 @@ void DrawGate()
 
 void DrawSnakeAndFood(const char* str) {
 	GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
-	printf("F"); //Draw food
+	if (WIN_POINT.x == 0 && WIN_POINT.y == 0) printf("F"); //Draw food only if gate has not been spawned
 	int len = strlen(str);
 	for (int i = 0; i < SIZE_SNAKE; i++)
 	{
@@ -104,6 +104,8 @@ void DrawSnakeAndFood(const char* str) {
 	cout << "Time: " << TIME << endl;
 	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 2);
 	cout << "Total score: " << SCORE << endl;
+	GoToXY(0, 0);
+	cout << FOOD_INDEX << " " << SPEED;
 }
 
 void PrintFile(int x, int y, const char* FileName) {

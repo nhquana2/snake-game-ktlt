@@ -120,35 +120,34 @@ bool CheckValidGate(int size)
 	}
 	return true;
 }
+
+//Create gate[] array, use to store coordinates 
 int InitGate()//return size of gate
 {
 	int x, y;
+	//pos: number of pixels in gate[]
 	int pos = 0;
 	while (1) {
 		pos = 0;
 		x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 1 - WIDTH_GATE - 1); //random coordinates such that the gate is inside the playzone
 		y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 1 - HEIGHT_GATE - 1);
 
-		//GoToXY(x, y);
-		gate[pos] = { x,y };
+		gate[pos] = { x, y };
 		pos++;
-		//cout << '\xc4';
-		//GoToXY(x + 1, y); 
-		gate[pos] = { x + 1,y };
+
+		gate[pos] = { x + 1, y };
 		pos++;
-		//cout << '\xb7';
-		//GoToXY(x + 1, y + 1);
-		gate[pos] = { x + 1,y + 1 };
+
+		gate[pos] = { x + 1, y + 1 };
 		pos++;
-		//cout << '\xb3';
-		//GoToXY(x + 1, y + 2);
-		gate[pos] = { x + 1,y + 2 };
+
+		gate[pos] = { x + 1, y + 2 };
 		pos++;
-		//cout << '\xbd';
-		//GoToXY(x, y + 2);
-		gate[pos] = { x,y + 2 };
+
+		gate[pos] = { x, y + 2 };
 		pos++;
-		//cout << '\xc4';
+
+		//check if gate[] generated is valid, if it is valid break while loop (random until it is valid)
 		if (CheckValidGate(pos)) {
 			break;
 		}
@@ -164,12 +163,13 @@ void DeleteGate()
 		cout << " ";
 		gate[i] = { 0,HEIGH_CONSOLE + 5 };
 	}
+	WIN_POINT = { 0, 0 }; //Reset win point
 }
 void RespawnSnake()
 {
 	for (int i = 0; i < SIZE_SNAKE; i++)
 	{
-		snake[i] = { 10 + i,10 };
+		snake[i] = { 10 + i, 10 };
 	}
 }
 void ResetData() {
@@ -217,8 +217,8 @@ void ProcessDead() {
 }
 
 void LevelUp() {//bool levelup de 
-	//process when the snkae eat enough food and open the gate
-	//when the head � the snake hit the win point
+	//process when the snake eat enough food and open the gate
+	//when the head of the snake hit the win point
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
@@ -237,6 +237,7 @@ void Eat() {
 		//neu chui vao lo roi thi goi ham levelup
 		//ham levelup se mang gia tri bool va goi ham generatebigfood cung mang gia tri bool, check neu co in big food ra man hinh k
 		if (WIN_POINT.x==0 && WIN_POINT.y==0) DrawGate();//Neu da co gate inside area board roi thi khong DrawGate nua
+		SCORE += 10;
 		//GenerateFood();
 	}
 	else
@@ -263,11 +264,9 @@ void MoveRight()
 		//check if the player ate the big food (big food only be drawn if level up function is called)
 		LevelUp();
 		DeleteGate();
-		//printf("LevelUP");
-		//ProcessDead();//thay the bang next round
-		//thay the bang next round xong r thi tao thuc an lon
-		GenerateBigFood();
-		DrawBigFood();
+
+		//GenerateBigFood();
+		//DrawBigFood();
 		GenerateFood();
 	}
 	//Snake touch Gate
@@ -280,8 +279,8 @@ void MoveRight()
 	{//delete big food, parameters is its coordinates
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	}
-	///////
-	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//if snake hit the wall
+	// If snake hit wall or snake suicide
+	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))
 	{
 		ProcessDead();
 	}
