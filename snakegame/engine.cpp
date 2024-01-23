@@ -178,6 +178,7 @@ void ResetData() {
 	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
 	TIME = 0;
 	LEVEL = 1;
+	SCORE = 0;
 	RespawnSnake();
 	GenerateFood();
 }
@@ -243,6 +244,7 @@ void Eat() {
 	{
 		FOOD_INDEX++;
 		SIZE_SNAKE++;
+		SCORE += 10;
 	}
 }
 //Move functions
