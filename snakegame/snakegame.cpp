@@ -20,6 +20,7 @@ int STATE; // State of snake: dead or alive
 int SCREEN = 2;
 int MENU_OPTION = 0;
 int SIZE_BOARD;
+int TIME;
 POINT WIN_POINT;
 int LEVEL;
 using namespace std;
