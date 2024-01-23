@@ -157,6 +157,15 @@ int InitGate()//return size of gate
 	WIN_POINT = { x,y + 1 };
 	return pos;
 }
+void DeleteGate()
+{
+	for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; i++)
+	{
+		GoToXY(gate[i].x, gate[i].y);
+		cout << " ";
+		gate[i] = { 0,HEIGH_CONSOLE + 5 };
+	}
+}
 void RespawnSnake()
 {
 	for (int i = 0; i < SIZE_SNAKE; i++)
@@ -169,9 +178,7 @@ void ResetData() {
 	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
 	TIME = 0;
 	LEVEL = 1;
-	snake[0] = { 10, 10 }; snake[1] = { 11, 10 };
-	snake[2] = { 12, 10 }; snake[3] = { 13, 10 };
-	snake[4] = { 14, 10 }; snake[5] = { 15, 10 };
+	RespawnSnake();
 	GenerateFood();
 }
 
@@ -254,6 +261,7 @@ void MoveRight()
 	{
 		//check if the player ate the big food (big food only be drawed if level up function is called)
 		LevelUp();
+		DeleteGate();
 		//printf("LevelUP");
 		//ProcessDead();//thay the bang next round
 		//thay the bang next round xong r thi tao thuc an lon
