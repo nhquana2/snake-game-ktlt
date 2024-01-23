@@ -42,6 +42,23 @@ void ClearScreen(int x1, int y1, int x2, int y2) {
 		}
 	}
 }
+void DrawBigFood()
+{
+	GenerateBigFood();
+	//GoToXY(x, y);
+	for (int i = 0; i < BIG_FOOD_SIZE; i++)
+	{
+		for (int j = 0; j < BIG_FOOD_SIZE; j++)
+		{
+			//cout << "?";
+			//big_food[i][j] = { x + i,y + j };
+			GoToXY(big_food[i][j].x, big_food[i][j].y);
+			cout << "?";
+		}
+		GoToXY(big_food[i][0].x, big_food[i][0].y + 1);
+	}
+}
+
 
 void DrawRectangle(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
