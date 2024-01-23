@@ -26,6 +26,7 @@ int SCREEN = 2;
 int MENU_OPTION = 0;
 int SIZE_BOARD;
 int TIME;
+int SCORE;
 POINT WIN_POINT;
 int LEVEL;
 using namespace std;
