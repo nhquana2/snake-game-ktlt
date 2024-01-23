@@ -42,3 +42,10 @@ void DrawMenu() {
 	cout << "EXIT";
 	if (MENU_OPTION == 4) cout << "  \xDB";
 }
+
+void DrawAboutScreen() {
+	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGH_CONSOLE - 9 - 1 - 3);
+	GoToXY(4, 10);
+	cout << "About us";
+
+}

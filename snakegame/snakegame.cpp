@@ -18,6 +18,11 @@ int FOOD_INDEX; // current food-index
 int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 int STATE; // State of snake: dead or alive
 int SCREEN = 2;
+//SCREEN 1: PLAY
+//SCREEN 2: MAIN MENU
+//SCREEN 3: LOAD GAME
+//SCREEN 4: SETTINGS
+//SCREEN 5: ABOUT
 int MENU_OPTION = 0;
 int SIZE_BOARD;
 int TIME;
@@ -30,6 +35,8 @@ int main()
     system("color 70");
     FixConsoleWindow();
     ResetData();
+
+    //First draw menu
     DrawMenu();
     STATE = 0;
     //StartGame();
@@ -102,6 +109,24 @@ int main()
                 STATE = 2;
                 t1.join();
                 return 0;
+            }
+            if (temp == 13 && MENU_OPTION == 3) {
+                SCREEN = 3;
+                DrawAboutScreen();
+            }
+        }
+        if (SCREEN == 3) {
+
+            temp = toupper(_getch());
+
+            if (temp == char(-32)) {
+                temp = toupper(_getch()); continue;
+            }
+            
+            //Back
+            if (temp == 'B') {
+                SCREEN = 2;
+                DrawMenu();
             }
         }
     }

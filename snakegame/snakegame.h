@@ -51,7 +51,10 @@ void PrintFile(int x, int y, const char* FileName);
 void DrawGate();
 void DrawSnakeAndFood(const char* str);
 void GenerateBigFood();
+
+//Menu-related functions
 void DrawMenu();
+void DrawAboutScreen();
 
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 
