@@ -71,7 +71,7 @@ bool CheckBigFood(int x,int y)
 			//cout << " ";
 			if (x == big_food[i][j].x && y == big_food[i][j].y)
 			{
-				SIZE_SNAKE+=3;
+				//SIZE_SNAKE+=3;//
 				//FOOD_INDEX++;
 				return true;
 			}
@@ -81,7 +81,7 @@ bool CheckBigFood(int x,int y)
 	}
 	return false;
 }
-void GenerateBigFood() {//return true if bigfood is on the board,else false
+void GenerateBigFood() {
 	int x, y;//need to be write with thread because the while loop paused the thread
 	//srand(time(NULL));
 	for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
@@ -90,17 +90,16 @@ void GenerateBigFood() {//return true if bigfood is on the board,else false
 			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2 - BIG_FOOD_SIZE);
 		} while (!IsValidFood(x, y));
 	}
-	GoToXY(x, y);
+	//GoToXY(x, y);
 	for (int i = 0; i < BIG_FOOD_SIZE; i++)
 	{
 		for (int j = 0; j < BIG_FOOD_SIZE; j++)
 		{
-			cout << "?";
 			big_food[i][j] = { x + i,y + j };
 		}
-		GoToXY(x, y + i + 1);
+		//GoToXY(x, y + i + 1);
 	}
-	long long time1 = time(NULL);
+	/*long long time1 = time(NULL);
 	while (1)
 	{
 		if (time(NULL) - time1 == 3)
@@ -108,7 +107,7 @@ void GenerateBigFood() {//return true if bigfood is on the board,else false
 			DeleteBigFood(x, y);
 			break;
 		}
-	}
+	}*/
 }
 bool CheckValidGate(int size)
 {
@@ -259,13 +258,14 @@ void MoveRight()
 	//Snake touch Win point
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && snake[SIZE_SNAKE - 1].y == WIN_POINT.y)
 	{
-		//check if the player ate the big food (big food only be drawed if level up function is called)
+		//check if the player ate the big food (big food only be drawn if level up function is called)
 		LevelUp();
 		DeleteGate();
 		//printf("LevelUP");
 		//ProcessDead();//thay the bang next round
 		//thay the bang next round xong r thi tao thuc an lon
 		GenerateBigFood();
+		DrawBigFood();
 		GenerateFood();
 	}
 	//Snake touch Gate
@@ -274,9 +274,9 @@ void MoveRight()
 		ProcessDead();
 	}
 	//check if the snake touch the big food
-	if (CheckBigFood(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//check big food, if true increase the speed
+	if (CheckBigFood(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))
 	{//delete big food, parameters is its coordinates
-		DeleteBigFood(big_food[0][0].x, big_food[0][0].x);
+		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	}
 	///////
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))//if snake hit the wall

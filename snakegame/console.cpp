@@ -44,7 +44,7 @@ void ClearScreen(int x1, int y1, int x2, int y2) {
 }
 void DrawBigFood()
 {
-	GenerateBigFood();
+	//GenerateBigFood();
 	//GoToXY(x, y);
 	for (int i = 0; i < BIG_FOOD_SIZE; i++)
 	{
