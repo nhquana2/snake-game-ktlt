@@ -47,7 +47,7 @@ int main()
 
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
-
+   // map1();
     char temp;
     while (1) {
         //SCREEN: PLAY

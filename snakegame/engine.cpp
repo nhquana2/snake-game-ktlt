@@ -225,7 +225,7 @@ void LevelUp() {
 	if (LEVEL == 2)
 	{
 		DeleteMap();//delete old map before switch to next map
-		//NUMBER_OF_OBSTACLES = map1();
+		NUMBER_OF_OBSTACLES = map1();
 	}
 	RespawnSnake();
 	//GenerateBigFood();

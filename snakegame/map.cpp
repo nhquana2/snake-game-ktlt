@@ -51,7 +51,43 @@ int map0() {
 	
 	return pos;
 }
-//int map1()
-//{
-
-//}
+int map1()
+{
+	int pos = 0;
+	GoToXY(board[0].x + 5, board[0].y + 5);
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 5 + i,board[0].y + 5 };
+		pos++;
+	}
+	GoToXY(board[(WIDTH_BOARD) / 2].x-10, board[0].y  + 10);
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[(WIDTH_BOARD) / 2].x+i,board[0].y + 10 };
+		pos++;
+	}
+	GoToXY(board[0].x + 5, board[0].y + 15);
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 5 + i,board[0].y + 15};
+		pos++;
+	}
+	GoToXY(board[(WIDTH_BOARD) / 2].x - 10, board[0].y + 20);
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[(WIDTH_BOARD) / 2].x + i,board[0].y + 20 };
+		pos++;
+	}
+	GoToXY(board[0].x + 5, board[0].y + 25);
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 5 + i,board[0].y + 25 };
+		pos++;
+	}
+	return pos;
+}
