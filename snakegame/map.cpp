@@ -20,7 +20,7 @@ void DeleteMap()
 		//obstacles[i] = { 0,HEIGH_CONSOLE + 2 };
 	}
 }
-int map0() {
+int MapLevel1() {
 	int pos = 0;
 	GoToXY(board[0].x + 10, board[0].y + 4);
 	for (int i = 0; i < WIDTH_BOARD-7 - (board[0].x+10); i++)
@@ -51,7 +51,7 @@ int map0() {
 	
 	return pos;
 }
-int map1()
+int MapLevel2()
 {
 	int pos = 0;
 	GoToXY(board[0].x + 5, board[0].y + 5);
@@ -87,6 +87,21 @@ int map1()
 	{
 		cout << '\xb2';
 		obstacles[pos] = { board[0].x + 5 + i,board[0].y + 25 };
+		pos++;
+	}
+	return pos;
+}
+int MapLevel3()
+{
+	int pos;
+	int x, y;
+	for (pos=0;pos<100; pos++)
+	{
+		x = RandomInRange(board[0].x + 2, board[0].x + WIDTH_BOARD - 2);
+		y = RandomInRange(board[0].y + 2, board[0].y + HEIGHT_BOARD - 2);
+		GoToXY(x, y);
+		cout << '\xb2';
+		obstacles[pos] = { x,y };
 		pos++;
 	}
 	return pos;

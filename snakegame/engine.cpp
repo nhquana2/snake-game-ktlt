@@ -238,12 +238,17 @@ void LevelUp() {
 	SPEED += 5;
 	if (LEVEL == 1)
 	{
-		NUMBER_OF_OBSTACLES = map0();
+		NUMBER_OF_OBSTACLES = MapLevel3();
 	}
 	if (LEVEL == 2)
 	{
 		DeleteMap();//delete old map before switch to next map
-		NUMBER_OF_OBSTACLES = map1();
+		NUMBER_OF_OBSTACLES = MapLevel2();
+	}
+	if (LEVEL == 3)
+	{
+		DeleteMap();
+		NUMBER_OF_OBSTACLES = MapLevel3();
 	}
 	RespawnSnake();
 	//GenerateBigFood();
@@ -433,7 +438,6 @@ void ThreadFunc() {
 			DrawSnakeAndFood(MSSV);
 			Sleep(1000 / SPEED);
 			TIME += 1000 / SPEED;
-			
 		}
 		if (STATE == 2) {
 			break;

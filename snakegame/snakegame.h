@@ -76,6 +76,7 @@ int InitGate();//return size of gate
 //map
 bool CheckTouchObstacles(int x, int y);//parameters is the coordinate of the head of the snake
 void DeleteMap();
-int map0();
-int map1();
+int MapLevel1();
+int MapLevel2();
+int MapLevel3();
 
