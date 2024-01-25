@@ -211,6 +211,7 @@ void LevelUp() {
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
+	NUMBER_OF_OBSTACLES = map0();
 	RespawnSnake();
 	//GenerateBigFood();
 }
@@ -232,8 +233,7 @@ void Eat() {
 		SIZE_SNAKE++;
 	}
 }
-//Move functions
-bool Suicide(int x,int y)
+bool Suicide(int x,int y)//return true if the snake touch its body
 {
 	for (int i = 0; i < SIZE_SNAKE; i++) {
 		if (x == snake[i].x && y == snake[i].y)
@@ -241,6 +241,19 @@ bool Suicide(int x,int y)
 	}
 	return false;
 }
+bool CheckTouchObstacles(int x,int y)//parameters is the coordinate of the head of the snake
+{
+	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++)
+	{
+		if (x == obstacles[i].x && y == obstacles[i].y)
+		{
+			return true;//return true if the snake hit the obstacles
+		}
+	}
+	return false;
+}
+//Move functions
+
 void MoveRight()
 {
 	//Snake touch Win point
@@ -269,7 +282,7 @@ void MoveRight()
 	}
 
 	// If snake hit wall or snake suicide
-	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))
+	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))
 	{
 		ProcessDead();
 	}
@@ -299,7 +312,7 @@ void MoveLeft()
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	}
 
-	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x || Suicide(snake[SIZE_SNAKE - 1].x-1, snake[SIZE_SNAKE - 1].y))
+	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x || Suicide(snake[SIZE_SNAKE - 1].x-1, snake[SIZE_SNAKE - 1].y)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
 	{
 		ProcessDead();
 	}
@@ -327,7 +340,7 @@ void MoveUp()
 	{
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	}
-	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y - 1))
+	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y - 1)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
 	{
 		ProcessDead();
 	}
@@ -355,7 +368,7 @@ void MoveDown()
 	{
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	}
-	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y - 1 || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
+	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y - 1 || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
 	{
 		ProcessDead();
 	}
@@ -393,6 +406,7 @@ void ThreadFunc() {
 			DrawSnakeAndFood(MSSV);
 			Sleep(1000 / SPEED);
 			TIME += 1000 / SPEED;
+			
 		}
 		if (STATE == 2) {
 			break;

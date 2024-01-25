@@ -20,7 +20,9 @@
 #define HEIGHT_BOARD 30
 #define WIDTH_BOARD 120
 //Global variables (definition using extern keyword)
+extern int NUMBER_OF_OBSTACLES; //number of obstacles is updated every time the map function is called
 extern const char* MSSV;
+extern POINT obstacles[500];
 extern POINT gate[WIDTH_GATE * HEIGHT_GATE-1];//-1 because of the win point
 extern POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 extern POINT snake[MAX_SIZE_SNAKE];
@@ -70,3 +72,6 @@ void BoardInit(int x, int y, int width, int height);
 void ThreadFunc();
 void Eat();
 int InitGate();//return size of gate
+
+//map
+int map0();
