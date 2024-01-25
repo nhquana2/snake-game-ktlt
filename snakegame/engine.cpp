@@ -118,8 +118,8 @@ int InitGate()//return size of gate
 	int pos = 0;
 	while (1) {
 		pos = 0;
-		x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 1 - WIDTH_GATE - 1); //random coordinates such that the gate is inside the playzone
-		y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 1 - HEIGHT_GATE - 1);
+		x = RandomInRange(board[0].x + 2, board[0].x + WIDTH_BOARD - 1 - WIDTH_GATE - 1); //random coordinates such that the gate is inside the playzone
+		y = RandomInRange(board[0].y + 2, board[0].y + HEIGHT_BOARD - 1 - HEIGHT_GATE - 1);
 
 		gate[pos] = { x, y };
 		pos++;
@@ -248,6 +248,7 @@ void MoveRight()
 	{
 		//check if the player ate the big food (big food only be drawn if level up function is called)
 		LevelUp();
+		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		DeleteGate();
 
 		GenerateBigFood();
