@@ -172,6 +172,8 @@ void ResetData() {
 	TIME = 0;
 	LEVEL = 0;
 	SCORE = 0;
+	NUMBER_OF_OBSTACLES = 0;
+	DeleteMap();
 	RespawnSnake();
 	GenerateFood();
 }
@@ -223,6 +225,7 @@ void LevelUp() {
 	if (LEVEL == 2)
 	{
 		DeleteMap();//delete old map before switch to next map
+		//NUMBER_OF_OBSTACLES = map1();
 	}
 	RespawnSnake();
 	//GenerateBigFood();

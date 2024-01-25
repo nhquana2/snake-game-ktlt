@@ -51,3 +51,7 @@ int map0() {
 	
 	return pos;
 }
+//int map1()
+//{
+
+//}
