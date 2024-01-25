@@ -17,7 +17,7 @@ void DeleteMap()
 	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++) {
 		GoToXY(obstacles[i].x, obstacles[i].y);
 		cout << " ";
-		obstacles[i] = { 0,HEIGH_CONSOLE + 2 };
+		//obstacles[i] = { 0,HEIGH_CONSOLE + 2 };
 	}
 }
 int map0() {
@@ -65,7 +65,7 @@ int map1()
 	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
 	{
 		cout << '\xb2';
-		obstacles[pos] = { board[(WIDTH_BOARD) / 2].x+i,board[0].y + 10 };
+		obstacles[pos] = { board[(WIDTH_BOARD) / 2].x-10+i,board[0].y + 10 };
 		pos++;
 	}
 	GoToXY(board[0].x + 5, board[0].y + 15);
@@ -79,7 +79,7 @@ int map1()
 	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
 	{
 		cout << '\xb2';
-		obstacles[pos] = { board[(WIDTH_BOARD) / 2].x + i,board[0].y + 20 };
+		obstacles[pos] = { board[(WIDTH_BOARD) / 2].x -10 + i,board[0].y + 20 };
 		pos++;
 	}
 	GoToXY(board[0].x + 5, board[0].y + 25);

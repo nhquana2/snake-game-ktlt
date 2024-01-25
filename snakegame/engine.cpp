@@ -86,22 +86,39 @@ bool CheckBigFood(int x,int y)//check if the snake touches the big food
 	}
 	return false;
 }
+bool CheckValidBigFood()
+{
+	for (int i = 0; i < BIG_FOOD_SIZE; i++)
+	{
+		for (int j = 0; j < BIG_FOOD_SIZE; j++)
+		{
+			if (!IsValidFood(big_food[i][j].x, big_food[i][j].y))
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
 void GenerateBigFood() {
 	int x, y;//need to be write with thread because the while loop paused the thread
 	//srand(time(NULL));
 	//for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
 	do {
-		x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2 - BIG_FOOD_SIZE);
-		y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2 - BIG_FOOD_SIZE);
-	} while (!IsValidFood(x, y));
-	//}
-	for (int i = 0; i < BIG_FOOD_SIZE; i++)
-	{
-		for (int j = 0; j < BIG_FOOD_SIZE; j++)
+		do {
+			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2 - BIG_FOOD_SIZE);
+			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2 - BIG_FOOD_SIZE);
+		} while (!IsValidFood(x, y));
+		//}
+		for (int i = 0; i < BIG_FOOD_SIZE; i++)
 		{
-			big_food[i][j] = { x + i, y + j };
+			for (int j = 0; j < BIG_FOOD_SIZE; j++)
+			{
+				big_food[i][j] = { x + i, y + j };
+			}
 		}
 	}
+		while (!CheckValidBigFood());
 }
 bool CheckValidGate(int size)
 {
@@ -215,6 +232,7 @@ void ProcessDead() {
 void LevelUp() {
 	//process when the snake eat enough food and open the gate
 	//when the head of the snake hit the win point
+	DeleteGate();
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
@@ -267,7 +285,7 @@ void MoveRight()
 		//check if the player ate the big food (big food only be drawn if level up function is called)
 		LevelUp();
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
-		DeleteGate();
+		
 
 		GenerateBigFood();
 		DrawBigFood();
@@ -284,7 +302,7 @@ void MoveRight()
 	{
 		//delete big food, parameters is its coordinates
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
-		SCORE += 999;
+		SCORE += 100;
 	}
 
 	// If snake hit wall or snake suicide
@@ -316,6 +334,7 @@ void MoveLeft()
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
 	{
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+		SCORE += 100;
 	}
 
 	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x || Suicide(snake[SIZE_SNAKE - 1].x-1, snake[SIZE_SNAKE - 1].y)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
@@ -345,6 +364,7 @@ void MoveUp()
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
 	{
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+		SCORE += 100;
 	}
 	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y - 1)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
 	{
@@ -373,6 +393,7 @@ void MoveDown()
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y+1))
 	{
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+		SCORE += 100;
 	}
 	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y - 1 || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
 	{
