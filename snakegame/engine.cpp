@@ -32,6 +32,11 @@ bool IsValidFood(int x, int y) {
 	for (int i = 0; i < SIZE_SNAKE; ++i) {
 		if (snake[i].x == x && snake[i].y == y) return false;
 	}
+	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++)
+	{
+		if ((obstacles[i].x == x && obstacles[i].y == y)|| (obstacles[i].x + 1 == x && obstacles[i].y == y))//check if the food is near the obstacles
+			return false;
+	}
 	return true;
 }
 void GenerateFood() {
@@ -62,7 +67,7 @@ void DeleteBigFood(int x, int y)
 	}
 
 }
-bool CheckBigFood(int x,int y)
+bool CheckBigFood(int x,int y)//check if the snake touches the big food
 {
 	for (int i = 0; i < BIG_FOOD_SIZE; i++)
 	{
@@ -162,10 +167,10 @@ void RespawnSnake()
 	}
 }
 void ResetData() {
-	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0, 
+	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
 	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
 	TIME = 0;
-	LEVEL = 1;
+	LEVEL = 0;
 	SCORE = 0;
 	RespawnSnake();
 	GenerateFood();
@@ -211,7 +216,14 @@ void LevelUp() {
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
-	NUMBER_OF_OBSTACLES = map0();
+	if (LEVEL == 1)
+	{
+		NUMBER_OF_OBSTACLES = map0();
+	}
+	if (LEVEL == 2)
+	{
+		DeleteMap();//delete old map before switch to next map
+	}
 	RespawnSnake();
 	//GenerateBigFood();
 }
@@ -241,17 +253,7 @@ bool Suicide(int x,int y)//return true if the snake touch its body
 	}
 	return false;
 }
-bool CheckTouchObstacles(int x,int y)//parameters is the coordinate of the head of the snake
-{
-	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++)
-	{
-		if (x == obstacles[i].x && y == obstacles[i].y)
-		{
-			return true;//return true if the snake hit the obstacles
-		}
-	}
-	return false;
-}
+
 //Move functions
 
 void MoveRight()
