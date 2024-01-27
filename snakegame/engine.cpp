@@ -189,7 +189,6 @@ void ResetData() {
 	TIME = 0;
 	LEVEL = 0;
 	SCORE = 0;
-	NUMBER_OF_OBSTACLES = 0;
 	DeleteMap();
 	RespawnSnake();
 	GenerateFood();

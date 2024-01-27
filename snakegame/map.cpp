@@ -19,6 +19,7 @@ void DeleteMap()
 		cout << " ";
 		//obstacles[i] = { 0,HEIGH_CONSOLE + 2 };
 	}
+	NUMBER_OF_OBSTACLES = 0;
 }
 int MapLevel1() {
 	int pos = 0;
