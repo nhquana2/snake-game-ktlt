@@ -42,6 +42,7 @@ extern POINT WIN_POINT;
 extern int LEVEL;
 extern int TIME;
 extern int SCORE;
+extern int OLD_SIZE_SNAKE;
 extern bool CHECK_SNAKE;
 //Utility
 int RandomInRange(int a, int b);

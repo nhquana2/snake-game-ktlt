@@ -105,7 +105,7 @@ void DrawSnakeAndFood(const char* str) {
 	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 2);
 	cout << "Total score: " << SCORE << endl;
 	GoToXY(0, 0);
-	cout << FOOD_INDEX << " " << SPEED;
+	cout << FOOD_INDEX << " " << SIZE_SNAKE;
 }
 
 void PrintFile(int x, int y, const char* FileName) {

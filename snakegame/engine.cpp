@@ -258,6 +258,7 @@ void Eat() {
 	SCORE += 10;
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
+		++SIZE_SNAKE;
 		//FOOD_INDEX = 0;
 		//SIZE_SNAKE = 6;
 		//SPEED++;
@@ -288,8 +289,8 @@ void MoveRight()
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && snake[SIZE_SNAKE - 1].y == WIN_POINT.y)
 	{
 		//check if the player ate the big food (big food only be drawn if level up function is called)
+		if (!CHECK_SNAKE) OLD_SIZE_SNAKE = SIZE_SNAKE;
 		CHECK_SNAKE = true;
-		return;
 		//LevelUp();
 		//DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		
@@ -436,26 +437,27 @@ void ThreadFunc() {
 				MoveDown();
 				break;
 				}
-			
-			DrawSnakeAndFood(MSSV);
-			Sleep(1000 / SPEED);
-			TIME += 1000 / SPEED;
-			//int temp;
-			if (CHECK_SNAKE)
-			{
-				// temp = SIZE_SNAKE;
-				if (SnackGoThroughGate())
-				{
-					cout << "ok";
-					/*LevelUp();
-					DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 
+			//Snake moving through gate animation
+			if (CHECK_SNAKE) {
+				if (SnackGoThroughGate()) {
+					//cout << "ok";
+					CHECK_SNAKE = false;
+					SIZE_SNAKE = OLD_SIZE_SNAKE;
+					LevelUp();
+					DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 
 					GenerateBigFood();
 					DrawBigFood();
-					GenerateFood();*/
+					GenerateFood();
 				}
 			}
+			//End snake animation
+
+			DrawSnakeAndFood(MSSV);
+
+			Sleep(1000 / SPEED);
+			TIME += 1000 / SPEED;
 		}
 		if (STATE == 2) {
 			break;
