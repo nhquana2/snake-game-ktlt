@@ -96,7 +96,7 @@ int MapLevel3()
 {
 	int pos;
 	int x, y;
-	for (pos=0;pos<100; pos++)
+	for (pos=0;pos<20; pos++)
 	{
 		x = RandomInRange(board[0].x + 2, board[0].x + WIDTH_BOARD - 2);
 		y = RandomInRange(board[0].y + 2, board[0].y + HEIGHT_BOARD - 2);

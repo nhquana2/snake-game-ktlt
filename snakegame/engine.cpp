@@ -192,6 +192,8 @@ void ResetData() {
 	DeleteMap();
 	RespawnSnake();
 	GenerateFood();
+	bullet.x = board[0].x + 30;
+	bullet.y = board[0].y+1;
 }
 
 void StartGame() {
@@ -433,7 +435,7 @@ void ThreadFunc() {
 				MoveDown();
 				break;
 				}
-			
+			DrawBullet();
 			DrawSnakeAndFood(MSSV);
 			Sleep(1000 / SPEED);
 			TIME += 1000 / SPEED;

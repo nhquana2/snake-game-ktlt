@@ -10,6 +10,7 @@ POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[40];
 POINT board[400];
 POINT food[MAX_SIZE_FOOD];
+POINT bullet;
 const char* MSSV = "23127106231274582312723123127332";
 int NUMBER_OF_OBSTACLES;
 int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
