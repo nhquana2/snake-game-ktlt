@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animation.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="map.cpp" />

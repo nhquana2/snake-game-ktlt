@@ -189,6 +189,7 @@ void ResetData() {
 	TIME = 0;
 	LEVEL = 0;
 	SCORE = 0;
+	CHECK_SNAKE = false;
 	DeleteMap();
 	RespawnSnake();
 	GenerateFood();
@@ -237,7 +238,7 @@ void LevelUp() {
 	SPEED += 5;
 	if (LEVEL == 1)
 	{
-		NUMBER_OF_OBSTACLES = MapLevel3();
+		NUMBER_OF_OBSTACLES = MapLevel1();
 	}
 	if (LEVEL == 2)
 	{
@@ -287,13 +288,15 @@ void MoveRight()
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && snake[SIZE_SNAKE - 1].y == WIN_POINT.y)
 	{
 		//check if the player ate the big food (big food only be drawn if level up function is called)
-		LevelUp();
-		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+		CHECK_SNAKE = true;
+		return;
+		//LevelUp();
+		//DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		
 
-		GenerateBigFood();
-		DrawBigFood();
-		GenerateFood(); //generate new food for next level
+		//GenerateBigFood();
+		//DrawBigFood();
+		//GenerateFood(); //generate new food for next level
 	}
 	//Snake touch Gate
 	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && (snake[SIZE_SNAKE - 1].y == WIN_POINT.y + 1 || snake[SIZE_SNAKE - 1].y == WIN_POINT.y - 1))
@@ -318,7 +321,7 @@ void MoveRight()
 		if (snake[SIZE_SNAKE - 1].x + 1 == food[FOOD_INDEX].x && snake[SIZE_SNAKE - 1].y == food[FOOD_INDEX].y) {
 			Eat();
 		}
-		for (int i = 0; i < SIZE_SNAKE - 1; i++) {
+		for (int i = 0; i < SIZE_SNAKE-1 ; i++) {
 			snake[i].x = snake[i + 1].x;
 			snake[i].y = snake[i + 1].y;
 			
@@ -437,6 +440,22 @@ void ThreadFunc() {
 			DrawSnakeAndFood(MSSV);
 			Sleep(1000 / SPEED);
 			TIME += 1000 / SPEED;
+			//int temp;
+			if (CHECK_SNAKE)
+			{
+				// temp = SIZE_SNAKE;
+				if (SnackGoThroughGate())
+				{
+					cout << "ok";
+					/*LevelUp();
+					DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+
+
+					GenerateBigFood();
+					DrawBigFood();
+					GenerateFood();*/
+				}
+			}
 		}
 		if (STATE == 2) {
 			break;

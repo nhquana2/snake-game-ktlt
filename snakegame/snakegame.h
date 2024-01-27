@@ -42,6 +42,7 @@ extern POINT WIN_POINT;
 extern int LEVEL;
 extern int TIME;
 extern int SCORE;
+extern bool CHECK_SNAKE;
 //Utility
 int RandomInRange(int a, int b);
 
@@ -80,3 +81,6 @@ int MapLevel1();
 int MapLevel2();
 int MapLevel3();
 
+
+//animations
+bool SnackGoThroughGate();

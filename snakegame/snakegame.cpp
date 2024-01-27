@@ -29,6 +29,7 @@ int MENU_OPTION = 0; //current option, change with W and S key
 int SIZE_BOARD;
 int TIME;
 int SCORE;
+bool CHECK_SNAKE;
 POINT WIN_POINT;
 int LEVEL;
 using namespace std;
