@@ -43,7 +43,9 @@ extern int MENU_OPTION;
 extern int SIZE_BOARD;
 extern int LEVEL;
 extern int TIME;
-extern int SCORE;    
+extern int SCORE;
+extern int OLD_SIZE_SNAKE;
+extern bool CHECK_SNAKE; 
 extern bool Flag_PoisonSpray;
 extern bool Sparing;
 extern int previousAction;
@@ -89,3 +91,6 @@ int MapLevel1();
 int MapLevel2();
 int MapLevel3();
 
+
+//animations
+bool SnackGoThroughGate();
