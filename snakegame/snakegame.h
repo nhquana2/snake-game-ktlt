@@ -14,7 +14,7 @@
 #define HEIGHT_GATE 3
 #define BIG_FOOD_SIZE 3
 #define MAX_SIZE_SNAKE 40
-#define MAX_SIZE_FOOD 2
+#define MAX_SIZE_FOOD 3
 #define MAX_BOARD_SIZE 400
 #define MAX_SPEED 20
 #define HEIGHT_BOARD 30
@@ -30,6 +30,7 @@ extern POINT food[MAX_SIZE_FOOD];
 extern POINT board[MAX_BOARD_SIZE];
 extern POINT WIN_POINT;
 extern POINT bullet;
+extern POINT spray;
 extern int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
 extern int MOVING;//used to determine the direction my snake moves (At a moment, there  are three directions my snake can move)
 extern int SPEED;// Standing for level, the higher the level, the quicker the speed
@@ -43,6 +44,10 @@ extern int SIZE_BOARD;
 extern int LEVEL;
 extern int TIME;
 extern int SCORE;    
+extern bool Flag_PoisonSpray;
+extern bool Sparing;
+extern int previousAction;
+extern int previousAction_tmp;
 //Utility
 int RandomInRange(int a, int b);
 
@@ -57,6 +62,7 @@ void DrawSnakeAndFood(const char* str);
 void GenerateBigFood();
 void DrawBigFood();
 void DrawBullet();
+void DrawMovingWall(int x,int y, int lenght);
 //Menu-related functions
 void DrawMenu();
 void DrawAboutScreen();

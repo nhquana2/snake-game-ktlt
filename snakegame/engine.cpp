@@ -194,6 +194,7 @@ void ResetData() {
 	GenerateFood();
 	bullet.x = board[0].x + 30;
 	bullet.y = board[0].y+1;
+	Flag_PoisonSpray = Sparing = false;
 }
 
 void StartGame() {
@@ -255,7 +256,8 @@ void LevelUp() {
 	//GenerateBigFood();
 }
 void Eat() {
-	snake[SIZE_SNAKE] = food[FOOD_INDEX];
+	if (!Sparing) snake[SIZE_SNAKE] = food[FOOD_INDEX];
+	if (Sparing)  snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
 	SCORE += 10;
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
@@ -417,6 +419,50 @@ void MoveDown()
 		snake[SIZE_SNAKE - 1].y++;
 	}
 }
+void PoisonSpray() {
+	GoToXY(spray.x, spray.y);
+	cout << " ";
+	if (previousAction_tmp == 1) {//move right
+		spray.x++;
+		if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
+			Eat();
+			Sparing = false;
+		}
+		else if (spray.x == board[0].x + WIDTH_BOARD-2) Sparing = false;
+	}
+	else if (previousAction_tmp == 2) {//move left
+		spray.x--;
+		if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
+			Eat();
+			Sparing = false;
+		}
+		else if (spray.x == board[0].x+1) Sparing = false;
+	}
+	else if (previousAction_tmp == 3) {//move up
+		spray.y--;
+		if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
+			Eat();
+			Sparing = false;
+		}
+		else if (spray.y == board[0].y+1) Sparing = false;
+	}
+	else if (previousAction_tmp == 4) {//move down
+		spray.y++;
+		if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
+			Eat();
+			Sparing = false;
+		}
+		else if (spray.y == board[0].y+HEIGHT_BOARD-2) Sparing = false;
+	}
+	GoToXY(spray.x, spray.y);
+	cout << "\xFE";
+	if (!Sparing) {
+		GoToXY(spray.x, spray.y);
+		cout << " ";
+	}
+	
+}
+
 void ThreadFunc() {
 	while (1) {
 		if (STATE == 1) {
@@ -435,7 +481,19 @@ void ThreadFunc() {
 				MoveDown();
 				break;
 				}
-			DrawBullet();
+			if (Flag_PoisonSpray) {
+				spray.x = snake[SIZE_SNAKE - 1].x;
+				spray.y = snake[SIZE_SNAKE - 1].y;
+				previousAction_tmp = previousAction;
+				Sparing = true;
+				Flag_PoisonSpray = false;
+			}
+			if (Sparing) {
+				PoisonSpray();
+				PoisonSpray();
+			}
+			
+			//DrawBullet();
 			DrawSnakeAndFood(MSSV);
 			Sleep(1000 / SPEED);
 			TIME += 1000 / SPEED;
