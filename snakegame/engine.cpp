@@ -509,15 +509,14 @@ void ThreadFunc() {
 				Sparing = true;
 				Flag_PoisonSpray = false;
 			}
-			if (Sparing) {
-				PoisonSpray();
-				PoisonSpray();
-			}
+			if (Sparing) PoisonSpray();
+			
 			
 			//DrawBullet();
 			DrawSnakeAndFood(MSSV);
 
 			Sleep(1000 / SPEED);
+			if (Sparing) PoisonSpray();
 			TIME += 1000 / SPEED;
 		}
 		if (STATE == 2) {
