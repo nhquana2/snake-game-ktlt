@@ -10,6 +10,8 @@ POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[40];
 POINT board[400];
 POINT food[MAX_SIZE_FOOD];
+POINT bullet;
+POINT spray;
 const char* MSSV = "23127106231274582312723123127332";
 int NUMBER_OF_OBSTACLES;
 int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
@@ -33,6 +35,9 @@ int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
 POINT WIN_POINT;
 int LEVEL;
+bool Flag_PoisonSpray, Sparing;
+int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
+int previousAction_tmp;
 using namespace std;
 
 int main()
@@ -72,12 +77,25 @@ int main()
                 }
                 else {
                     ResumeThread(handle_t1);
-                    if ((temp != CHAR_LOCK) && (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S')) {
-                        if (temp == 'D') CHAR_LOCK = 'A';
-                        else if (temp == 'W') CHAR_LOCK = 'S';
-                        else if (temp == 'S') CHAR_LOCK = 'W';
-                        else CHAR_LOCK = 'D';
-                        MOVING = temp;
+                    if ((temp != CHAR_LOCK) && (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S' || temp == 'L')) {
+                        if (temp == 'D') {
+                            previousAction = 1;//move right
+                            CHAR_LOCK = 'A';
+                        }
+                        else if (temp == 'W'){
+                            previousAction = 3;//move up
+                            CHAR_LOCK = 'S';                 
+                        }
+                        else if (temp == 'S') {
+                            previousAction = 4;// move down
+                            CHAR_LOCK = 'W';
+                        }
+                        else if(temp =='A'){
+                            previousAction = 2;//move left
+                            CHAR_LOCK = 'D';
+                        }
+                        if (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S') MOVING = temp;
+                        if (temp == 'L' && !Sparing) Flag_PoisonSpray = true;
                     }
                 }
             }
