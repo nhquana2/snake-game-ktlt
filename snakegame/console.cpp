@@ -116,6 +116,9 @@ void DrawSnakeAndFood(const char* str) {
 	cout << "Time: " << TIME << endl;
 	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 2);
 	cout << "Total score: " << SCORE << endl;
+	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 3);
+	if (SCORE >= 20) cout << "Skill: Available    ";
+	else cout << "Skill: Unavailable";
 	GoToXY(0, 0);
 	cout << FOOD_INDEX << " " << SIZE_SNAKE;
 }

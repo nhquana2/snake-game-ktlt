@@ -80,22 +80,10 @@ int main()
                 else {
                     ResumeThread(handle_t1);
                     if ((temp != CHAR_LOCK) && (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S' || temp == 'L')) {
-                        if (temp == 'D') {
-                            previousAction = 1;//move right
-                            CHAR_LOCK = 'A';
-                        }
-                        else if (temp == 'W'){
-                            previousAction = 3;//move up
-                            CHAR_LOCK = 'S';                 
-                        }
-                        else if (temp == 'S') {
-                            previousAction = 4;// move down
-                            CHAR_LOCK = 'W';
-                        }
-                        else if(temp =='A'){
-                            previousAction = 2;//move left
-                            CHAR_LOCK = 'D';
-                        }
+                        if (temp == 'D') CHAR_LOCK = 'A';
+                        else if (temp == 'W') CHAR_LOCK = 'S';                 
+                        else if (temp == 'S') CHAR_LOCK = 'W';
+                        else if(temp =='A') CHAR_LOCK = 'D';
                         if (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S') MOVING = temp;
                         if (temp == 'L' && !Sparing) Flag_PoisonSpray = true;
                     }

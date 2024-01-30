@@ -446,43 +446,74 @@ void PoisonSpray() {
 	cout << " ";
 	if (previousAction_tmp == 1) {//move right
 		spray.x++;
-		if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
-			Eat();
+		if (CheckBigFood(spray.x, spray.y))
+		{
+			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+			SCORE += 100;
 			Sparing = false;
 		}
-		else if (spray.x == board[0].x + WIDTH_BOARD-2) Sparing = false;
+		else {
+			if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
+				Eat();
+				Sparing = false;
+			}
+			else if (spray.x == board[0].x + WIDTH_BOARD - 2) Sparing = false;
+		}
 	}
 	else if (previousAction_tmp == 2) {//move left
 		spray.x--;
-		if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
-			Eat();
+		if (CheckBigFood(spray.x, spray.y))
+		{
+			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+			SCORE += 100;
 			Sparing = false;
 		}
-		else if (spray.x == board[0].x+1) Sparing = false;
+		else {
+			if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
+				Eat();
+				Sparing = false;
+			}
+			else if (spray.x == board[0].x + 1) Sparing = false;
+		}
 	}
 	else if (previousAction_tmp == 3) {//move up
 		spray.y--;
-		if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
-			Eat();
+		if (CheckBigFood(spray.x, spray.y))
+		{
+			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+			SCORE += 100;
 			Sparing = false;
 		}
-		else if (spray.y == board[0].y+1) Sparing = false;
+		else {
+			if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
+				Eat();
+				Sparing = false;
+			}
+			else if (spray.y == board[0].y + 1) Sparing = false;
+		}
 	}
 	else if (previousAction_tmp == 4) {//move down
 		spray.y++;
-		if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
-			Eat();
+		if (CheckBigFood(spray.x, spray.y))
+		{
+			//delete big food, parameters is its coordinates
+			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+			SCORE += 100;
 			Sparing = false;
 		}
-		else if (spray.y == board[0].y+HEIGHT_BOARD-2) Sparing = false;
+		else {
+			if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) {
+				Eat();
+				Sparing = false;
+			}
+			else if (spray.y == board[0].y + HEIGHT_BOARD - 2) Sparing = false;
+		}
 	}
 	GoToXY(spray.x, spray.y);
-	cout << "\xFE";
-	if (!Sparing) {
-		GoToXY(spray.x, spray.y);
+	if (Sparing) 
+		cout << "\xFE";
+	else 
 		cout << " ";
-	}
-	
 }
 
 void ThreadFunc() {
@@ -503,7 +534,6 @@ void ThreadFunc() {
 				MoveDown();
 				break;
 				}
-
 			//Snake moving through gate animation
 			if (CHECK_SNAKE) {
 				if (SnackGoThroughGate()) {
@@ -520,13 +550,20 @@ void ThreadFunc() {
 			}
 			//End snake animation
 
-			if (Flag_PoisonSpray) {
+			if (Flag_PoisonSpray && SCORE >= 20) {
 				spray.x = snake[SIZE_SNAKE - 1].x;
 				spray.y = snake[SIZE_SNAKE - 1].y;
-				previousAction_tmp = previousAction;
+				if (MOVING == 'A') previousAction_tmp = 2;//move left
+				else if (MOVING == 'D') previousAction_tmp = 1;//move right
+				else if (MOVING == 'W') previousAction_tmp = 3;//move up
+				else if (MOVING == 'S') previousAction_tmp = 4;//move down
 				Sparing = true;
+				SCORE -= 20;
+				PlaySound(TEXT("lazersound.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				Flag_PoisonSpray = false;
 			}
+			else Flag_PoisonSpray = false;
+
 			if (Sparing) PoisonSpray();
 			
 			
