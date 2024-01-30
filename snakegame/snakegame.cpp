@@ -12,6 +12,9 @@ POINT board[400];
 POINT food[MAX_SIZE_FOOD];
 POINT bullet;
 POINT spray;
+POINT WIN_POINT;
+
+
 const char* MSSV = "23127106231274582312723123127332";
 int NUMBER_OF_OBSTACLES;
 int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
@@ -33,7 +36,6 @@ int TIME;
 int SCORE;
 int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
-POINT WIN_POINT;
 int LEVEL;
 int SOUND = 1;
 bool Flag_PoisonSpray, Sparing;
@@ -51,12 +53,11 @@ int main()
     //First draw menu
     DrawMenu();
     STATE = 0;
-    //StartGame();
-    //GenerateBigFood();
+    
 
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
-   // map1();
+
 
     char temp;
     while (1) {

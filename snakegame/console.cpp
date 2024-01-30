@@ -2,6 +2,11 @@
 
 using namespace std;
 
+void SetConsoleColour(int text, int background)
+{
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, text+background*16);
+}
 void FixConsoleWindow() {
 	HWND consoleWindow = GetConsoleWindow();
 	LONG style = GetWindowLong(consoleWindow, GWL_STYLE);
@@ -124,6 +129,7 @@ void DrawSnakeAndFood(const char* str) {
 }
 
 void PrintFile(int x, int y, const char* FileName) {
+	SetConsoleColour(Green, Black);
 	ifstream ifs;
 	int st_x = x, st_y = y;
 	ifs.open(FileName);
@@ -135,6 +141,7 @@ void PrintFile(int x, int y, const char* FileName) {
 		if (c != '\n') ++x; else ++y, x = st_x;
 		GoToXY(x, y);
 	}
+	SetConsoleColour(White, Black);
 }
 
 void GetWidthAndHeightFile(const char* FileName, int &width, int &height) {

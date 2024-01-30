@@ -10,6 +10,25 @@
 #include <ctime>
 #include <mmsystem.h>
 
+//Color
+#define Black 0
+#define Blue 1
+#define Green 2
+#define Aqua 3
+#define Red 4
+#define Purple 5
+#define Yellow 6
+#define White 7
+#define Gray 8
+#define LightBlue 9
+#define LightGreen 10
+#define LightAqua 11
+#define LightRed 12
+#define LightPurple 13
+#define LightYellow 14
+#define BrightWhite 15
+
+
 //Global constant
 #define WIDTH_GATE 2
 #define HEIGHT_GATE 3
@@ -20,6 +39,8 @@
 #define MAX_SPEED 20
 #define HEIGHT_BOARD 30
 #define WIDTH_BOARD 120
+
+
 //Global variables (definition using extern keyword)
 extern int NUMBER_OF_OBSTACLES; //number of obstacles is updated every time the map function is called
 extern const char* MSSV;
@@ -53,8 +74,12 @@ extern bool Sparing;
 extern int previousAction;
 extern int previousAction_tmp;
 extern int BLINKING_MAP;
+
+
 //Utility
 int RandomInRange(int a, int b);
+void SetConsoleColour(int text, int background);
+
 
 //Console and Graphic functions
 void FixConsoleWindow();
@@ -71,7 +96,6 @@ void DrawMovingWall(int x,int y, int lenght);
 //Menu-related functions
 void DrawMenu();
 void DrawAboutScreen();
-
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 
 //Logic and game engine functions
