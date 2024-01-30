@@ -233,6 +233,7 @@ void ExitGame(HANDLE t) {
 }
 
 void PauseGame(HANDLE t) {
+	playSound("pauseGame");
 	SuspendThread(t);
 }
 
