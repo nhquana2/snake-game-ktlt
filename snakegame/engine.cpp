@@ -325,6 +325,7 @@ void MoveRight()
 	//check if the snake touch the big food
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))
 	{
+		playSound("bigfood");
 		//delete big food, parameters is its coordinates
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
@@ -358,6 +359,7 @@ void MoveLeft()
 
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
 	{
+		playSound("bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
@@ -388,6 +390,7 @@ void MoveUp()
 	
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
 	{
+		playSound("bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
@@ -417,6 +420,7 @@ void MoveDown()
 	
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y+1))
 	{
+		playSound("bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
