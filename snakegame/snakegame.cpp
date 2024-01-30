@@ -39,15 +39,15 @@ int SOUND = 1;
 bool Flag_PoisonSpray, Sparing;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
+int BLINKING_MAP;
 using namespace std;
 
 int main()
 {
     playSound("assets\\sounds\\intro");
-    system("color 70");
+    //system("color 70");
     FixConsoleWindow();
     ResetData();
-
     //First draw menu
     DrawMenu();
     STATE = 0;
@@ -90,7 +90,7 @@ int main()
                 }
             }
             else {
-                if (temp == 'Y') StartGame();
+                if ( !BLINKING_MAP && temp == 'Y') StartGame();
                 if (temp == 27) {
                     //ExitGame(handle_t1);
                     STATE = 2;

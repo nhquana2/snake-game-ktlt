@@ -194,7 +194,7 @@ void RespawnSnake()
 }
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
-	WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6;
+		WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 0;
 	TIME = 0;
 	LEVEL = 0;
 	SCORE = 0;
@@ -240,6 +240,7 @@ void PauseGame(HANDLE t) {
 void ProcessDead() {
 	playSound("assets\\sounds\\dead");
 	STATE = 0;
+	BlinkingMap();
 	GoToXY(0, HEIGH_CONSOLE + 2);
 	printf("Dead, press Y to continue!");
 }

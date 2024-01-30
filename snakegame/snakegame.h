@@ -52,6 +52,7 @@ extern bool Flag_PoisonSpray;
 extern bool Sparing;
 extern int previousAction;
 extern int previousAction_tmp;
+extern int BLINKING_MAP;
 //Utility
 int RandomInRange(int a, int b);
 
@@ -97,3 +98,4 @@ int MapLevel3();
 
 //animations
 bool SnackGoThroughGate();
+void BlinkingMap();
