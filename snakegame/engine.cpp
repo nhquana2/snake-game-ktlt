@@ -142,7 +142,7 @@ bool CheckValidGate(int size)
 }
 
 //Create gate[] array, use to store coordinates 
-int InitGate()//return size of gate
+void InitGate()//return size of gate
 {
 	int x, y;
 	//pos: number of pixels in gate[]
@@ -173,7 +173,6 @@ int InitGate()//return size of gate
 		}
 	}
 	WIN_POINT = { x,y + 1 };
-	return pos;
 }
 void DeleteGate()
 {
@@ -223,7 +222,9 @@ void StartGame() {
 
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
+	SetConsoleColour(Green, Black);
 	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
+	SetConsoleColour(White, Black);
 	STATE = 1; //Start running Thread
 }
 
@@ -242,7 +243,10 @@ void ProcessDead() {
 	STATE = 0;
 	BlinkingMap();
 	GoToXY(0, HEIGH_CONSOLE + 2);
+	SetConsoleColour(Yellow, Black);
 	printf("Dead, press Y to continue!");
+	SetConsoleColour(White, Black);
+
 }
 
 void LevelUp() {
@@ -282,7 +286,11 @@ void Eat() {
 		//SIZE_SNAKE = 6;
 		//SPEED++;
 		//If gate is not inside board, max number of food spawned -> DrawGate
-		if (WIN_POINT.x==0 && WIN_POINT.y==0) DrawGate(); 
+		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
+			SetConsoleColour(Yellow, Black);
+			DrawGate();
+			SetConsoleColour(White, Black);
+		}
 		//GenerateFood();
 	}
 	else

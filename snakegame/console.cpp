@@ -94,18 +94,26 @@ void DrawRectangle(int x, int y, int width, int height) {
 
 void DrawGate()
 {
-	int size = InitGate();
+	InitGate();
 	GoToXY(gate[0].x, gate[0].y);
-	cout << '\xc4';
+	//cout << '\xc4';
+	cout << "0";
 	GoToXY(gate[1].x, gate[1].y);
-	cout << '\xb7';
+	//cout << '\xb7';
+	cout << "0";
+
 	GoToXY(gate[2].x, gate[2].y);
-	cout << '\xb3';
+	//cout << '\xb3';
+	cout << "0";
+
 	GoToXY(gate[3].x, gate[3].y);
-	cout << '\xbd';
+	//cout << '\xbd';
+	cout << "0";
+
 	GoToXY(gate[4].x, gate[4].y);
-	cout << '\xc4';
-	
+	//cout << '\xc4';
+	cout << "0";
+
 }
 
 void DrawSnakeAndFood(const char* str) {
@@ -129,7 +137,6 @@ void DrawSnakeAndFood(const char* str) {
 }
 
 void PrintFile(int x, int y, const char* FileName) {
-	SetConsoleColour(Green, Black);
 	ifstream ifs;
 	int st_x = x, st_y = y;
 	ifs.open(FileName);
@@ -141,7 +148,6 @@ void PrintFile(int x, int y, const char* FileName) {
 		if (c != '\n') ++x; else ++y, x = st_x;
 		GoToXY(x, y);
 	}
-	SetConsoleColour(White, Black);
 }
 
 void GetWidthAndHeightFile(const char* FileName, int &width, int &height) {

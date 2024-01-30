@@ -110,7 +110,7 @@ void BoardInit(int x, int y, int width, int height);
 void ThreadFunc();
 void Eat();
 void ProcessDead();
-int InitGate();//return size of gate
+void InitGate();//return size of gate
 
 //map
 bool CheckTouchObstacles(int x, int y);//parameters is the coordinate of the head of the snake
