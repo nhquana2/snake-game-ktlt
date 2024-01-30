@@ -208,7 +208,7 @@ void ResetData() {
 }
 
 void StartGame() {
-	playSound("startGame");
+	playSound("assets\\sounds\\startGame");
 	//BoardInit(5, 10);
 	WIN_POINT.x = 0;
 	WIN_POINT.y = 0;
@@ -233,12 +233,12 @@ void ExitGame(HANDLE t) {
 }
 
 void PauseGame(HANDLE t) {
-	playSound("pauseGame");
+	playSound("assets\\sounds\\pauseGame");
 	SuspendThread(t);
 }
 
 void ProcessDead() {
-	playSound("dead");
+	playSound("assets\\sounds\\dead");
 	STATE = 0;
 	GoToXY(0, HEIGH_CONSOLE + 2);
 	printf("Dead, press Y to continue!");
@@ -247,7 +247,7 @@ void ProcessDead() {
 void LevelUp() {
 	//process when the snake eat enough food and open the gate
 	//when the head of the snake hit the win point
-	playSound("levelup");
+	playSound("assets\\sounds\\levelup");
 	DeleteGate();
 	FOOD_INDEX = 0;
 	LEVEL += 1;
@@ -270,7 +270,7 @@ void LevelUp() {
 	//GenerateBigFood();
 }
 void Eat() {
-	playSound("eat");
+	playSound("assets\\sounds\\eat");
 	if (!Sparing) snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (Sparing)  snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
 	SCORE += 10;
@@ -326,7 +326,7 @@ void MoveRight()
 	//check if the snake touch the big food
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))
 	{
-		playSound("bigfood");
+		playSound("assets\\sounds\\bigfood");
 		//delete big food, parameters is its coordinates
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
@@ -360,7 +360,7 @@ void MoveLeft()
 
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
 	{
-		playSound("bigfood");
+		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
@@ -391,7 +391,7 @@ void MoveUp()
 	
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
 	{
-		playSound("bigfood");
+		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
@@ -421,7 +421,7 @@ void MoveDown()
 	
 	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y+1))
 	{
-		playSound("bigfood");
+		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
