@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iostream>
 #include <ctime>
+#include <mmsystem.h>
 
 //Global constant
 #define WIDTH_GATE 2
@@ -44,6 +45,7 @@ extern int SIZE_BOARD;
 extern int LEVEL;
 extern int TIME;
 extern int SCORE;
+extern int SOUND;
 extern int OLD_SIZE_SNAKE;
 extern bool CHECK_SNAKE; 
 extern bool Flag_PoisonSpray;
@@ -72,6 +74,7 @@ void DrawAboutScreen();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 
 //Logic and game engine functions
+void playSound(const std::string& soundFile);
 bool IsValidFood(int x, int y);
 void GenerateFood();
 void ResetData();

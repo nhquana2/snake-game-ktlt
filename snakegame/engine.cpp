@@ -3,6 +3,15 @@
 
 using namespace std;
 
+/*the function 'PlaySound' in Windows API requires 'const wchar_t*' (pointer to a wide string)*/
+void playSound(const string& soundFile) {
+	if (SOUND == 1) {
+		wstring wideSoundFile(soundFile.begin(), soundFile.end()); //convert regular string to wide string
+		PlaySound(wideSoundFile.c_str(), NULL, SND_FILENAME | SND_ASYNC); //convert string to wchar_t*
+	}
+	else PlaySound(NULL, NULL, 0);
+}
+
 int RandomInRange(int a, int b) {
 	//srand(time(NULL));
 	return a + rand() % (b - a + 1);
