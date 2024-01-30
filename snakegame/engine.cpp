@@ -446,6 +446,13 @@ void PoisonSpray() {
 	cout << " ";
 	if (previousAction_tmp == 1) {//move right
 		spray.x++;
+		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
+			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y)
+			{
+				obstacles[i].x = obstacles[i].y = 3;
+				Sparing = false;
+				break;
+			}
 		if (CheckBigFood(spray.x, spray.y))
 		{
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
@@ -462,6 +469,13 @@ void PoisonSpray() {
 	}
 	else if (previousAction_tmp == 2) {//move left
 		spray.x--;
+		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
+			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y)
+			{
+				obstacles[i].x = obstacles[i].y = 3;
+				Sparing = false;
+				break;
+			}
 		if (CheckBigFood(spray.x, spray.y))
 		{
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
@@ -478,6 +492,13 @@ void PoisonSpray() {
 	}
 	else if (previousAction_tmp == 3) {//move up
 		spray.y--;
+		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
+			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y)
+			{
+				obstacles[i].x = obstacles[i].y = 3;
+				Sparing = false;
+				break;
+			}
 		if (CheckBigFood(spray.x, spray.y))
 		{
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
@@ -494,9 +515,15 @@ void PoisonSpray() {
 	}
 	else if (previousAction_tmp == 4) {//move down
 		spray.y++;
+		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
+			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y)
+			{
+				obstacles[i].x = obstacles[i].y = 3;
+				Sparing = false;
+				break;
+			}
 		if (CheckBigFood(spray.x, spray.y))
 		{
-			//delete big food, parameters is its coordinates
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
 			Sparing = false;
@@ -559,7 +586,6 @@ void ThreadFunc() {
 				else if (MOVING == 'S') previousAction_tmp = 4;//move down
 				Sparing = true;
 				SCORE -= 20;
-				PlaySound(TEXT("lazersound.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				Flag_PoisonSpray = false;
 			}
 			else Flag_PoisonSpray = false;
