@@ -208,6 +208,7 @@ void ResetData() {
 }
 
 void StartGame() {
+	playSound("startGame");
 	//BoardInit(5, 10);
 	WIN_POINT.x = 0;
 	WIN_POINT.y = 0;
@@ -236,6 +237,7 @@ void PauseGame(HANDLE t) {
 }
 
 void ProcessDead() {
+	playSound("dead");
 	STATE = 0;
 	GoToXY(0, HEIGH_CONSOLE + 2);
 	printf("Dead, press Y to continue!");
@@ -244,6 +246,7 @@ void ProcessDead() {
 void LevelUp() {
 	//process when the snake eat enough food and open the gate
 	//when the head of the snake hit the win point
+	playSound("levelup");
 	DeleteGate();
 	FOOD_INDEX = 0;
 	LEVEL += 1;
@@ -266,6 +269,7 @@ void LevelUp() {
 	//GenerateBigFood();
 }
 void Eat() {
+	playSound("eat");
 	if (!Sparing) snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (Sparing)  snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
 	SCORE += 10;

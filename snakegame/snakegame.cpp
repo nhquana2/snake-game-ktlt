@@ -43,6 +43,7 @@ using namespace std;
 
 int main()
 {
+    playSound("intro");
     system("color 70");
     FixConsoleWindow();
     ResetData();
