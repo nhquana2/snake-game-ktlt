@@ -303,8 +303,9 @@ bool Suicide(int x,int y)//return true if the snake touch its body
 
 void MoveRight()
 {
+	POINT nextpoint = { snake[SIZE_SNAKE - 1].x + 1 , snake[SIZE_SNAKE - 1].y };
 	//Snake touch Win point
-	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && snake[SIZE_SNAKE - 1].y == WIN_POINT.y)
+	if (nextpoint.x == WIN_POINT.x && nextpoint.y == WIN_POINT.y)
 	{
 		//check if the player ate the big food (big food only be drawn if level up function is called)
 		if (!CHECK_SNAKE) OLD_SIZE_SNAKE = SIZE_SNAKE;
@@ -318,13 +319,13 @@ void MoveRight()
 		//GenerateFood(); //generate new food for next level
 	}
 	//Snake touch Gate
-	if (snake[SIZE_SNAKE - 1].x + 1 == WIN_POINT.x && (snake[SIZE_SNAKE - 1].y == WIN_POINT.y + 1 || snake[SIZE_SNAKE - 1].y == WIN_POINT.y - 1))
+	if (nextpoint.x == WIN_POINT.x && (nextpoint.y == WIN_POINT.y + 1 || nextpoint.y == WIN_POINT.y - 1))
 	{
 		ProcessDead();
 	}
 
 	//check if the snake touch the big food
-	if (CheckBigFood(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))
+	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
 		playSound("assets\\sounds\\bigfood");
 		//delete big food, parameters is its coordinates
@@ -333,112 +334,124 @@ void MoveRight()
 	}
 
 	// If snake hit wall or snake suicide
-	if (snake[SIZE_SNAKE - 1].x + 1 == WIDTH_BOARD+board[0].x - 1 || Suicide(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x + 1, snake[SIZE_SNAKE - 1].y))
+	if (nextpoint.x == WIDTH_BOARD+board[0].x - 1 || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
 	{
 		ProcessDead();
 	}
 	else {
-		if (snake[SIZE_SNAKE - 1].x + 1 == food[FOOD_INDEX].x && snake[SIZE_SNAKE - 1].y == food[FOOD_INDEX].y) {
+		if (nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
 			Eat();
 		}
-		for (int i = 0; i < SIZE_SNAKE-1 ; i++) {
-			snake[i].x = snake[i + 1].x;
-			snake[i].y = snake[i + 1].y;
-			
+		else {
+			for (int i = 0; i < SIZE_SNAKE - 1; i++) {
+				snake[i].x = snake[i + 1].x;
+				snake[i].y = snake[i + 1].y;
+
+			}
+			snake[SIZE_SNAKE - 1].x++;
 		}
-		snake[SIZE_SNAKE - 1].x++;
 	}
 }
 
 void MoveLeft()
 {
+	POINT nextpoint = { snake[SIZE_SNAKE - 1].x - 1 , snake[SIZE_SNAKE - 1].y };
 	//Snake Touch Gate
-	if (snake[SIZE_SNAKE - 1].x - 1 == WIN_POINT.x + 1 && (snake[SIZE_SNAKE - 1].y == WIN_POINT.y + 1 || snake[SIZE_SNAKE - 1].y == WIN_POINT.y - 1 || snake[SIZE_SNAKE - 1].y == WIN_POINT.y))
+	if (nextpoint.x == WIN_POINT.x + 1 && (nextpoint.y == WIN_POINT.y + 1 || nextpoint.y == WIN_POINT.y - 1 || nextpoint.y == WIN_POINT.y))
 	{
 		ProcessDead();
 	}
 
-	if (CheckBigFood(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
+	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
 		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
 
-	if (snake[SIZE_SNAKE - 1].x -1 == board[0].x || Suicide(snake[SIZE_SNAKE - 1].x-1, snake[SIZE_SNAKE - 1].y)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x - 1, snake[SIZE_SNAKE - 1].y))
+	if (nextpoint.x == board[0].x || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
 	{
 		ProcessDead();
 	}
 	else {
-		if (snake[SIZE_SNAKE - 1].x -1 == food[FOOD_INDEX].x && snake[SIZE_SNAKE - 1].y == food[FOOD_INDEX].y) {
+		if (nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
 			Eat();
 		}
-		for (int i = 0; i < SIZE_SNAKE - 1; i++) {
-			snake[i].x = snake[i + 1].x;
-			snake[i].y = snake[i + 1].y;
+		else {
+			for (int i = 0; i < SIZE_SNAKE - 1; i++) {
+				snake[i].x = snake[i + 1].x;
+				snake[i].y = snake[i + 1].y;
 
+			}
+			snake[SIZE_SNAKE - 1].x--;
 		}
-		snake[SIZE_SNAKE - 1].x--;
 	}
 }
 
 void MoveUp()
 {
+	POINT nextpoint = { snake[SIZE_SNAKE - 1].x , snake[SIZE_SNAKE - 1].y - 1 };
 	//Snake touch Gate
-	if (snake[SIZE_SNAKE - 1].y - 1==WIN_POINT.y+1&&(snake[SIZE_SNAKE-1].x==WIN_POINT.x|| snake[SIZE_SNAKE - 1].x== WIN_POINT.x+1)) {
+	if (nextpoint.y ==WIN_POINT.y+1&&(nextpoint.x ==WIN_POINT.x|| nextpoint.x == WIN_POINT.x+1)) {
 		ProcessDead();
 	}
 	
-	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
+	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
 		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
-	if (snake[SIZE_SNAKE - 1].y - 1 == board[0].y || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y - 1)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y-1))
+	if (nextpoint.y == board[0].y || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
 	{
 		ProcessDead();
 	}
 	else {
-		if (snake[SIZE_SNAKE - 1].x == food[FOOD_INDEX].x && snake[SIZE_SNAKE - 1].y -1== food[FOOD_INDEX].y) {
+		if (nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
 			Eat();
 		}
-		for (int i = 0; i < SIZE_SNAKE - 1; i++) {
-			snake[i].x = snake[i + 1].x;
-			snake[i].y = snake[i + 1].y;
+		else {
+			for (int i = 0; i < SIZE_SNAKE - 1; i++) {
+				snake[i].x = snake[i + 1].x;
+				snake[i].y = snake[i + 1].y;
 
+			}
+			snake[SIZE_SNAKE - 1].y--;
 		}
-		snake[SIZE_SNAKE - 1].y--;
 	}
 }
 
 void MoveDown()
 {
+	POINT nextpoint = { snake[SIZE_SNAKE - 1].x , snake[SIZE_SNAKE - 1].y + 1 };
 	//Snake touch gate
-	if (snake[SIZE_SNAKE - 1].y + 1 == WIN_POINT.y - 1 && (snake[SIZE_SNAKE - 1].x == WIN_POINT.x || snake[SIZE_SNAKE - 1].x == WIN_POINT.x + 1)) {
+	if (nextpoint.y == WIN_POINT.y - 1 && (snake[SIZE_SNAKE - 1].x == WIN_POINT.x || snake[SIZE_SNAKE - 1].x == WIN_POINT.x + 1)) {
 		ProcessDead();
 	}
 	
-	if (CheckBigFood(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y+1))
+	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
 		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		SCORE += 100;
 	}
-	if (snake[SIZE_SNAKE - 1].y + 1 == HEIGHT_BOARD+board[0].y - 1 || Suicide(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1)|| CheckTouchObstacles(snake[SIZE_SNAKE - 1].x, snake[SIZE_SNAKE - 1].y + 1))
+	if (nextpoint.y == HEIGHT_BOARD+board[0].y - 1 || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
 	{
 		ProcessDead();
 	}
 	else {
-		if (snake[SIZE_SNAKE - 1].x == food[FOOD_INDEX].x && snake[SIZE_SNAKE - 1].y + 1 == food[FOOD_INDEX].y) {
+		if (nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
 			Eat();
 		}
-		for (int i = 0; i < SIZE_SNAKE - 1; i++) {
-			snake[i].x = snake[i+1].x;
-			snake[i].y = snake[i + 1].y;
+		else {
+			for (int i = 0; i < SIZE_SNAKE - 1; i++) {
+				snake[i].x = snake[i + 1].x;
+				snake[i].y = snake[i + 1].y;
 
+			}
+			snake[SIZE_SNAKE - 1].y++;
 		}
-		snake[SIZE_SNAKE - 1].y++;
+
 	}
 }
 void PoisonSpray() {
