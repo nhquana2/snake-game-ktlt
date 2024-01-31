@@ -279,12 +279,9 @@ void Eat() {
 	if (!Sparing) snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (Sparing)  snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
 	SCORE += 10;
+	++SIZE_SNAKE;
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
-		++SIZE_SNAKE;
-		//FOOD_INDEX = 0;
-		//SIZE_SNAKE = 6;
-		//SPEED++;
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
 			SetConsoleColor(Yellow, Black);
@@ -296,7 +293,6 @@ void Eat() {
 	else
 	{
 		FOOD_INDEX++;
-		SIZE_SNAKE++;
 	}
 }
 bool Suicide(int x,int y)//return true if the snake touch its body
@@ -348,7 +344,7 @@ void MoveRight()
 		ProcessDead();
 	}
 	else {
-		if (nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
+		if ((WIN_POINT.x == 0 && WIN_POINT.y == 0) && nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
 			Eat();
 		}
 		else {
@@ -383,7 +379,7 @@ void MoveLeft()
 		ProcessDead();
 	}
 	else {
-		if (nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
+		if ((WIN_POINT.x == 0 && WIN_POINT.y == 0) && nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
 			Eat();
 		}
 		else {
@@ -416,7 +412,7 @@ void MoveUp()
 		ProcessDead();
 	}
 	else {
-		if (nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
+		if ((WIN_POINT.x == 0 && WIN_POINT.y == 0) && nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
 			Eat();
 		}
 		else {
@@ -449,7 +445,7 @@ void MoveDown()
 		ProcessDead();
 	}
 	else {
-		if (nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
+		if ((WIN_POINT.x == 0 && WIN_POINT.y == 0) && nextpoint.x == food[FOOD_INDEX].x && nextpoint.y == food[FOOD_INDEX].y) {
 			Eat();
 		}
 		else {
