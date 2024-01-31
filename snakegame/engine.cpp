@@ -205,8 +205,6 @@ void StartGame() {
 	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 	SetConsoleColor(White, Black);
 
-	int level1_width, level1_height;
-	GetWidthAndHeightFile("level 1.txt", level1_width, level1_height);
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "level 1.txt");
 	STATE = 1; //Start running Thread
 }
