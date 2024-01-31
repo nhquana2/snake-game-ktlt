@@ -21,7 +21,7 @@ bool SnackGoThroughGate() {
 void BlinkingMap()//blinking when the snake died
 {
 	BLINKING_MAP = 1;
-	for(int i = 0; i < 4; i++) {
+	for(int i = 0; i < 5; i++) {
 
 		for (int i = 0; i < SIZE_SNAKE; i++)
 		{
@@ -38,7 +38,7 @@ void BlinkingMap()//blinking when the snake died
 		//	GoToXY(obstacles[i].x, obstacles[i].y);
 		//	cout << " ";
 		//}
-		Sleep(200);
+		Sleep(100);
 		DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD);
 		DrawSnakeAndFood(MSSV);
 		/*if (LEVEL == 1)
@@ -55,7 +55,7 @@ void BlinkingMap()//blinking when the snake died
 			DeleteMap();
 			NUMBER_OF_OBSTACLES = MapLevel3();
 		}*/
-		Sleep(200);
+		Sleep(100);
 	}
 	BLINKING_MAP = 0;
 }

@@ -78,7 +78,7 @@ extern int BLINKING_MAP;
 
 //Utility
 int RandomInRange(int a, int b);
-void SetConsoleColour(int text, int background);
+void SetConsoleColor(int text, int background);
 
 
 //Console and Graphic functions

@@ -222,9 +222,9 @@ void StartGame() {
 
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
-	SetConsoleColour(Green, Black);
+	SetConsoleColor(Green, Black);
 	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
-	SetConsoleColour(White, Black);
+	SetConsoleColor(White, Black);
 	STATE = 1; //Start running Thread
 }
 
@@ -239,13 +239,13 @@ void PauseGame(HANDLE t) {
 }
 
 void ProcessDead() {
-	playSound("assets\\sounds\\dead");
+	playSound("assets\\sounds\\deathSound");
 	STATE = 0;
 	BlinkingMap();
-	GoToXY(0, HEIGH_CONSOLE + 2);
-	SetConsoleColour(Yellow, Black);
+	GoToXY(WIDTH_CONSOLE/2, HEIGH_CONSOLE/2);
+	SetConsoleColor(Yellow, Black);
 	printf("Dead, press Y to continue!");
-	SetConsoleColour(White, Black);
+	SetConsoleColor(White, Black);
 
 }
 
@@ -287,9 +287,9 @@ void Eat() {
 		//SPEED++;
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
-			SetConsoleColour(Yellow, Black);
+			SetConsoleColor(Yellow, Black);
 			DrawGate();
-			SetConsoleColour(White, Black);
+			SetConsoleColor(White, Black);
 		}
 		//GenerateFood();
 	}

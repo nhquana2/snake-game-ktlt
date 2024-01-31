@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void SetConsoleColour(int text, int background)
+void SetConsoleColor(int text, int background)
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, text+background*16);
@@ -79,6 +79,7 @@ void DrawBullet() {
 
 void DrawRectangle(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
+	SetConsoleColor(Red, Black);
 	GoToXY(x, y); cout << '\xc9';
 	for (int i = 1; i < width-1; i++) cout << '\xcd';
 	cout << '\xbb';
@@ -90,29 +91,27 @@ void DrawRectangle(int x, int y, int width, int height) {
 		GoToXY(x + width - 1, i); 
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
 	}
+	SetConsoleColor(White, Black);
+
 }
 
 void DrawGate()
 {
 	InitGate();
 	GoToXY(gate[0].x, gate[0].y);
-	//cout << '\xc4';
-	cout << "0";
+	cout << '\xc4';
+
 	GoToXY(gate[1].x, gate[1].y);
-	//cout << '\xb7';
-	cout << "0";
+	cout << '\xb7';
 
 	GoToXY(gate[2].x, gate[2].y);
-	//cout << '\xb3';
-	cout << "0";
+	cout << '\xb3';
 
 	GoToXY(gate[3].x, gate[3].y);
-	//cout << '\xbd';
-	cout << "0";
+	cout << '\xbd';
 
 	GoToXY(gate[4].x, gate[4].y);
-	//cout << '\xc4';
-	cout << "0";
+	cout << '\xc4';
 
 }
 
