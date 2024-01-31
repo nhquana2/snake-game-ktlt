@@ -229,7 +229,7 @@ void StartGame() {
 
 	int level1_width, level1_height;
 	GetWidthAndHeightFile("level 1.txt", level1_width, level1_height);
-	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 1, "level 1.txt");
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "level 1.txt");
 	STATE = 1; //Start running Thread
 }
 
