@@ -90,6 +90,7 @@ int MapLevel2()
 		obstacles[pos] = { board[0].x + 5 + i,board[0].y + 25 };
 		pos++;
 	}
+	DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
 	return pos;
 }
 int MapLevel3()
@@ -105,5 +106,23 @@ int MapLevel3()
 		obstacles[pos] = { x,y };
 		pos++;
 	}
+	
 	return pos;
+}
+void DrawTelePoint(int x1, int y1, int x2, int y2) {
+	//delete old pixel
+	GoToXY(TELE_POINT_1.x, TELE_POINT_1.y);
+	cout << "\xba";
+	GoToXY(TELE_POINT_2.x, TELE_POINT_2.y);
+	cout << "\xba";
+	//Create new coordinates
+	TELE_POINT_1.x = x1;
+	TELE_POINT_1.y = y1;
+	TELE_POINT_2.x = x2;
+	TELE_POINT_2.y = y2;
+	GoToXY(TELE_POINT_1.x, TELE_POINT_1.y);
+	cout << " ";
+	GoToXY(TELE_POINT_2.x, TELE_POINT_2.y);
+	cout << " ";
+	GoToXY(0, 0);
 }

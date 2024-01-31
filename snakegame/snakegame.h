@@ -53,6 +53,7 @@ extern POINT board[MAX_BOARD_SIZE];
 extern POINT WIN_POINT;
 extern POINT bullet;
 extern POINT spray;
+extern POINT TELE_POINT_1, TELE_POINT_2;
 extern int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
 extern int MOVING;//used to determine the direction my snake moves (At a moment, there  are three directions my snake can move)
 extern int SPEED;// Standing for level, the higher the level, the quicker the speed
@@ -70,9 +71,8 @@ extern int SOUND;
 extern int OLD_SIZE_SNAKE;
 extern bool CHECK_SNAKE; 
 extern bool Flag_PoisonSpray;
-extern bool Sparing;
+extern bool Spraying;
 extern int previousAction;
-extern int previousAction_tmp;
 extern int BLINKING_MAP;
 
 
@@ -92,7 +92,7 @@ void DrawSnakeAndFood(const char* str);
 void GenerateBigFood();
 void DrawBigFood();
 void DrawBullet();
-void DrawMovingWall(int x,int y, int lenght);
+void DrawTelePoint(int x1, int y1, int x2, int y2);
 //Menu-related functions
 void DrawMenu();
 void DrawAboutScreen();

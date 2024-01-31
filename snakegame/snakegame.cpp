@@ -13,6 +13,7 @@ POINT food[MAX_SIZE_FOOD];
 POINT bullet;
 POINT spray;
 POINT WIN_POINT;
+POINT TELE_POINT_1, TELE_POINT_2;
 
 
 const char* MSSV = "23127106231274582312723123127332";
@@ -38,7 +39,7 @@ int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
 int LEVEL;
 int SOUND = 1;
-bool Flag_PoisonSpray, Sparing;
+bool Flag_PoisonSpray, Spraying;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
 int BLINKING_MAP;
@@ -90,7 +91,7 @@ int main()
                         else if (temp == 'S') CHAR_LOCK = 'W';
                         else if(temp =='A') CHAR_LOCK = 'D';
                         if (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S') MOVING = temp;
-                        if (temp == 'L' && !Sparing) Flag_PoisonSpray = true;
+                        if (temp == 'L' && !Spraying) Flag_PoisonSpray = true;
                     }
                 }
             }
