@@ -481,12 +481,14 @@ void PoisonSpray() {
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
 				obstacles[i].x = obstacles[i].y = 3;
+				playSound("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
 		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i) 
 			if (spray.x == gate[i].x && spray.y == gate[i].y){
 				spray.x = spray.y = 5;
+				playSound("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -506,7 +508,10 @@ void PoisonSpray() {
 				Eat();
 				Spraying = false;
 			}
-			else if (spray.x == board[0].x + WIDTH_BOARD - 2) Spraying = false;
+			else if (spray.x == board[0].x + WIDTH_BOARD - 2) {
+				playSound("assets\\sounds\\explosion");
+				Spraying = false;
+			}
 		}
 	}
 	else if (previousAction == 2) {//move left
@@ -515,12 +520,14 @@ void PoisonSpray() {
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y)
 			{
 				obstacles[i].x = obstacles[i].y = 3;
+				playSound("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
 		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i)
 			if (spray.x == gate[i].x && spray.y == gate[i].y) {
 				spray.x = spray.y = 5;
+				playSound("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -543,7 +550,10 @@ void PoisonSpray() {
 				Eat();
 				Spraying = false;
 			}
-			else if (spray.x == board[0].x + 1) Spraying = false;
+			else if (spray.x == board[0].x + 1) {
+				playSound("assets\\sounds\\explosion");
+				Spraying = false;
+			}
 		}
 	}
 	else if (previousAction == 3) {//move up
@@ -552,12 +562,14 @@ void PoisonSpray() {
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y)
 			{
 				obstacles[i].x = obstacles[i].y = 3;
+				playSound("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
 		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i)
 			if (spray.x == gate[i].x && spray.y == gate[i].y) {
 				spray.x = spray.y = 5;
+				playSound("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -573,7 +585,10 @@ void PoisonSpray() {
 				Eat();
 				Spraying = false;
 			}
-			else if (spray.y == board[0].y + 1) Spraying = false;
+			else if (spray.y == board[0].y + 1) {
+				playSound("assets\\sounds\\explosion");
+				Spraying = false;
+			}
 		}
 	}
 	else if (previousAction == 4) {//move down
@@ -582,12 +597,14 @@ void PoisonSpray() {
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y)
 			{
 				obstacles[i].x = obstacles[i].y = 3;
+				playSound("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
 		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i)
 			if (spray.x == gate[i].x && spray.y == gate[i].y) {
 				spray.x = spray.y = 5;
+				playSound("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -603,7 +620,10 @@ void PoisonSpray() {
 				Eat();
 				Spraying = false;
 			}
-			else if (spray.y == board[0].y + HEIGHT_BOARD - 2) Spraying = false;
+			else if (spray.y == board[0].y + HEIGHT_BOARD - 2) {
+				playSound("assets\\sounds\\explosion");
+				Spraying = false;
+			}
 		}
 	}
 	GoToXY(spray.x, spray.y);

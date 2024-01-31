@@ -87,11 +87,14 @@ int main()
                     ResumeThread(handle_t1);
                     if ((temp != CHAR_LOCK) && (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S' || temp == 'L')) {
                         if (temp == 'D') CHAR_LOCK = 'A';
-                        else if (temp == 'W') CHAR_LOCK = 'S';                 
+                        else if (temp == 'W') CHAR_LOCK = 'S';
                         else if (temp == 'S') CHAR_LOCK = 'W';
-                        else if(temp =='A') CHAR_LOCK = 'D';
+                        else if (temp == 'A') CHAR_LOCK = 'D';
                         if (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S') MOVING = temp;
-                        if (temp == 'L' && !Spraying) Flag_PoisonSpray = true;
+                        if (temp == 'L' && !Spraying) {
+                            playSound("assets\\sounds\\shooting");
+                            Flag_PoisonSpray = true;
+                        }
                     }
                 }
             }
