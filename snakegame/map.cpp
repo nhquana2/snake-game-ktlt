@@ -22,6 +22,10 @@ void DeleteMap()
 	NUMBER_OF_OBSTACLES = 0;
 }
 int MapLevel1() {
+	int level2_width, level2_height;
+	GetWidthAndHeightFile("level 2.txt", level2_width, level2_height);
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 1, "level 2.txt");
+
 	int pos = 0;
 	GoToXY(board[0].x + 10, board[0].y + 4);
 	for (int i = 0; i < WIDTH_BOARD-7 - (board[0].x+10); i++)
@@ -54,6 +58,10 @@ int MapLevel1() {
 }
 int MapLevel2()
 {
+	int level3_width, level3_height;
+	GetWidthAndHeightFile("level 3.txt", level3_width, level3_height);
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 1, "level 3.txt");
+
 	int pos = 0;
 	GoToXY(board[0].x + 5, board[0].y + 5);
 	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
@@ -95,6 +103,10 @@ int MapLevel2()
 }
 int MapLevel3()
 {
+	int level4_width, level4_height;
+	GetWidthAndHeightFile("level 4.txt", level4_width, level4_height);
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 1, "level 4.txt");
+
 	int pos;
 	int x, y;
 	for (pos=0;pos<20; pos++)

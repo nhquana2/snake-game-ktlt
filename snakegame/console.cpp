@@ -135,11 +135,11 @@ void DrawSnakeAndFood(const char* str) {
 		GoToXY(snake[i].x, snake[i].y);
 		cout << str[(i % len)];
 	}
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1);
+	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 5);
 	cout << "Time: " << TIME << endl;
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 2);
-	cout << "Total score: " << SCORE <<"  " << endl;
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 3);
+	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 6);
+	cout << "Total score: " << SCORE << "  " << endl;
+	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 7);
 	if (SCORE >= 20) cout << "Skill: Available    ";
 	else cout << "Skill: Unavailable";
 	GoToXY(0, 0);
