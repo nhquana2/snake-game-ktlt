@@ -38,7 +38,7 @@ int SCORE;
 int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
 int LEVEL;
-int SOUND = 0;
+int SOUND = 1;
 bool Flag_PoisonSpray, Spraying;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
