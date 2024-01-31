@@ -2,6 +2,26 @@
 
 using namespace std;
 
+void ToggleNormalStateButton(BUTTON a) {
+	SetConsoleColor(Black, Black);
+	FillRectangle(a.st.x, a.st.y, a.width, a.height);
+	SetConsoleColor(Red, Black);
+	DrawRectangle(a.st.x, a.st.y, a.width, a.height);
+	GoToXY(a.text_st.x, a.text_st.y);
+	cout << a.text_value;
+	SetConsoleColor(White, Black);
+}
+
+void ToggleActiveStateButton(BUTTON a) {
+	SetConsoleColor(Red, White);
+	FillRectangle(a.st.x, a.st.y, a.width, a.height);
+	SetConsoleColor(White, Red);
+	GoToXY(a.text_st.x, a.text_st.y);
+	cout << a.text_value;
+	SetConsoleColor(White, Black);
+}
+
+
 void DrawMenu() {
 	system("cls");
 	//ASCII art title
@@ -12,6 +32,11 @@ void DrawMenu() {
 	//Menu outside border
 	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGH_CONSOLE - 9 - 1);
 
+
+	for (int i = 0; i < 5; ++i) {
+		ToggleNormalStateButton(main_button[i]);
+	}
+	/*
 	//Button: NEW GAME
 	DrawRectangle(80, 12, 20, 3);
 	GoToXY(86, 13);
@@ -41,6 +66,7 @@ void DrawMenu() {
 	GoToXY(86, 29);
 	cout << "EXIT";
 	if (MENU_OPTION == 4) cout << "  \xDB";
+	*/
 }
 
 void DrawAboutScreen() {

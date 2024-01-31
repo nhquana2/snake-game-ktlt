@@ -58,6 +58,19 @@ void ClearScreen(int x1, int y1, int x2, int y2) {
 		}
 	}
 }
+
+void FillRectangle(int x1, int y1, int width, int height) {
+	GoToXY(x1, y1);
+	int x2 = x1 + width - 1;
+	int y2 = y1 + height - 1;
+	for (int j = y1; j <= y2; ++j) {
+		GoToXY(x1, j);
+		for (int i = x1; i <= x2; ++i) {
+			cout << "\xDB";
+		}
+	}
+}
+
 void DrawBigFood()
 {
 	//GenerateBigFood();
@@ -143,7 +156,7 @@ void DrawSnakeAndFood(const char* str) {
 	if (SCORE >= 20) cout << "Skill: Available    ";
 	else cout << "Skill: Unavailable";
 	GoToXY(0, 0);
-	cout << FOOD_INDEX << " " << SIZE_SNAKE;
+	cout << big_food[0][0].x << " " << big_food[0][0].y;
 }
 
 void PrintFile(int x, int y, const char* FileName) {

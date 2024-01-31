@@ -15,6 +15,7 @@ POINT spray;
 POINT WIN_POINT;
 POINT TELE_POINT_1, TELE_POINT_2;
 
+BUTTON main_button[5];
 
 const char* MSSV = "23127106231274582312723123127332";
 int NUMBER_OF_OBSTACLES;
@@ -56,6 +57,36 @@ int main()
     FixConsoleWindow();
     ResetData();
     //First draw menu
+    main_button[0].st = { 80, 12 };
+    main_button[0].width = 20;
+    main_button[0].height = 3;
+    main_button[0].text_st = { 86, 13 };
+    main_button[0].text_value = "NEW GAME";
+
+    main_button[1].st = { 80, 16 };
+    main_button[1].width = 20;
+    main_button[1].height = 3;
+    main_button[1].text_st = { 86, 17 };
+    main_button[1].text_value = "LOAD GAME";
+
+    main_button[2].st = { 80, 20 };
+    main_button[2].width = 20;
+    main_button[2].height = 3;
+    main_button[2].text_st = { 86, 21 };
+    main_button[2].text_value = "SETTINGS";
+
+    main_button[3].st = { 80, 24 };
+    main_button[3].width = 20;
+    main_button[3].height = 3;
+    main_button[3].text_st = { 86, 25 };
+    main_button[3].text_value = "ABOUT";
+
+    main_button[4].st = { 80, 28 };
+    main_button[4].width = 20;
+    main_button[4].height = 3;
+    main_button[4].text_st = { 86, 29 };
+    main_button[4].text_value = "EXIT";
+
     DrawMenu();
     STATE = 0;
     
@@ -121,12 +152,16 @@ int main()
                 temp = toupper(_getch()); continue;
             }
             if (temp == 'W') {
+                ToggleNormalStateButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION - 1 + 5) % 5; // 5 options in total
-                DrawMenu();
+                ToggleActiveStateButton(main_button[MENU_OPTION]);
+                //DrawMenu();
             }
             if (temp == 'S') {
+                ToggleNormalStateButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION + 1) % 5; // 5 options in total
-                DrawMenu();
+                ToggleActiveStateButton(main_button[MENU_OPTION]);
+                //DrawMenu();
             }
             //temp == 13 -> Enter key
             if (temp == 'N' || (temp == 13 && MENU_OPTION == 0)) {

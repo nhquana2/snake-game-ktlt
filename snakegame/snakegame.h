@@ -40,6 +40,7 @@
 #define HEIGHT_BOARD 30
 #define WIDTH_BOARD 120
 
+using namespace std;
 
 //Global variables (definition using extern keyword)
 extern int NUMBER_OF_OBSTACLES; //number of obstacles is updated every time the map function is called
@@ -54,6 +55,17 @@ extern POINT WIN_POINT;
 extern POINT bullet;
 extern POINT spray;
 extern POINT TELE_POINT_1, TELE_POINT_2;
+
+//Menu button struct
+struct BUTTON {
+	POINT st; //top left point
+	int width, height;
+	POINT text_st; //coords for write text
+	string text_value;
+};
+
+extern BUTTON main_button[5];
+
 extern int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
 extern int MOVING;//used to determine the direction my snake moves (At a moment, there  are three directions my snake can move)
 extern int SPEED;// Standing for level, the higher the level, the quicker the speed
@@ -85,6 +97,7 @@ void SetCursor(bool visible, DWORD size);
 void FixConsoleWindow();
 void GoToXY(int x, int y);
 void ClearScreen(int x1, int y1, int x2, int y2);
+void FillRectangle(int x1, int y1, int width, int height);
 void DrawRectangle(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
 void DrawGate();
@@ -97,6 +110,8 @@ void DrawTelePoint(int x1, int y1, int x2, int y2);
 void DrawMenu();
 void DrawAboutScreen();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
+void ToggleNormalStateButton(BUTTON a);
+void ToggleActiveStateButton(BUTTON a);
 
 //Logic and game engine functions
 void playSound(const std::string& soundFile);
