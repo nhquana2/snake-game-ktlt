@@ -79,7 +79,7 @@ extern int BLINKING_MAP;
 //Utility
 int RandomInRange(int a, int b);
 void SetConsoleColor(int text, int background);
-
+void SetCursor(bool visible, DWORD size);
 
 //Console and Graphic functions
 void FixConsoleWindow();

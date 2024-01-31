@@ -2,11 +2,22 @@
 
 using namespace std;
 
+
+void SetCursor(bool visible, DWORD size) { //set bool visible = 0 - invisible, bool visible = 1 - visible
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	if (size == 0) size = 20;
+	CONSOLE_CURSOR_INFO lpCursor;
+	lpCursor.bVisible = visible;
+	lpCursor.dwSize = size;
+	SetConsoleCursorInfo(console, &lpCursor);
+}
+
 void SetConsoleColor(int text, int background)
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, text+background*16);
 }
+
 void FixConsoleWindow() {
 	HWND consoleWindow = GetConsoleWindow();
 	LONG style = GetWindowLong(consoleWindow, GWL_STYLE);
