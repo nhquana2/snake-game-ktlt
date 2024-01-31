@@ -116,11 +116,9 @@ void DrawRectangle(int x, int y, int width, int height) {
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
 	}
 	SetConsoleColor(White, Black);
-
 }
 
-void DrawGate()
-{
+void DrawGate(){
 	InitGate();
 	GoToXY(gate[0].x, gate[0].y);
 	cout << '\xc4';
@@ -136,7 +134,6 @@ void DrawGate()
 
 	GoToXY(gate[4].x, gate[4].y);
 	cout << '\xc4';
-
 }
 
 void DrawSnakeAndFood(const char* str) {

@@ -53,7 +53,6 @@ int main()
     SetCursor(0, 0); //No cursor
 
     playSound("assets\\sounds\\intro");
-    //system("color 70");
     FixConsoleWindow();
     ResetData();
     //First draw menu
@@ -90,7 +89,6 @@ int main()
     DrawMenu();
     STATE = 0;
     
-
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
 

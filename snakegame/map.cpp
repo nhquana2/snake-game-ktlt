@@ -12,8 +12,7 @@ bool CheckTouchObstacles(int x, int y)//parameters is the coordinate of the head
 	}
 	return false;
 }
-void DeleteMap()
-{
+void DeleteMap(){
 	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++) {
 		GoToXY(obstacles[i].x, obstacles[i].y);
 		cout << " ";
@@ -53,7 +52,6 @@ int MapLevel1() {
 		pos++;
 		cout << '\xb2';
 	}
-	
 	return pos;
 }
 int MapLevel2()
@@ -64,41 +62,35 @@ int MapLevel2()
 
 	int pos = 0;
 	GoToXY(board[0].x + 5, board[0].y + 5);
-	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
-	{
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++){
 		cout << '\xb2';
 		obstacles[pos] = { board[0].x + 5 + i,board[0].y + 5 };
 		pos++;
 	}
 	GoToXY(board[(WIDTH_BOARD) / 2].x-10, board[0].y  + 10);
-	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
-	{
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++){
 		cout << '\xb2';
 		obstacles[pos] = { board[(WIDTH_BOARD) / 2].x-10+i,board[0].y + 10 };
 		pos++;
 	}
 	GoToXY(board[0].x + 5, board[0].y + 15);
-	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
-	{
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++){
 		cout << '\xb2';
 		obstacles[pos] = { board[0].x + 5 + i,board[0].y + 15};
 		pos++;
 	}
 	GoToXY(board[(WIDTH_BOARD) / 2].x - 10, board[0].y + 20);
-	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
-	{
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++){
 		cout << '\xb2';
 		obstacles[pos] = { board[(WIDTH_BOARD) / 2].x -10 + i,board[0].y + 20 };
 		pos++;
 	}
 	GoToXY(board[0].x + 5, board[0].y + 25);
-	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++)
-	{
+	for (int i = 0; i < (WIDTH_BOARD) / 2 + 5; i++){
 		cout << '\xb2';
 		obstacles[pos] = { board[0].x + 5 + i,board[0].y + 25 };
 		pos++;
 	}
-	DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
 	return pos;
 }
 int MapLevel3()
@@ -118,15 +110,16 @@ int MapLevel3()
 		obstacles[pos] = { x,y };
 		pos++;
 	}
-	
 	return pos;
 }
 void DrawTelePoint(int x1, int y1, int x2, int y2) {
 	//delete old pixel
+	SetConsoleColor(Red, Black);
 	GoToXY(TELE_POINT_1.x, TELE_POINT_1.y);
 	cout << "\xba";
 	GoToXY(TELE_POINT_2.x, TELE_POINT_2.y);
 	cout << "\xba";
+	
 	//Create new coordinates
 	TELE_POINT_1.x = x1;
 	TELE_POINT_1.y = y1;
@@ -136,5 +129,6 @@ void DrawTelePoint(int x1, int y1, int x2, int y2) {
 	cout << " ";
 	GoToXY(TELE_POINT_2.x, TELE_POINT_2.y);
 	cout << " ";
-	GoToXY(0, 0);
+	SetConsoleColor(White, Black);
+	
 }

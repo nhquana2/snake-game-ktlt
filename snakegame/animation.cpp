@@ -18,18 +18,14 @@ bool SnackGoThroughGate() {
 		}
 		
 }
-void BlinkingMap()//blinking when the snake died
-{
+void BlinkingMap(){//blinking when the snake died
 	BLINKING_MAP = 1;
 	for(int i = 0; i < 5; i++) {
-
-		for (int i = 0; i < SIZE_SNAKE; i++)
-		{
+		for (int i = 0; i < SIZE_SNAKE; i++){
 			GoToXY(snake[i].x, snake[i].y);
 			cout << " ";
 		}
-		for (int i = 0; i < SIZE_BOARD; i++)
-		{
+		for (int i = 0; i < SIZE_BOARD; i++){
 			GoToXY(board[i].x, board[i].y);
 			cout << " ";
 		}
