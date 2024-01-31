@@ -65,8 +65,26 @@ void DrawMenu() {
 	DrawRectangle(80, 28, 20, 3);
 	GoToXY(86, 29);
 	cout << "EXIT";
-	if (MENU_OPTION == 4) cout << "  \xDB";
-	*/
+	if (MENU_OPTION == 4) cout << "  \xDB";*/
+	GoToXY(116, 13); cout << "           /^\\/^\\";
+	GoToXY(116, 14); cout << "         _|__|  O|";
+	GoToXY(116, 15); cout << "\\/     /~     \\_/ \\";
+	GoToXY(116, 16); cout << "\\____|__________/  \\";
+	GoToXY(116, 17); cout << "        \\_______      \\";
+	GoToXY(116, 18); cout << "                `\\     \\                 \\";
+	GoToXY(116, 19); cout << "                 |     |                  \\";
+	GoToXY(116, 20); cout << "                /      /                    \\";
+	GoToXY(116, 21); cout << "                /     /                       \\\\";
+	GoToXY(116, 22); cout << "              /      /                         \\ \\";
+	GoToXY(116, 23); cout << "             /     /                            \\  \\";
+	GoToXY(116, 24); cout << "           /     /             _----_            \\   \\";
+	GoToXY(116, 25); cout << "          /     /           _-~      ~-_         |   |";
+	GoToXY(116, 26); cout << "         (      (        _-~    _--_    ~-_     _/   |";
+	GoToXY(116, 27); cout << "          \\      ~-____-~    _-~    ~-_    ~-_-~    /";
+	GoToXY(116, 28); cout << "            ~-_           _-~          ~-_       _-~";
+	GoToXY(116, 29); cout << "               ~--______-~                ~-___-~";
+
+
 }
 
 void DrawAboutScreen() {
