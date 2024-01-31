@@ -244,7 +244,7 @@ void ProcessDead() {
 	BlinkingMap();
 	GoToXY(WIDTH_CONSOLE/2, HEIGH_CONSOLE/2);
 	SetConsoleColor(Yellow, Black);
-	printf("Dead, press Y to continue!");
+	cout<<"Dead, press Y to continue!";
 	SetConsoleColor(White, Black);
 
 }
