@@ -103,7 +103,7 @@ void DrawBullet() {
 
 void DrawRectangle(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
-	SetConsoleColor(Red, Black);
+	//SetConsoleColor(Red, Black);
 	GoToXY(x, y); cout << '\xc9';
 	for (int i = 1; i < width-1; i++) cout << '\xcd';
 	cout << '\xbb';
@@ -115,7 +115,7 @@ void DrawRectangle(int x, int y, int width, int height) {
 		GoToXY(x + width - 1, i); 
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
 	}
-	SetConsoleColor(White, Black);
+	//SetConsoleColor(White, Black);
 }
 
 void DrawGate(){

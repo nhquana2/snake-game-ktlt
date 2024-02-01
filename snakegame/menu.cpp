@@ -3,22 +3,20 @@
 using namespace std;
 
 void ToggleNormalStateButton(BUTTON a) {
-	SetConsoleColor(Black, Black);
+	SetConsoleColor(DefaultBgColor, DefaultBgColor);
 	FillRectangle(a.st.x, a.st.y, a.width, a.height);
-	SetConsoleColor(Red, Black);
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	DrawRectangle(a.st.x, a.st.y, a.width, a.height);
 	GoToXY(a.text_st.x, a.text_st.y);
 	cout << a.text_value;
-	SetConsoleColor(White, Black);
 }
 
 void ToggleActiveStateButton(BUTTON a) {
-	SetConsoleColor(Red, White);
 	FillRectangle(a.st.x, a.st.y, a.width, a.height);
-	SetConsoleColor(White, Red);
+	SetConsoleColor(DefaultBgColor, DefaultTextColor);
 	GoToXY(a.text_st.x, a.text_st.y);
 	cout << a.text_value;
-	SetConsoleColor(White, Black);
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
 
 

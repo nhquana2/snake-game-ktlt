@@ -201,9 +201,9 @@ void StartGame() {
 
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
-	SetConsoleColor(Green, Black);
+	//SetConsoleColor(Green, Black);
 	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
-	SetConsoleColor(White, Black);
+	//SetConsoleColor(White, Black);
 
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "level 1.txt");
 	STATE = 1; //Start running Thread
@@ -224,9 +224,9 @@ void ProcessDead() {
 	STATE = 0;
 	BlinkingMap();
 	GoToXY(WIDTH_CONSOLE/2, HEIGH_CONSOLE/2);
-	SetConsoleColor(Yellow, Black);
+	//SetConsoleColor(Yellow, Black);
 	cout<<"Dead, press Y to continue!";
-	SetConsoleColor(White, Black);
+	//SetConsoleColor(White, Black);
 }
 
 void LevelUp() {
@@ -263,9 +263,9 @@ void Eat() {
 	{
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
-			SetConsoleColor(Yellow, Black);
+			//SetConsoleColor(Yellow, Black);
 			DrawGate();
-			SetConsoleColor(White, Black);
+			//SetConsoleColor(White, Black);
 		}
 		//GenerateFood();
 	}

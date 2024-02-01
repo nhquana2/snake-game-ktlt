@@ -108,7 +108,7 @@ int MapLevel3()
 }
 void DrawTelePoint(int x1, int y1, int x2, int y2) {
 	//delete old pixel
-	SetConsoleColor(Red, Black);
+	//SetConsoleColor(Red, Black);
 	GoToXY(TELE_POINT_1.x, TELE_POINT_1.y);
 	cout << "\xba";
 	GoToXY(TELE_POINT_2.x, TELE_POINT_2.y);
@@ -123,6 +123,6 @@ void DrawTelePoint(int x1, int y1, int x2, int y2) {
 	cout << " ";
 	GoToXY(TELE_POINT_2.x, TELE_POINT_2.y);
 	cout << " ";
-	SetConsoleColor(White, Black);
+	//SetConsoleColor(White, Black);
 	
 }

@@ -44,6 +44,10 @@ bool Flag_PoisonSpray, Spraying;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
 int BLINKING_MAP;
+
+int DefaultTextColor = Black;
+int DefaultBgColor = LightAqua;
+
 using namespace std;
 
 int main()
@@ -51,7 +55,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor
-
+    SetConsoleColor(DefaultTextColor, DefaultBgColor);
     playSound("assets\\sounds\\intro");
     FixConsoleWindow();
     ResetData();

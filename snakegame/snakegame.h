@@ -86,7 +86,8 @@ extern bool Flag_PoisonSpray;
 extern bool Spraying;
 extern int previousAction;
 extern int BLINKING_MAP;
-
+extern int DefaultTextColor;
+extern int DefaultBgColor;
 
 //Utility
 int RandomInRange(int a, int b);
