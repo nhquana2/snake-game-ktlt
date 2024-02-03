@@ -63,7 +63,7 @@ void DeleteBigFood(int x, int y){
 	for (int i = 0; i < BIG_FOOD_SIZE; i++){
 		for (int j = 0; j < BIG_FOOD_SIZE; j++){
 			cout << " ";
-			big_food[i][j] = { 0, HEIGH_CONSOLE + 2 };
+			big_food[i][j] = { 0, HEIGHT_CONSOLE + 2 };
 
 		}
 		GoToXY(x, y + i + 1);
@@ -159,7 +159,7 @@ void DeleteGate(){
 	for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; i++){
 		GoToXY(gate[i].x, gate[i].y);
 		cout << " ";
-		gate[i] = { 0,HEIGH_CONSOLE + 5 };
+		gate[i] = { 0,HEIGHT_CONSOLE + 5 };
 	}
 	WIN_POINT = { 0, 0 }; //Reset win point
 }
@@ -170,7 +170,7 @@ void RespawnSnake(){
 }
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
-		WIDTH_CONSOLE = 180, HEIGH_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 0;
+		WIDTH_CONSOLE = 180, HEIGHT_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 0;
 	TIME = 0;
 	LEVEL = 0;
 	SCORE = 0;
@@ -196,7 +196,7 @@ void StartGame() {
 	ResetData(); // Intialize original data
 	DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
 
-	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGH_CONSOLE - board[0].y - (HEIGH_CONSOLE - board[0].y - HEIGHT_BOARD)); // Draw status board
+	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_CONSOLE - board[0].y - (HEIGHT_CONSOLE - board[0].y - HEIGHT_BOARD)); // Draw status board
 	DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
 
 	int title_width, title_height;
@@ -223,7 +223,7 @@ void ProcessDead() {
 	playSound("assets\\sounds\\deathSound");
 	STATE = 0;
 	BlinkingMap();
-	GoToXY(WIDTH_CONSOLE/2, HEIGH_CONSOLE/2);
+	GoToXY(WIDTH_CONSOLE/2, HEIGHT_CONSOLE/2);
 	//SetConsoleColor(Yellow, Black);
 	cout<<"Dead, press Y to continue!";
 	//SetConsoleColor(White, Black);

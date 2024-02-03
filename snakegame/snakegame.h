@@ -69,7 +69,7 @@ extern BUTTON main_button[5];
 extern int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
 extern int MOVING;//used to determine the direction my snake moves (At a moment, there  are three directions my snake can move)
 extern int SPEED;// Standing for level, the higher the level, the quicker the speed
-extern int HEIGH_CONSOLE, WIDTH_CONSOLE;// Width and height of console-screen
+extern int HEIGHT_CONSOLE, WIDTH_CONSOLE;// Width and height of console-screen
 extern int FOOD_INDEX; // current food-index
 extern int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 extern int STATE; // State of snake: dead or alive

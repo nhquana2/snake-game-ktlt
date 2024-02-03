@@ -12,7 +12,7 @@ bool SnakeGoThroughGate() {
 		{
 			//GoToXY(snake[SIZE_SNAKE -1].x, snake[SIZE_SNAKE - 1].y);
 			//cout << " ";
-			//snake[snake_pos - 1] = { 0, HEIGH_CONSOLE + 2 };
+			//snake[snake_pos - 1] = { 0, HEIGHT_CONSOLE + 2 };
 			--SIZE_SNAKE;
 			return false;
 		}

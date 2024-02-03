@@ -28,7 +28,7 @@ void DrawMenu() {
 	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 
 	//Menu outside border
-	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGH_CONSOLE - 9 - 1);
+	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGHT_CONSOLE - 9 - 1);
 
 
 	for (int i = 0; i < 5; ++i) {
@@ -86,7 +86,7 @@ void DrawMenu() {
 }
 
 void DrawAboutScreen() {
-	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGH_CONSOLE - 9 - 1 - 3);
+	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
 	GoToXY(10, 12);
 	cout << "About us";
 
