@@ -102,7 +102,6 @@ int MapLevel3()
 		GoToXY(x, y);
 		cout << '\xb2';
 		obstacles[pos] = { x,y };
-		pos++;
 	}
 	return pos;
 }

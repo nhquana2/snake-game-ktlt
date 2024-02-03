@@ -137,5 +137,5 @@ int MapLevel3();
 
 
 //animations
-bool SnackGoThroughGate();
+bool SnakeGoThroughGate();
 void BlinkingMap();

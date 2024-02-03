@@ -637,7 +637,7 @@ void ThreadFunc() {
 				}
 			//Snake moving through gate animation
 			if (CHECK_SNAKE) {
-				if (SnackGoThroughGate()) {
+				if (SnakeGoThroughGate()) {
 					//cout << "ok";
 					CHECK_SNAKE = false;
 					SIZE_SNAKE = OLD_SIZE_SNAKE;

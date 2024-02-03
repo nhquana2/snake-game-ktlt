@@ -1,7 +1,7 @@
 #include "snakegame.h"
 using namespace std;
 
-bool SnackGoThroughGate() {
+bool SnakeGoThroughGate() {
 		if (snake[0].x == WIN_POINT.x && snake[0].y == WIN_POINT.y)
 		{
 			--SIZE_SNAKE;
