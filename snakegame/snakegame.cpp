@@ -7,8 +7,8 @@
 POINT obstacles[500];
 POINT gate[WIDTH_GATE * HEIGHT_GATE - 1];
 POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
-POINT snake[40];
-POINT board[400];
+POINT snake[MAX_SIZE_SNAKE];
+POINT board[MAX_BOARD_SIZE];
 POINT food[MAX_SIZE_FOOD];
 POINT bullet;
 POINT spray;
@@ -52,6 +52,7 @@ using namespace std;
 
 int main()
 {
+    //cout << char(-32);
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor
@@ -139,7 +140,7 @@ int main()
                     t1.join();
                     return 0;
                 }
-                if (temp == 'M') {
+                if (!BLINKING_MAP && temp == 'M') {
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
                 }
