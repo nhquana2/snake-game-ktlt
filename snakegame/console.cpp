@@ -88,18 +88,29 @@ void DrawBigFood()
 	}
 }
 
-void DrawBullet() {
-	if (bullet.y == board[0].y + HEIGHT_BOARD-1) bullet.y = board[0].y+1;
-	GoToXY(bullet.x, bullet.y);
+void DrawBulletDown() {
+	if (bullet_down.y == board[0].y + HEIGHT_BOARD-1) bullet_down.y = board[0].y+1;
+	GoToXY(bullet_down.x, bullet_down.y);
 	cout << " ";
-	++bullet.y;
-	GoToXY(bullet.x, bullet.y);
+	++bullet_down.y;
+	GoToXY(bullet_down.x, bullet_down.y);
 	cout << "\x1F";
 	for (int i = 0; i < SIZE_SNAKE; ++i)
-		if (bullet.x == snake[i].x && bullet.y == snake[i].y)
+		if (bullet_down.x == snake[i].x && bullet_down.y == snake[i].y)
 			ProcessDead();
 }
 
+void DrawBulletUp() {
+	if (bullet_up.y == board[0].y) bullet_up.y = board[0].y + HEIGHT_BOARD - 2;
+	GoToXY(bullet_up.x, bullet_up.y);
+	cout << " ";
+	--bullet_up.y;
+	GoToXY(bullet_up.x, bullet_up.y);
+	cout << "\x1E";
+	for (int i = 0; i < SIZE_SNAKE; ++i)
+		if (bullet_up.x == snake[i].x && bullet_up.y == snake[i].y)
+			ProcessDead();
+}
 
 void DrawRectangle(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437

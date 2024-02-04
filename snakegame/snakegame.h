@@ -52,9 +52,10 @@ extern POINT snake[MAX_SIZE_SNAKE];
 extern POINT food[MAX_SIZE_FOOD];
 extern POINT board[MAX_BOARD_SIZE];
 extern POINT WIN_POINT;
-extern POINT bullet;
+extern POINT bullet_up, bullet_down;
 extern POINT spray;
 extern POINT TELE_POINT_1, TELE_POINT_2;
+
 
 //Menu button struct
 struct BUTTON {
@@ -105,7 +106,8 @@ void DrawGate();
 void DrawSnakeAndFood(const char* str);
 void GenerateBigFood();
 void DrawBigFood();
-void DrawBullet();
+void DrawBulletUp();
+void DrawBulletDown();
 void DrawTelePoint(int x1, int y1, int x2, int y2);
 //Menu-related functions
 void DrawMenu();

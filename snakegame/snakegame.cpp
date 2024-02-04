@@ -10,7 +10,7 @@ POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[MAX_SIZE_SNAKE];
 POINT board[MAX_BOARD_SIZE];
 POINT food[MAX_SIZE_FOOD];
-POINT bullet;
+POINT bullet_up,bullet_down;
 POINT spray;
 POINT WIN_POINT;
 POINT TELE_POINT_1, TELE_POINT_2;
@@ -126,7 +126,6 @@ int main()
                         else if (temp == 'A') CHAR_LOCK = 'D';
                         if (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S') MOVING = temp;
                         if (temp == 'L' && !Spraying) {
-                            playSound("assets\\sounds\\shooting");
                             Flag_PoisonSpray = true;
                         }
                     }

@@ -178,8 +178,13 @@ void ResetData() {
 	DeleteMap();
 	RespawnSnake();
 	GenerateFood();
-	//bullet.x = board[0].x + 30;
-	//bullet.y = board[0].y+1;
+
+	bullet_down.x = board[0].x + 30;
+	bullet_down.y = board[0].y+1;
+
+	bullet_up.x = board[0].x + 45;
+	bullet_up.y = board[0].y + HEIGHT_BOARD -2;
+
 	Flag_PoisonSpray = Spraying = false;
 	
 	TELE_POINT_1.x = TELE_POINT_1.y = TELE_POINT_2.x = TELE_POINT_2.y = 0;
@@ -660,14 +665,16 @@ void ThreadFunc() {
 				else if (MOVING == 'S') previousAction = 4;//move down
 				Spraying = true;
 				SCORE -= 1;
+				playSound("assets\\sounds\\shooting");
 				Flag_PoisonSpray = false;
 			}
 			else Flag_PoisonSpray = false;
 
 			if (Spraying) PoisonSpray();
 			
-			
-			//DrawBullet();
+			DrawBulletDown();
+			DrawBulletUp();
+
 			DrawSnakeAndFood(MSSV);
 
 			Sleep(1000 / SPEED);
