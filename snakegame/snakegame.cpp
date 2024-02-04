@@ -26,12 +26,13 @@ int HEIGHT_CONSOLE, WIDTH_CONSOLE;// Width and height of console-screen
 int FOOD_INDEX; // current food-index
 int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 int STATE; // State of snake: dead or alive
+int PAUSE = 0;
 int SCREEN = 2;
 //SCREEN 1: PLAY
 //SCREEN 2: MAIN MENU
-//SCREEN 3: LOAD GAME
+//SCREEN 3: ABOUT
 //SCREEN 4: SETTINGS
-//SCREEN 5: ABOUT
+//SCREEN 5: LOAD GAME
 int MENU_OPTION = 0; //current option, change with W and S key
 int SIZE_BOARD;
 int TIME;
@@ -108,8 +109,19 @@ int main()
                 temp = toupper(_getch()); continue;
             }
             if (STATE == 1) {
-                if (temp == 'P') {
+                if (PAUSE && temp == 'L') {
+                    cout << "File name to save: ";
+                    string fileName;
+                    cin >> fileName;
+                    fileName = "./data/" + fileName;
+                    SaveGame(fileName);
+                    cout << "File save successful, press any key to continue playing";
+                    continue;
+                }
+                if (!PAUSE && temp == 'P') {
+                    PAUSE = 1;
                     PauseGame(handle_t1);
+                    cout << "Press any key to continue, or press L to save game";
                 }
                 else if (temp == 27) {
                     //ExitGame(handle_t1);
@@ -117,7 +129,8 @@ int main()
                     t1.join();
                     return 0;
                 }
-                else {
+                else  {
+                    PAUSE = 0;
                     ResumeThread(handle_t1);
                     if ((temp != CHAR_LOCK) && (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S' || temp == 'L')) {
                         if (temp == 'D') CHAR_LOCK = 'A';
@@ -180,7 +193,37 @@ int main()
                 SCREEN = 3;
                 DrawAboutScreen();
             }
+            if (temp == 13 && MENU_OPTION == 1) {
+                SCREEN = 5;
+                DrawLoadGameScreen();
+            }
         }
+
+        if (SCREEN == 5) { //Load game
+
+            temp = toupper(_getch());
+
+            if (temp == char(-32)) {
+                temp = toupper(_getch()); continue;
+            }
+
+            if (temp == 'L') {
+                cout << "File name to load: ";
+                string fileName;
+                cin >> fileName;
+                fileName = "./data/" + fileName;
+                SCREEN = 1;
+                LoadGame(fileName);
+            }
+
+            //Back
+            if (temp == 'B') {
+                SCREEN = 2;
+                DrawMenu();
+            }
+
+        }
+
         if (SCREEN == 3) {
 
             temp = toupper(_getch());

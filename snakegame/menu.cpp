@@ -5,7 +5,7 @@ using namespace std;
 void ToggleNormalStateButton(BUTTON a) {
 	SetConsoleColor(DefaultBgColor, DefaultBgColor);
 	FillRectangle(a.st.x, a.st.y, a.width, a.height);
-	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	SetConsoleColor(DefaultTextColor, DefaultBgColor); //default colors
 	DrawRectangle(a.st.x, a.st.y, a.width, a.height);
 	GoToXY(a.text_st.x, a.text_st.y);
 	cout << a.text_value;
@@ -16,7 +16,7 @@ void ToggleActiveStateButton(BUTTON a) {
 	SetConsoleColor(DefaultBgColor, DefaultTextColor);
 	GoToXY(a.text_st.x, a.text_st.y);
 	cout << a.text_value;
-	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);  //default colors
 }
 
 
@@ -90,4 +90,10 @@ void DrawAboutScreen() {
 	GoToXY(10, 12);
 	cout << "About us";
 
+}
+
+void DrawLoadGameScreen() {
+	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
+	GoToXY(10, 12);
+	cout << "Load game";
 }

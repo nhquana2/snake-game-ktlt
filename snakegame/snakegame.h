@@ -74,6 +74,7 @@ extern int HEIGHT_CONSOLE, WIDTH_CONSOLE;// Width and height of console-screen
 extern int FOOD_INDEX; // current food-index
 extern int SIZE_SNAKE; // size of snake, initially maybe 6 units and maximum size may be 10
 extern int STATE; // State of snake: dead or alive
+extern int PAUSE;
 extern int SCREEN;
 extern int MENU_OPTION;
 extern int SIZE_BOARD;
@@ -112,6 +113,7 @@ void DrawTelePoint(int x1, int y1, int x2, int y2);
 //Menu-related functions
 void DrawMenu();
 void DrawAboutScreen();
+void DrawLoadGameScreen();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 void ToggleNormalStateButton(BUTTON a);
 void ToggleActiveStateButton(BUTTON a);
@@ -141,3 +143,7 @@ int MapLevel4();
 //animations
 bool SnakeGoThroughGate();
 void BlinkingMap();
+
+//Save/Load game processing
+void SaveGame(string FileName);
+void LoadGame(string FileName);
