@@ -141,6 +141,7 @@ int main()
                     return 0;
                 }
                 if (!BLINKING_MAP && temp == 'M') {
+                    playSound("assets\\sounds\\intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
                 }
