@@ -179,12 +179,9 @@ void ResetData() {
 	RespawnSnake();
 	GenerateFood();
 
-	bullet_down.x = board[0].x + 30;
-	bullet_down.y = board[0].y+1;
+	
 
-	bullet_up.x = board[0].x + 45;
-	bullet_up.y = board[0].y + HEIGHT_BOARD -2;
-
+	
 	Flag_PoisonSpray = Spraying = false;
 	DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	TELE_POINT_1.x = TELE_POINT_1.y = TELE_POINT_2.x = TELE_POINT_2.y = 0;
@@ -254,6 +251,10 @@ void LevelUp() {
 	if (LEVEL == 3){
 		DeleteMap();
 		NUMBER_OF_OBSTACLES = MapLevel3();
+	}
+	if (LEVEL == 4) {
+		DeleteMap();
+		NUMBER_OF_OBSTACLES = MapLevel4();
 	}
 	RespawnSnake();
 	//GenerateBigFood();
@@ -671,10 +672,10 @@ void ThreadFunc() {
 			else Flag_PoisonSpray = false;
 
 			if (Spraying) PoisonSpray();
-			
-			DrawBulletDown();
-			DrawBulletUp();
-
+			if (LEVEL == 4) {
+				DrawBulletDown();
+				DrawBulletUp();
+			}
 			DrawSnakeAndFood(MSSV);
 
 			Sleep(1000 / SPEED);

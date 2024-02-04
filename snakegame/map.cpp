@@ -105,6 +105,89 @@ int MapLevel3()
 	}
 	return pos;
 }
+int MapLevel4() {
+	bullet_down.x = board[0].x + 60;
+	bullet_down.y = board[0].y + 1;
+
+	bullet_up.x = board[0].x + 61;
+	bullet_up.y = board[0].y + HEIGHT_BOARD - 2;
+	
+	int pos = 0;
+	GoToXY(10, 20);
+	for (int i = 0; i < 45; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { 10+i,20};
+		pos++;
+	}
+	GoToXY(72, 20);
+	for (int i = 0; i < 45; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { 72 + i,20 };
+		pos++;
+	}
+	GoToXY(10, 26);
+	for (int i = 0; i < 45; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { 10 + i,26 };
+		pos++;
+	}
+	GoToXY(72, 26);
+	for (int i = 0; i < 45; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { 72 + i,26 };
+		pos++;
+	}
+	
+	for (int i = 0; i < 8; i++)
+	{
+		GoToXY(54, 19 - i);
+		cout << '\xb2';
+		obstacles[pos] = { 54, 19-i };
+		pos++; 
+		GoToXY(53, 19 - i);
+		cout << '\xb2';
+		obstacles[pos] = { 53, 19 - i };
+		pos++;
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		GoToXY(72, 19 - i);
+		cout << '\xb2';
+		obstacles[pos] = { 54, 19 - i };
+		pos++;
+		GoToXY(73, 19 - i);
+		cout << '\xb2';
+		obstacles[pos] = { 53, 19 - i };
+		pos++;
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		GoToXY(54, 27 + i);
+		cout << '\xb2';
+		obstacles[pos] = { 54, 27 + i };
+		pos++;
+		GoToXY(53, 27 + i);
+		cout << '\xb2';
+		obstacles[pos] = { 53, 27 + i };
+		pos++;
+	}
+	for (int i = 0; i < 8; i++)
+	{
+		GoToXY(72, 27 + i);
+		cout << '\xb2';
+		obstacles[pos] = { 54, 27 + i };
+		pos++;
+		GoToXY(73, 27 + i);
+		cout << '\xb2';
+		obstacles[pos] = { 53, 27 + i };
+		pos++;
+	}
+	return pos;
+}
 void DrawTelePoint(int x1, int y1, int x2, int y2) {
 	//delete old pixel
 	//SetConsoleColor(Red, Black);
