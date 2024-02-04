@@ -112,6 +112,7 @@ int main()
                 if (PAUSE && temp == 'L') {
                     cout << "File name to save: ";
                     string fileName;
+                    cin.ignore();
                     cin >> fileName;
                     fileName = "./data/" + fileName;
                     SaveGame(fileName);

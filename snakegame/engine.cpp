@@ -178,9 +178,6 @@ void ResetData() {
 	DeleteMap();
 	RespawnSnake();
 	GenerateFood();
-
-	
-
 	
 	Flag_PoisonSpray = Spraying = false;
 	DeleteBigFood(big_food[0][0].x, big_food[0][0].y);

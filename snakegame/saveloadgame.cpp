@@ -35,6 +35,10 @@ void LoadGame(string FileName) {
 	ifs.close();
 	//=== End init data
 
+	CHECK_SNAKE = false;
+	DeleteMap();
+	GenerateFood();
+
 	DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); 
 	DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
 
