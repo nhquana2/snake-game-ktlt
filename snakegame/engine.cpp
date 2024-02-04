@@ -186,7 +186,7 @@ void ResetData() {
 	bullet_up.y = board[0].y + HEIGHT_BOARD -2;
 
 	Flag_PoisonSpray = Spraying = false;
-	
+	DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	TELE_POINT_1.x = TELE_POINT_1.y = TELE_POINT_2.x = TELE_POINT_2.y = 0;
 }
 
