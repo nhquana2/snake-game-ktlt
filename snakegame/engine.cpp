@@ -678,6 +678,7 @@ void ThreadFunc() {
 				DrawBulletUp();
 			}
 			DrawSnakeAndFood(MSSV);
+			PrintStatusBoard();
 
 			Sleep(1000 / SPEED);
 			if (Spraying) PoisonSpray();

@@ -105,6 +105,7 @@ void DrawRectangle(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
 void DrawGate();
 void DrawSnakeAndFood(const char* str);
+void PrintStatusBoard();
 void GenerateBigFood();
 void DrawBigFood();
 void DrawBulletUp();
