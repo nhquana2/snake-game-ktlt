@@ -22,6 +22,7 @@ void DeleteMap(){
 }
 int MapLevel1() {
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "level 2.txt");
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 11, "battery.txt");
 
 	int pos = 0;
 	GoToXY(board[0].x + 10, board[0].y + 4);
@@ -55,6 +56,7 @@ int MapLevel1() {
 int MapLevel2()
 {
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "level 3.txt");
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 11, "battery.txt");
 
 	int pos = 0;
 	GoToXY(board[0].x + 5, board[0].y + 5);
@@ -92,6 +94,7 @@ int MapLevel2()
 int MapLevel3()
 {
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "level 4.txt");
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 11, "battery.txt");
 
 	int pos;
 	int x, y;
@@ -106,6 +109,9 @@ int MapLevel3()
 	return pos;
 }
 int MapLevel4() {
+
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 11, "battery.txt");
+
 	bullet_down.x = board[0].x + 60;
 	bullet_down.y = board[0].y + 1;
 
