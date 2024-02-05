@@ -205,7 +205,7 @@ void StartGame() {
 	//SetConsoleColor(White, Black);
 
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "level 1.txt");
-	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 11, "battery.txt");
+	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "battery.txt");
 	STATE = 1; //Start running Thread
 }
 
@@ -265,7 +265,7 @@ void Eat() {
 	++SIZE_SNAKE;
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
-		PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 33, board[0].y + 12, "food3.txt");
+		PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 11, "food3.txt");
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
 			//SetConsoleColor(Yellow, Black);
@@ -277,8 +277,8 @@ void Eat() {
 	else
 	{
 		FOOD_INDEX++;
-		if (FOOD_INDEX == 1) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 12, "food1.txt");
-		if (FOOD_INDEX == 2) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 12, "food2.txt");
+		if (FOOD_INDEX == 1) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "food1.txt");
+		if (FOOD_INDEX == 2) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 11, "food2.txt");
 	}
 }
 bool Suicide(int x,int y)//return true if the snake touch its body
