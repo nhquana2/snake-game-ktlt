@@ -90,6 +90,7 @@ extern int previousAction;
 extern int BLINKING_MAP;
 extern int DefaultTextColor;
 extern int DefaultBgColor;
+extern int PowerScore;
 
 //Utility
 int RandomInRange(int a, int b);

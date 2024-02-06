@@ -166,8 +166,13 @@ void PrintStatusBoard() {
 	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 7);
 	cout << "Total score: " << SCORE << "  " << endl;
 	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 8);
-	if (SCORE >= 20) cout << "Skill: Available    ";
+	if (PowerScore == 3) cout << "Skill: Available    ";
 	else cout << "Skill: Unavailable";
+	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 15);
+	if (PowerScore == 0) cout << "Power:[\xFA\xFA\xFA\xFA\xFA\xFA]";
+	else if (PowerScore == 1) cout << "Power:[\xFE\xFE\xFA\xFA\xFA\xFA]";
+	else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
+	else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
 }
 
 void PrintFile(int x, int y, const char* FileName) {

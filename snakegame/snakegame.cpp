@@ -48,7 +48,7 @@ int BLINKING_MAP;
 
 int DefaultTextColor = Black;
 int DefaultBgColor = LightAqua;
-
+int PowerScore;
 using namespace std;
 
 int main()
@@ -103,7 +103,7 @@ int main()
     while (1) {
         //SCREEN: PLAY
         if (SCREEN == 1) { 
-
+       
             temp = toupper(_getch());
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
