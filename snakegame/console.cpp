@@ -130,7 +130,7 @@ void DrawRectangle(int x, int y, int width, int height) {
 }
 
 void DrawGate(){
-	InitGate();
+	//InitGate();
 	GoToXY(gate[0].x, gate[0].y);
 	cout << '\xc4';
 

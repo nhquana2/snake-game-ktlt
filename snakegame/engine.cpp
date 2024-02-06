@@ -270,9 +270,11 @@ void Eat() {
 	++SIZE_SNAKE;
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
+		
 		PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 11, "assets\\ascii\\food3.txt");
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
+			InitGate();
 			//SetConsoleColor(Yellow, Black);
 			DrawGate();
 			//SetConsoleColor(White, Black);
