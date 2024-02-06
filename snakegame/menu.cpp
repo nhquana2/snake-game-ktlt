@@ -64,7 +64,8 @@ void DrawMenu() {
 	GoToXY(86, 29);
 	cout << "EXIT";
 	if (MENU_OPTION == 4) cout << "  \xDB";*/
-	GoToXY(116, 13); cout << "           /^\\/^\\";
+
+	/*GoToXY(116, 13); cout << "           /^\\/^\\";
 	GoToXY(116, 14); cout << "         _|__|  O|";
 	GoToXY(116, 15); cout << "\\/     /~     \\_/ \\";
 	GoToXY(116, 16); cout << "\\____|__________/  \\";
@@ -81,8 +82,8 @@ void DrawMenu() {
 	GoToXY(116, 27); cout << "          \\      ~-____-~    _-~    ~-_    ~-_-~    /";
 	GoToXY(116, 28); cout << "            ~-_           _-~          ~-_       _-~";
 	GoToXY(116, 29); cout << "               ~--______-~                ~-___-~";
-
-
+	*/
+	PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
 }
 
 void DrawAboutScreen() {

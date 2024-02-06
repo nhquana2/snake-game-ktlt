@@ -182,6 +182,8 @@ void ResetData() {
 	Flag_PoisonSpray = Spraying = false;
 	DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	TELE_POINT_1.x = TELE_POINT_1.y = TELE_POINT_2.x = TELE_POINT_2.y = 0;
+
+	PowerScore = 0;
 }
 
 void StartGame() {
@@ -207,6 +209,8 @@ void StartGame() {
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 1.txt");
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt");
 	STATE = 1; //Start running Thread
+
+	
 }
 
 void ExitGame(HANDLE t) {
@@ -215,7 +219,7 @@ void ExitGame(HANDLE t) {
 }
 
 void PauseGame(HANDLE t) {
-	playSound("assets\\sounds\\pauseGame");
+	//playSound("assets\\sounds\\pauseGame");
 	SuspendThread(t);
 }
 
@@ -262,6 +266,7 @@ void Eat() {
 	if (!Spraying) snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (Spraying) snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
 	SCORE += 10;
+	if (PowerScore < 3) PowerScore++;
 	++SIZE_SNAKE;
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
@@ -327,6 +332,7 @@ void MoveRight()
 		playSound("assets\\sounds\\bigfood");
 		//delete big food, parameters is its coordinates
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+		PowerScore = 3;
 		SCORE += 100;
 	}
 
@@ -369,6 +375,7 @@ void MoveLeft()
 	{
 		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+		PowerScore = 3;
 		SCORE += 100;
 	}
 
@@ -403,6 +410,7 @@ void MoveUp()
 	{
 		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+		PowerScore = 3;
 		SCORE += 100;
 	}
 	if (nextpoint.y == board[0].y || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
@@ -436,6 +444,7 @@ void MoveDown()
 	{
 		playSound("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+		PowerScore = 3;
 		SCORE += 100;
 	}
 	if (nextpoint.y == HEIGHT_BOARD+board[0].y - 1 || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
@@ -487,6 +496,7 @@ void PoisonSpray() {
 			playSound("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
+			PowerScore = 3;
 			Spraying = false;
 		}
 		else {
@@ -532,6 +542,7 @@ void PoisonSpray() {
 			playSound("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
+			PowerScore = 3;
 			Spraying = false;
 		}
 		else {
@@ -568,6 +579,7 @@ void PoisonSpray() {
 			playSound("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
+			PowerScore = 3;
 			Spraying = false;
 		}
 		else {
@@ -605,6 +617,7 @@ void PoisonSpray() {
 			playSound("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
+			PowerScore = 3;
 			Spraying = false;
 		}
 		else {
@@ -626,6 +639,7 @@ void PoisonSpray() {
 
 void ThreadFunc() {
 	while (1) {
+		if (PAUSE) continue;
 		if (STATE == 1) {
 			DrawSnakeAndFood(" ");
 			switch (MOVING) {
@@ -658,7 +672,7 @@ void ThreadFunc() {
 			}
 			//End snake animation
 
-			if (Flag_PoisonSpray && SCORE >= 5) {
+			if (Flag_PoisonSpray && PowerScore > 0) {
 				spray.x = snake[SIZE_SNAKE - 1].x;
 				spray.y = snake[SIZE_SNAKE - 1].y;
 				if (MOVING == 'A') previousAction = 2;//move left
@@ -666,7 +680,7 @@ void ThreadFunc() {
 				else if (MOVING == 'W') previousAction = 3;//move up
 				else if (MOVING == 'S') previousAction = 4;//move down
 				Spraying = true;
-				SCORE -= 1;
+				PowerScore--;
 				playSound("assets\\sounds\\shooting");
 				Flag_PoisonSpray = false;
 			}

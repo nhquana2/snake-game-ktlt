@@ -90,6 +90,7 @@ extern int previousAction;
 extern int BLINKING_MAP;
 extern int DefaultTextColor;
 extern int DefaultBgColor;
+extern int PowerScore;
 
 //Utility
 int RandomInRange(int a, int b);
@@ -143,6 +144,7 @@ int MapLevel4();
 
 //animations
 bool SnakeGoThroughGate();
+void PrintSnakeTextFile(int x, int y, const char* FileName);
 void BlinkingMap();
 
 //Save/Load game processing

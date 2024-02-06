@@ -48,12 +48,13 @@ int BLINKING_MAP;
 
 int DefaultTextColor = Black;
 int DefaultBgColor = LightAqua;
-
+int PowerScore;
 using namespace std;
 
 int main()
 {
     //cout << char(-32);
+    
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor
@@ -97,13 +98,12 @@ int main()
     
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
-
-
+ 
     char temp;
     while (1) {
         //SCREEN: PLAY
         if (SCREEN == 1) { 
-
+       
             temp = toupper(_getch());
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
@@ -121,7 +121,7 @@ int main()
                 }
                 if (!PAUSE && temp == 'P') {
                     PAUSE = 1;
-                    PauseGame(handle_t1);
+                    //PauseGame(handle_t1);
                     cout << "Press any key to continue, or press L to save game";
                 }
                 else if (temp == 27) {
