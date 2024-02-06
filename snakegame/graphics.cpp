@@ -54,3 +54,33 @@ void PrintSnakeTextFile(int x, int y, const char* FileName) {
 		GoToXY(x, y);
 	}
 }
+void PrintTextFile(int x, int y, const char* FileName) {
+	ifstream ifs;
+	int st_x = x, st_y = y;
+	ifs.open(FileName);
+	if (!ifs.good()) return;
+	char c;
+	GoToXY(x, y);
+	while (ifs.get(c)) {
+		if (c == 'o') {
+			SetConsoleColor(Blue, DefaultBgColor);
+			cout << '\xb2';
+			SetConsoleColor(DefaultTextColor, DefaultBgColor);
+		}
+		else if (c == '/') {
+			SetConsoleColor(Red, DefaultBgColor);
+			cout << '\xb2';
+			SetConsoleColor(DefaultTextColor, DefaultBgColor);
+		}
+		else if (c == ' ') {
+			cout << c;
+		}
+		else {
+			SetConsoleColor(Yellow, DefaultBgColor);
+			cout << c;
+			SetConsoleColor(DefaultTextColor, DefaultBgColor);
+		}
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+}
