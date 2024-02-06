@@ -34,36 +34,6 @@ void DrawMenu() {
 	for (int i = 0; i < 5; ++i) {
 		ToggleNormalStateButton(main_button[i]);
 	}
-	/*
-	//Button: NEW GAME
-	DrawRectangle(80, 12, 20, 3);
-	GoToXY(86, 13);
-	cout << "NEW GAME";
-	if (MENU_OPTION == 0) cout << "  \xDB";
-
-	//Button: LOAD GAME
-	DrawRectangle(80, 16, 20, 3);
-	GoToXY(86, 17);
-	cout << "LOAD GAME";
-	if (MENU_OPTION == 1) cout << "  \xDB";
-
-	//Button: SETTINGS
-	DrawRectangle(80, 20, 20, 3);
-	GoToXY(86, 21);
-	cout << "SETTINGS";
-	if (MENU_OPTION == 2) cout << "  \xDB";
-
-	//Button: ABOUT
-	DrawRectangle(80, 24, 20, 3);
-	GoToXY(86, 25);
-	cout << "ABOUT";
-	if (MENU_OPTION == 3) cout << "  \xDB";
-
-	//Button: EXIT
-	DrawRectangle(80, 28, 20, 3);
-	GoToXY(86, 29);
-	cout << "EXIT";
-	if (MENU_OPTION == 4) cout << "  \xDB";*/
 
 	/*GoToXY(116, 13); cout << "           /^\\/^\\";
 	GoToXY(116, 14); cout << "         _|__|  O|";
@@ -83,7 +53,7 @@ void DrawMenu() {
 	GoToXY(116, 28); cout << "            ~-_           _-~          ~-_       _-~";
 	GoToXY(116, 29); cout << "               ~--______-~                ~-___-~";
 	*/
-	//PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
+	PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
 	//PrintTextFile(70, 10, "assets\\ascii\\paused.txt");
 }
 

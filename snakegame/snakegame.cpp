@@ -109,30 +109,43 @@ int main()
                 temp = toupper(_getch()); continue;
             }
             if (STATE == 1) {
+                /*if (PAUSE && temp == 'M') {
+                    STATE = 0;
+                    playSound("assets\\sounds\\intro");
+                    SCREEN = 2; //SCREEN: MAIN MENU
+                    DrawMenu();
+                }*/
                 if (PAUSE && temp == 'L') {
+                    GoToXY(18, 24);
                     cout << "File name to save: ";
                     string fileName;
-                    cin.ignore();
                     cin >> fileName;
                     fileName = "./data/" + fileName;
                     SaveGame(fileName);
+                    GoToXY(18, 25);
                     cout << "File save successful, press any key to continue playing";
                     continue;
                 }
                 if (!PAUSE && temp == 'P') {
                     PAUSE = 1;
-                    //PauseGame(handle_t1);
+                    PauseGame(handle_t1);
+                    ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
+                    PrintTextFile(18, 10, "assets\\ascii\\paused.txt");
+                    GoToXY(18, 23);
                     cout << "Press any key to continue, or press L to save game";
                 }
                 else if (temp == 27) {
-                    //ExitGame(handle_t1);
+                    ResumeThread(handle_t1);
                     STATE = 2;
                     t1.join();
                     return 0;
                 }
-                else  {
+                else if (PAUSE == 1) {
                     PAUSE = 0;
+                    ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
                     ResumeThread(handle_t1);
+                }
+                else  {
                     if ((temp != CHAR_LOCK) && (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S' || temp == 'L')) {
                         if (temp == 'D') CHAR_LOCK = 'A';
                         else if (temp == 'W') CHAR_LOCK = 'S';
