@@ -54,6 +54,7 @@ using namespace std;
 int main()
 {
     //cout << char(-32);
+    
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor
@@ -97,8 +98,7 @@ int main()
     
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
-
-
+ 
     char temp;
     while (1) {
         //SCREEN: PLAY

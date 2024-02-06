@@ -143,6 +143,7 @@ int MapLevel4();
 
 //animations
 bool SnakeGoThroughGate();
+void PrintSnakeTextFile(int x, int y, const char* FileName);
 void BlinkingMap();
 
 //Save/Load game processing
