@@ -10,52 +10,7 @@ void ToggleNormalStateButton(BUTTON a) {
 	GoToXY(a.text_st.x, a.text_st.y);
 	cout << a.text_value;
 }
-void PrintSnakeTextFile(int x, int y, const char* FileName) {
-	ifstream ifs;
-	int st_x = x, st_y = y;
-	ifs.open(FileName);
-	if (!ifs.good()) return;
-	char c;
-	GoToXY(x, y);
-	while (ifs.get(c)) {
-		if (c == '~') {
-			SetConsoleColor(LightGreen, LightGreen);
-			cout << '\xb2';
-			
-			SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		}
-		else if(c == '?') {
-			SetConsoleColor(White, White);
-			cout << '\xb2';
-			SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		}
-		else if (c == 'l') {
-			SetConsoleColor(LightRed, LightRed);
-			cout << '\xb2';
-			SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		}
-		else if (c == '-') {
-			SetConsoleColor(LightPurple,LightPurple);
-			cout << '\xb2';
-			SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		}
-		else if (c == '/') {
-			SetConsoleColor(Green, Green);
-			cout << '\xb2';
-			SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		}
-		else if (c == 'o') {
-			SetConsoleColor(Red, Red);
-			cout << '\xb2';
-			SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		}
-		else {
-			cout << c;
-		}
-		if (c != '\n') ++x; else ++y, x = st_x;
-		GoToXY(x, y);
-	}
-}
+
 void ToggleActiveStateButton(BUTTON a) {
 	FillRectangle(a.st.x, a.st.y, a.width, a.height);
 	SetConsoleColor(DefaultBgColor, DefaultTextColor);
@@ -128,7 +83,7 @@ void DrawMenu() {
 	GoToXY(116, 28); cout << "            ~-_           _-~          ~-_       _-~";
 	GoToXY(116, 29); cout << "               ~--______-~                ~-___-~";
 	*/
-	PrintSnakeTextFile(116, 13, "assets\\ascii\\snakeleluoi.txt");
+	PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
 }
 
 void DrawAboutScreen() {
