@@ -121,7 +121,7 @@ int main()
                 }
                 if (!PAUSE && temp == 'P') {
                     PAUSE = 1;
-                    PauseGame(handle_t1);
+                    //PauseGame(handle_t1);
                     cout << "Press any key to continue, or press L to save game";
                 }
                 else if (temp == 27) {

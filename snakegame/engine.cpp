@@ -626,6 +626,7 @@ void PoisonSpray() {
 
 void ThreadFunc() {
 	while (1) {
+		if (PAUSE) continue;
 		if (STATE == 1) {
 			DrawSnakeAndFood(" ");
 			switch (MOVING) {
