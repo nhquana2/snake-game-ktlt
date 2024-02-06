@@ -128,7 +128,7 @@ void DrawMenu() {
 	GoToXY(116, 28); cout << "            ~-_           _-~          ~-_       _-~";
 	GoToXY(116, 29); cout << "               ~--______-~                ~-___-~";
 	*/
-	
+	PrintSnakeTextFile(116, 13, "assets\\ascii\\snakeleluoi.txt");
 }
 
 void DrawAboutScreen() {
