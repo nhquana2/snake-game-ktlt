@@ -25,7 +25,7 @@ void DrawMenu() {
 	//ASCII art title
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
-	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
+	PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 
 	//Menu outside border
 	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGHT_CONSOLE - 9 - 1);
