@@ -19,6 +19,12 @@ void SaveGame(string FileName) {
 		}
 	}
 
+	for (int i = 0; i <= 4; ++i) {
+		ofs << gate[i].x << " " << gate[i].y << "\n";
+	}
+
+	ofs << PowerScore;
+
 	ofs.close();
 }
 
@@ -44,6 +50,12 @@ void LoadGame(string FileName) {
 			ifs >> big_food[i][j].x >> big_food[i][j].y;
 		}
 	}
+
+	for (int i = 0; i <= 4; ++i) {
+		ifs >> gate[i].x >> gate[i].y;
+	}
+
+	ifs >> PowerScore;
 
 	ifs.close();
 	//=== End init data
