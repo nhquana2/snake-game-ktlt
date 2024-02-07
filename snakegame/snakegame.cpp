@@ -17,6 +17,11 @@ POINT TELE_POINT_1, TELE_POINT_2;
 
 BUTTON main_button[5];
 
+mutex mtx;
+condition_variable cvThread;
+condition_variable cvMain;
+atomic<bool> threadPaused(false);
+
 const char* MSSV = "23127106231274582312723123127332";
 int NUMBER_OF_OBSTACLES;
 int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
@@ -128,22 +133,31 @@ int main()
                 }
                 if (!PAUSE && temp == 'P') {
                     PAUSE = 1;
-                    PauseGame(handle_t1);
+                    //PauseGame(handle_t1);
+                    threadPaused = true;
+                    cvThread.notify_one();
+                    unique_lock<mutex> lock(mtx);
+                    cvMain.wait(lock, [] { return threadPaused.load();  });
+                    lock.unlock();
                     ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
                     PrintTextFile(18, 10, "assets\\ascii\\paused.txt");
                     GoToXY(18, 23);
                     cout << "Press any key to continue, or press L to save game";
                 }
                 else if (temp == 27) {
-                    ResumeThread(handle_t1);
+                    //ResumeThread(handle_t1);
                     STATE = 2;
+                    threadPaused = false;
+                    cvThread.notify_one();
                     t1.join();
                     return 0;
                 }
                 else if (PAUSE == 1) {
                     PAUSE = 0;
                     ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
-                    ResumeThread(handle_t1);
+                    threadPaused = false;
+                    cvThread.notify_one();
+                    //ResumeThread(handle_t1);
                 }
                 else  {
                     if ((temp != CHAR_LOCK) && (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S' || temp == 'L')) {

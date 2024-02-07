@@ -641,7 +641,10 @@ void PoisonSpray() {
 
 void ThreadFunc() {
 	while (1) {
-		if (PAUSE) continue;
+
+		unique_lock<mutex> lock(mtx);
+		cvThread.wait(lock, [] { return !threadPaused;  });
+
 		if (STATE == 1) {
 			DrawSnakeAndFood(" ");
 			switch (MOVING) {
@@ -703,5 +706,12 @@ void ThreadFunc() {
 		if (STATE == 2) {
 			break;
 		}
+
+		if (threadPaused) {
+			cvMain.notify_one();
+			continue;
+		}
+
+		lock.unlock();
 	}
 }

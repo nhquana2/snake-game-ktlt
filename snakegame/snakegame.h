@@ -9,6 +9,9 @@
 #include <iostream>
 #include <ctime>
 #include <mmsystem.h>
+#include <mutex>
+#include <condition_variable>
+#include <atomic>
 
 //Color
 #define Black 0
@@ -41,6 +44,11 @@
 #define WIDTH_BOARD 120
 
 using namespace std;
+
+extern mutex mtx;
+extern condition_variable cvThread;
+extern condition_variable cvMain;
+extern atomic<bool> threadPaused;
 
 //Global variables (definition using extern keyword)
 extern int NUMBER_OF_OBSTACLES; //number of obstacles is updated every time the map function is called
