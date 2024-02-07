@@ -18,6 +18,12 @@ void SetConsoleColor(int text, int background)
 	SetConsoleTextAttribute(hConsole, text+background*16);
 }
 
+bool IsValidPoint(int x, int y) {
+	if (x < 0 || x >= WIDTH_CONSOLE) return false;
+	if (y < 0 || y >= HEIGHT_CONSOLE) return false;
+	return true;
+}
+
 void FixConsoleWindow() {
 	HWND consoleWindow = GetConsoleWindow();
 	LONG style = GetWindowLong(consoleWindow, GWL_STYLE);
@@ -82,7 +88,7 @@ void DrawBigFood()
 			//cout << "?";
 			//big_food[i][j] = { x + i,y + j };
 			GoToXY(big_food[i][j].x, big_food[i][j].y);
-			cout << "?";
+			if (IsValidPoint(big_food[i][j].x, big_food[i][j].y)) cout << "?";
 		}
 		GoToXY(big_food[i][0].x, big_food[i][0].y + 1);
 	}
@@ -157,7 +163,7 @@ void DrawSnakeAndFood(const char* str) {
 		cout << str[(i % len)];
 	}
 	GoToXY(0, 0);
-	cout << big_food[0][0].x << " " << big_food[0][0].y;
+	cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX;
 }
 
 void PrintStatusBoard() {

@@ -104,6 +104,7 @@ extern int PowerScore;
 int RandomInRange(int a, int b);
 void SetConsoleColor(int text, int background);
 void SetCursor(bool visible, DWORD size);
+bool IsValidPoint(int x, int y);
 
 //Console and Graphic functions
 void FixConsoleWindow();
