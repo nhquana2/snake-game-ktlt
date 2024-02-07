@@ -53,6 +53,7 @@ int BLINKING_MAP;
 
 int DefaultTextColor = Black;
 int DefaultBgColor = LightAqua;
+
 int PowerScore;
 using namespace std;
 

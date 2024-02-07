@@ -203,7 +203,7 @@ void StartGame() {
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
 	//SetConsoleColor(Green, Black);
-	PrintFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
+	PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 	//SetConsoleColor(White, Black);
 
 	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 1.txt");
