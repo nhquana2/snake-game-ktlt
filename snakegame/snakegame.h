@@ -74,6 +74,8 @@ struct BUTTON {
 };
 
 extern BUTTON main_button[5];
+extern BUTTON sound_button[2];
+
 
 extern int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
 extern int MOVING;//used to determine the direction my snake moves (At a moment, there  are three directions my snake can move)
@@ -85,6 +87,7 @@ extern int STATE; // State of snake: dead or alive
 extern int PAUSE;
 extern int SCREEN;
 extern int MENU_OPTION;
+extern int SOUND_OPTION;
 extern int SIZE_BOARD;
 extern int LEVEL;
 extern int TIME;
@@ -124,6 +127,7 @@ void DrawTelePoint(int x1, int y1, int x2, int y2);
 //Menu-related functions
 void DrawMenu();
 void DrawAboutScreen();
+void DrawSettingsScreen();
 void DrawLoadGameScreen();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 void ToggleNormalStateButton(BUTTON a);

@@ -16,6 +16,7 @@ POINT WIN_POINT;
 POINT TELE_POINT_1, TELE_POINT_2;
 
 BUTTON main_button[5];
+BUTTON sound_button[2];
 
 mutex mtx;
 condition_variable cvThread;
@@ -39,6 +40,7 @@ int SCREEN = 2;
 //SCREEN 4: SETTINGS
 //SCREEN 5: LOAD GAME
 int MENU_OPTION = 0; //current option, change with W and S key
+int SOUND_OPTION = 0;
 int SIZE_BOARD;
 int TIME;
 int SCORE;
@@ -98,6 +100,18 @@ int main()
     main_button[4].height = 3;
     main_button[4].text_st = { 86, 29 };
     main_button[4].text_value = "EXIT";
+
+    sound_button[0].st = { 30, 18 };
+    sound_button[0].width = 20;
+    sound_button[0].height = 3;
+    sound_button[0].text_st = { 39, 19 };
+    sound_button[0].text_value = "ON";
+
+    sound_button[1].st = { 30, 22 };
+    sound_button[1].width = 20;
+    sound_button[1].height = 3;
+    sound_button[1].text_st = { 38, 23 };
+    sound_button[1].text_value = "OFF";
 
     DrawMenu();
     STATE = 0;
@@ -222,6 +236,10 @@ int main()
                 SCREEN = 3;
                 DrawAboutScreen();
             }
+            if (temp == 13 && MENU_OPTION == 2) {
+                SCREEN = 4;
+                DrawSettingsScreen();
+            }
             if (temp == 13 && MENU_OPTION == 1) {
                 SCREEN = 5;
                 DrawLoadGameScreen();
@@ -251,6 +269,37 @@ int main()
                 DrawMenu();
             }
 
+        }
+
+        if (SCREEN == 4) {
+            temp = toupper(_getch());
+
+            if (temp == char(-32)) {
+                temp = toupper(_getch()); continue;
+            }
+
+            if (temp == 'W') {
+                ToggleNormalStateButton(sound_button[SOUND_OPTION]);
+                SOUND_OPTION = (SOUND_OPTION - 1 + 2) % 2;
+                ToggleActiveStateButton(sound_button[SOUND_OPTION]);
+            }
+            if (temp == 'S') {
+                ToggleNormalStateButton(sound_button[SOUND_OPTION]);
+                SOUND_OPTION = (SOUND_OPTION + 1) % 2; 
+                ToggleActiveStateButton(sound_button[SOUND_OPTION]);
+            }
+            if (temp == 13 && SOUND_OPTION == 0) {
+                SOUND = 1;
+            }
+            if (temp == 13 && SOUND_OPTION == 1) {
+                SOUND = 0;
+                PlaySound(NULL, NULL, 0);
+            }
+
+            if (temp == 'B') {
+                SCREEN = 2;
+                DrawMenu();
+            }
         }
 
         if (SCREEN == 3) {
