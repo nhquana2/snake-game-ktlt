@@ -52,7 +52,7 @@ bool Flag_PoisonSpray, Spraying;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
 int BLINKING_MAP;
-
+int TEXTINCONSOLE; //1 if text is in console (game over, ...)
 int DefaultTextColor = Black;
 int DefaultBgColor = LightAqua;
 
@@ -147,17 +147,7 @@ int main()
                     continue;
                 }
                 if (!PAUSE && temp == 'P') {
-                    PAUSE = 1;
-                    //PauseGame(handle_t1);
-                    threadPaused = true;
-                    cvThread.notify_one();
-                    unique_lock<mutex> lock(mtx);
-                    cvMain.wait(lock, [] { return threadPaused.load();  });
-                    lock.unlock();
-                    ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
-                    PrintTextFile(18, 10, "assets\\ascii\\paused.txt");
-                    GoToXY(18, 23);
-                    cout << "Press any key to continue, or press L to save game";
+                    Pause();
                 }
                 else if (temp == 27) {
                     //ResumeThread(handle_t1);

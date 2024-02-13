@@ -154,16 +154,19 @@ void DrawGate(){
 }
 
 void DrawSnakeAndFood(const char* str) {
-	GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
-	if (WIN_POINT.x == 0 && WIN_POINT.y == 0) printf("F"); //Draw food only if gate has not been spawned
-	int len = strlen(str);
-	for (int i = 0; i < SIZE_SNAKE; i++)
+	if (!(TEXTINCONSOLE))
 	{
-		GoToXY(snake[i].x, snake[i].y);
-		cout << str[(i % len)];
+		GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
+		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) printf("F"); //Draw food only if gate has not been spawned
+		int len = strlen(str);
+		for (int i = 0; i < SIZE_SNAKE; i++)
+		{
+			GoToXY(snake[i].x, snake[i].y);
+			cout << str[(i % len)];
+		}
+		GoToXY(0, 0);
+		cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX;
 	}
-	GoToXY(0, 0);
-	cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX;
 }
 
 void PrintStatusBoard() {
@@ -220,4 +223,18 @@ void GetWidthAndHeightFile(const char* FileName, int &width, int &height) {
 
 }
 
+void Pause()
+{
+	PAUSE = 1;
+	//PauseGame(handle_t1);
+	threadPaused = true;
+	cvThread.notify_one();
+	unique_lock<mutex> lock(mtx);
+	cvMain.wait(lock, [] { return threadPaused.load();  });
+	lock.unlock();
+	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
+	PrintTextFile(18, 16, "assets\\ascii\\paused.txt");
+	GoToXY(18, 29);
+	cout << "Press any key to continue, or press L to save game";
+}
 

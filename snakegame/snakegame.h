@@ -102,6 +102,7 @@ extern int BLINKING_MAP;
 extern int DefaultTextColor;
 extern int DefaultBgColor;
 extern int PowerScore;
+extern int TEXTINCONSOLE;
 
 //Utility
 int RandomInRange(int a, int b);
@@ -124,6 +125,8 @@ void DrawBigFood();
 void DrawBulletUp();
 void DrawBulletDown();
 void DrawTelePoint(int x1, int y1, int x2, int y2);
+void Pause();
+
 //Menu-related functions
 void DrawMenu();
 void DrawAboutScreen();

@@ -170,11 +170,12 @@ void RespawnSnake(){
 }
 void ResetData() {
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
-		WIDTH_CONSOLE = 180, HEIGHT_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 0;
+		WIDTH_CONSOLE = 180, HEIGHT_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 1;
 	TIME = 0;
 	LEVEL = 0;
 	SCORE = 0;
 	CHECK_SNAKE = false;
+	TEXTINCONSOLE = 0;
 	DeleteMap();
 	RespawnSnake();
 	GenerateFood();
@@ -228,6 +229,10 @@ void ProcessDead() {
 	STATE = 0;
 	BlinkingMap();
 	GoToXY(WIDTH_CONSOLE/2, HEIGHT_CONSOLE/2);
+	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
+	TEXTINCONSOLE = 1;
+	PrintTextFile(22, 11, "assets\\ascii\\gameover.txt");
+	
 	//SetConsoleColor(Yellow, Black);
 	cout<<"Dead, press Y to continue!";
 	//SetConsoleColor(White, Black);
