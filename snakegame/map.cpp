@@ -12,6 +12,14 @@ bool CheckTouchObstacles(int x, int y)//parameters is the coordinate of the head
 	}
 	return false;
 }
+
+void DrawMap() {
+	for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i) {
+		GoToXY(obstacles[i].x, obstacles[i].y);
+		cout << '\xb2';
+	}
+}
+
 void DeleteMap(){
 	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++) {
 		GoToXY(obstacles[i].x, obstacles[i].y);

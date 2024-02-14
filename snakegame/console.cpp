@@ -165,7 +165,7 @@ void DrawSnakeAndFood(const char* str) {
 			cout << str[(i % len)];
 		}
 		GoToXY(0, 0);
-		cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX;
+		cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX << " " << SIZE_SNAKE << " ";
 	}
 }
 

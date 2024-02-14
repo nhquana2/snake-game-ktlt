@@ -157,6 +157,7 @@ int MapLevel1();
 int MapLevel2();
 int MapLevel3();
 int MapLevel4();
+void DrawMap();
 
 //animations
 bool SnakeGoThroughGate();
