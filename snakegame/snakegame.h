@@ -45,6 +45,13 @@
 
 using namespace std;
 
+
+struct PLAYER {
+	string name;
+	long long TIME;
+	int SCORE;
+};
+
 extern mutex mtx;
 extern condition_variable cvThread;
 extern condition_variable cvMain;
@@ -63,7 +70,7 @@ extern POINT WIN_POINT;
 extern POINT bullet_up, bullet_down;
 extern POINT spray;
 extern POINT TELE_POINT_1, TELE_POINT_2;
-
+extern PLAYER Player[100];
 
 //Menu button struct
 struct BUTTON {
@@ -102,7 +109,7 @@ extern int BLINKING_MAP;
 extern int DefaultTextColor;
 extern int DefaultBgColor;
 extern int PowerScore;
-extern int TEXTINCONSOLE;
+extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
 
 //Utility
 int RandomInRange(int a, int b);
@@ -159,6 +166,7 @@ int MapLevel3();
 int MapLevel4();
 void DrawMap();
 
+void MapLevel5();
 //animations
 bool SnakeGoThroughGate();
 void BlinkingMap();
@@ -170,3 +178,6 @@ void LoadGame(string FileName);
 //graphics
 void PrintTextFile(int x, int y, const char* FileName);
 void PrintSnakeTextFile(int x, int y, const char* FileName);
+
+//highscore
+int LeaderBoard(PLAYER Player[]);

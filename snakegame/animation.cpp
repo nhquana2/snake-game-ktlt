@@ -53,5 +53,5 @@ void BlinkingMap(){//blinking when the snake died
 		}*/
 		Sleep(100);
 	}
-	BLINKING_MAP = 0;
+	
 }

@@ -14,7 +14,7 @@ POINT bullet_up,bullet_down;
 POINT spray;
 POINT WIN_POINT;
 POINT TELE_POINT_1, TELE_POINT_2;
-
+PLAYER Player[100];
 BUTTON main_button[5];
 BUTTON sound_button[2];
 
@@ -118,12 +118,11 @@ int main()
     
     thread t1(ThreadFunc);
     HANDLE handle_t1 = t1.native_handle();
- 
+
     char temp;
     while (1) {
         //SCREEN: PLAY
         if (SCREEN == 1) { 
-       
             temp = toupper(_getch());
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
@@ -184,6 +183,20 @@ int main()
                     STATE = 2;
                     t1.join();
                     return 0;
+                }
+                if (!BLINKING_MAP && temp == 'O')
+                {
+                    GoToXY(18, 30);
+                    cout << "Username to save high score: ";
+                    string username;
+                    cin >> username;
+                    ofstream output;
+                    output.open("highscore.txt",ios::app);
+                    output <<'\n'<< username << ',' << TIME << ',' << SCORE << '\n';
+                    GoToXY(18, 31);
+                    cout << "High score saved! Press any key to continue ";
+                    continue;
+
                 }
                 if (!BLINKING_MAP && temp == 'M') {
                     playSound("assets\\sounds\\intro");

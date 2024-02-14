@@ -54,6 +54,11 @@ void DrawMenu() {
 	GoToXY(116, 29); cout << "               ~--______-~                ~-___-~";
 	*/
 	PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
+	//int nsize=LeaderBoard(Player);
+	//GoToXY(0, 0);
+	//for (int i = 0; i < nsize; i++) {
+		//cout << Player[i].name << " ";
+	//}
 	//PrintTextFile(70, 10, "assets\\ascii\\paused.txt");
 }
 
