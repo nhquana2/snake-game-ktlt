@@ -72,7 +72,7 @@ void DrawLoadGameScreen() {
 
 void DrawSettingsScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	PrintFile(18, 13, "assets\\ascii\\sounds.txt");
+	PrintFile(23, 14, "assets\\ascii\\sounds.txt");
 	for (int i = 0; i < 2; ++i) {
 		ToggleNormalStateButton(sound_button[i]);
 	}

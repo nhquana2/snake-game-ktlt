@@ -47,7 +47,7 @@ int SCORE;
 int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
 int LEVEL;
-int SOUND = 1;
+int SOUND = 0;
 bool Flag_PoisonSpray, Spraying;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
@@ -101,16 +101,16 @@ int main()
     main_button[4].text_st = { 86, 29 };
     main_button[4].text_value = "EXIT";
 
-    sound_button[0].st = { 30, 18 };
+    sound_button[0].st = { 30, 21 };
     sound_button[0].width = 20;
     sound_button[0].height = 3;
-    sound_button[0].text_st = { 39, 19 };
+    sound_button[0].text_st = { 39, 22 };
     sound_button[0].text_value = "ON";
 
-    sound_button[1].st = { 30, 22 };
+    sound_button[1].st = { 30, 25 };
     sound_button[1].width = 20;
     sound_button[1].height = 3;
-    sound_button[1].text_st = { 38, 23 };
+    sound_button[1].text_st = { 38, 26 };
     sound_button[1].text_value = "OFF";
 
     DrawMenu();
@@ -280,10 +280,13 @@ int main()
             }
             if (temp == 13 && SOUND_OPTION == 0) {
                 SOUND = 1;
+                PrintFile(54, 13, "assets\\ascii\\soundon.txt");
+                playSound("assets\\sounds\\intro");
             }
             if (temp == 13 && SOUND_OPTION == 1) {
                 SOUND = 0;
                 PlaySound(NULL, NULL, 0);
+                PrintFile(54, 13, "assets\\ascii\\soundoff.txt");
             }
 
             if (temp == 'B') {
