@@ -47,7 +47,7 @@ int SCORE;
 int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
 int LEVEL;
-int SOUND = 0;
+int SOUND = 1;
 bool Flag_PoisonSpray, Spraying;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
@@ -280,13 +280,13 @@ int main()
             }
             if (temp == 13 && SOUND_OPTION == 0) {
                 SOUND = 1;
-                PrintFile(54, 13, "assets\\ascii\\soundon.txt");
+                PrintFile(59, 14, "assets\\ascii\\soundon.txt");
                 playSound("assets\\sounds\\intro");
             }
             if (temp == 13 && SOUND_OPTION == 1) {
                 SOUND = 0;
                 PlaySound(NULL, NULL, 0);
-                PrintFile(54, 13, "assets\\ascii\\soundoff.txt");
+                PrintFile(59, 14, "assets\\ascii\\soundoff.txt");
             }
 
             if (temp == 'B') {
