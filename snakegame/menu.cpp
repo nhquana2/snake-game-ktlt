@@ -155,6 +155,5 @@ void DrawLeaderBoardScreen() {
 	
 	PrintCup(70, 13);
 
-	
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
