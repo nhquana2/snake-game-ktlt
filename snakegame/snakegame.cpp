@@ -124,6 +124,7 @@ int main()
                 else if (PAUSE == 1) {
                     PAUSE = 0;
                     ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
+                    PostPauseDraw();
                     threadPaused = false;
                     cvThread.notify_one();
                     //ResumeThread(handle_t1);
