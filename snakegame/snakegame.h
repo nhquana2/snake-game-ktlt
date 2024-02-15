@@ -12,6 +12,10 @@
 #include <mutex>
 #include <condition_variable>
 #include <atomic>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 
 //Color
 #define Black 0
@@ -45,6 +49,13 @@
 
 using namespace std;
 
+
+struct PLAYER {
+	string name;
+	long long TIME;
+	int SCORE;
+};
+
 extern mutex mtx;
 extern condition_variable cvThread;
 extern condition_variable cvMain;
@@ -63,7 +74,8 @@ extern POINT WIN_POINT;
 extern POINT bullet_up, bullet_down;
 extern POINT spray;
 extern POINT TELE_POINT_1, TELE_POINT_2;
-
+extern PLAYER Player[100];
+extern vector<string> save_entries;
 
 //Menu button struct
 struct BUTTON {
@@ -73,7 +85,7 @@ struct BUTTON {
 	string text_value;
 };
 
-extern BUTTON main_button[5];
+extern BUTTON main_button[6];
 extern BUTTON sound_button[2];
 
 
@@ -102,7 +114,7 @@ extern int BLINKING_MAP;
 extern int DefaultTextColor;
 extern int DefaultBgColor;
 extern int PowerScore;
-extern int TEXTINCONSOLE;
+extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
 
 //Utility
 int RandomInRange(int a, int b);
@@ -126,15 +138,19 @@ void DrawBulletUp();
 void DrawBulletDown();
 void DrawTelePoint(int x1, int y1, int x2, int y2);
 void Pause();
+void PostPauseDraw();
 
 //Menu-related functions
 void DrawMenu();
 void DrawAboutScreen();
 void DrawSettingsScreen();
 void DrawLoadGameScreen();
+void DrawLeaderBoardScreen();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 void ToggleNormalStateButton(BUTTON a);
 void ToggleActiveStateButton(BUTTON a);
+void InitMainButtons();
+void InitSoundButtons();
 
 //Logic and game engine functions
 void playSound(const std::string& soundFile);
@@ -157,7 +173,9 @@ int MapLevel1();
 int MapLevel2();
 int MapLevel3();
 int MapLevel4();
+void DrawMap();
 
+void MapLevel5();
 //animations
 bool SnakeGoThroughGate();
 void BlinkingMap();
@@ -165,7 +183,11 @@ void BlinkingMap();
 //Save/Load game processing
 void SaveGame(string FileName);
 void LoadGame(string FileName);
+void LoadSaveEntries();
 
 //graphics
 void PrintTextFile(int x, int y, const char* FileName);
 void PrintSnakeTextFile(int x, int y, const char* FileName);
+
+//highscore
+int LeaderBoard(PLAYER Player[]);

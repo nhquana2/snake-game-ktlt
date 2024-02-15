@@ -232,9 +232,11 @@ void ProcessDead() {
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
 	TEXTINCONSOLE = 1;
 	PrintTextFile(22, 11, "assets\\ascii\\gameover.txt");
-	
+	BLINKING_MAP = 0;
+	GoToXY(18, 29);
+	cout << "Dead! Press O to save highscore";
 	//SetConsoleColor(Yellow, Black);
-	cout<<"Dead, press Y to continue!";
+	//cout<<"Dead, press Y to continue!";
 	//SetConsoleColor(White, Black);
 }
 
@@ -246,9 +248,12 @@ void LevelUp() {
 	FOOD_INDEX = 0;
 	LEVEL += 1;
 	SPEED += 5;
+
 	if (LEVEL == 1){
 		DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
 		NUMBER_OF_OBSTACLES = MapLevel1();
+		//MapLevel5();
+
 	}
 	if (LEVEL == 2){
 		DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);

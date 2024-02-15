@@ -12,6 +12,14 @@ bool CheckTouchObstacles(int x, int y)//parameters is the coordinate of the head
 	}
 	return false;
 }
+
+void DrawMap() {
+	for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i) {
+		GoToXY(obstacles[i].x, obstacles[i].y);
+		cout << '\xb2';
+	}
+}
+
 void DeleteMap(){
 	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++) {
 		GoToXY(obstacles[i].x, obstacles[i].y);
@@ -107,6 +115,70 @@ int MapLevel3()
 		obstacles[pos] = { x,y };
 	}
 	return pos;
+}
+void MapLevel5() {
+	int pos = 0;
+	GoToXY(board[0].x + 1, board[0].y + 4);
+	for (int i = 0; i < 16; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 1 + i, board[0].y + 4 };
+		pos++;
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		GoToXY(board[0].x + 15, board[0].y + 5+i);
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 16, board[0].y + 5+i };
+		pos++;
+		GoToXY(board[0].x + 16, board[0].y + 5+i);
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 16, board[0].y + 5 +i};
+		pos++;
+	}
+	GoToXY(board[0].x + 16, board[0].y + 9);
+	for (int i = 0; i < 26; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 16+i, board[0].y + 9 };
+		pos++;
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		GoToXY(board[0].x + 40, board[0].y + 9 + i);
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 40, board[0].y + 9 + i };
+		pos++;
+		GoToXY(board[0].x + 41, board[0].y + 9 + i);
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 41, board[0].y + 9 + i };
+		pos++;
+	}
+	GoToXY(board[0].x + 41, board[0].y + 13);
+	for (int i = 0; i < 36; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 41 + i, board[0].y + 13 };
+		pos++;
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		GoToXY(board[0].x + 40, board[0].y + 9 + i);
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 40, board[0].y + 9 + i };
+		pos++;
+		GoToXY(board[0].x + 41, board[0].y + 9 + i);
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 41, board[0].y + 9 + i };
+		pos++;
+	}
+	GoToXY(board[0].x + 41, board[0].y + 13);
+	for (int i = 0; i < 26; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 41 + i, board[0].y + 13 };
+		pos++;
+	}
 }
 int MapLevel4() {
 

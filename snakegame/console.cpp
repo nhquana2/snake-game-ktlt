@@ -165,7 +165,7 @@ void DrawSnakeAndFood(const char* str) {
 			cout << str[(i % len)];
 		}
 		GoToXY(0, 0);
-		cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX;
+		cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX << " " << SIZE_SNAKE << " ";
 	}
 }
 
@@ -238,3 +238,11 @@ void Pause()
 	cout << "Press any key to continue, or press L to save game";
 }
 
+void PostPauseDraw() {
+	for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i) {
+		GoToXY(obstacles[i].x, obstacles[i].y);
+		cout << '\xb2';
+	}
+	if (!(WIN_POINT.x == 0 && WIN_POINT.y == 0)) DrawGate();
+	DrawBigFood();
+}
