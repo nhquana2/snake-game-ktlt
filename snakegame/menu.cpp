@@ -2,6 +2,58 @@
 
 using namespace std;
 
+void InitMainButtons() {
+	main_button[0].st = { 80, 12 };
+	main_button[0].width = 20;
+	main_button[0].height = 3;
+	main_button[0].text_st = { 86, 13 };
+	main_button[0].text_value = "NEW GAME";
+
+	main_button[1].st = { 80, 16 };
+	main_button[1].width = 20;
+	main_button[1].height = 3;
+	main_button[1].text_st = { 86, 17 };
+	main_button[1].text_value = "LOAD GAME";
+
+	main_button[2].st = { 80, 20 };
+	main_button[2].width = 20;
+	main_button[2].height = 3;
+	main_button[2].text_st = { 86, 21 };
+	main_button[2].text_value = "SETTINGS";
+
+	main_button[3].st = { 80, 24 };
+	main_button[3].width = 20;
+	main_button[3].height = 3;
+	main_button[3].text_st = { 86, 25 };
+	main_button[3].text_value = "ABOUT";
+
+	main_button[4].st = { 80, 28 };
+	main_button[4].width = 20;
+	main_button[4].height = 3;
+	main_button[4].text_st = { 85, 29 };
+	main_button[4].text_value = "LEADERBOARD";
+
+	main_button[5].st = { 80, 32 };
+	main_button[5].width = 20;
+	main_button[5].height = 3;
+	main_button[5].text_st = { 86, 33 };
+	main_button[5].text_value = "EXIT";
+}
+
+void InitSoundButtons() {
+	sound_button[0].st = { 30, 21 };
+	sound_button[0].width = 20;
+	sound_button[0].height = 3;
+	sound_button[0].text_st = { 39, 22 };
+	sound_button[0].text_value = "ON";
+
+	sound_button[1].st = { 30, 25 };
+	sound_button[1].width = 20;
+	sound_button[1].height = 3;
+	sound_button[1].text_st = { 38, 26 };
+	sound_button[1].text_value = "OFF";
+}
+
 void ToggleNormalStateButton(BUTTON a) {
 	SetConsoleColor(DefaultBgColor, DefaultBgColor);
 	FillRectangle(a.st.x, a.st.y, a.width, a.height);
@@ -31,7 +83,7 @@ void DrawMenu() {
 	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGHT_CONSOLE - 9 - 1);
 
 
-	for (int i = 0; i < 5; ++i) {
+	for (int i = 0; i < 6; ++i) {
 		ToggleNormalStateButton(main_button[i]);
 	}
 
@@ -81,4 +133,10 @@ void DrawSettingsScreen() {
 	for (int i = 0; i < 2; ++i) {
 		ToggleNormalStateButton(sound_button[i]);
 	}
+}
+
+void DrawLeaderBoardScreen() {
+	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
+	GoToXY(10, 12);
+	cout << "Leaderboard";
 }

@@ -80,7 +80,7 @@ struct BUTTON {
 	string text_value;
 };
 
-extern BUTTON main_button[5];
+extern BUTTON main_button[6];
 extern BUTTON sound_button[2];
 
 
@@ -139,9 +139,12 @@ void DrawMenu();
 void DrawAboutScreen();
 void DrawSettingsScreen();
 void DrawLoadGameScreen();
+void DrawLeaderBoardScreen();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 void ToggleNormalStateButton(BUTTON a);
 void ToggleActiveStateButton(BUTTON a);
+void InitMainButtons();
+void InitSoundButtons();
 
 //Logic and game engine functions
 void playSound(const std::string& soundFile);

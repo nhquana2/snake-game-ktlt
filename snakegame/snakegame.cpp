@@ -15,7 +15,7 @@ POINT spray;
 POINT WIN_POINT;
 POINT TELE_POINT_1, TELE_POINT_2;
 PLAYER Player[100];
-BUTTON main_button[5];
+BUTTON main_button[6];
 BUTTON sound_button[2];
 
 mutex mtx;
@@ -39,6 +39,7 @@ int SCREEN = 2;
 //SCREEN 3: ABOUT
 //SCREEN 4: SETTINGS
 //SCREEN 5: LOAD GAME
+//SCREEN 6: LEADERBOARD
 int MENU_OPTION = 0; //current option, change with W and S key
 int SOUND_OPTION = 0;
 int SIZE_BOARD;
@@ -61,7 +62,6 @@ using namespace std;
 
 int main()
 {
-    //cout << char(-32);
     
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -70,50 +70,15 @@ int main()
     playSound("assets\\sounds\\intro");
     FixConsoleWindow();
     ResetData();
+
+    ///Initiate buttons
+    InitMainButtons();
+    InitSoundButtons();
+
     //First draw menu
-    main_button[0].st = { 80, 12 };
-    main_button[0].width = 20;
-    main_button[0].height = 3;
-    main_button[0].text_st = { 86, 13 };
-    main_button[0].text_value = "NEW GAME";
-
-    main_button[1].st = { 80, 16 };
-    main_button[1].width = 20;
-    main_button[1].height = 3;
-    main_button[1].text_st = { 86, 17 };
-    main_button[1].text_value = "LOAD GAME";
-
-    main_button[2].st = { 80, 20 };
-    main_button[2].width = 20;
-    main_button[2].height = 3;
-    main_button[2].text_st = { 86, 21 };
-    main_button[2].text_value = "SETTINGS";
-
-    main_button[3].st = { 80, 24 };
-    main_button[3].width = 20;
-    main_button[3].height = 3;
-    main_button[3].text_st = { 86, 25 };
-    main_button[3].text_value = "ABOUT";
-
-    main_button[4].st = { 80, 28 };
-    main_button[4].width = 20;
-    main_button[4].height = 3;
-    main_button[4].text_st = { 86, 29 };
-    main_button[4].text_value = "EXIT";
-
-    sound_button[0].st = { 30, 21 };
-    sound_button[0].width = 20;
-    sound_button[0].height = 3;
-    sound_button[0].text_st = { 39, 22 };
-    sound_button[0].text_value = "ON";
-
-    sound_button[1].st = { 30, 25 };
-    sound_button[1].width = 20;
-    sound_button[1].height = 3;
-    sound_button[1].text_st = { 38, 26 };
-    sound_button[1].text_value = "OFF";
-
     DrawMenu();
+
+    //State when the game has not been started
     STATE = 0;
     
     thread t1(ThreadFunc);
@@ -135,13 +100,13 @@ int main()
                     DrawMenu();
                 }*/
                 if (PAUSE && temp == 'L') {
-                    GoToXY(18, 24);
+                    GoToXY(18, 30);
                     cout << "File name to save: ";
                     string fileName;
                     cin >> fileName;
                     fileName = "./data/" + fileName;
                     SaveGame(fileName);
-                    GoToXY(18, 25);
+                    GoToXY(18, 31);
                     cout << "File save successful, press any key to continue playing";
                     continue;
                 }
@@ -215,23 +180,21 @@ int main()
             }
             if (temp == 'W') {
                 ToggleNormalStateButton(main_button[MENU_OPTION]);
-                MENU_OPTION = (MENU_OPTION - 1 + 5) % 5; // 5 options in total
+                MENU_OPTION = (MENU_OPTION - 1 + 6) % 6; // 6 options in total
                 ToggleActiveStateButton(main_button[MENU_OPTION]);
-                //DrawMenu();
             }
             if (temp == 'S') {
                 ToggleNormalStateButton(main_button[MENU_OPTION]);
-                MENU_OPTION = (MENU_OPTION + 1) % 5; // 5 options in total
+                MENU_OPTION = (MENU_OPTION + 1) % 6; 
                 ToggleActiveStateButton(main_button[MENU_OPTION]);
-                //DrawMenu();
             }
             //temp == 13 -> Enter key
             if (temp == 'N' || (temp == 13 && MENU_OPTION == 0)) {
                 SCREEN = 1; //SCREEN: PLAY
                 StartGame();
             }
-            if (temp == 'Q' || (temp == 13 && MENU_OPTION == 4)) {
-                STATE = 2; //break ThreadFunc
+            if (temp == 'Q' || (temp == 13 && MENU_OPTION == 5)) {
+                STATE = 2; //used to break ThreadFunc
                 t1.join();
                 return 0;
             }
@@ -247,9 +210,14 @@ int main()
                 SCREEN = 5;
                 DrawLoadGameScreen();
             }
+            if (temp == 13 && MENU_OPTION == 4) {
+                SCREEN = 6;
+                DrawLeaderBoardScreen();
+            }
         }
 
-        if (SCREEN == 5) { //Load game
+        //SCREEN: LOAD GAME
+        if (SCREEN == 5) { 
 
             temp = toupper(_getch());
 
@@ -308,6 +276,7 @@ int main()
             }
         }
 
+        //SCREEN: ABOUT
         if (SCREEN == 3) {
 
             temp = toupper(_getch());
@@ -316,6 +285,22 @@ int main()
                 temp = toupper(_getch()); continue;
             }
             
+            //Back
+            if (temp == 'B') {
+                SCREEN = 2;
+                DrawMenu();
+            }
+        }
+
+        //SCREEN: LEADERBOARD
+        if (SCREEN == 6) {
+
+            temp = toupper(_getch());
+
+            if (temp == char(-32)) {
+                temp = toupper(_getch()); continue;
+            }
+
             //Back
             if (temp == 'B') {
                 SCREEN = 2;
