@@ -165,7 +165,10 @@ void ThreadFunc();
 void Eat();
 void ProcessDead();
 void InitGate();//return size of gate
-
+void PrintAuCup(int x, int y);
+void PrintAgCup(int x, int y);
+void PrintCuCup(int x, int y);
+void PrintCup(int x, int y);
 //map
 bool CheckTouchObstacles(int x, int y);//parameters is the coordinate of the head of the snake
 void DeleteMap();

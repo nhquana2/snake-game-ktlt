@@ -7,7 +7,7 @@ using namespace std;
 void playSound(const string& soundFile) {
 	if (SOUND == 1) {
 		wstring wideSoundFile(soundFile.begin(), soundFile.end()); //convert regular string to wide string
-		PlaySound(wideSoundFile.c_str(), NULL, SND_FILENAME | SND_ASYNC); //convert string to wchar_t*
+		PlaySound(wideSoundFile.c_str(), NULL, SND_FILENAME | SND_ASYNC ); //convert string to wchar_t*
 	}
 	else PlaySound(NULL, NULL, 0);
 }

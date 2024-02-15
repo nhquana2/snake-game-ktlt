@@ -84,3 +84,306 @@ void PrintTextFile(int x, int y, const char* FileName) {
 		GoToXY(x, y);
 	}
 }
+
+
+void PrintAuCup(int x, int y) {
+	ifstream ifs;
+	int st_x = x, st_y = y, cnst_x = x, cnst_y = y;
+	ifs.open("assets/ascii/rankAu.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	char c;
+	SetConsoleColor(Black, DefaultBgColor);
+	while (ifs.get(c)) {
+		if (c != ' ' && c != 'v') {
+			SetConsoleColor(Black, LightYellow);
+			cout << c;
+		}
+		else if (c == 'v') {
+			SetConsoleColor(LightYellow, LightYellow);
+			cout << '\xb2';
+		}
+		
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank5.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(BrightWhite, LightYellow);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank2.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(Yellow, LightYellow);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank4.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(DefaultBgColor, Black);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank6.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(Yellow, Black);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank7.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(Black, DefaultBgColor);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+
+	GoToXY(cnst_x + 12, cnst_y + 13);
+	SetConsoleColor(Red, LightYellow);
+	cout << "hello";
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+
+	
+}
+
+void PrintAgCup(int x, int y) {
+	ifstream ifs;
+	int st_x = x, st_y = y, cnst_x = x, cnst_y = y;
+	ifs.open("assets/ascii/rankAg.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	char c;
+	SetConsoleColor(Black, DefaultBgColor);
+	while (ifs.get(c)) {
+		if (c != ' ' && c != 'b') {
+			SetConsoleColor(Black, BrightWhite);
+			cout << c;
+		}
+		else if (c == 'b') {
+			SetConsoleColor(BrightWhite,BrightWhite);
+			cout << '\xb2';
+		}
+
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank5.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(White, BrightWhite);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank2.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(White, BrightWhite);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank4.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(DefaultBgColor, Black);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank6.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(White, Black);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank7.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(Black, DefaultBgColor);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	GoToXY(cnst_x + 12, cnst_y + 13);
+	SetConsoleColor(Red, BrightWhite);
+	cout << "hello";
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+
+
+}
+void PrintCuCup(int x, int y) {
+	ifstream ifs;
+	int st_x = x, st_y = y, cnst_x = x, cnst_y = y;
+	ifs.open("assets/ascii/rankCu.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	char c;
+	SetConsoleColor(Black, DefaultBgColor);
+	while (ifs.get(c)) {
+		if (c != ' ' && c != 'd') {
+			SetConsoleColor(Black, LightRed);
+			cout << c;
+		}
+		else if (c == 'd') {
+			SetConsoleColor(LightRed, LightRed);
+			cout << '\xb2';
+		}
+
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank5.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(BrightWhite, LightRed);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank2.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(Red, LightRed);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank4.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(DefaultBgColor, Black);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank6.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(Red, Black);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	ifs.close();
+
+	x = cnst_x;
+	y = cnst_y;
+	ifs.open("assets/ascii/rank7.txt");
+	if (!ifs.good()) return;
+	GoToXY(x, y);
+	SetConsoleColor(Black, DefaultBgColor);
+	while (ifs.get(c)) {
+		if (c != ' ') cout << c;
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+	GoToXY(cnst_x + 12, cnst_y + 13);
+	SetConsoleColor(BrightWhite, LightRed);
+	cout << "hello";
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+
+
+}
+void PrintCup(int x, int y) {
+	PrintAgCup(x, y);
+	PrintCuCup(x+60, 13);
+	PrintAuCup(x+30, y);
+}

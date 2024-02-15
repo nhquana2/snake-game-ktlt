@@ -112,6 +112,15 @@ void DrawMenu() {
 		//cout << Player[i].name << " ";
 	//}
 	//PrintTextFile(70, 10, "assets\\ascii\\paused.txt");
+
+	
+	
+	GoToXY(0, 0);
+	for (int i = 0; i < 16; i++) {
+		SetConsoleColor(i, DefaultBgColor);
+		cout << "m";
+	}
+	
 }
 
 void DrawAboutScreen() {
@@ -143,4 +152,9 @@ void DrawLeaderBoardScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
 	GoToXY(10, 12);
 	cout << "Leaderboard";
+	
+	PrintCup(70, 13);
+
+	
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
