@@ -125,6 +125,10 @@ void DrawLoadGameScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
 	GoToXY(10, 12);
 	cout << "Load game";
+	GoToXY(10, 13);
+	for (int i = 0; i < save_entries.size() - 1; ++i) {
+		cout << save_entries[i] << " ";
+	}
 }
 
 void DrawSettingsScreen() {

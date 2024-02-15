@@ -17,6 +17,7 @@ POINT TELE_POINT_1, TELE_POINT_2;
 PLAYER Player[100];
 BUTTON main_button[6];
 BUTTON sound_button[2];
+vector<string> save_entries;
 
 mutex mtx;
 condition_variable cvThread;
@@ -208,6 +209,7 @@ int main()
                 DrawSettingsScreen();
             }
             if (temp == 13 && MENU_OPTION == 1) {
+                LoadSaveEntries(); //prepare save entries data
                 SCREEN = 5;
                 DrawLoadGameScreen();
             }

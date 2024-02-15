@@ -137,3 +137,19 @@ void LoadGame(string FileName) {
 	STATE = 1; //Start running Thread
 
 }
+
+void LoadSaveEntries() {
+	save_entries.resize(0);
+	string directory_path = "data";
+	try {
+		// Iterate over the files in the directory
+		for (const auto& entry : fs::directory_iterator(directory_path)) {
+			if (entry.is_regular_file()) {
+				save_entries.push_back(entry.path().filename().string());
+			}
+		}
+	}
+	catch (const fs::filesystem_error& e) {
+		std::cerr << "Error accessing directory: " << e.what() << std::endl;
+	}
+}

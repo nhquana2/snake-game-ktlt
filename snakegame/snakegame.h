@@ -12,6 +12,10 @@
 #include <mutex>
 #include <condition_variable>
 #include <atomic>
+#include <filesystem>
+
+namespace fs = std::filesystem;
+
 
 //Color
 #define Black 0
@@ -71,6 +75,7 @@ extern POINT bullet_up, bullet_down;
 extern POINT spray;
 extern POINT TELE_POINT_1, TELE_POINT_2;
 extern PLAYER Player[100];
+extern vector<string> save_entries;
 
 //Menu button struct
 struct BUTTON {
@@ -178,6 +183,7 @@ void BlinkingMap();
 //Save/Load game processing
 void SaveGame(string FileName);
 void LoadGame(string FileName);
+void LoadSaveEntries();
 
 //graphics
 void PrintTextFile(int x, int y, const char* FileName);
