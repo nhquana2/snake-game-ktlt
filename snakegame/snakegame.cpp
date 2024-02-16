@@ -78,6 +78,7 @@ int main()
 
     //First draw menu
     DrawMenu();
+    ToggleActiveStateButton(main_button[MENU_OPTION]);
 
     //State when the game has not been started
     STATE = 0;
@@ -241,6 +242,7 @@ int main()
             if (temp == 'B') {
                 SCREEN = 2;
                 DrawMenu();
+                ToggleActiveStateButton(main_button[MENU_OPTION]);
             }
 
         }
@@ -276,6 +278,7 @@ int main()
             if (temp == 'B') {
                 SCREEN = 2;
                 DrawMenu();
+                ToggleActiveStateButton(main_button[MENU_OPTION]);
             }
         }
 
@@ -292,6 +295,7 @@ int main()
             if (temp == 'B') {
                 SCREEN = 2;
                 DrawMenu();
+                ToggleActiveStateButton(main_button[MENU_OPTION]);
             }
         }
 
@@ -308,6 +312,7 @@ int main()
             if (temp == 'B') {
                 SCREEN = 2;
                 DrawMenu();
+                ToggleActiveStateButton(main_button[MENU_OPTION]);
             }
         }
     }

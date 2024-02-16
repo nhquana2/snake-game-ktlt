@@ -112,14 +112,6 @@ void DrawMenu() {
 		//cout << Player[i].name << " ";
 	//}
 	//PrintTextFile(70, 10, "assets\\ascii\\paused.txt");
-
-	
-	
-	GoToXY(0, 0);
-	for (int i = 0; i < 16; i++) {
-		SetConsoleColor(i, DefaultBgColor);
-		cout << "m";
-	}
 	
 }
 
