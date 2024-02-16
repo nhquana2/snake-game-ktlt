@@ -235,11 +235,11 @@ int MapLevel4() {
 	{
 		GoToXY(72, 19 - i);
 		cout << '\xb2';
-		obstacles[pos] = { 54, 19 - i };
+		obstacles[pos] = { 72, 19 - i };
 		pos++;
 		GoToXY(73, 19 - i);
 		cout << '\xb2';
-		obstacles[pos] = { 53, 19 - i };
+		obstacles[pos] = { 73, 19 - i };
 		pos++;
 	}
 	for (int i = 0; i < 8; i++)
@@ -257,11 +257,11 @@ int MapLevel4() {
 	{
 		GoToXY(72, 27 + i);
 		cout << '\xb2';
-		obstacles[pos] = { 54, 27 + i };
+		obstacles[pos] = { 72, 27 + i };
 		pos++;
 		GoToXY(73, 27 + i);
 		cout << '\xb2';
-		obstacles[pos] = { 53, 27 + i };
+		obstacles[pos] = { 73, 27 + i };
 		pos++;
 	}
 	return pos;

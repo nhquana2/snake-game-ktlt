@@ -384,6 +384,6 @@ void PrintCuCup(int x, int y) {
 }
 void PrintCup(int x, int y) {
 	PrintAgCup(x, y);
-	PrintCuCup(x+60, 13);
+	PrintCuCup(x+60, y);
 	PrintAuCup(x+30, y);
 }

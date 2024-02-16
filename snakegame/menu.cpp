@@ -125,9 +125,23 @@ void DrawMenu() {
 
 void DrawAboutScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	GoToXY(10, 12);
-	cout << "About us";
-
+	GoToXY(70,13);
+	PrintSnakeTextFile(116, 13, "assets\\ascii\\swagsnake.txt");
+	GoToXY(10, 13);
+	cout << "Programming Techniques HCMUS 23CLC01";
+	GoToXY(10, 15);
+	cout << "Members:";
+	GoToXY(10, 16);
+	cout << "23127106 - Nguyen Hoang Quan";
+	GoToXY(10, 17);
+	cout << "23127332 - Tran Tien Cuong";
+	GoToXY(10, 18);
+	cout << "23127231 - To Thao My";
+	GoToXY(10, 19);
+	cout << "23127106 - Nguyen Hoang Quan";
+	GoToXY(10, 20);
+	cout << "23127458 - Thai Hoang Phuc";
+	//PrintFile(116, 13, "assets\\ascii\\change.txt");
 }
 
 void DrawLoadGameScreen() {
@@ -153,7 +167,7 @@ void DrawLeaderBoardScreen() {
 	GoToXY(10, 12);
 	cout << "Leaderboard";
 	
-	PrintCup(70, 13);
+	PrintCup(82, 15);
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
