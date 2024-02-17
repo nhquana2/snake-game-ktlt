@@ -17,6 +17,7 @@ POINT TELE_POINT_1, TELE_POINT_2;
 PLAYER Player[100];
 BUTTON main_button[6];
 BUTTON sound_button[2];
+BUTTON color_button[4];
 vector<string> save_entries;
 
 mutex mtx;
@@ -56,14 +57,17 @@ int previousAction_tmp;
 int BLINKING_MAP;
 int TEXTINCONSOLE; //1 if text is in console (game over, ...)
 int DefaultTextColor = Black;
-int DefaultBgColor = LightAqua;
+int DefaultBgColor = Black;
+int DefaultStatusColor = BrightWhite;
+int DefaultStatusTextColor = BrightWhite;
+int DefaultBoardGameColor = Gray;
+int DefaultMenuColor = BrightWhite;
 
 int PowerScore;
 using namespace std;
 
 int main()
 {
-    
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor

@@ -188,6 +188,7 @@ void ResetData() {
 }
 
 void StartGame() {
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	playSound("assets\\sounds\\startGame");
 	//BoardInit(5, 10);
 	WIN_POINT.x = 0;
@@ -196,19 +197,21 @@ void StartGame() {
 	system("cls"); //Clear screen
 	BoardInit(3, 9, WIDTH_BOARD, HEIGHT_BOARD);
 	ResetData(); // Intialize original data
+	ColorBoardGame();
+	ColorStatusBoard();
 	DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
 
 	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_CONSOLE - board[0].y - (HEIGHT_CONSOLE - board[0].y - HEIGHT_BOARD)); // Draw status board
 	DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
-
+	
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
 	//SetConsoleColor(Green, Black);
 	PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 	//SetConsoleColor(White, Black);
 
-	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 1.txt");
-	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt");
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 1.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt", DefaultStatusColor);
 	STATE = 1; //Start running Thread
 
 	
@@ -281,7 +284,7 @@ void Eat() {
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
 		
-		PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 11, "assets\\ascii\\food3.txt");
+		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 11, "assets\\ascii\\food3.txt", DefaultStatusColor);
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
 			InitGate();
@@ -294,8 +297,8 @@ void Eat() {
 	else
 	{
 		FOOD_INDEX++;
-		if (FOOD_INDEX == 1) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt");
-		if (FOOD_INDEX == 2) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 11, "assets\\ascii\\food2.txt");
+		if (FOOD_INDEX == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt", DefaultStatusColor);
+		if (FOOD_INDEX == 2) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 11, "assets\\ascii\\food2.txt", DefaultStatusColor);
 	}
 }
 bool Suicide(int x,int y)//return true if the snake touch its body

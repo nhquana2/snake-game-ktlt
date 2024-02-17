@@ -54,10 +54,36 @@ void InitSoundButtons() {
 	sound_button[1].text_value = "OFF";
 }
 
+void InitColorButtons() {
+	color_button[0].st = { 30, 21 };
+	color_button[0].width = 20;
+	color_button[0].height = 3;
+	color_button[0].text_st = { 39, 22 };
+	color_button[0].text_value = "BLACK";
+
+	color_button[1].st = { 30, 25 };
+	color_button[1].width = 20;
+	color_button[1].height = 3;
+	color_button[1].text_st = { 38, 26 };
+	color_button[1].text_value = "GREEN";
+
+	color_button[2].st = { 30, 25 };
+	color_button[2].width = 20;
+	color_button[2].height = 3;
+	color_button[2].text_st = { 38, 26 };
+	color_button[2].text_value = "BLUE";
+
+	color_button[3].st = { 30, 25 };
+	color_button[3].width = 20;
+	color_button[3].height = 3;
+	color_button[3].text_st = { 38, 26 };
+	color_button[3].text_value = "PINK";
+}
+
 void ToggleNormalStateButton(BUTTON a) {
-	SetConsoleColor(DefaultBgColor, DefaultBgColor);
+	SetConsoleColor(DefaultBgColor, DefaultMenuColor);
 	FillRectangle(a.st.x, a.st.y, a.width, a.height);
-	SetConsoleColor(DefaultTextColor, DefaultBgColor); //default colors
+	SetConsoleColor(DefaultTextColor, DefaultMenuColor); //default colors
 	DrawRectangle(a.st.x, a.st.y, a.width, a.height);
 	GoToXY(a.text_st.x, a.text_st.y);
 	cout << a.text_value;
@@ -65,10 +91,10 @@ void ToggleNormalStateButton(BUTTON a) {
 
 void ToggleActiveStateButton(BUTTON a) {
 	FillRectangle(a.st.x, a.st.y, a.width, a.height);
-	SetConsoleColor(DefaultBgColor, DefaultTextColor);
+	SetConsoleColor(DefaultMenuColor, DefaultTextColor);
 	GoToXY(a.text_st.x, a.text_st.y);
 	cout << a.text_value;
-	SetConsoleColor(DefaultTextColor, DefaultBgColor);  //default colors
+	SetConsoleColor(DefaultTextColor, DefaultMenuColor);  //default colors
 }
 
 
@@ -79,6 +105,14 @@ void DrawMenu() {
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
 	PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 
+	for (int i = 4; i < 3 + WIDTH_CONSOLE - 3 * 2; i++) {
+		for (int j = 9; j < 9 + HEIGHT_CONSOLE - 9 - 1; j++) {
+			GoToXY(i, j);
+			SetConsoleColor(Black, DefaultMenuColor);
+			cout << " ";
+		}
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	//Menu outside border
 	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGHT_CONSOLE - 9 - 1);
 
@@ -120,6 +154,7 @@ void DrawAboutScreen() {
 	GoToXY(70,13);
 	PrintSnakeTextFile(116, 13, "assets\\ascii\\swagsnake.txt");
 	GoToXY(10, 13);
+	SetConsoleColor(DefaultTextColor, DefaultMenuColor);
 	cout << "Programming Techniques HCMUS 23CLC01";
 	GoToXY(10, 15);
 	cout << "Members:";
@@ -133,6 +168,7 @@ void DrawAboutScreen() {
 	cout << "23127106 - Nguyen Hoang Quan";
 	GoToXY(10, 20);
 	cout << "23127458 - Thai Hoang Phuc";
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	//PrintFile(116, 13, "assets\\ascii\\change.txt");
 }
 
@@ -152,6 +188,10 @@ void DrawSettingsScreen() {
 	for (int i = 0; i < 2; ++i) {
 		ToggleNormalStateButton(sound_button[i]);
 	}
+	for (int i = 0; i < 4; ++i) {
+		ToggleNormalStateButton(color_button[i]);
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
 
 void DrawLeaderBoardScreen() {

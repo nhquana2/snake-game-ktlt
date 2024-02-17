@@ -154,6 +154,7 @@ void DrawGate(){
 }
 
 void DrawSnakeAndFood(const char* str) {
+	SetConsoleColor(DefaultTextColor, DefaultBoardGameColor);
 	if (!(TEXTINCONSOLE))
 	{
 		GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
@@ -163,13 +164,16 @@ void DrawSnakeAndFood(const char* str) {
 		{
 			GoToXY(snake[i].x, snake[i].y);
 			cout << str[(i % len)];
+			SetConsoleColor(Black, LightYellow);
 		}
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		GoToXY(0, 0);
 		cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX << " " << SIZE_SNAKE << " ";
 	}
 }
 
 void PrintStatusBoard() {
+	SetConsoleColor(Black, DefaultStatusColor);
 	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 6);
 	cout << "Time: " << TIME << endl;
 	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 7);
@@ -182,6 +186,7 @@ void PrintStatusBoard() {
 	else if (PowerScore == 1) cout << "Power:[\xFE\xFE\xFA\xFA\xFA\xFA]";
 	else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
 	else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
 
 void PrintFile(int x, int y, const char* FileName) {
@@ -245,4 +250,28 @@ void PostPauseDraw() {
 	}
 	if (!(WIN_POINT.x == 0 && WIN_POINT.y == 0)) DrawGate();
 	DrawBigFood();
+}
+
+//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
+void ColorStatusBoard() {
+	for (int i = 126; i < 126+ WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x; i++) {
+		for (int j = 9; j < 9 + HEIGHT_BOARD; j++) {
+			GoToXY(i, j);
+			SetConsoleColor(DefaultStatusTextColor, DefaultStatusColor);
+			cout << " ";
+		}
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+}
+
+//DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
+void ColorBoardGame() {
+	for (int i = 4; i < 3 + WIDTH_BOARD; i++) {
+		for (int j = 9; j < 9 + HEIGHT_BOARD; j++) {
+			GoToXY(i, j);
+			SetConsoleColor(Black, DefaultBoardGameColor);
+			cout << " ";
+		}
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }

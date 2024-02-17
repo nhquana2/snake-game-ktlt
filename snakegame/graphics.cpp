@@ -43,6 +43,7 @@ void PrintSnakeTextFile(int x, int y, const char* FileName) {
 			SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		}
 		else if (c == ' ') {
+			SetConsoleColor(DefaultTextColor, DefaultMenuColor);
 			cout << c;
 		}
 		else {
@@ -79,6 +80,28 @@ void PrintTextFile(int x, int y, const char* FileName) {
 			SetConsoleColor(Yellow, DefaultBgColor);
 			cout << c;
 			SetConsoleColor(DefaultTextColor, DefaultBgColor);
+		}
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+}
+
+void PrintColorFile(int x, int y, const char* FileName, int background) {
+	ifstream ifs;
+	int st_x = x, st_y = y;
+	ifs.open(FileName);
+	if (!ifs.good()) return;
+	char c;
+	GoToXY(x, y);
+	while (ifs.get(c)) {
+		if (c == ' ') {
+			SetConsoleColor(Black, background);
+			cout << c;
+		}
+		else {
+		SetConsoleColor(Black, background);
+		cout << c;
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		}
 		if (c != '\n') ++x; else ++y, x = st_x;
 		GoToXY(x, y);

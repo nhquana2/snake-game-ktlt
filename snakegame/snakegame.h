@@ -87,6 +87,7 @@ struct BUTTON {
 
 extern BUTTON main_button[6];
 extern BUTTON sound_button[2];
+extern BUTTON color_button[4];
 
 
 extern int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
@@ -100,6 +101,7 @@ extern int PAUSE;
 extern int SCREEN;
 extern int MENU_OPTION;
 extern int SOUND_OPTION;
+extern int COLOR_OPTION;
 extern int SIZE_BOARD;
 extern int LEVEL;
 extern int TIME;
@@ -113,6 +115,10 @@ extern int previousAction;
 extern int BLINKING_MAP;
 extern int DefaultTextColor;
 extern int DefaultBgColor;
+extern int DefaultStatusColor;
+extern int DefaultStatusTextColor;
+extern int DefaultBoardGameColor;
+extern int DefaultMenuColor;
 extern int PowerScore;
 extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
 
@@ -139,6 +145,8 @@ void DrawBulletDown();
 void DrawTelePoint(int x1, int y1, int x2, int y2);
 void Pause();
 void PostPauseDraw();
+void ColorStatusBoard();
+void ColorBoardGame();
 
 //Menu-related functions
 void DrawMenu();
@@ -191,6 +199,7 @@ void LoadSaveEntries();
 //graphics
 void PrintTextFile(int x, int y, const char* FileName);
 void PrintSnakeTextFile(int x, int y, const char* FileName);
+void PrintColorFile(int x, int y, const char* FileName, int background);
 
 //highscore
 int LeaderBoard(PLAYER Player[]);
