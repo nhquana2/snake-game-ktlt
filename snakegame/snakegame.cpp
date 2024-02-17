@@ -57,11 +57,9 @@ int previousAction_tmp;
 int BLINKING_MAP;
 int TEXTINCONSOLE; //1 if text is in console (game over, ...)
 int DefaultTextColor = Black;
-int DefaultBgColor = Black;
-int DefaultStatusColor = BrightWhite;
+int DefaultBgColor = LightAqua;
+int DefaultStatusColor = Yellow;
 int DefaultStatusTextColor = BrightWhite;
-int DefaultBoardGameColor = Gray;
-int DefaultMenuColor = BrightWhite;
 
 int PowerScore;
 using namespace std;

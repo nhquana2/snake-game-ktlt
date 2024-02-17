@@ -43,7 +43,7 @@ void PrintSnakeTextFile(int x, int y, const char* FileName) {
 			SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		}
 		else if (c == ' ') {
-			SetConsoleColor(DefaultTextColor, DefaultMenuColor);
+			SetConsoleColor(DefaultTextColor, DefaultBgColor);
 			cout << c;
 		}
 		else {

@@ -197,7 +197,6 @@ void StartGame() {
 	system("cls"); //Clear screen
 	BoardInit(3, 9, WIDTH_BOARD, HEIGHT_BOARD);
 	ResetData(); // Intialize original data
-	ColorBoardGame();
 	ColorStatusBoard();
 	DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
 

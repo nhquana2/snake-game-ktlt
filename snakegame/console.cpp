@@ -154,7 +154,6 @@ void DrawGate(){
 }
 
 void DrawSnakeAndFood(const char* str) {
-	SetConsoleColor(DefaultTextColor, DefaultBoardGameColor);
 	if (!(TEXTINCONSOLE))
 	{
 		GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
@@ -258,18 +257,6 @@ void ColorStatusBoard() {
 		for (int j = 9; j < 9 + HEIGHT_BOARD; j++) {
 			GoToXY(i, j);
 			SetConsoleColor(DefaultStatusTextColor, DefaultStatusColor);
-			cout << " ";
-		}
-	}
-	SetConsoleColor(DefaultTextColor, DefaultBgColor);
-}
-
-//DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
-void ColorBoardGame() {
-	for (int i = 4; i < 3 + WIDTH_BOARD; i++) {
-		for (int j = 9; j < 9 + HEIGHT_BOARD; j++) {
-			GoToXY(i, j);
-			SetConsoleColor(Black, DefaultBoardGameColor);
 			cout << " ";
 		}
 	}

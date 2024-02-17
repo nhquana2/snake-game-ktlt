@@ -117,8 +117,6 @@ extern int DefaultTextColor;
 extern int DefaultBgColor;
 extern int DefaultStatusColor;
 extern int DefaultStatusTextColor;
-extern int DefaultBoardGameColor;
-extern int DefaultMenuColor;
 extern int PowerScore;
 extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
 
@@ -146,7 +144,6 @@ void DrawTelePoint(int x1, int y1, int x2, int y2);
 void Pause();
 void PostPauseDraw();
 void ColorStatusBoard();
-void ColorBoardGame();
 
 //Menu-related functions
 void DrawMenu();
