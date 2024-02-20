@@ -97,6 +97,28 @@ void ToggleActiveStateButton(BUTTON a) {
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);  //default colors
 }
 
+void ToggleNormalStateSaveEntry(SAVE_ENTRY a, int pos) {
+	SetConsoleColor(DefaultBgColor, DefaultBgColor);
+	FillRectangle(a.st.x, a.st.y, 20, 1);
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	GoToXY(a.st.x, a.st.y);
+	cout << pos + 1 << ". ";
+	GoToXY(a.st.x + 5, a.st.y);
+	cout << a.text_value;
+	SetConsoleColor(DefaultTextColor, DefaultBgColor); //default colors
+}
+
+void ToggleActiveStateSaveEntry(SAVE_ENTRY a, int pos) {
+	//SetConsoleColor(DefaultBgColor, DefaultBgColor);
+	FillRectangle(a.st.x, a.st.y, 20, 1);
+	SetConsoleColor(DefaultBgColor, DefaultTextColor);
+	GoToXY(a.st.x, a.st.y);
+	cout << pos + 1 << ". ";
+	GoToXY(a.st.x + 5, a.st.y);
+	cout << a.text_value;
+	SetConsoleColor(DefaultTextColor, DefaultBgColor); //default colors
+}
+
 
 void DrawMenu() {
 	system("cls");
@@ -155,8 +177,11 @@ void DrawLoadGameScreen() {
 	GoToXY(10, 12);
 	cout << "Load game";
 	GoToXY(10, 13);
-	for (int i = 0; i < save_entries.size() - 1; ++i) {
-		cout << save_entries[i] << " ";
+	for (int i = 0; i < save_entries.size(); ++i) {
+		GoToXY(save_entries[i].st.x, save_entries[i].st.y);
+		cout << i+1 << ". ";
+		GoToXY(save_entries[i].st.x + 5, save_entries[i].st.y);
+		cout << save_entries[i].text_value;
 	}
 }
 

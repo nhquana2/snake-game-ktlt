@@ -56,6 +56,12 @@ struct PLAYER {
 	int SCORE;
 };
 extern int NUMBER_OF_PLAYERS;
+
+struct SAVE_ENTRY {
+	POINT st; //top left point
+	string text_value;
+};
+
 extern mutex mtx;
 extern condition_variable cvThread;
 extern condition_variable cvMain;
@@ -75,7 +81,7 @@ extern POINT bullet_up, bullet_down;
 extern POINT spray;
 extern POINT TELE_POINT_1, TELE_POINT_2;
 extern PLAYER Player[100];
-extern vector<string> save_entries;
+extern vector<SAVE_ENTRY> save_entries;
 
 //Menu button struct
 struct BUTTON {
@@ -100,6 +106,7 @@ extern int STATE; // State of snake: dead or alive
 extern int PAUSE;
 extern int SCREEN;
 extern int MENU_OPTION;
+extern int LOADGAME_OPTION;
 extern int SOUND_OPTION;
 extern int COLOR_OPTION;
 extern int SIZE_BOARD;
@@ -154,6 +161,8 @@ void DrawLeaderBoardScreen();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 void ToggleNormalStateButton(BUTTON a);
 void ToggleActiveStateButton(BUTTON a);
+void ToggleNormalStateSaveEntry(SAVE_ENTRY a, int pos);
+void ToggleActiveStateSaveEntry(SAVE_ENTRY a, int pos);
 void InitMainButtons();
 void InitSoundButtons();
 
