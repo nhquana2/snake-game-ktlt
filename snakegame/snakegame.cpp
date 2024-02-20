@@ -44,6 +44,7 @@ int SCREEN = 2;
 //SCREEN 6: LEADERBOARD
 int MENU_OPTION = 0; //current option, change with W and S key
 int SOUND_OPTION = 0;
+int COLOR_OPTION = 0;
 int SIZE_BOARD;
 int TIME;
 int SCORE;
@@ -60,7 +61,7 @@ int DefaultTextColor = Black;
 int DefaultBgColor = LightAqua;
 int DefaultStatusColor = Yellow;
 int DefaultStatusTextColor = BrightWhite;
-int SnakeColor = Green;
+int SnakeColor = Blue;
 
 int NUMBER_OF_PLAYERS;
 int PowerScore;
@@ -79,6 +80,7 @@ int main()
     ///Initiate buttons
     InitMainButtons();
     InitSoundButtons();
+    InitColorButtons();
 
     //First draw menu
     DrawMenu();
@@ -260,6 +262,7 @@ int main()
                 temp = toupper(_getch()); continue;
             }
 
+            //Options for sounds
             if (temp == 'W') {
                 ToggleNormalStateButton(sound_button[SOUND_OPTION]);
                 SOUND_OPTION = (SOUND_OPTION - 1 + 2) % 2;
@@ -267,9 +270,22 @@ int main()
             }
             if (temp == 'S') {
                 ToggleNormalStateButton(sound_button[SOUND_OPTION]);
-                SOUND_OPTION = (SOUND_OPTION + 1) % 2; 
+                SOUND_OPTION = (SOUND_OPTION + 1) % 2;
                 ToggleActiveStateButton(sound_button[SOUND_OPTION]);
             }
+
+            ////Options for snake's colors
+            if (temp == 'A') {
+                ToggleNormalStateButton(color_button[COLOR_OPTION]);
+                COLOR_OPTION = (COLOR_OPTION - 1 + 4) % 4;
+                ToggleActiveStateButton(color_button[COLOR_OPTION]);
+            }
+            if (temp == 'D') {
+                ToggleNormalStateButton(color_button[COLOR_OPTION]);
+                COLOR_OPTION = (COLOR_OPTION + 1) % 4;
+                ToggleActiveStateButton(color_button[COLOR_OPTION]);
+            }
+
             if (temp == 13 && SOUND_OPTION == 0) {
                 SOUND = 1;
                 PrintFile(59, 14, "assets\\ascii\\soundon.txt");
@@ -279,6 +295,19 @@ int main()
                 SOUND = 0;
                 PlaySound(NULL, NULL, 0);
                 PrintFile(59, 14, "assets\\ascii\\soundoff.txt");
+            }
+
+            if (temp == 13 && COLOR_OPTION == 0) {
+                SnakeColor = Blue;
+            }
+            if (temp == 13 && COLOR_OPTION == 1) {
+                SnakeColor = Green;
+            }
+            if (temp == 13 && SOUND_OPTION == 2) {
+                SnakeColor = Yellow;
+            }
+            if (temp == 13 && SOUND_OPTION == 3) {
+                SnakeColor = LightPurple;
             }
 
             if (temp == 'B') {

@@ -117,6 +117,7 @@ extern int DefaultTextColor;
 extern int DefaultBgColor;
 extern int DefaultStatusColor;
 extern int DefaultStatusTextColor;
+extern int SnakeColor;
 extern int PowerScore;
 extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
 
@@ -156,6 +157,7 @@ void ToggleNormalStateButton(BUTTON a);
 void ToggleActiveStateButton(BUTTON a);
 void InitMainButtons();
 void InitSoundButtons();
+void InitColorButtons();
 
 //Logic and game engine functions
 void playSound(const std::string& soundFile);

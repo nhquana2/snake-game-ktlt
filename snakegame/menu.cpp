@@ -44,39 +44,39 @@ void InitSoundButtons() {
 	sound_button[0].st = { 30, 21 };
 	sound_button[0].width = 20;
 	sound_button[0].height = 3;
-	sound_button[0].text_st = { 39, 22 };
+	sound_button[0].text_st = { 30+10-1, 22 };
 	sound_button[0].text_value = "ON";
 
 	sound_button[1].st = { 30, 25 };
 	sound_button[1].width = 20;
 	sound_button[1].height = 3;
-	sound_button[1].text_st = { 38, 26 };
+	sound_button[1].text_st = { 30+10-2, 26 };
 	sound_button[1].text_value = "OFF";
 }
 
 void InitColorButtons() {
-	color_button[0].st = { 30, 21 };
+	color_button[0].st = { 75, 25 };
 	color_button[0].width = 20;
 	color_button[0].height = 3;
-	color_button[0].text_st = { 39, 22 };
-	color_button[0].text_value = "BLACK";
+	color_button[0].text_st = { 75+10-2, 26};
+	color_button[0].text_value = "BLUE";
 
-	color_button[1].st = { 30, 25 };
+	color_button[1].st = { 100, 25 };
 	color_button[1].width = 20;
 	color_button[1].height = 3;
-	color_button[1].text_st = { 38, 26 };
+	color_button[1].text_st = { 100+10-3, 26 };
 	color_button[1].text_value = "GREEN";
 
-	color_button[2].st = { 30, 25 };
+	color_button[2].st = { 125, 25 };
 	color_button[2].width = 20;
 	color_button[2].height = 3;
-	color_button[2].text_st = { 38, 26 };
-	color_button[2].text_value = "BLUE";
+	color_button[2].text_st = { 125+10-3, 26 };
+	color_button[2].text_value = "YELLOW";
 
-	color_button[3].st = { 30, 25 };
+	color_button[3].st = { 150, 25 };
 	color_button[3].width = 20;
 	color_button[3].height = 3;
-	color_button[3].text_st = { 38, 26 };
+	color_button[3].text_st = { 150+10-2, 26 };
 	color_button[3].text_value = "PINK";
 }
 
@@ -163,11 +163,12 @@ void DrawLoadGameScreen() {
 void DrawSettingsScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
 	PrintFile(23, 14, "assets\\ascii\\sounds.txt");
+	if (SOUND == 1)	PrintFile(59, 14, "assets\\ascii\\soundon.txt");
 	for (int i = 0; i < 2; ++i) {
 		ToggleNormalStateButton(sound_button[i]);
 	}
-	for (int i = 0; i < 4; ++i) {
-		ToggleNormalStateButton(color_button[i]);
+	for (int j = 0; j < 4; ++j) {
+		ToggleNormalStateButton(color_button[j]);
 	}
 }
 
