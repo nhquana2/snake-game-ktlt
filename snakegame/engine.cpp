@@ -233,9 +233,9 @@ void ProcessDead() {
 	GoToXY(WIDTH_CONSOLE/2, HEIGHT_CONSOLE/2);
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
 	TEXTINCONSOLE = 1;
-	PrintTextFile(22, 11, "assets\\ascii\\gameover.txt");
+	PrintTextFile(22, 10, "assets\\ascii\\gameover.txt");
 	BLINKING_MAP = 0;
-	GoToXY(18, 29);
+	GoToXY(18, 34);
 	cout << "Dead! Press O to save highscore";
 	//SetConsoleColor(Yellow, Black);
 	//cout<<"Dead, press Y to continue!";
@@ -252,10 +252,8 @@ void LevelUp() {
 	SPEED += 5;
 
 	if (LEVEL == 1){
-		DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
-		NUMBER_OF_OBSTACLES = MapLevel1();
-		//MapLevel5();
-
+		DrawTelePoint(board[0].x, board[0].y + 23, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
+		NUMBER_OF_OBSTACLES = MapLevel5();
 	}
 	if (LEVEL == 2){
 		DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
@@ -274,6 +272,7 @@ void LevelUp() {
 	//GenerateBigFood();
 }
 void Eat() {
+
 	playSound("assets\\sounds\\eat");
 	if (!Spraying) snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (Spraying) snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];

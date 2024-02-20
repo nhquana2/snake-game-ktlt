@@ -116,7 +116,7 @@ int MapLevel3()
 	}
 	return pos;
 }
-void MapLevel5() {
+int MapLevel5() {
 	int pos = 0;
 	GoToXY(board[0].x + 1, board[0].y + 4);
 	for (int i = 0; i < 16; i++)
@@ -129,7 +129,7 @@ void MapLevel5() {
 	{
 		GoToXY(board[0].x + 15, board[0].y + 5+i);
 		cout << '\xb2';
-		obstacles[pos] = { board[0].x + 16, board[0].y + 5+i };
+		obstacles[pos] = { board[0].x + 15, board[0].y + 5+i };
 		pos++;
 		GoToXY(board[0].x + 16, board[0].y + 5+i);
 		cout << '\xb2';
@@ -161,24 +161,45 @@ void MapLevel5() {
 		obstacles[pos] = { board[0].x + 41 + i, board[0].y + 13 };
 		pos++;
 	}
-	for (int i = 0; i < 5; i++)
+/*	for (int i = 0; i < 5; i++)
 	{
-		GoToXY(board[0].x + 40, board[0].y + 9 + i);
+		GoToXY(board[0].x + 76, board[0].y + 9 + i);
 		cout << '\xb2';
-		obstacles[pos] = { board[0].x + 40, board[0].y + 9 + i };
+		obstacles[pos] = { board[0].x + 76, board[0].y + 9 + i };
 		pos++;
-		GoToXY(board[0].x + 41, board[0].y + 9 + i);
+		GoToXY(board[0].x + 75, board[0].y + 9 + i);
 		cout << '\xb2';
-		obstacles[pos] = { board[0].x + 41, board[0].y + 9 + i };
+		obstacles[pos] = { board[0].x + 75, board[0].y + 9 + i };
 		pos++;
-	}
-	GoToXY(board[0].x + 41, board[0].y + 13);
+	}*/
+	GoToXY(board[0].x + 76, board[0].y + 13);
 	for (int i = 0; i < 26; i++)
 	{
 		cout << '\xb2';
-		obstacles[pos] = { board[0].x + 41 + i, board[0].y + 13 };
+		obstacles[pos] = { board[0].x + 76 + i, board[0].y + 13 };
 		pos++;
 	}
+	for (int i = 0; i < 9; i++)
+	{
+		GoToXY(board[0].x + 100, board[0].y + 13 + i);
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 100, board[0].y + 13 + i };
+		pos++;
+		GoToXY(board[0].x + 101, board[0].y + 13 + i);
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 101, board[0].y + 13 + i };
+		pos++;
+	}
+	GoToXY(board[0].x + 102, board[0].y + 21);
+	
+	for (int i = 0; i < 17; i++)
+	{
+		cout << '\xb2';
+		obstacles[pos] = { board[0].x + 102 + i, board[0].y + 21 };
+		pos++;
+	}
+	GoToXY(0, 0);
+	return pos;
 }
 int MapLevel4() {
 

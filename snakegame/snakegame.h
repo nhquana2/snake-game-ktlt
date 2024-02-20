@@ -70,7 +70,7 @@ extern atomic<bool> threadPaused;
 //Global variables (definition using extern keyword)
 extern int NUMBER_OF_OBSTACLES; //number of obstacles is updated every time the map function is called
 extern const char* MSSV;
-extern POINT obstacles[500];
+extern POINT obstacles[1000];
 extern POINT gate[WIDTH_GATE * HEIGHT_GATE-1];//-1 because of the win point
 extern POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 extern POINT snake[MAX_SIZE_SNAKE];
@@ -195,7 +195,7 @@ int MapLevel3();
 int MapLevel4();
 void DrawMap();
 
-void MapLevel5();
+int MapLevel5();
 //animations
 bool SnakeGoThroughGate();
 void BlinkingMap();
