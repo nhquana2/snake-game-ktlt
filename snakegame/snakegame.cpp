@@ -317,44 +317,19 @@ int main()
                 SOUND = 1;
                 PrintFile(58, 14, "assets\\ascii\\soundon.txt");
                 playSound("assets\\sounds\\intro");
-                if (COLOR_OPTION == 0) {
-                    SnakeColor = Blue;
-                    IDColor = White;
-                }
-                else if (COLOR_OPTION == 1) {
-                    SnakeColor = Green;
-                    IDColor = White;
-                }
-                else if (COLOR_OPTION == 2) {
-                    SnakeColor = LightYellow;
-                    IDColor = Black;
-                }
-                else if (COLOR_OPTION == 3) {
-                    SnakeColor = LightPurple;
-                    IDColor = White;
-                }
+                if (COLOR_OPTION == 0) ChangeSnakeColor(Blue, White);
+                else if (COLOR_OPTION == 1) ChangeSnakeColor(Green, White);
+                else if (COLOR_OPTION == 2) ChangeSnakeColor(LightYellow, Black);
+                else if (COLOR_OPTION == 3) ChangeSnakeColor(LightPurple, White);
             }
-
             if (temp == 13 && SOUND_OPTION == 1) {
                 SOUND = 0;
                 PlaySound(NULL, NULL, 0);
                 PrintFile(58, 14, "assets\\ascii\\soundoff.txt");
-                if (COLOR_OPTION == 0) {
-                    SnakeColor = Blue;
-                    IDColor = White;
-                }
-                else if (COLOR_OPTION == 1) {
-                    SnakeColor = Green;
-                    IDColor = White;
-                }
-                else if (COLOR_OPTION == 2) {
-                    SnakeColor = LightYellow;
-                    IDColor = Black;
-                }
-                else if (COLOR_OPTION == 3) {
-                    SnakeColor = LightPurple;
-                    IDColor = White;
-                }
+                if (COLOR_OPTION == 0) ChangeSnakeColor(Blue, White);
+                else if (COLOR_OPTION == 1) ChangeSnakeColor(Green, White);
+                else if (COLOR_OPTION == 2) ChangeSnakeColor(LightYellow, Black);
+                else if (COLOR_OPTION == 3) ChangeSnakeColor(LightPurple, White);
             }
 
             if (temp == 'B') {

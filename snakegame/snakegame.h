@@ -209,6 +209,7 @@ void LoadSaveEntries();
 void PrintTextFile(int x, int y, const char* FileName);
 void PrintSnakeTextFile(int x, int y, const char* FileName);
 void PrintColorFile(int x, int y, const char* FileName, int background);
+void ChangeSnakeColor(int id, int snake);
 
 //highscore
 int LeaderBoard(PLAYER Player[]);

@@ -410,3 +410,8 @@ void PrintCup(int x, int y) {
 	PrintCuCup(x+60, y);
 	PrintAuCup(x+30, y);
 }
+
+void ChangeSnakeColor(int snake, int id) {
+	SnakeColor = snake;
+	IDColor = id;
+}
