@@ -82,23 +82,25 @@ void LoadGame(string FileName) {
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
 	PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 
-	PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt");
+	ColorStatusBoard();
 
-	if (LEVEL == 0) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 1.txt");
-	if (LEVEL == 1) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 2.txt");
-	if (LEVEL == 2) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 3.txt");
-	if (LEVEL == 3) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 4.txt");
-	if (LEVEL == 4) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 5.txt");
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt", DefaultStatusColor);
 
-	if (FOOD_INDEX == 1) PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt");
+	if (LEVEL == 0) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 1.txt", DefaultStatusColor);
+	if (LEVEL == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 2.txt", DefaultStatusColor);
+	if (LEVEL == 2) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 3.txt", DefaultStatusColor);
+	if (LEVEL == 3) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 4.txt", DefaultStatusColor);
+	if (LEVEL == 4) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 5.txt", DefaultStatusColor);
+
+	if (FOOD_INDEX == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt", DefaultStatusColor);
 	if (FOOD_INDEX == 2) {
-		PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt");
-		PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 11, "assets\\ascii\\food2.txt");
+		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt", DefaultStatusColor);
+		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 11, "assets\\ascii\\food2.txt", DefaultStatusColor);
 	}
 
 	if (!(WIN_POINT.x == 0 && WIN_POINT.y == 0)) {
 		DrawGate();
-		PrintFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 11, "assets\\ascii\\food3.txt");
+		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 11, "assets\\ascii\\food3.txt", DefaultStatusColor);
 	}
 
 	if (LEVEL == 1) {
@@ -142,10 +144,15 @@ void LoadSaveEntries() {
 	save_entries.resize(0);
 	string directory_path = "data";
 	try {
+		int pos = 0;
 		// Iterate over the files in the directory
 		for (const auto& entry : fs::directory_iterator(directory_path)) {
 			if (entry.is_regular_file()) {
-				save_entries.push_back(entry.path().filename().string());
+				SAVE_ENTRY se;
+				se.text_value = entry.path().filename().string();
+				se.st = { 10, 13 + pos };
+				save_entries.push_back(se);
+				++pos;
 			}
 		}
 	}

@@ -18,8 +18,8 @@ PLAYER Player[100];
 BUTTON main_button[6];
 BUTTON sound_button[2];
 BUTTON color_button[4];
-vector<string> save_entries;
-// test commit2
+vector<SAVE_ENTRY> save_entries;
+
 mutex mtx;
 condition_variable cvThread;
 condition_variable cvMain;
@@ -43,6 +43,7 @@ int SCREEN = 2;
 //SCREEN 5: LOAD GAME
 //SCREEN 6: LEADERBOARD
 int MENU_OPTION = 0; //current option, change with W and S key
+int LOADGAME_OPTION = 0;
 int SOUND_OPTION = 0;
 int COLOR_OPTION = 0;
 int SIZE_BOARD;
@@ -231,20 +232,45 @@ int main()
         //SCREEN: LOAD GAME
         if (SCREEN == 5) { 
 
+            ToggleActiveStateSaveEntry(save_entries[LOADGAME_OPTION], LOADGAME_OPTION);
+
             temp = toupper(_getch());
 
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
             }
 
-            if (temp == 'L') {
+            LoadSaveEntries(); //prepare save entries data
+            int num_se = save_entries.size();
+
+            if (temp == 'W') {
+                ToggleNormalStateSaveEntry(save_entries[LOADGAME_OPTION], LOADGAME_OPTION);
+                LOADGAME_OPTION = (LOADGAME_OPTION - 1 + num_se) % num_se; // num_se options in total
+                ToggleActiveStateSaveEntry(save_entries[LOADGAME_OPTION], LOADGAME_OPTION);
+            }
+            if (temp == 'S') {
+                ToggleNormalStateSaveEntry(save_entries[LOADGAME_OPTION], LOADGAME_OPTION);
+                LOADGAME_OPTION = (LOADGAME_OPTION + 1) % num_se;
+                ToggleActiveStateSaveEntry(save_entries[LOADGAME_OPTION], LOADGAME_OPTION);
+            }
+            //temp == 13 -> Enter key
+            if (temp == 13) {
+                string fileName;
+                fileName = "./data/" + save_entries[LOADGAME_OPTION].text_value;
+                SCREEN = 1;
+                LoadGame(fileName);
+            } 
+
+
+
+            /*if (temp == 'L') {
                 cout << "File name to load: ";
                 string fileName;
                 cin >> fileName;
                 fileName = "./data/" + fileName;
                 SCREEN = 1;
                 LoadGame(fileName);
-            }
+            }*/
 
             //Back
             if (temp == 'B') {
