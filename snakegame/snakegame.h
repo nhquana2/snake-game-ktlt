@@ -125,6 +125,7 @@ extern int DefaultBgColor;
 extern int DefaultStatusColor;
 extern int DefaultStatusTextColor;
 extern int SnakeColor;
+extern int IDColor;
 extern int PowerScore;
 extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
 

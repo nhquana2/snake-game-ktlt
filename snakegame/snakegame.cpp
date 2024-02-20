@@ -63,6 +63,7 @@ int DefaultBgColor = LightAqua;
 int DefaultStatusColor = Yellow;
 int DefaultStatusTextColor = BrightWhite;
 int SnakeColor = Blue;
+int IDColor = White;
 
 int NUMBER_OF_PLAYERS;
 int PowerScore;
@@ -314,26 +315,46 @@ int main()
 
             if (temp == 13 && SOUND_OPTION == 0) {
                 SOUND = 1;
-                PrintFile(59, 14, "assets\\ascii\\soundon.txt");
+                PrintFile(58, 14, "assets\\ascii\\soundon.txt");
                 playSound("assets\\sounds\\intro");
+                if (COLOR_OPTION == 0) {
+                    SnakeColor = Blue;
+                    IDColor = White;
+                }
+                else if (COLOR_OPTION == 1) {
+                    SnakeColor = Green;
+                    IDColor = White;
+                }
+                else if (COLOR_OPTION == 2) {
+                    SnakeColor = LightYellow;
+                    IDColor = Black;
+                }
+                else if (COLOR_OPTION == 3) {
+                    SnakeColor = LightPurple;
+                    IDColor = White;
+                }
             }
+
             if (temp == 13 && SOUND_OPTION == 1) {
                 SOUND = 0;
                 PlaySound(NULL, NULL, 0);
-                PrintFile(59, 14, "assets\\ascii\\soundoff.txt");
-            }
-
-            if (temp == 13 && COLOR_OPTION == 0) {
-                SnakeColor = Blue;
-            }
-            if (temp == 13 && COLOR_OPTION == 1) {
-                SnakeColor = Green;
-            }
-            if (temp == 13 && SOUND_OPTION == 2) {
-                SnakeColor = Yellow;
-            }
-            if (temp == 13 && SOUND_OPTION == 3) {
-                SnakeColor = LightPurple;
+                PrintFile(58, 14, "assets\\ascii\\soundoff.txt");
+                if (COLOR_OPTION == 0) {
+                    SnakeColor = Blue;
+                    IDColor = White;
+                }
+                else if (COLOR_OPTION == 1) {
+                    SnakeColor = Green;
+                    IDColor = White;
+                }
+                else if (COLOR_OPTION == 2) {
+                    SnakeColor = LightYellow;
+                    IDColor = Black;
+                }
+                else if (COLOR_OPTION == 3) {
+                    SnakeColor = LightPurple;
+                    IDColor = White;
+                }
             }
 
             if (temp == 'B') {

@@ -160,12 +160,12 @@ void DrawSnakeAndFood(const char* str) {
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) printf("F"); //Draw food only if gate has not been spawned
 		int len = strlen(str);
 		if (str == " ") SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		else SetConsoleColor(Black, SnakeColor);
+		else SetConsoleColor(IDColor, SnakeColor);
 		for (int i = 0; i < SIZE_SNAKE; i++)
 		{
 			GoToXY(snake[i].x, snake[i].y);
 			cout << str[(i % len)];
-			SetConsoleColor(Black, SnakeColor);
+			SetConsoleColor(IDColor, SnakeColor);
 		}
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		GoToXY(0, 0);
