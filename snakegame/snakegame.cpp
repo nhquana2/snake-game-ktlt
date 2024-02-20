@@ -60,6 +60,7 @@ int DefaultTextColor = Black;
 int DefaultBgColor = LightAqua;
 int DefaultStatusColor = Yellow;
 int DefaultStatusTextColor = BrightWhite;
+int SnakeColor = Green;
 
 int NUMBER_OF_PLAYERS;
 int PowerScore;
