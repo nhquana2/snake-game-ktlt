@@ -199,20 +199,21 @@ void DrawSettingsScreen() {
 
 void DrawLeaderBoardScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	GoToXY(10, 12);
+	GoToXY(13, 15);
 	cout << "USERNAME     SCORE     TIME PLAYED";
 	NUMBER_OF_PLAYERS = LeaderBoard(Player);
 	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
-		GoToXY(10, 12+i + 1);
+		GoToXY(13, 16+i + 1);
 		cout << Player[i].name; 
-		GoToXY(23,12+ i + 1);
+		GoToXY(26,16+ i + 1);
 		cout << Player[i].SCORE;
-		GoToXY(33, 12 + i + 1);
+		GoToXY(38, 16 + i + 1);
 		cout << Player[i].TIME;
 
 	}
-	
-	PrintCup(82, 15);
+	PrintFile(13, 11, "assets\\ascii\\leaderboard.txt");
+
+	PrintCup(82, 16);
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }

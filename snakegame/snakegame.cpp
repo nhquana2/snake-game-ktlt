@@ -4,7 +4,7 @@
 #include "snakegame.h"
 
 //Global variables
-POINT obstacles[500];
+POINT obstacles[1000];
 POINT gate[WIDTH_GATE * HEIGHT_GATE - 1];
 POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[MAX_SIZE_SNAKE];
@@ -162,14 +162,14 @@ int main()
                 }
                 if (!BLINKING_MAP && temp == 'O')
                 {
-                    GoToXY(18, 30);
+                    GoToXY(18, 35);
                     cout << "Username to save high score: ";
                     string username;
                     cin >> username;
                     ofstream output;
                     output.open("highscore.txt",ios::app);
                     output <<'\n'<< username << ',' << TIME << ',' << SCORE << '\n';
-                    GoToXY(18, 31);
+                    GoToXY(18, 36);
                     cout << "High score saved! Press any key to continue ";
                     continue;
 

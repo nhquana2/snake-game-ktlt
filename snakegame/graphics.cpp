@@ -201,9 +201,9 @@ void PrintAuCup(int x, int y) {
 		GoToXY(x, y);
 	}
 
-	GoToXY(cnst_x + 12, cnst_y + 13);
+	GoToXY(cnst_x + 12, cnst_y + 14);
 	SetConsoleColor(Red, LightYellow);
-	cout << "hello";
+	cout << Player[0].name;
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 
 	
@@ -300,9 +300,9 @@ void PrintAgCup(int x, int y) {
 		if (c != '\n') ++x; else ++y, x = st_x;
 		GoToXY(x, y);
 	}
-	GoToXY(cnst_x + 12, cnst_y + 13);
+	GoToXY(cnst_x + 12, cnst_y + 14);
 	SetConsoleColor(Red, BrightWhite);
-	cout << "hello";
+	cout << Player[1].name;
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 
 
@@ -398,9 +398,9 @@ void PrintCuCup(int x, int y) {
 		if (c != '\n') ++x; else ++y, x = st_x;
 		GoToXY(x, y);
 	}
-	GoToXY(cnst_x + 12, cnst_y + 13);
+	GoToXY(cnst_x + 12, cnst_y + 14);
 	SetConsoleColor(BrightWhite, LightRed);
-	cout << "hello";
+	cout << Player[2].name;
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 
 
@@ -409,4 +409,5 @@ void PrintCup(int x, int y) {
 	PrintAgCup(x, y);
 	PrintCuCup(x+60, y);
 	PrintAuCup(x+30, y);
+
 }
