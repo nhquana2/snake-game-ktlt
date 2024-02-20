@@ -656,7 +656,6 @@ void ThreadFunc() {
 
 		unique_lock<mutex> lock(mtx);
 		cvThread.wait(lock, [] { return !threadPaused;  });
-
 		if (STATE == 1) {
 			DrawSnakeAndFood(" ");
 			switch (MOVING) {

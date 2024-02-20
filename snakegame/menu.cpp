@@ -142,24 +142,12 @@ void DrawMenu() {
 }
 
 void DrawAboutScreen() {
+	//playSound("assets\\sounds\\aboutus");
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	GoToXY(70,13);
-	PrintSnakeTextFile(116, 13, "assets\\ascii\\swagsnake.txt");
-	GoToXY(10, 13);
-	cout << "Programming Techniques HCMUS 23CLC01";
-	GoToXY(10, 15);
-	cout << "Members:";
-	GoToXY(10, 16);
-	cout << "23127106 - Nguyen Hoang Quan";
-	GoToXY(10, 17);
-	cout << "23127332 - Tran Tien Cuong";
-	GoToXY(10, 18);
-	cout << "23127231 - To Thao My";
-	GoToXY(10, 19);
-	cout << "23127106 - Nguyen Hoang Quan";
-	GoToXY(10, 20);
-	cout << "23127458 - Thai Hoang Phuc";
-	//PrintFile(116, 13, "assets\\ascii\\change.txt");
+	PrintFile(8, 13, "assets\\ascii\\nhquan.txt");
+	PrintFile(8, 18, "assets\\ascii\\ttcuong.txt");
+	PrintFile(8, 23, "assets\\ascii\\ttmy.txt");
+	PrintFile(8, 28, "assets\\ascii\\thphuc.txt");
 }
 
 void DrawLoadGameScreen() {
@@ -186,7 +174,17 @@ void DrawSettingsScreen() {
 void DrawLeaderBoardScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
 	GoToXY(10, 12);
-	cout << "Leaderboard";
+	cout << "USERNAME     SCORE     TIME PLAYED";
+	NUMBER_OF_PLAYERS = LeaderBoard(Player);
+	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
+		GoToXY(10, 12+i + 1);
+		cout << Player[i].name; 
+		GoToXY(23,12+ i + 1);
+		cout << Player[i].SCORE;
+		GoToXY(33, 12 + i + 1);
+		cout << Player[i].TIME;
+
+	}
 	
 	PrintCup(82, 15);
 

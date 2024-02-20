@@ -61,6 +61,7 @@ int DefaultBgColor = LightAqua;
 int DefaultStatusColor = Yellow;
 int DefaultStatusTextColor = BrightWhite;
 
+int NUMBER_OF_PLAYERS;
 int PowerScore;
 using namespace std;
 
@@ -206,6 +207,8 @@ int main()
             if (temp == 13 && MENU_OPTION == 3) {
                 SCREEN = 3;
                 DrawAboutScreen();
+             //   playSound("assets\\sounds\\startGame");
+
             }
             if (temp == 13 && MENU_OPTION == 2) {
                 SCREEN = 4;

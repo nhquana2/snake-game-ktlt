@@ -55,7 +55,7 @@ struct PLAYER {
 	long long TIME;
 	int SCORE;
 };
-
+extern int NUMBER_OF_PLAYERS;
 extern mutex mtx;
 extern condition_variable cvThread;
 extern condition_variable cvMain;
