@@ -283,6 +283,8 @@ int main()
         }
 
         if (SCREEN == 4) {
+            ToggleActiveStateButton(sound_button[SOUND_OPTION]);
+            ToggleActiveStateButton(color_button[COLOR_OPTION]);
             temp = toupper(_getch());
 
             if (temp == char(-32)) {
