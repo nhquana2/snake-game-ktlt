@@ -110,13 +110,25 @@ int main()
                     DrawMenu();
                 }*/
                 if (PAUSE && temp == 'L') {
-                    GoToXY(18, 30);
-                    cout << "File name to save: ";
                     string fileName;
-                    cin >> fileName;
-                    fileName = "./data/" + fileName;
+                    
+                    //while to handle valid input file name (<= 15 chars)
+                    while (1) {
+                        GoToXY(18, 30);
+                        cout << "File name to save (without extension): ";
+                        GoToXY(18, 31);
+                        for (int i = 0; i < fileName.length(); ++i) cout << " "; //clear input buffer
+                        GoToXY(18, 31); 
+                        cin >> fileName;
+                        if (fileName.length() <= 15) break; else {
+                            GoToXY(18, 33);
+                            cout << "File name should be less than 15 characters, try again.";
+                        }
+                    }
+
+                    fileName = "./data/" + fileName + ".txt";
                     SaveGame(fileName);
-                    GoToXY(18, 31);
+                    GoToXY(18, 32);
                     cout << "File save successful, press any key to continue playing";
                     continue;
                 }
@@ -162,13 +174,26 @@ int main()
                 }
                 if (!BLINKING_MAP && temp == 'O')
                 {
-                    GoToXY(18, 35);
-                    cout << "Username to save high score: ";
+                   
                     string username;
-                    cin >> username;
+
+                    //while to handle valid input user name (<= 15 chars)
+                    while (1) {
+                        GoToXY(18, 35);
+                        cout << "Username to save high score: ";
+                        GoToXY(18, 36);
+                        for (int i = 0; i < username.length(); ++i) cout << " "; //clear input buffer
+                        GoToXY(18, 36);
+                        cin >> username;
+                        if (username.length() <= 15) break; else {
+                            GoToXY(18, 37);
+                            cout << "Username should be less than 15 characters, try again.";
+                        }
+                    }
+
                     ofstream output;
                     output.open("highscore.txt",ios::app);
-                    output <<'\n'<< username << ',' << TIME << ',' << SCORE << '\n';
+                    output << username << ',' << TIME << ',' << SCORE << '\n';
                     GoToXY(18, 36);
                     cout << "High score saved! Press any key to continue ";
                     continue;

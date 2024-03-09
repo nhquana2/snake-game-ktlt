@@ -13,6 +13,7 @@
 #include <condition_variable>
 #include <atomic>
 #include <filesystem>
+#include <iomanip>
 
 namespace fs = std::filesystem;
 

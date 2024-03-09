@@ -5,3 +5,6 @@ iuh,35,40
 oinog,55,50
 nmmn,20,50
 hi,150,0
+ok,450,0
+nhquan,650,0
+nhquan2,600,0

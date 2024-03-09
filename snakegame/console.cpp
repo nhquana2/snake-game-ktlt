@@ -165,7 +165,7 @@ void DrawSnakeAndFood(const char* str) {
 		{
 			GoToXY(snake[i].x, snake[i].y);
 			cout << str[(i % len)];
-			SetConsoleColor(IDColor, SnakeColor);
+			//SetConsoleColor(IDColor, SnakeColor);
 		}
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		GoToXY(0, 0);
