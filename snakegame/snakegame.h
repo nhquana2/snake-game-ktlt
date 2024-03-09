@@ -119,6 +119,7 @@ extern int OLD_SIZE_SNAKE;
 extern bool CHECK_SNAKE; 
 extern bool Flag_PoisonSpray;
 extern bool Spraying;
+extern bool Flag_emotions;
 extern int previousAction;
 extern int BLINKING_MAP;
 extern int DefaultTextColor;
@@ -129,7 +130,7 @@ extern int SnakeColor;
 extern int IDColor;
 extern int PowerScore;
 extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
-
+extern int emotions;
 //Utility
 int RandomInRange(int a, int b);
 void SetConsoleColor(int text, int background);
@@ -142,6 +143,7 @@ void GoToXY(int x, int y);
 void ClearScreen(int x1, int y1, int x2, int y2);
 void FillRectangle(int x1, int y1, int width, int height);
 void DrawRectangle(int x, int y, int width, int height);
+void DrawLineStatusBoard(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
 void DrawGate();
 void DrawSnakeAndFood(const char* str);
@@ -210,7 +212,9 @@ void LoadSaveEntries();
 void PrintTextFile(int x, int y, const char* FileName);
 void PrintSnakeTextFile(int x, int y, const char* FileName);
 void PrintColorFile(int x, int y, const char* FileName, int background);
+void PrintSnakeStatusTextFile(int x, int y, const char* FileName);
 void ChangeSnakeColor(int id, int snake);
+void PrintTitle2File(int x, int y, const char* FileName);
 
 //highscore
 int LeaderBoard(PLAYER Player[]);

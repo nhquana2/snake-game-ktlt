@@ -29,8 +29,8 @@ void DeleteMap(){
 	NUMBER_OF_OBSTACLES = 0;
 }
 int MapLevel1() {
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 2.txt", DefaultStatusColor);
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y -7, "assets\\ascii\\level 2.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 
 	int pos = 0;
 	GoToXY(board[0].x + 10, board[0].y + 4);
@@ -63,8 +63,8 @@ int MapLevel1() {
 }
 int MapLevel2()
 {
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 3.txt", DefaultStatusColor);
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y -7, "assets\\ascii\\level 3.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 
 	int pos = 0;
 	GoToXY(board[0].x + 5, board[0].y + 5);
@@ -101,8 +101,8 @@ int MapLevel2()
 }
 int MapLevel3()
 {
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 4.txt", DefaultStatusColor);
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y -7, "assets\\ascii\\level 4.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 
 	int pos;
 	int x, y;
@@ -203,7 +203,7 @@ int MapLevel5() {
 }
 int MapLevel4() {
 
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 
 	bullet_down.x = board[0].x + 60;
 	bullet_down.y = board[0].y + 1;

@@ -53,19 +53,20 @@ int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
 int LEVEL;
 int SOUND = 0;
-bool Flag_PoisonSpray, Spraying;
+bool Flag_PoisonSpray, Spraying, Flag_emotions;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
 int BLINKING_MAP;
 int TEXTINCONSOLE; //1 if text is in console (game over, ...)
 int DefaultTextColor = Black;
-int DefaultBgColor = LightAqua;
+int DefaultBgColor = 7;
 int DefaultStatusColor = Yellow;
 int DefaultStatusTextColor = BrightWhite;
-int SnakeColor = Blue;
+int SnakeColor = Red;
 int IDColor = White;
 
 int NUMBER_OF_PLAYERS;
+int emotions;
 int PowerScore;
 using namespace std;
 
@@ -78,7 +79,8 @@ int main()
     playSound("assets\\sounds\\intro");
     FixConsoleWindow();
     ResetData();
-
+    Flag_emotions = true;
+    emotions = 5;
     ///Initiate buttons
     InitMainButtons();
     InitSoundButtons();

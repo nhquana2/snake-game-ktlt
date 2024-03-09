@@ -201,18 +201,30 @@ void StartGame() {
 	DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
 
 	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_CONSOLE - board[0].y - (HEIGHT_CONSOLE - board[0].y - HEIGHT_BOARD)); // Draw status board
-	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
 	
-	int title_width, title_height;
-	GetWidthAndHeightFile("title.txt", title_width, title_height);
+	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
+
+	SetConsoleColor(Black, DefaultStatusColor);
+	DrawLineStatusBoard(board[0].x + WIDTH_BOARD + board[0].x, 1, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD+8);
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	//int title_width, title_height;
+	//GetWidthAndHeightFile("title.txt", title_width, title_height);
 	//SetConsoleColor(Green, Black);
-	PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
+	//PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
+	//DrawLineStatusBoard(2, 0, 122, 9);
+	PrintTitle2File(1,0, "assets\\ascii\\snakegamenew.txt");
+	//PrintTitleShadowFile(5, 2, "assets\\ascii\\snakegamenewshadow.txt");
+	//PrintTitleFile(5, 2, "assets\\ascii\\snakegamenew.txt");
+	
+	//PrintTitleShadowFixedFile(5, 2, "assets\\ascii\\snakegametitleshadowfixed.txt");
+	//PrintTitleShadowFixed_2File(5, 2, "assets\\ascii\\snaketitleshadow.txt");
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	//SetConsoleColor(White, Black);
 
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 1.txt", DefaultStatusColor);
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y -7, "assets\\ascii\\level 1.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 	STATE = 1; //Start running Thread
-
+	
 	
 }
 
@@ -233,10 +245,13 @@ void ProcessDead() {
 	GoToXY(WIDTH_CONSOLE/2, HEIGHT_CONSOLE/2);
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
 	TEXTINCONSOLE = 1;
-	PrintTextFile(22, 10, "assets\\ascii\\gameover.txt");
+	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
+	PrintTextFile(22, 11, "assets\\ascii\\gameover.txt");
 	BLINKING_MAP = 0;
 	GoToXY(18, 34);
 	cout << "Dead! Press O to save highscore";
+
+	
 	//SetConsoleColor(Yellow, Black);
 	//cout<<"Dead, press Y to continue!";
 	//SetConsoleColor(White, Black);
@@ -274,6 +289,8 @@ void LevelUp() {
 void Eat() {
 
 	playSound("assets\\sounds\\eat");
+	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\happysnake.txt");
+	emotions = 6;
 	if (!Spraying) snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (Spraying) snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
 	SCORE += 10;
@@ -282,7 +299,7 @@ void Eat() {
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
 		
-		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 11, "assets\\ascii\\food3.txt", DefaultStatusColor);
+		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 2, "assets\\ascii\\food3.txt", DefaultStatusColor);
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
 			InitGate();
@@ -295,8 +312,8 @@ void Eat() {
 	else
 	{
 		FOOD_INDEX++;
-		if (FOOD_INDEX == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt", DefaultStatusColor);
-		if (FOOD_INDEX == 2) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 11, "assets\\ascii\\food2.txt", DefaultStatusColor);
+		if (FOOD_INDEX == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 2, "assets\\ascii\\food1.txt", DefaultStatusColor);
+		if (FOOD_INDEX == 2) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 2, "assets\\ascii\\food2.txt", DefaultStatusColor);
 	}
 }
 bool Suicide(int x,int y)//return true if the snake touch its body
@@ -656,7 +673,9 @@ void ThreadFunc() {
 		unique_lock<mutex> lock(mtx);
 		cvThread.wait(lock, [] { return !threadPaused;  });
 		if (STATE == 1) {
+			
 			DrawSnakeAndFood(" ");
+			
 			switch (MOVING) {
 				case 'A':
 				MoveLeft();

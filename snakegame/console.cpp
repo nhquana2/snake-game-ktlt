@@ -134,7 +134,23 @@ void DrawRectangle(int x, int y, int width, int height) {
 	}
 	//SetConsoleColor(White, Black);
 }
-
+void DrawLineStatusBoard(int x, int y, int width, int height) {
+	//nhquan: print characters using code page 437
+	//SetConsoleColor(Red, Black);
+	
+	GoToXY(x, y); cout << '\xdb';
+	for (int i = 1; i < width - 1; i++) cout << '\xdf';
+	cout << '\xdb';
+	GoToXY(x, y + height - 1);
+	for (int i = 0; i < width; i++) cout << '\xdc';
+	for (int i = y + 1; i < y + height; ++i) {
+		GoToXY(x, i);
+		if (i != y + height - 1) cout << '\xba'; else cout << '\xdb';
+		GoToXY(x + width - 1, i);
+		if (i != y + height - 1) cout << '\xba'; else cout << '\xdb';
+	}
+	//SetConsoleColor(White, Black);
+}
 void DrawGate(){
 	//InitGate();
 	GoToXY(gate[0].x, gate[0].y);
@@ -163,6 +179,7 @@ void DrawSnakeAndFood(const char* str) {
 		else SetConsoleColor(IDColor, SnakeColor);
 		for (int i = 0; i < SIZE_SNAKE; i++)
 		{
+			//SetConsoleColor(RandomInRange(0, 15), DefaultBgColor);
 			GoToXY(snake[i].x, snake[i].y);
 			cout << str[(i % len)];
 			//SetConsoleColor(IDColor, SnakeColor);
@@ -175,19 +192,27 @@ void DrawSnakeAndFood(const char* str) {
 
 void PrintStatusBoard() {
 	SetConsoleColor(Black, DefaultStatusColor);
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 6);
+	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 5);
 	cout << "Time: " << TIME << endl;
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 7);
+	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 6);
 	cout << "Total score: " << SCORE << "  " << endl;
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 8);
-	if (PowerScore == 3) cout << "Skill: Available    ";
-	else cout << "Skill: Unavailable";
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 15);
+	
+	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 7);
 	if (PowerScore == 0) cout << "Power:[\xFA\xFA\xFA\xFA\xFA\xFA]";
 	else if (PowerScore == 1) cout << "Power:[\xFE\xFE\xFA\xFA\xFA\xFA]";
 	else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
 	else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
-	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	
+	if (emotions == 5) {
+		PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake4.txt");
+	}
+	else if (emotions == 15) {
+		PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake.txt");
+		emotions = 0;
+	}
+	emotions++;
+	
+	SetConsoleColor(Black, DefaultBgColor);
 }
 
 void PrintFile(int x, int y, const char* FileName) {
@@ -256,7 +281,7 @@ void PostPauseDraw() {
 //DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
 void ColorStatusBoard() {
 	for (int i = 126; i < 126+ WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x; i++) {
-		for (int j = 9; j < 9 + HEIGHT_BOARD; j++) {
+		for (int j = 2; j < 9 + HEIGHT_BOARD; j++) {
 			GoToXY(i, j);
 			SetConsoleColor(DefaultStatusTextColor, DefaultStatusColor);
 			cout << " ";
