@@ -106,7 +106,6 @@ void GenerateBigFood() {
 			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2 - BIG_FOOD_SIZE);
 			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2 - BIG_FOOD_SIZE);
 		} while (!IsValidFood(x, y));
-		//}
 		for (int i = 0; i < BIG_FOOD_SIZE; i++){
 			for (int j = 0; j < BIG_FOOD_SIZE; j++){
 				big_food[i][j] = { x + i, y + j };
@@ -114,14 +113,25 @@ void GenerateBigFood() {
 		}
 	} while (!CheckValidBigFood());
 }
-bool CheckValidGate(int size){
-	for (int i = 0; i < size; i++){
-		if (!IsValidFood(gate[i].x, gate[i].y)){
+bool CheckValidGate(int size) {
+	for (int i = 0; i < size; i++) {
+		if (!IsValidFood(gate[i].x, gate[i].y)) {
 			return false;
 		}
 	}
+	/*if (LEVEL >= 1) {
+			for (int i = 0; i < 5; i++) {
+				for (int j = 0; j < 5; j++) {
+				{
+						if ((gate[i].x = big_food[i][j].x) && (gate[i].y = big_food[i][j].y))
+							return false;
+					}
+				}
+	}*/
 	return true;
 }
+	
+
 
 //Create gate[] array, use to store coordinates 
 void InitGate(){//return size of gate
@@ -302,6 +312,9 @@ void Eat() {
 		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 2, "assets\\ascii\\food3.txt", DefaultStatusColor);
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
+			if (LEVEL >= 1) {
+				DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+			}
 			InitGate();
 			//SetConsoleColor(Yellow, Black);
 			DrawGate();
