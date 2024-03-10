@@ -38,7 +38,6 @@ void FixConsoleWindow() {
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	//cout << GetLargestConsoleWindowSize(hConsole).X; //max based on system
 
 	COORD bufferSize = { 180, 40 }; //120x30: default size
 	SMALL_RECT windowSize = { 0, 0, bufferSize.X - 1, bufferSize.Y - 1 };
@@ -120,7 +119,6 @@ void DrawBulletUp() {
 
 void DrawRectangle(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
-	//SetConsoleColor(Red, Black);
 	GoToXY(x, y); cout << '\xc9';
 	for (int i = 1; i < width-1; i++) cout << '\xcd';
 	cout << '\xbb';
@@ -132,7 +130,6 @@ void DrawRectangle(int x, int y, int width, int height) {
 		GoToXY(x + width - 1, i); 
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
 	}
-	//SetConsoleColor(White, Black);
 }
 void DrawLineStatusBoard(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
@@ -203,14 +200,14 @@ void PrintStatusBoard() {
 	else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
 	else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
 	
-	if (emotions == 5) {
+	if (emotionstime == 5) {
 		PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake4.txt");
 	}
-	else if (emotions == 15) {
+	else if (emotionstime == 15) {
 		PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake.txt");
-		emotions = 0;
+		emotionstime = 0;
 	}
-	emotions++;
+	emotionstime++;
 	
 	SetConsoleColor(Black, DefaultBgColor);
 }

@@ -130,7 +130,7 @@ extern int SnakeColor;
 extern int IDColor;
 extern int PowerScore;
 extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
-extern int emotions;
+extern int emotionstime;
 //Utility
 int RandomInRange(int a, int b);
 void SetConsoleColor(int text, int background);

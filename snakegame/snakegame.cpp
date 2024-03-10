@@ -66,7 +66,7 @@ int SnakeColor = Red;
 int IDColor = White;
 
 int NUMBER_OF_PLAYERS;
-int emotions;
+int emotionstime;
 int PowerScore;
 using namespace std;
 
@@ -80,7 +80,7 @@ int main()
     FixConsoleWindow();
     ResetData();
     Flag_emotions = true;
-    emotions = 5;
+    emotionstime = 5;
     ///Initiate buttons
     InitMainButtons();
     InitSoundButtons();

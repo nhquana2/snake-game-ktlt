@@ -234,18 +234,19 @@ void ExitGame(HANDLE t) {
 }
 
 void PauseGame(HANDLE t) {
-	//playSound("assets\\sounds\\pauseGame");
+	playSound("assets\\sounds\\pauseGame");
 	SuspendThread(t);
 }
 
 void ProcessDead() {
+	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
 	playSound("assets\\sounds\\deathSound");
 	STATE = 0;
 	BlinkingMap();
 	GoToXY(WIDTH_CONSOLE/2, HEIGHT_CONSOLE/2);
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
 	TEXTINCONSOLE = 1;
-	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
+	//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
 	PrintTextFile(22, 11, "assets\\ascii\\gameover.txt");
 	BLINKING_MAP = 0;
 	GoToXY(18, 34);
@@ -290,7 +291,7 @@ void Eat() {
 
 	playSound("assets\\sounds\\eat");
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\happysnake.txt");
-	emotions = 6;
+	emotionstime = 6;
 	if (!Spraying) snake[SIZE_SNAKE] = food[FOOD_INDEX];
 	if (Spraying) snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
 	SCORE += 10;
