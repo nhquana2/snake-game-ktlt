@@ -278,11 +278,11 @@ void LevelUp() {
 	SPEED += 5;
 
 	if (LEVEL == 1){
-		DrawTelePoint(board[0].x, board[0].y + 23, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
-		NUMBER_OF_OBSTACLES = MapLevel5();
+		
+		NUMBER_OF_OBSTACLES = MapLevel1();
 	}
 	if (LEVEL == 2){
-		DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
+		//DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
 		DeleteMap();//delete old map before switch to next map
 		NUMBER_OF_OBSTACLES = MapLevel2();
 	}
@@ -293,6 +293,12 @@ void LevelUp() {
 	if (LEVEL == 4) {
 		DeleteMap();
 		NUMBER_OF_OBSTACLES = MapLevel4();
+	}
+	if (LEVEL == 5) {
+		
+		DeleteMap();
+		DrawTelePoint(board[0].x, board[0].y + 23, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
+		NUMBER_OF_OBSTACLES = MapLevel5();
 	}
 	RespawnSnake();
 	//GenerateBigFood();
@@ -314,6 +320,7 @@ void Eat() {
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
 			if (LEVEL >= 1) {
+				if(big_food[0][0].x!=0&& big_food[0][0].y!= HEIGHT_CONSOLE + 2)
 				DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			}
 			InitGate();

@@ -105,20 +105,15 @@ void LoadGame(string FileName) {
 
 	if (LEVEL == 1) {
 		DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
-		//NUMBER_OF_OBSTACLES = MapLevel1();
 	}
 	if (LEVEL == 2) {
 		DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
-		//DeleteMap();
-		//NUMBER_OF_OBSTACLES = MapLevel2();
+
 	}
 	if (LEVEL == 3) {
-		//DeleteMap();
-		//NUMBER_OF_OBSTACLES = MapLevel3();
+
 	}
 	if (LEVEL == 4) {
-		//DeleteMap();
-		//NUMBER_OF_OBSTACLES = MapLevel4();
 		bullet_down.x = board[0].x + 60;
 		bullet_down.y = board[0].y + 1;
 		bullet_up.x = board[0].x + 61;
@@ -126,16 +121,7 @@ void LoadGame(string FileName) {
 	}
 
 	TEXTINCONSOLE = 0;
-
 	DrawMap();
-	/*GoToXY(0, 0);
-	cout << SIZE_SNAKE << "\n";
-	for (int i = 0; i < SIZE_SNAKE; ++i) {
-		cout << snake[i].x << " " << snake[i].y << "\n";
-	}*/
-	//DrawSnakeAndFood("*");
-	//Sleep(1000);
-
 	STATE = 1; //Start running Thread
 
 }
