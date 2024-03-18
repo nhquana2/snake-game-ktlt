@@ -80,27 +80,31 @@ void LoadGame(string FileName) {
 
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
-	PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
+	PrintTitle2File(1, 0, "assets\\ascii\\snakegamenew.txt");
 
 	ColorStatusBoard();
 
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 10, "assets\\ascii\\battery.txt", DefaultStatusColor);
+	SetConsoleColor(Black, DefaultStatusColor);
+	DrawLineStatusBoard(board[0].x + WIDTH_BOARD + board[0].x, 1, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD + 8);
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 
-	if (LEVEL == 0) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 1.txt", DefaultStatusColor);
-	if (LEVEL == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 2.txt", DefaultStatusColor);
-	if (LEVEL == 2) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 3.txt", DefaultStatusColor);
-	if (LEVEL == 3) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 4.txt", DefaultStatusColor);
-	if (LEVEL == 4) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y + 2, "assets\\ascii\\level 5.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 
-	if (FOOD_INDEX == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt", DefaultStatusColor);
+	if (LEVEL == 0) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 1.txt", DefaultStatusColor);
+	if (LEVEL == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 2.txt", DefaultStatusColor);
+	if (LEVEL == 2) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 3.txt", DefaultStatusColor);
+	if (LEVEL == 3) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 4.txt", DefaultStatusColor);
+	if (LEVEL == 4) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 5.txt", DefaultStatusColor);
+
+	if (FOOD_INDEX == 1) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 2, "assets\\ascii\\food1.txt", DefaultStatusColor);
 	if (FOOD_INDEX == 2) {
-		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 11, "assets\\ascii\\food1.txt", DefaultStatusColor);
-		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 11, "assets\\ascii\\food2.txt", DefaultStatusColor);
+		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y + 2, "assets\\ascii\\food1.txt", DefaultStatusColor);
+		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 2, "assets\\ascii\\food2.txt", DefaultStatusColor);
 	}
 
 	if (!(WIN_POINT.x == 0 && WIN_POINT.y == 0)) {
 		DrawGate();
-		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 11, "assets\\ascii\\food3.txt", DefaultStatusColor);
+		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 2, "assets\\ascii\\food3.txt", DefaultStatusColor);
 	}
 
 	if (LEVEL == 1) {
