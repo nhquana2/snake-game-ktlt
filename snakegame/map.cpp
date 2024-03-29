@@ -117,6 +117,9 @@ int MapLevel3()
 	return pos;
 }
 int MapLevel5() {
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 6.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
+
 	int pos = 0;
 	GoToXY(board[0].x + 1, board[0].y + 4);
 	for (int i = 0; i < 16; i++)
@@ -202,7 +205,7 @@ int MapLevel5() {
 	return pos;
 }
 int MapLevel4() {
-
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 5.txt", DefaultStatusColor);
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 
 	bullet_down.x = board[0].x + 60;
