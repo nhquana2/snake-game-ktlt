@@ -87,7 +87,7 @@ void PrintTitle2File(int x, int y, const char* FileName) {
 	GoToXY(x, y);
 	while (ifs.get(c)) {
 		if (c != ' ') {
-			SetConsoleColor(Red, DefaultBgColor);
+			SetConsoleColor(SnakeColor, DefaultBgColor);
 			cout << c;
 		}
 		if (c != '\n') ++x; else ++y, x = st_x;

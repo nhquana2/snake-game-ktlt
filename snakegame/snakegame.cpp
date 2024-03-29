@@ -79,7 +79,7 @@ int main()
     playSound("assets\\sounds\\intro");
     FixConsoleWindow();
     ResetData();
-    Flag_emotions = true;
+    //Flag_emotions = true;
     emotionstime = 5;
     ///Initiate buttons
     InitMainButtons();

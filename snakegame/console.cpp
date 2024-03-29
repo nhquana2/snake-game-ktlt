@@ -131,6 +131,20 @@ void DrawRectangle(int x, int y, int width, int height) {
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xbc';
 	}
 }
+void DrawRectangle_Ver2(int x, int y, int width, int height) {
+	
+	GoToXY(x, y); cout << '\xdc';
+	for (int i = 1; i < width - 1; i++) cout << '\xdc';
+	cout << '\xdc';
+	GoToXY(x, y + height - 1);
+	for (int i = 0; i < width; i++) cout << '\xdf';
+	for (int i = y + 1; i < y + height; ++i) {
+		GoToXY(x, i);
+		if (i != y + height - 1) cout << '\xdb'; else cout << '\xdf';
+		GoToXY(x + width - 1, i);
+		if (i != y + height - 1) cout << '\xdb'; else cout << '\xdf';
+	}
+}
 void DrawLineStatusBoard(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
 	//SetConsoleColor(Red, Black);
@@ -202,13 +216,14 @@ void PrintStatusBoard() {
 	else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
 	
 	if (emotionstime == 5) {
-		PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake4.txt");
+		PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\swagsnake.txt");
+		emotionstime = 4;
 	}
-	else if (emotionstime == 15) {
-		PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake.txt");
-		emotionstime = 0;
+	else if (emotionstime >5) {
+		//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake.txt");
+		emotionstime --;
 	}
-	emotionstime++;
+	//emotionstime++;
 	
 	SetConsoleColor(Black, DefaultBgColor);
 }

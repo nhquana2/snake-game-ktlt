@@ -179,8 +179,8 @@ void RespawnSnake(){
 	}
 }
 void ResetData() {
-	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 20; FOOD_INDEX = 0, 
-		WIDTH_CONSOLE = 180, HEIGHT_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 1;
+	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0, 
+	WIDTH_CONSOLE = 180, HEIGHT_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 1;
 	TIME = 0;
 	LEVEL = 0;
 	SCORE = 0;
@@ -208,7 +208,7 @@ void StartGame() {
 	BoardInit(3, 9, WIDTH_BOARD, HEIGHT_BOARD);
 	ResetData(); // Intialize original data
 	ColorStatusBoard();
-	DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
+	DrawRectangle_Ver2(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
 
 	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_CONSOLE - board[0].y - (HEIGHT_CONSOLE - board[0].y - HEIGHT_BOARD)); // Draw status board
 	
@@ -249,7 +249,7 @@ void PauseGame(HANDLE t) {
 }
 
 void ProcessDead() {
-	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
+	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\angrysnake.txt");
 	playSound("assets\\sounds\\deathSound");
 	STATE = 0;
 	BlinkingMap();
@@ -275,7 +275,7 @@ void LevelUp() {
 	DeleteGate();
 	FOOD_INDEX = 0;
 	LEVEL += 1;
-	SPEED += 5;
+	SPEED += 3;
 
 	if (LEVEL == 1){
 		
@@ -306,10 +306,14 @@ void LevelUp() {
 void Eat() {
 
 	playSound("assets\\sounds\\eat");
-	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\happysnake.txt");
-	emotionstime = 6;
+	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\happysnake.txt");
+	emotionstime = 10;
 	if (!Spraying) snake[SIZE_SNAKE] = food[FOOD_INDEX];
-	if (Spraying) snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
+	else {
+		if (spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)
+			snake[SIZE_SNAKE] = snake[SIZE_SNAKE - 1];
+		else snake[SIZE_SNAKE] = food[FOOD_INDEX];
+	};
 	SCORE += 10;
 	if (PowerScore < 3) PowerScore++;
 	++SIZE_SNAKE;

@@ -143,6 +143,7 @@ void GoToXY(int x, int y);
 void ClearScreen(int x1, int y1, int x2, int y2);
 void FillRectangle(int x1, int y1, int width, int height);
 void DrawRectangle(int x, int y, int width, int height);
+void DrawRectangle_Ver2(int x, int y, int width, int height);
 void DrawLineStatusBoard(int x, int y, int width, int height);
 void PrintFile(int x, int y, const char* FileName);
 void DrawGate();
