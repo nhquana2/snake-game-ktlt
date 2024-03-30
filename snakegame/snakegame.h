@@ -131,6 +131,8 @@ extern int IDColor;
 extern int PowerScore;
 extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
 extern int emotionstime;
+extern int skillState;
+extern int minisnake;
 //Utility
 int RandomInRange(int a, int b);
 void SetConsoleColor(int text, int background);
@@ -157,6 +159,7 @@ void DrawTelePoint(int x1, int y1, int x2, int y2);
 void Pause();
 void PostPauseDraw();
 void ColorStatusBoard();
+void FillAreaColor(int x1, int y1, int x2, int y2, int color);
 
 //Menu-related functions
 void DrawMenu();
@@ -216,6 +219,6 @@ void PrintColorFile(int x, int y, const char* FileName, int background);
 void PrintSnakeStatusTextFile(int x, int y, const char* FileName);
 void ChangeSnakeColor(int id, int snake);
 void PrintTitle2File(int x, int y, const char* FileName);
-
+void PrintColorFile_Ver2(int x, int y, const char* FileName, int colortext, int background);
 //highscore
 int LeaderBoard(PLAYER Player[]);

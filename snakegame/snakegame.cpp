@@ -68,6 +68,8 @@ int IDColor = White;
 int NUMBER_OF_PLAYERS;
 int emotionstime;
 int PowerScore;
+int skillState = 0;//0 is lock, 1 is unlock, eat big food to unlock
+int minisnake = 1;
 using namespace std;
 
 int main()
@@ -211,8 +213,21 @@ int main()
 
         //SCREEN: MAIN MENU
         if (SCREEN == 2) {
+            //Mini snake moving
+            if (minisnake == 1) {
+                FillAreaColor(30, 13, 70, 21, DefaultBgColor);
+                PrintColorFile_Ver2(30, 13, "assets\\ascii\\minisnake.txt", Red, DefaultBgColor);
+                minisnake = 2;
+                
+            }
+            else if(minisnake==2) {
+                FillAreaColor(30, 13, 70, 21, DefaultBgColor);
+                PrintColorFile_Ver2(30, 13, "assets\\ascii\\minisnake2.txt", Red, DefaultBgColor);
+                minisnake = 1;
+            }
+           
+            //PrintColorFile_Ver2(30, 20, "assets\\ascii\\minisnake2.txt", Red, DefaultBgColor);
             temp = toupper(_getch());
-
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
             }

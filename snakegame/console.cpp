@@ -63,6 +63,17 @@ void ClearScreen(int x1, int y1, int x2, int y2) {
 		}
 	}
 }
+void FillAreaColor(int x1, int y1, int x2, int y2,int color) {
+	SetConsoleColor(color, color);
+	GoToXY(x1, y1);
+	for (int j = y1; j <= y2; ++j) {
+		GoToXY(x1, j);
+		for (int i = x1; i <= x2; ++i) {
+			cout << " ";
+		}
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+}
 
 void FillRectangle(int x1, int y1, int width, int height) {
 	GoToXY(x1, y1);
@@ -94,9 +105,10 @@ void DrawBigFood()
 }
 
 void DrawBulletDown() {
-	if (bullet_down.y == board[0].y + HEIGHT_BOARD-1) bullet_down.y = board[0].y+1;
 	GoToXY(bullet_down.x, bullet_down.y);
 	cout << " ";
+	if (bullet_down.y == board[0].y + HEIGHT_BOARD-2) bullet_down.y = board[0].y+1;
+	
 	++bullet_down.y;
 	GoToXY(bullet_down.x, bullet_down.y);
 	cout << "\x1F";
@@ -106,9 +118,10 @@ void DrawBulletDown() {
 }
 
 void DrawBulletUp() {
-	if (bullet_up.y == board[0].y) bullet_up.y = board[0].y + HEIGHT_BOARD - 2;
 	GoToXY(bullet_up.x, bullet_up.y);
 	cout << " ";
+	if (bullet_up.y == board[0].y+1) bullet_up.y = board[0].y + HEIGHT_BOARD - 2;
+	
 	--bullet_up.y;
 	GoToXY(bullet_up.x, bullet_up.y);
 	cout << "\x1E";
@@ -203,29 +216,34 @@ void DrawSnakeAndFood(const char* str) {
 }
 
 void PrintStatusBoard() {
-	SetConsoleColor(Black, DefaultStatusColor);
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 5);
-	cout << "Time: " << TIME << endl;
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 6);
-	cout << "Total score: " << SCORE << "  " << endl;
-	
-	GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 7);
-	if (PowerScore == 0) cout << "Power:[\xFA\xFA\xFA\xFA\xFA\xFA]";
-	else if (PowerScore == 1) cout << "Power:[\xFE\xFE\xFA\xFA\xFA\xFA]";
-	else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
-	else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
-	
-	if (emotionstime == 5) {
-		PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\swagsnake.txt");
-		emotionstime = 4;
+	if (STATE == 1) {
+		SetConsoleColor(Black, DefaultStatusColor);
+		GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 5);
+		cout << "Time: " << TIME << endl;
+		GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 6);
+		cout << "Total score: " << SCORE << "  " << endl;
+
+		if (skillState == 1) {
+			GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 7);
+			if (PowerScore == 0) cout << "Power:[\xFA\xFA\xFA\xFA\xFA\xFA]";
+			else if (PowerScore == 1) cout << "Power:[\xFE\xFE\xFA\xFA\xFA\xFA]";
+			else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
+			else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
+		}
+		
+
+		if (emotionstime == 5) {
+			PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\swagsnake.txt");
+			emotionstime = 4;
+		}
+		else if (emotionstime > 5) {
+			//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake.txt");
+			emotionstime--;
+		}
+		//emotionstime++;
+
+		SetConsoleColor(Black, DefaultBgColor);
 	}
-	else if (emotionstime >5) {
-		//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake.txt");
-		emotionstime --;
-	}
-	//emotionstime++;
-	
-	SetConsoleColor(Black, DefaultBgColor);
 }
 
 void PrintFile(int x, int y, const char* FileName) {

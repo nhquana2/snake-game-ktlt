@@ -208,7 +208,21 @@ void PrintColorFile(int x, int y, const char* FileName, int background) {
 		GoToXY(x, y);
 	}
 }
-
+void PrintColorFile_Ver2(int x, int y, const char* FileName,int colortext, int background) {
+	ifstream ifs;
+	int st_x = x, st_y = y;
+	ifs.open(FileName);
+	if (!ifs.good()) return;
+	char c;
+	GoToXY(x, y);
+	while (ifs.get(c)) {
+		SetConsoleColor(colortext, background);
+		cout << c;
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
+		if (c != '\n') ++x; else ++y, x = st_x;
+		GoToXY(x, y);
+	}
+}
 
 void PrintAuCup(int x, int y) {
 	ifstream ifs;

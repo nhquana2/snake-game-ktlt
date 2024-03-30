@@ -77,6 +77,7 @@ bool CheckBigFood(int x,int y){//check if the snake touches the big food
 			if (x == big_food[i][j].x && y == big_food[i][j].y){
 				//SIZE_SNAKE+=3;//
 				//FOOD_INDEX++;
+				skillState = 1;
 				return true;
 			}
 		}
@@ -189,11 +190,11 @@ void ResetData() {
 	DeleteMap();
 	RespawnSnake();
 	GenerateFood();
-	
+	skillState = 0;//0 is lock
 	Flag_PoisonSpray = Spraying = false;
 	DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 	TELE_POINT_1.x = TELE_POINT_1.y = TELE_POINT_2.x = TELE_POINT_2.y = 0;
-
+	emotionstime = 5;
 	PowerScore = 0;
 }
 
@@ -249,6 +250,8 @@ void PauseGame(HANDLE t) {
 }
 
 void ProcessDead() {
+	
+	
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\angrysnake.txt");
 	playSound("assets\\sounds\\deathSound");
 	STATE = 0;
@@ -259,10 +262,11 @@ void ProcessDead() {
 	//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
 	PrintTextFile(22, 11, "assets\\ascii\\gameover.txt");
 	BLINKING_MAP = 0;
-	GoToXY(18, 34);
-	cout << "Dead! Press O to save highscore";
-
+	//GoToXY(18, 34);
+	//cout << "Dead! Press O to save highscore";
+	FillAreaColor(128, 2,175,17, Yellow);
 	
+	PrintColorFile_Ver2(board[0].x + WIDTH_BOARD + board[0].x +4, board[0].y - 5, "assets\\ascii\\deadtext.txt", Red, Yellow);
 	//SetConsoleColor(Yellow, Black);
 	//cout<<"Dead, press Y to continue!";
 	//SetConsoleColor(White, Black);
@@ -731,7 +735,7 @@ void ThreadFunc() {
 			}
 			//End snake animation
 
-			if (Flag_PoisonSpray && PowerScore > 0) {
+			if (Flag_PoisonSpray && PowerScore >0 && skillState == 1) {
 				spray.x = snake[SIZE_SNAKE - 1].x;
 				spray.y = snake[SIZE_SNAKE - 1].y;
 				if (MOVING == 'A') previousAction = 2;//move left
