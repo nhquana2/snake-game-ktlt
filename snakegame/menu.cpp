@@ -200,22 +200,28 @@ void DrawSettingsScreen() {
 }
 
 void DrawLeaderBoardScreen() {
-	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	GoToXY(13, 15);
-	cout << "USERNAME     SCORE     TIME PLAYED";
 	NUMBER_OF_PLAYERS = LeaderBoard(Player);
-	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
-		GoToXY(13, 16+i + 1);
-		cout << Player[i].name; 
-		GoToXY(26,16+ i + 1);
-		cout << Player[i].SCORE;
-		GoToXY(38, 16 + i + 1);
-		cout << Player[i].TIME;
-
-	}
-	PrintFile(13, 11, "assets\\ascii\\leaderboard.txt");
-
+	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
+	FillAreaColor(11,11, 56, 18+NUMBER_OF_PLAYERS, Red);
+	SetConsoleColor(Yellow, Red);
+	PrintFile(13, 12, "assets\\ascii\\leaderboard.txt");
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	PrintCup(82, 16);
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	GoToXY(13, 16);
+	SetConsoleColor(DefaultTextColor, Red);
+	cout << "USERNAME     SCORE     TIME PLAYED";
+
+	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
+		GoToXY(13, 17+i + 1);
+		cout << Player[i].name; 
+		GoToXY(26,17+ i + 1);
+		cout << Player[i].SCORE;
+		GoToXY(38, 17 + i + 1);
+		cout << Player[i].TIME;
+
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+
 }

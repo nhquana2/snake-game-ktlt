@@ -35,8 +35,11 @@ void BlinkingMap(){//blinking when the snake died
 		//	cout << " ";
 		//}
 		Sleep(100);
-		DrawRectangle(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD);
+		int x=RandomInRange(0, 15);
+		SetConsoleColor(x, DefaultBgColor);
+		DrawRectangle_Ver2(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD);
 		DrawSnakeAndFood(MSSV);
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		/*if (LEVEL == 1)
 		{
 			NUMBER_OF_OBSTACLES = MapLevel1();

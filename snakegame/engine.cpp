@@ -260,7 +260,12 @@ void ProcessDead() {
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
 	TEXTINCONSOLE = 1;
 	//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
-	PrintTextFile(22, 11, "assets\\ascii\\gameover.txt");
+	FillAreaColor(34, 14, 91, 20,Red);
+	SetConsoleColor(Yellow, Red);
+	DrawRectangle(35, 14, 90 - 34, 20 - 13);
+	
+	PrintFile(40, 16, "assets\\ascii\\newgameover.txt");
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	BLINKING_MAP = 0;
 	//GoToXY(18, 34);
 	//cout << "Dead! Press O to save highscore";

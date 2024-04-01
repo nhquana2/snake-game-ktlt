@@ -295,7 +295,12 @@ void Pause()
 	cvMain.wait(lock, [] { return threadPaused.load();  });
 	lock.unlock();
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
-	PrintTextFile(18, 16, "assets\\ascii\\paused.txt");
+	FillAreaColor(44, 14, 81, 20, Red);
+	SetConsoleColor(Yellow, Red);
+	DrawRectangle(45, 14, 70 - 34, 20 - 13);
+
+	PrintFile(50, 16, "assets\\ascii\\newpaused.txt");
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	GoToXY(18, 29);
 	cout << "Press any key to continue, or press L to save game";
 }
