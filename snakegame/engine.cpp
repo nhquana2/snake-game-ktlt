@@ -77,7 +77,7 @@ bool CheckBigFood(int x,int y){//check if the snake touches the big food
 			if (x == big_food[i][j].x && y == big_food[i][j].y){
 				//SIZE_SNAKE+=3;//
 				//FOOD_INDEX++;
-				skillState = 1;
+				//skillState = 1;
 				return true;
 			}
 		}
@@ -249,11 +249,11 @@ void PauseGame(HANDLE t) {
 }
 
 void ProcessDead() {
-	
+	STATE = 0;
 	
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\angrysnake.txt");
 	playSound("assets\\sounds\\deathSound");
-	STATE = 0;
+	
 	BlinkingMap();
 	GoToXY(WIDTH_CONSOLE/2, HEIGHT_CONSOLE/2);
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
@@ -528,11 +528,20 @@ void MoveDown()
 		}
 	}
 }
+bool checkTouchBoss(int x, int y) {
+	return (x >= 105 && y >= 12 && y <= 15) || (x >= 100 && y >= 21 && y <= 28) || (x >= 105 && y >= 32 && y <= 36);
+}
 void PoisonSpray() {
 	GoToXY(spray.x, spray.y);
 	cout << " ";
 	if (previousAction == 1) {//move right
 		spray.x++;
+		if (LEVEL==6 && checkTouchBoss(spray.x,spray.y)) {//win game neu HP == 0
+			HP_OF_BOSS--;
+			playSound("assets\\sounds\\explosion");
+			Spraying = false;
+			
+		}
 		//check touch obstacles
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
@@ -739,7 +748,7 @@ void ThreadFunc() {
 			}
 			//End snake animation
 
-			if (Flag_PoisonSpray && PowerScore >0 && skillState == 1) {
+			if (Flag_PoisonSpray && PowerScore >0 ) {
 				spray.x = snake[SIZE_SNAKE - 1].x;
 				spray.y = snake[SIZE_SNAKE - 1].y;
 				if (MOVING == 'A') previousAction = 2;//move left
@@ -754,15 +763,40 @@ void ThreadFunc() {
 			else Flag_PoisonSpray = false;
 
 			if (Spraying) PoisonSpray();
-			if (LEVEL == 4) {
+			
+			/*if (LEVEL == 4) {
 				DrawBulletDown();
 				DrawBulletUp();
-			}
+			}*/
 			DrawSnakeAndFood(MSSV);
 			PrintStatusBoard();
 
+			//DrawOcToPus(100, 19);
+			//DrawOcToPusHidden1(100, 12);
+			//DrawOcToPusHidden2(100, 32);
+			
+			if (LEVEL == 0) {//lelvel 6
+				if (STATE != 0) DrawOcToPus(100, 19);
+				if (STATE != 0) DrawBulletToLeft(bullet1_to_left);
+				if (STATE != 0) DrawBulletToLeft(bullet2_to_left);
+				if (STATE != 0) DrawBulletToLeft(bullet3_to_left);
+
+				if (STATE != 0) DrawBulletToLeft(bullet1_to_left);
+				if (STATE != 0) DrawBulletToLeft(bullet2_to_left);
+				if (STATE != 0) DrawBulletToLeft(bullet3_to_left);
+
+				if (STATE != 0) DrawBulletToLeft(bullet1_to_left);
+				if (STATE != 0) DrawBulletToLeft(bullet2_to_left);
+				if (STATE != 0) DrawBulletToLeft(bullet3_to_left);
+				
+				if (STATE != 0) DrawOcToPusHidden1(100, 12);
+				if (STATE != 0) DrawOcToPusHidden2(100, 32);
+			}
+			
+			
+			
 			Sleep(1000 / SPEED);
-			if (Spraying) PoisonSpray();
+			if (STATE!=0 && Spraying) PoisonSpray();
 			TIME += 1000 / SPEED;
 		}
 		if (STATE == 2) {

@@ -10,7 +10,7 @@ POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[MAX_SIZE_SNAKE];
 POINT board[MAX_BOARD_SIZE];
 POINT food[MAX_SIZE_FOOD];
-POINT bullet_up,bullet_down;
+POINT bullet_up,bullet_down,bullet1_to_left, bullet2_to_left, bullet3_to_left;
 POINT spray;
 POINT WIN_POINT;
 POINT TELE_POINT_1, TELE_POINT_2;
@@ -72,6 +72,9 @@ int PowerScore;
 int skillState = 0;//0 is lock, 1 is unlock, eat big food to unlock
 int minisnake = 1;
 int MINI_SNAKE_COLOR;
+int octopus_time = 0;
+int octopus_hidden_time = 0;
+int HP_OF_BOSS = 5;
 using namespace std;
 
 int main()
@@ -115,7 +118,16 @@ int main()
     thread t1(ThreadFunc);
 
     HANDLE handle_t1 = t1.native_handle();
-   
+    //con muc o giua
+    bullet1_to_left.x = 100;
+    bullet1_to_left.y = 22;
+    
+    //con muc o tren
+    bullet2_to_left.x = 100;
+    bullet2_to_left.y = 13;
+    //con muc o duoi
+    bullet3_to_left.x = 100;
+    bullet3_to_left.y = 32;
     char temp;
     while (1) {
         //SCREEN: PLAY

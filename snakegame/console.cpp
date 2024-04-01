@@ -130,6 +130,20 @@ void DrawBulletUp() {
 			ProcessDead();
 }
 
+void DrawBulletToLeft(POINT &bullet_to_left) {
+	GoToXY(bullet_to_left.x, bullet_to_left.y);
+	cout << " ";
+	if (bullet_to_left.x <= board[0].x+1) bullet_to_left.x = 100;
+	--bullet_to_left.x;
+	GoToXY(bullet_to_left.x, bullet_to_left.y);
+	cout << "\x11";
+
+	for (int i = 0; i < SIZE_SNAKE; ++i) {
+		if (bullet_to_left.x == snake[i].x && bullet_to_left.y == snake[i].y)
+			ProcessDead();
+	}
+}
+
 void DrawRectangle(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
 	GoToXY(x, y); cout << '\xc9';
@@ -223,12 +237,16 @@ void PrintStatusBoard() {
 		GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 6);
 		cout << "Total score: " << SCORE << "  " << endl;
 
-		if (skillState == 1) {
+		
 			GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 7);
 			if (PowerScore == 0) cout << "Power:[\xFA\xFA\xFA\xFA\xFA\xFA]";
 			else if (PowerScore == 1) cout << "Power:[\xFE\xFE\xFA\xFA\xFA\xFA]";
 			else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
 			else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
+		
+		if (LEVEL == 0) {
+			GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 8);
+			cout << "HP of BOSS: "<<HP_OF_BOSS;
 		}
 		
 

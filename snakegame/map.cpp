@@ -204,6 +204,7 @@ int MapLevel5() {
 	GoToXY(0, 0);
 	return pos;
 }
+
 int MapLevel4() {
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 5.txt", DefaultStatusColor);
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);

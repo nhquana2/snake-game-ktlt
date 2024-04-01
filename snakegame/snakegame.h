@@ -78,7 +78,7 @@ extern POINT snake[MAX_SIZE_SNAKE];
 extern POINT food[MAX_SIZE_FOOD];
 extern POINT board[MAX_BOARD_SIZE];
 extern POINT WIN_POINT;
-extern POINT bullet_up, bullet_down;
+extern POINT bullet_up, bullet_down,bullet1_to_left, bullet2_to_left, bullet3_to_left;
 extern POINT spray;
 extern POINT TELE_POINT_1, TELE_POINT_2;
 extern PLAYER Player[100];
@@ -139,7 +139,11 @@ extern int emotionstime;
 extern int skillState;
 extern int minisnake;
 extern int MINI_SNAKE_COLOR;
+extern int octopus_time;
+extern int octopus_hidden_time;
+extern int HP_OF_BOSS;
 extern POINT MINI_Snake;
+
 //Utility
 int RandomInRange(int a, int b);
 void SetConsoleColor(int text, int background);
@@ -174,8 +178,11 @@ void DrawAboutButton(int mode);
 void DrawLeaderButton(int mode);
 void DrawExitButton(int mode);
 
-void DrawOcToPus();
+void DrawOcToPus(int x, int y);
 
+void DrawOcToPusHidden1(int x, int y);
+void DrawOcToPusHidden2(int x, int y);
+void DrawBulletToLeft(POINT &bullet);
 
 //Menu-related functions
 void DrawMenu();
@@ -221,6 +228,7 @@ int MapLevel2();
 int MapLevel3();
 int MapLevel4();
 void DrawMap();
+bool checkTouchBoss(int x, int y);
 
 int MapLevel5();
 //animations

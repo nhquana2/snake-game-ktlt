@@ -134,7 +134,9 @@ void DrawMenu() {
 	DrawSettingButton(1);
 	DrawLeaderButton(1);
 	DrawExitButton(1);*/
-	DrawOcToPus();
+	//DrawOcToPus(130, 10);
+	//DrawOcToPusHidden(1, 1);
+
 }
 
 void DrawAboutScreen() {
@@ -306,11 +308,145 @@ void DrawExitButton(int mode) {
 	}
 }*/
 
-void DrawOcToPus() {
-	//pic1
-	PrintColorFile_Ver2(120, 10, "assets\\ascii\\octopus1.txt", Black, Purple);
-	PrintColorFile_Ver2(120, 10, "assets\\ascii\\fixotp1.txt", DefaultBgColor, Black);
-	PrintColorFile_Ver2(120, 10, "assets\\ascii\\eyesotp.txt", White, Black);
-	//pic2
+void DrawOcToPus(int x, int y) {
+	//int x = 100, y = 15;
+
+	if (octopus_time == 3) {
+		//pic1
+		FillAreaColor(x - 3, y - 2, x + 12, y + 8, DefaultBgColor);
+		PrintColorFile_Ver2(x, y, "assets\\ascii\\octopus3.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x, y, "assets\\ascii\\fixotp3.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y, "assets\\ascii\\eyesotp.txt", White, Black);
+	}
+	else if (octopus_time == 5) {
+		//pic2
+		FillAreaColor(x - 2, y -2, x + 12, y + 8, DefaultBgColor);
+		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\octopus1.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\fixotp1.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\eyesotp.txt", White, Black);
+	}
+	else if (octopus_time == 7) {
+		//pic3
+		FillAreaColor(x - 2, y -2, x + 12, y + 8, DefaultBgColor);
+		PrintColorFile_Ver2(x, y +2, "assets\\ascii\\octopus2.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x, y +2, "assets\\ascii\\fixotp2.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y +2, "assets\\ascii\\eyesotp.txt", White, Black);
+
+	}
+	else if (octopus_time == 9) {
+		//pic4
+		FillAreaColor(x - 2, y - 2, x + 12, y + 8, DefaultBgColor);
+		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\octopus4.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\fixotp4.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\eyesotp.txt", White, Black);
+		octopus_time = 1;
+	}
+
+	octopus_time++;
+
+	
+}
+
+void DrawOcToPusHidden1(int x, int y) {
+	
+	if (octopus_hidden_time == 1) {
+		//pic1
+		FillAreaColor(x - 1, y - 1, x + 16, y + 5, DefaultBgColor);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden2.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", LightPurple, White);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water2.txt", BrightWhite, LightPurple);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix1hidden2.txt", BrightWhite, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix2hidden2.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix3hidden2.txt", DefaultBgColor, BrightWhite);
+
+	}
+	else if (octopus_hidden_time == 15) {
+		//pic2
+		FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden1.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", White, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water1.txt", BrightWhite, LightPurple);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix1hidden1.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix2hidden1.txt", DefaultBgColor, BrightWhite);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix3hidden1.txt", BrightWhite, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water3.txt", BrightWhite, DefaultBgColor);
+	}
+	else if (octopus_hidden_time ==30 ) {
+		//pic3
+		//FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden1.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", White, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water1.txt", BrightWhite, LightPurple);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix1hidden1.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix2hidden1.txt", DefaultBgColor, BrightWhite);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix3hidden1.txt", BrightWhite, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water4.txt", BrightWhite, DefaultBgColor);
+
+	}
+	else if (octopus_hidden_time == 45) {
+		//pic4
+		FillAreaColor(x - 2, y - 2, x + 16, y + 3, DefaultBgColor);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden2.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", LightPurple, White);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water2.txt", BrightWhite, LightPurple);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix1hidden2.txt", BrightWhite, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix2hidden2.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix3hidden2.txt", DefaultBgColor, BrightWhite);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water5.txt", BrightWhite, DefaultBgColor);
+		octopus_hidden_time = -15;
+	}
+	//octopus_hidden_time++;
+	
+}
+
+void DrawOcToPusHidden2(int x, int y) {
+
+	if (octopus_hidden_time == 1) {
+		//pic1
+		FillAreaColor(x - 1, y - 1, x + 15, y + 3, DefaultBgColor);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden2.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", LightPurple, White);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water2.txt", BrightWhite, LightPurple);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix1hidden2.txt", BrightWhite, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix2hidden2.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix3hidden2.txt", DefaultBgColor, BrightWhite);
+
+	}
+	else if (octopus_hidden_time == 15) {
+		//pic2
+		FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden1.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", White, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water1.txt", BrightWhite, LightPurple);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix1hidden1.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix2hidden1.txt", DefaultBgColor, BrightWhite);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix3hidden1.txt", BrightWhite, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water3.txt", BrightWhite, DefaultBgColor);
+	}
+	else if (octopus_hidden_time == 30) {
+		//pic3
+		//FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden1.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", White, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water1.txt", BrightWhite, LightPurple);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix1hidden1.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix2hidden1.txt", DefaultBgColor, BrightWhite);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix3hidden1.txt", BrightWhite, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water4.txt", BrightWhite, DefaultBgColor);
+
+	}
+	else if (octopus_hidden_time == 45) {
+		//pic4
+		FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden2.txt", Black, LightPurple);
+		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", LightPurple, White);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water2.txt", BrightWhite, LightPurple);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix1hidden2.txt", BrightWhite, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix2hidden2.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\fix3hidden2.txt", DefaultBgColor, BrightWhite);
+		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water5.txt", BrightWhite, DefaultBgColor);
+		octopus_hidden_time = -15;
+	}
+	octopus_hidden_time++;
 
 }
