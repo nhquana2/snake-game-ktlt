@@ -3,41 +3,23 @@
 using namespace std;
 
 void InitMainButtons() {
-	main_button[0].st = { 80, 12 };
-	main_button[0].width = 20;
-	main_button[0].height = 3;
-	main_button[0].text_st = { 86, 13 };
-	main_button[0].text_value = "NEW GAME";
+	main_button[0].st = { 15, 11 };
+	main_button[0].file_path = "assets\\ascii\\playbutton.txt";
 
-	main_button[1].st = { 80, 16 };
-	main_button[1].width = 20;
-	main_button[1].height = 3;
-	main_button[1].text_st = { 86, 17 };
-	main_button[1].text_value = "LOAD GAME";
+	main_button[1].st = { 15, 21 };
+	main_button[1].file_path = "assets\\ascii\\loadbutton.txt";
 
-	main_button[2].st = { 80, 20 };
-	main_button[2].width = 20;
-	main_button[2].height = 3;
-	main_button[2].text_st = { 86, 21 };
-	main_button[2].text_value = "SETTINGS";
+	main_button[2].st = { 15, 31 };
+	main_button[2].file_path = "assets\\ascii\\settingbutton.txt";
 
-	main_button[3].st = { 80, 24 };
-	main_button[3].width = 20;
-	main_button[3].height = 3;
-	main_button[3].text_st = { 86, 25 };
-	main_button[3].text_value = "ABOUT";
+	main_button[3].st = { 65, 11 };
+	main_button[3].file_path = "assets\\ascii\\aboutbutton.txt";
 
-	main_button[4].st = { 80, 28 };
-	main_button[4].width = 20;
-	main_button[4].height = 3;
-	main_button[4].text_st = { 85, 29 };
-	main_button[4].text_value = "LEADERBOARD";
+	main_button[4].st = { 65, 21 };
+	main_button[4].file_path = "assets\\ascii\\rankbutton.txt";
 
-	main_button[5].st = { 80, 32 };
-	main_button[5].width = 20;
-	main_button[5].height = 3;
-	main_button[5].text_st = { 86, 33 };
-	main_button[5].text_value = "EXIT";
+	main_button[5].st = { 65, 31 };
+	main_button[5].file_path = "assets\\ascii\\exitbutton.txt";
 }
 
 void InitSoundButtons() {
@@ -78,6 +60,14 @@ void InitColorButtons() {
 	color_button[3].height = 3;
 	color_button[3].text_st = { 150+10-2, 26 };
 	color_button[3].text_value = "PINK";
+}
+
+void ToggleNormalStateDecorButton(DECOR_BUTTON a) {
+	DrawButton(a, 0);
+}
+
+void ToggleActiveStateDecorButton(DECOR_BUTTON a) {
+	DrawButton(a, 1);
 }
 
 void ToggleNormalStateButton(BUTTON a) {
@@ -133,17 +123,17 @@ void DrawMenu() {
 
 
 	for (int i = 0; i < 6; ++i) {
-		ToggleNormalStateButton(main_button[i]);
+		ToggleNormalStateDecorButton(main_button[i]);
 	}
 
 	
 	//PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
-	DrawPlayButton(1);
+	/*DrawPlayButton(1);
 	DrawLoadButton(1);
 	DrawAboutButton(1);
 	DrawSettingButton(1);
 	DrawLeaderButton(1);
-	DrawExitButton(1);
+	DrawExitButton(1);*/
 	DrawOcToPus();
 }
 
@@ -210,7 +200,25 @@ void DrawLeaderBoardScreen() {
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
-void DrawPlayButton(int mode) {
+
+void DrawButton(DECOR_BUTTON a, int mode) {
+	char s[100];
+	strcpy(s, a.file_path.c_str());
+	if (mode == 0) {//normal
+		PrintColorFile_Ver2(a.st.x, a.st.y, s , Black, LightRed);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\shadowbutton.txt", Red, Black);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fix2button.txt", LightRed, Red);
+	}
+	else {//active
+		PrintColorFile_Ver2(a.st.x, a.st.y, s , Black, LightYellow);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
+	}
+}
+
+/*void DrawPlayButton(int mode) {
 	
 	if (mode == 0) {//normal
 		PrintColorFile_Ver2(15, 10, "assets\\ascii\\playbutton.txt", Black, LightRed);
@@ -296,7 +304,7 @@ void DrawExitButton(int mode) {
 		PrintColorFile_Ver2(65, 30, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
 		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
 	}
-}
+}*/
 
 void DrawOcToPus() {
 	//pic1

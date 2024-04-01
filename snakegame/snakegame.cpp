@@ -16,7 +16,7 @@ POINT WIN_POINT;
 POINT TELE_POINT_1, TELE_POINT_2;
 POINT MINI_Snake;
 PLAYER Player[100];
-BUTTON main_button[6];
+DECOR_BUTTON main_button[6];
 BUTTON sound_button[2];
 BUTTON color_button[4];
 vector<SAVE_ENTRY> save_entries;
@@ -107,7 +107,7 @@ int main()
 
     //First draw menu
     DrawMenu();
-    ToggleActiveStateButton(main_button[MENU_OPTION]);
+    ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
 
     //State when the game has not been started
     STATE = 0;
@@ -241,14 +241,14 @@ int main()
                 temp = toupper(_getch()); continue;
             }
             if (temp == 'W') {
-                ToggleNormalStateButton(main_button[MENU_OPTION]);
+                ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION - 1 + 6) % 6; // 6 options in total
-                ToggleActiveStateButton(main_button[MENU_OPTION]);
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
             if (temp == 'S') {
-                ToggleNormalStateButton(main_button[MENU_OPTION]);
+                ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION + 1) % 6; 
-                ToggleActiveStateButton(main_button[MENU_OPTION]);
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
             //temp == 13 -> Enter key
             if (temp == 'N' || (temp == 13 && MENU_OPTION == 0)) {
@@ -328,7 +328,7 @@ int main()
             if (temp == 'B') {
                 SCREEN = 2;
                 DrawMenu();
-                ToggleActiveStateButton(main_button[MENU_OPTION]);
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
 
         }
@@ -393,7 +393,7 @@ int main()
             if (temp == 'B') {
                 SCREEN = 2;
                 DrawMenu();
-                ToggleActiveStateButton(main_button[MENU_OPTION]);
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
         }
 
@@ -410,7 +410,7 @@ int main()
             if (temp == 'B') {
                 SCREEN = 2;
                 DrawMenu();
-                ToggleActiveStateButton(main_button[MENU_OPTION]);
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
         }
 
@@ -427,7 +427,7 @@ int main()
             if (temp == 'B') {
                 SCREEN = 2;
                 DrawMenu();
-                ToggleActiveStateButton(main_button[MENU_OPTION]);
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
         }
     }

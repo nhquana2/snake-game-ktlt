@@ -92,7 +92,12 @@ struct BUTTON {
 	string text_value;
 };
 
-extern BUTTON main_button[6];
+struct DECOR_BUTTON {
+	POINT st; 
+	string file_path;
+};
+
+extern DECOR_BUTTON main_button[6];
 extern BUTTON sound_button[2];
 extern BUTTON color_button[4];
 
@@ -182,11 +187,14 @@ void DrawMiniSnake();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 void ToggleNormalStateButton(BUTTON a);
 void ToggleActiveStateButton(BUTTON a);
+void ToggleNormalStateDecorButton(DECOR_BUTTON a);
+void ToggleActiveStateDecorButton(DECOR_BUTTON a);
 void ToggleNormalStateSaveEntry(SAVE_ENTRY a, int pos);
 void ToggleActiveStateSaveEntry(SAVE_ENTRY a, int pos);
 void InitMainButtons();
 void InitSoundButtons();
 void InitColorButtons();
+void DrawButton(DECOR_BUTTON a, int mode);
 
 //Logic and game engine functions
 void playSound(const std::string& soundFile);

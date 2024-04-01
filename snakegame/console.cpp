@@ -98,7 +98,7 @@ void DrawBigFood()
 			//cout << "?";
 			//big_food[i][j] = { x + i,y + j };
 			GoToXY(big_food[i][j].x, big_food[i][j].y);
-			if (IsValidPoint(big_food[i][j].x, big_food[i][j].y)) cout << "?";
+			if (IsValidPoint(big_food[i][j].x, big_food[i][j].y)) cout << "\xdb";
 		}
 		GoToXY(big_food[i][0].x, big_food[i][0].y + 1);
 	}
@@ -197,7 +197,7 @@ void DrawSnakeAndFood(const char* str) {
 	if (!(TEXTINCONSOLE))
 	{
 		GoToXY(food[FOOD_INDEX].x, food[FOOD_INDEX].y); //Go to current food pos
-		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) printf("F"); //Draw food only if gate has not been spawned
+		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) printf("\xfe"); //Draw food only if gate has not been spawned
 		int len = strlen(str);
 		if (str[0] == ' ') SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		else SetConsoleColor(IDColor, SnakeColor);
