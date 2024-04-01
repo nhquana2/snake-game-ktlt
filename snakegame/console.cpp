@@ -325,3 +325,24 @@ void ColorStatusBoard() {
 	}
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
+
+
+void DrawMiniSnake() {
+	if (COLOR_OPTION == 0) MINI_SNAKE_COLOR = Blue;
+	else if (COLOR_OPTION == 1) MINI_SNAKE_COLOR = Green;
+	else if (COLOR_OPTION == 2) MINI_SNAKE_COLOR = Yellow;
+	else if (COLOR_OPTION == 3) MINI_SNAKE_COLOR = LightPurple;
+	if (minisnake == 1) {
+		FillAreaColor(100, 13, 135, 21, DefaultBgColor);
+		PrintColorFile_Ver2(100, 13, "assets\\ascii\\minisnake3.txt", MINI_SNAKE_COLOR, DefaultBgColor);
+		minisnake = 2;
+
+	}
+	else if (minisnake == 2) {
+		FillAreaColor(100, 13, 135, 21, DefaultBgColor);
+		PrintColorFile_Ver2(100,13, "assets\\ascii\\minisnake4.txt", MINI_SNAKE_COLOR, DefaultBgColor);
+		minisnake = 1;
+	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+}
+

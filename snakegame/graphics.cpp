@@ -216,11 +216,15 @@ void PrintColorFile_Ver2(int x, int y, const char* FileName,int colortext, int b
 	char c;
 	GoToXY(x, y);
 	while (ifs.get(c)) {
-		SetConsoleColor(colortext, background);
-		cout << c;
+		if (c != '-') {
+			SetConsoleColor(colortext, background);
+			cout << c;
+		}
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		if (c != '\n') ++x; else ++y, x = st_x;
 		GoToXY(x, y);
+	
+		
 	}
 }
 
@@ -429,6 +433,7 @@ void PrintCuCup(int x, int y) {
 	if (!ifs.good()) return;
 	GoToXY(x, y);
 	char c;
+	
 	SetConsoleColor(Black, DefaultBgColor);
 	while (ifs.get(c)) {
 		if (c != ' ' && c != 'd') {
@@ -473,7 +478,7 @@ void PrintCuCup(int x, int y) {
 	}
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	ifs.close();
-
+	
 	x = cnst_x;
 	y = cnst_y;
 	ifs.open("assets/ascii/rank4.txt");

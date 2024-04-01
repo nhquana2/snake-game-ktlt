@@ -136,32 +136,15 @@ void DrawMenu() {
 		ToggleNormalStateButton(main_button[i]);
 	}
 
-	/*GoToXY(116, 13); cout << "           /^\\/^\\";
-	GoToXY(116, 14); cout << "         _|__|  O|";
-	GoToXY(116, 15); cout << "\\/     /~     \\_/ \\";
-	GoToXY(116, 16); cout << "\\____|__________/  \\";
-	GoToXY(116, 17); cout << "        \\_______      \\";
-	GoToXY(116, 18); cout << "                `\\     \\                 \\";
-	GoToXY(116, 19); cout << "                 |     |                  \\";
-	GoToXY(116, 20); cout << "                /      /                    \\";
-	GoToXY(116, 21); cout << "                /     /                       \\\\";
-	GoToXY(116, 22); cout << "              /      /                         \\ \\";
-	GoToXY(116, 23); cout << "             /     /                            \\  \\";
-	GoToXY(116, 24); cout << "           /     /             _----_            \\   \\";
-	GoToXY(116, 25); cout << "          /     /           _-~      ~-_         |   |";
-	GoToXY(116, 26); cout << "         (      (        _-~    _--_    ~-_     _/   |";
-	GoToXY(116, 27); cout << "          \\      ~-____-~    _-~    ~-_    ~-_-~    /";
-	GoToXY(116, 28); cout << "            ~-_           _-~          ~-_       _-~";
-	GoToXY(116, 29); cout << "               ~--______-~                ~-___-~";
-	*/
-	PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
-	//int nsize=LeaderBoard(Player);
-	//GoToXY(0, 0);
-	//for (int i = 0; i < nsize; i++) {
-		//cout << Player[i].name << " ";
-	//}
-	//PrintTextFile(70, 10, "assets\\ascii\\paused.txt");
 	
+	//PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
+	DrawPlayButton(1);
+	DrawLoadButton(1);
+	DrawAboutButton(1);
+	DrawSettingButton(1);
+	DrawLeaderButton(1);
+	DrawExitButton(1);
+	DrawOcToPus();
 }
 
 void DrawAboutScreen() {
@@ -190,6 +173,7 @@ void DrawSettingsScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
 	PrintFile(22, 14, "assets\\ascii\\sounds.txt");
 	PrintFile(75, 16, "assets\\ascii\\color.txt");
+	
 	if (SOUND == 1)	PrintFile(58, 14, "assets\\ascii\\soundon.txt");
 	for (int i = 0; i < 2; ++i) {
 		ToggleNormalStateButton(sound_button[i]);
@@ -223,5 +207,102 @@ void DrawLeaderBoardScreen() {
 
 	}
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+}
+void DrawPlayButton(int mode) {
+	
+	if (mode == 0) {//normal
+		PrintColorFile_Ver2(15, 10, "assets\\ascii\\playbutton.txt", Black, LightRed);
+		PrintColorFile_Ver2(15, 10, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(15, 10, "assets\\ascii\\shadowbutton.txt", Red, Black);
+		PrintColorFile_Ver2(15, 10, "assets\\ascii\\fix2button.txt", LightRed, Red);
+	}
+	else {//active
+		PrintColorFile_Ver2(15, 10, "assets\\ascii\\playbutton.txt", Black, LightYellow);
+		PrintColorFile_Ver2(15, 10, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(15, 10, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(15, 10, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
+	}
+	
+	
+}
+void DrawLoadButton(int mode) {
+	if (mode ==0) {//normal
+		PrintColorFile_Ver2(15, 20, "assets\\ascii\\loadbutton.txt", Black, LightRed);
+		PrintColorFile_Ver2(15, 20, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(15, 20, "assets\\ascii\\shadowbutton.txt", Red, Black);
+		PrintColorFile_Ver2(15, 20, "assets\\ascii\\fix2button.txt", LightRed, Red);
+	}
+	else {//active
+		PrintColorFile_Ver2(15, 20, "assets\\ascii\\loadbutton.txt", Black, LightYellow);
+		PrintColorFile_Ver2(15, 20, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(15, 20, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(15, 20, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
+	}
+}
+void DrawSettingButton(int mode) {
+	if (mode == 0) {//normal
+		PrintColorFile_Ver2(15, 30, "assets\\ascii\\settingbutton.txt", Black, LightRed);
+		PrintColorFile_Ver2(15, 30, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(15, 30, "assets\\ascii\\shadowbutton.txt", Red, Black);
+		PrintColorFile_Ver2(15, 30, "assets\\ascii\\fix2button.txt", LightRed, Red);
+	}
+	else {//active
+		PrintColorFile_Ver2(15, 30, "assets\\ascii\\settingbutton.txt", Black, LightYellow);
+		PrintColorFile_Ver2(15, 30, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(15, 30, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(15, 30, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
+	}
+}
+void DrawAboutButton(int mode) {
+	if (mode == 0) {//normal
+		PrintColorFile_Ver2(65, 10, "assets\\ascii\\aboutbutton.txt", Black, LightRed);
+		PrintColorFile_Ver2(65, 10, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(65, 10, "assets\\ascii\\shadowbutton.txt", Red, Black);
+		PrintColorFile_Ver2(65, 10, "assets\\ascii\\fix2button.txt", LightRed, Red);
+	}
+	else {//active
+		PrintColorFile_Ver2(65, 10, "assets\\ascii\\aboutbutton.txt", Black, LightYellow);
+		PrintColorFile_Ver2(65, 10, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(65, 10, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(65, 10, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
+	}
+}
+void DrawLeaderButton(int mode) {
+	if (mode == 0) {//normal
+		PrintColorFile_Ver2(65, 20, "assets\\ascii\\rankbutton.txt", Black, LightRed);
+		PrintColorFile_Ver2(65, 20, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(65, 20, "assets\\ascii\\shadowbutton.txt", Red, Black);
+		PrintColorFile_Ver2(65, 20, "assets\\ascii\\fix2button.txt", LightRed, Red);
+	}
+	else {//active
+		PrintColorFile_Ver2(65, 20, "assets\\ascii\\rankbutton.txt", Black, LightYellow);
+		PrintColorFile_Ver2(65, 20, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(65, 20, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(65, 20, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
+	}
+}
+void DrawExitButton(int mode) {
+	if (mode == 0) {//normal
+		PrintColorFile_Ver2(65, 30, "assets\\ascii\\exitbutton.txt", Black, LightRed);
+		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(65, 30, "assets\\ascii\\shadowbutton.txt", Red, Black);
+		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fix2button.txt", LightRed, Red);
+	}
+	else {//active
+		PrintColorFile_Ver2(65, 30, "assets\\ascii\\exitbutton.txt", Black, LightYellow);
+		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(65, 30, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
+	}
+}
+
+void DrawOcToPus() {
+	//pic1
+	PrintColorFile_Ver2(120, 10, "assets\\ascii\\octopus1.txt", Black, Purple);
+	PrintColorFile_Ver2(120, 10, "assets\\ascii\\fixotp1.txt", DefaultBgColor, Black);
+	PrintColorFile_Ver2(120, 10, "assets\\ascii\\eyesotp.txt", White, Black);
+	//pic2
 
 }

@@ -236,7 +236,6 @@ void StartGame() {
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 	STATE = 1; //Start running Thread
 	
-	
 }
 
 void ExitGame(HANDLE t) {

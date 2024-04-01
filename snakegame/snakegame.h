@@ -133,6 +133,8 @@ extern int TEXTINCONSOLE;//1 if text is in console (game over, ...)
 extern int emotionstime;
 extern int skillState;
 extern int minisnake;
+extern int MINI_SNAKE_COLOR;
+extern POINT MINI_Snake;
 //Utility
 int RandomInRange(int a, int b);
 void SetConsoleColor(int text, int background);
@@ -160,6 +162,15 @@ void Pause();
 void PostPauseDraw();
 void ColorStatusBoard();
 void FillAreaColor(int x1, int y1, int x2, int y2, int color);
+void DrawPlayButton(int mode);
+void DrawLoadButton(int mode); 
+void DrawSettingButton(int mode);
+void DrawAboutButton(int mode);
+void DrawLeaderButton(int mode);
+void DrawExitButton(int mode);
+
+void DrawOcToPus();
+
 
 //Menu-related functions
 void DrawMenu();
@@ -167,6 +178,7 @@ void DrawAboutScreen();
 void DrawSettingsScreen();
 void DrawLoadGameScreen();
 void DrawLeaderBoardScreen();
+void DrawMiniSnake();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 void ToggleNormalStateButton(BUTTON a);
 void ToggleActiveStateButton(BUTTON a);

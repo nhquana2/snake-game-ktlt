@@ -14,6 +14,7 @@ POINT bullet_up,bullet_down;
 POINT spray;
 POINT WIN_POINT;
 POINT TELE_POINT_1, TELE_POINT_2;
+POINT MINI_Snake;
 PLAYER Player[100];
 BUTTON main_button[6];
 BUTTON sound_button[2];
@@ -70,10 +71,26 @@ int emotionstime;
 int PowerScore;
 int skillState = 0;//0 is lock, 1 is unlock, eat big food to unlock
 int minisnake = 1;
+int MINI_SNAKE_COLOR;
 using namespace std;
 
 int main()
 {
+    CONSOLE_SCREEN_BUFFER_INFOEX info;
+    info.cbSize = sizeof(CONSOLE_SCREEN_BUFFER_INFOEX);
+
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    GetConsoleScreenBufferInfoEx(hConsole, &info);
+
+   
+    //info.ColorTable[Red] = RGB(26, 16, 8);
+    //info.ColorTable[3] = RGB(135, 206, 235);
+
+    //info.ColorTable[15] = RGB(25, 25, 25);
+
+    SetConsoleScreenBufferInfoEx(hConsole, &info);
+
+    
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor
@@ -94,13 +111,15 @@ int main()
 
     //State when the game has not been started
     STATE = 0;
-    
+   
     thread t1(ThreadFunc);
-    HANDLE handle_t1 = t1.native_handle();
 
+    HANDLE handle_t1 = t1.native_handle();
+   
     char temp;
     while (1) {
         //SCREEN: PLAY
+        
         if (SCREEN == 1) { 
             temp = toupper(_getch());
             if (temp == char(-32)) {
@@ -214,17 +233,7 @@ int main()
         //SCREEN: MAIN MENU
         if (SCREEN == 2) {
             //Mini snake moving
-            if (minisnake == 1) {
-                FillAreaColor(30, 13, 70, 21, DefaultBgColor);
-                PrintColorFile_Ver2(30, 13, "assets\\ascii\\minisnake.txt", Red, DefaultBgColor);
-                minisnake = 2;
-                
-            }
-            else if(minisnake==2) {
-                FillAreaColor(30, 13, 70, 21, DefaultBgColor);
-                PrintColorFile_Ver2(30, 13, "assets\\ascii\\minisnake2.txt", Red, DefaultBgColor);
-                minisnake = 1;
-            }
+            
            
             //PrintColorFile_Ver2(30, 20, "assets\\ascii\\minisnake2.txt", Red, DefaultBgColor);
             temp = toupper(_getch());
@@ -324,7 +333,11 @@ int main()
 
         }
 
-        if (SCREEN == 4) {
+        if (SCREEN == 4) {//Screen: Setting
+            //int MINI_SNAKE_COLOR;
+           
+            
+            DrawMiniSnake();
             ToggleActiveStateButton(sound_button[SOUND_OPTION]);
             ToggleActiveStateButton(color_button[COLOR_OPTION]);
             temp = toupper(_getch());
@@ -352,6 +365,7 @@ int main()
                 ToggleActiveStateButton(color_button[COLOR_OPTION]);
             }
             if (temp == 'D') {
+                
                 ToggleNormalStateButton(color_button[COLOR_OPTION]);
                 COLOR_OPTION = (COLOR_OPTION + 1) % 4;
                 ToggleActiveStateButton(color_button[COLOR_OPTION]);

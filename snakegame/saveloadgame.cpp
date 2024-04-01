@@ -125,6 +125,8 @@ void LoadGame(string FileName) {
 	}
 
 	TEXTINCONSOLE = 0;
+	emotionstime = 5;
+
 	DrawMap();
 	STATE = 1; //Start running Thread
 
