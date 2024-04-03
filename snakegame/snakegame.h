@@ -232,6 +232,7 @@ int MapLevel3();
 int MapLevel4();
 void DrawMap();
 bool checkTouchBoss(int x, int y);
+int FinalMap();
 
 int MapLevel5();
 //animations

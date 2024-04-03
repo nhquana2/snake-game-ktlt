@@ -118,16 +118,7 @@ int main()
     thread t1(ThreadFunc);
 
     HANDLE handle_t1 = t1.native_handle();
-    //con muc o giua
-    bullet1_to_left.x = 100;
-    bullet1_to_left.y = 22;
-    
-    //con muc o tren
-    bullet2_to_left.x = 100;
-    bullet2_to_left.y = 13;
-    //con muc o duoi
-    bullet3_to_left.x = 100;
-    bullet3_to_left.y = 32;
+
     char temp;
     while (1) {
         //SCREEN: PLAY

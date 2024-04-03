@@ -291,6 +291,26 @@ int MapLevel4() {
 	}
 	return pos;
 }
+int FinalMap() {
+	int pos = 0;
+	for (int i = board[0].y + 1; i < board[0].y + HEIGHT_BOARD - 1; i++) {
+		SetConsoleColor(Red, DefaultBgColor);
+		obstacles[pos] = { 89,i };
+		GoToXY(89, i); cout << '\xb2';
+		obstacles[pos] = { 88,i };
+		GoToXY(88, i); cout << '\xb2';
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
+		pos++;
+		if(i==board[0].y+4||i== board[0].y + 5||i== board[0].y + 6||i== board[0].y + 12||i== board[0].y + 13||i== board[0].y + 14||i== board[0].y + 22||i== board[0].y + 23||i== board[0].y + 24) {
+		continue;
+	    }
+		obstacles[pos] = { 40,i };
+		GoToXY(40, i); cout << '\xb2';
+		pos++;
+
+	}
+	return pos;
+}
 void DrawTelePoint(int x1, int y1, int x2, int y2) {
 	//delete old pixel
 	//SetConsoleColor(Red, Black);

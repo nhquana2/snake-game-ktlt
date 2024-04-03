@@ -51,11 +51,20 @@ void GenerateFood() {
 	int x, y;
 	srand(time(NULL));
 	for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
-		do {
-			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2 );
-			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2);
-		} while (!IsValidFood(x, y));
-		food[i] = { x , y };
+		if (LEVEL ==1) {
+			do {
+				x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD/2 - 2);
+				y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2);
+			} while (!IsValidFood(x, y));
+			food[i] = { x , y };
+		}
+		else {
+			do {
+				x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2);
+				y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2);
+			} while (!IsValidFood(x, y));
+			food[i] = { x , y };
+		}
 	}
 }
 void DeleteBigFood(int x, int y){
@@ -180,6 +189,16 @@ void RespawnSnake(){
 	}
 }
 void ResetData() {
+	//con muc o giua
+	bullet1_to_left.x = 100;
+	bullet1_to_left.y = 22;
+
+	//con muc o tren
+	bullet2_to_left.x = 100;
+	bullet2_to_left.y = 13;
+	//con muc o duoi
+	bullet3_to_left.x = 100;
+	bullet3_to_left.y = 32;
 	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0, 
 	WIDTH_CONSOLE = 180, HEIGHT_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 1;
 	TIME = 0;
@@ -299,7 +318,7 @@ void LevelUp() {
 
 	if (LEVEL == 1){
 		
-		NUMBER_OF_OBSTACLES = MapLevel1();
+		NUMBER_OF_OBSTACLES = FinalMap();
 	}
 	if (LEVEL == 2){
 		//DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
@@ -319,6 +338,10 @@ void LevelUp() {
 		DeleteMap();
 		DrawTelePoint(board[0].x, board[0].y + 23, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
 		NUMBER_OF_OBSTACLES = MapLevel5();
+	}
+	if (LEVEL == 6) {
+		DeleteMap();
+		NUMBER_OF_OBSTACLES = FinalMap();
 	}
 	RespawnSnake();
 	//GenerateBigFood();
@@ -787,7 +810,7 @@ void ThreadFunc() {
 			//DrawOcToPusHidden1(100, 12);
 			//DrawOcToPusHidden2(100, 32);
 			
-			if (LEVEL == 0) {//lelvel 6
+			if (LEVEL == 1) {//lelvel 6
 				if (STATE != 0) DrawOcToPus(100, 19);
 				if (STATE != 0) DrawBulletToLeft(bullet1_to_left);
 				if (STATE != 0) DrawBulletToLeft(bullet2_to_left);
