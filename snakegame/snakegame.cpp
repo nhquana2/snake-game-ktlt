@@ -262,6 +262,19 @@ int main()
                 MENU_OPTION = (MENU_OPTION + 1) % 6; 
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
+
+            if (temp == 'A') {
+                ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
+                MENU_OPTION = (MENU_OPTION - 3 + 6) % 6; // 6 options in total
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
+            }
+
+            if (temp == 'D') {
+                ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
+                MENU_OPTION = (MENU_OPTION + 3 + 6) % 6; // 6 options in total
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
+            }
+
             //temp == 13 -> Enter key
             if (temp == 'N' || (temp == 13 && MENU_OPTION == 0)) {
                 SCREEN = 1; //SCREEN: PLAY

@@ -166,6 +166,7 @@ void GenerateBigFood();
 void DrawBigFood();
 void DrawBulletUp();
 void DrawBulletDown();
+void DrawKeyCap(int x, int y, char c);
 void DrawTelePoint(int x1, int y1, int x2, int y2);
 void Pause();
 void PostPauseDraw();

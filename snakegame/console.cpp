@@ -364,3 +364,19 @@ void DrawMiniSnake() {
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
 
+void DrawKeyCap(int x, int y, char c) {
+	GoToXY(x, y);
+	int st_x = x, st_y = y;
+	for (int i = 0; i <= 2; ++i) {
+		for (int j = 0; j <= 4; ++j) {
+			cout << "\xdb";
+		}
+		++y;
+		GoToXY(x, y);
+	}
+	SetConsoleColor(White, Black);
+	GoToXY(st_x + 2, st_y + 1);
+	cout << c;
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+}
+
