@@ -196,6 +196,18 @@ void ResetData() {
 	TELE_POINT_1.x = TELE_POINT_1.y = TELE_POINT_2.x = TELE_POINT_2.y = 0;
 	emotionstime = 5;
 	PowerScore = 0;
+	octopus_hidden_time = 1;
+	octopus_time = 3;
+	//con muc o giua
+	bullet1_to_left.x = 100;
+	bullet1_to_left.y = 22;
+
+	//con muc o tren
+	bullet2_to_left.x = 100;
+	bullet2_to_left.y = 13;
+	//con muc o duoi
+	bullet3_to_left.x = 100;
+	bullet3_to_left.y = 32;
 }
 
 void StartGame() {
@@ -791,6 +803,8 @@ void ThreadFunc() {
 				
 				if (STATE != 0) DrawOcToPusHidden1(100, 12);
 				if (STATE != 0) DrawOcToPusHidden2(100, 32);
+
+				
 			}
 			
 			

@@ -136,7 +136,8 @@ void DrawMenu() {
 	DrawExitButton(1);*/
 	//DrawOcToPus(130, 10);
 	//DrawOcToPusHidden(1, 1);
-
+	//DrawSettingButton(0);
+	DrawKeyCapp();
 }
 
 void DrawAboutScreen() {
@@ -218,6 +219,37 @@ void DrawButton(DECOR_BUTTON a, int mode) {
 		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
 		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
 	}
+}
+
+void DrawSettingButton(int mode) {
+	
+	if (mode == 0) {//normal
+		PrintColorFile_Ver2(120, 10, "assets\\ascii\\yellowbutton.txt", Black, LightRed);
+		PrintColorFile_Ver2(120, 10, "assets\\ascii\\fixsettingbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(120, 10, "assets\\ascii\\shadowsettingbutton.txt", Red, Black);
+		PrintColorFile_Ver2(120, 10, "assets\\ascii\\fix2settingbutton.txt", LightRed, Red);
+	}
+	else {//active
+		PrintColorFile_Ver2(120, 10, "assets\\ascii\\yellowbutton.txt", Black, LightYellow);
+		PrintColorFile_Ver2(120, 10, "assets\\ascii\\fixsettingbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(120, 10, "assets\\ascii\\shadowsettingbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(120, 10, "assets\\ascii\\fix2settingbutton.txt", LightYellow, Yellow);
+	}
+
+}
+
+void DrawKeyCapp() {
+	int x = 130, y = 10;
+	//Ko thay doi
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap1.txt", LightPurple, DefaultBgColor);
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap2.txt", LightRed, LightPurple);
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap3.txt", Purple, LightRed);
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap4.txt", DefaultBgColor, LightPurple);
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\fix1keycap.txt", DefaultBgColor, LightRed);
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\fix2keycap.txt", Purple, DefaultBgColor);
+	
+	//Thay doi o day 
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\W.txt", White, LightPurple);
 }
 
 /*void DrawPlayButton(int mode) {
@@ -318,14 +350,14 @@ void DrawOcToPus(int x, int y) {
 		PrintColorFile_Ver2(x, y, "assets\\ascii\\fixotp3.txt", DefaultBgColor, Black);
 		PrintColorFile_Ver2(x, y, "assets\\ascii\\eyesotp.txt", White, Black);
 	}
-	else if (octopus_time == 5) {
+	else if (octopus_time == 4) {
 		//pic2
 		FillAreaColor(x - 2, y -2, x + 12, y + 8, DefaultBgColor);
 		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\octopus1.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\fixotp1.txt", DefaultBgColor, Black);
 		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\eyesotp.txt", White, Black);
 	}
-	else if (octopus_time == 7) {
+	else if (octopus_time == 5) {
 		//pic3
 		FillAreaColor(x - 2, y -2, x + 12, y + 8, DefaultBgColor);
 		PrintColorFile_Ver2(x, y +2, "assets\\ascii\\octopus2.txt", Black, LightPurple);
@@ -333,13 +365,13 @@ void DrawOcToPus(int x, int y) {
 		PrintColorFile_Ver2(x, y +2, "assets\\ascii\\eyesotp.txt", White, Black);
 
 	}
-	else if (octopus_time == 9) {
+	else if (octopus_time == 6) {
 		//pic4
 		FillAreaColor(x - 2, y - 2, x + 12, y + 8, DefaultBgColor);
 		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\octopus4.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\fixotp4.txt", DefaultBgColor, Black);
 		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\eyesotp.txt", White, Black);
-		octopus_time = 1;
+		octopus_time = 2;
 	}
 
 	octopus_time++;

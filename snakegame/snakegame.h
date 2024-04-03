@@ -178,12 +178,14 @@ void DrawSettingButton(int mode);
 void DrawAboutButton(int mode);
 void DrawLeaderButton(int mode);
 void DrawExitButton(int mode);
+void DrawSettingButton(int mode);
 
 void DrawOcToPus(int x, int y);
 
 void DrawOcToPusHidden1(int x, int y);
 void DrawOcToPusHidden2(int x, int y);
 void DrawBulletToLeft(POINT &bullet);
+void DrawKeyCapp();
 
 //Menu-related functions
 void DrawMenu();
