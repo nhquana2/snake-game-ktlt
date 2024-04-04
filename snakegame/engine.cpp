@@ -3,13 +3,37 @@
 
 using namespace std;
 
-/*the function 'PlaySound' in Windows API requires 'const wchar_t*' (pointer to a wide string)*/
+//the function 'PlaySound' in Windows API requires 'const wchar_t*' (pointer to a wide string)
 void playSound(const string& soundFile) {
 	if (SOUND == 1) {
 		wstring wideSoundFile(soundFile.begin(), soundFile.end()); //convert regular string to wide string
-		PlaySound(wideSoundFile.c_str(), NULL, SND_FILENAME | SND_ASYNC ); //convert string to wchar_t*
+		PlaySound(wideSoundFile.c_str(), NULL, SND_FILENAME | SND_ASYNC); //convert string to wchar_t*
 	}
-	else PlaySound(NULL, NULL, 0);
+	else {
+		PlaySound(NULL, NULL, 0);
+	}
+}
+
+/*Standard: 
+	mciSendString(L"open check.mp3 type mpegvideo alias music1", nullptr, 0, nullptr);
+    mciSendString(L"play music1", nullptr, 0, nullptr);
+*/
+void playMusic(const string& musicFile, const string& alias) {
+	if (MUSIC == 1) {
+		wstring wSoundFile(musicFile.begin(), musicFile.end());
+		wstring wAlias(alias.begin(), alias.end());
+
+		wstring command = L"open ";
+		command.append(wSoundFile);
+		command.append(L".mp3 type mpegvideo alias ");
+		command.append(wAlias);
+		mciSendString(command.c_str(), nullptr, 0, nullptr);
+
+		wstring playCommand = L"play ";
+		playCommand.append(wAlias);
+		playCommand.append(L" repeat");
+		mciSendString(playCommand.c_str(), nullptr, 0, nullptr);
+	}
 }
 
 int RandomInRange(int a, int b) {

@@ -54,6 +54,7 @@ int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
 int LEVEL;
 int SOUND = 0;
+int MUSIC = 0;
 bool Flag_PoisonSpray, Spraying, Flag_emotions;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
@@ -98,7 +99,8 @@ int main()
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor
     SetConsoleColor(DefaultTextColor, DefaultBgColor);
-    playSound("assets\\sounds\\intro");
+    playMusic("assets\\sounds\\intro", "bgmusic");
+    //playSound("assets\\sounds\\intro");
     FixConsoleWindow();
     ResetData();
     //Flag_emotions = true;
