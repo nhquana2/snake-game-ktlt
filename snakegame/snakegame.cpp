@@ -390,9 +390,9 @@ int main()
             }
 
             if (temp == 13 && SOUND_OPTION == 0) {
-                SOUND = 1;
+                SOUND = 1, MUSIC = 1;
                 PrintFile(58, 14, "assets\\ascii\\soundon.txt");
-                playSound("assets\\sounds\\intro");
+                playMusic("assets\\sounds\\intro", "bgmusic");
                 if (COLOR_OPTION == 0) ChangeSnakeColor(Blue, White);
                 else if (COLOR_OPTION == 1) ChangeSnakeColor(Green, White);
                 else if (COLOR_OPTION == 2) ChangeSnakeColor(LightYellow, Black);
