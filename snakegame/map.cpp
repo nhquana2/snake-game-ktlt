@@ -294,6 +294,7 @@ int MapLevel4() {
 int FinalMap() {
 	int pos = 0;
 	for (int i = board[0].y + 1; i < board[0].y + HEIGHT_BOARD - 1; i++) {
+		if (i == board[0].y + 4 || i == board[0].y + 12 || i == board[0].y + 22) continue;
 		SetConsoleColor(Red, DefaultBgColor);
 		obstacles[pos] = { 89,i };
 		GoToXY(89, i); cout << '\xb2';
@@ -301,6 +302,8 @@ int FinalMap() {
 		GoToXY(88, i); cout << '\xb2';
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		pos++;
+	}
+	for (int i = board[0].y + 1; i < board[0].y + HEIGHT_BOARD - 1; i++) {
 		if(i==board[0].y+4||i== board[0].y + 5||i== board[0].y + 6||i== board[0].y + 12||i== board[0].y + 13||i== board[0].y + 14||i== board[0].y + 22||i== board[0].y + 23||i== board[0].y + 24) {
 		continue;
 	    }
