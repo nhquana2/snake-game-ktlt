@@ -167,18 +167,11 @@ void GenerateBigFood();
 void DrawBigFood();
 void DrawBulletUp();
 void DrawBulletDown();
-void DrawKeyCap(int x, int y, char c);
 void DrawTelePoint(int x1, int y1, int x2, int y2);
 void Pause();
 void PostPauseDraw();
 void ColorStatusBoard();
 void FillAreaColor(int x1, int y1, int x2, int y2, int color);
-void DrawPlayButton(int mode);
-void DrawLoadButton(int mode); 
-void DrawSettingButton(int mode);
-void DrawAboutButton(int mode);
-void DrawLeaderButton(int mode);
-void DrawExitButton(int mode);
 void DrawSettingButton(int mode);
 
 void DrawOcToPus(int x, int y);
@@ -186,7 +179,7 @@ void DrawOcToPus(int x, int y);
 void DrawOcToPusHidden1(int x, int y);
 void DrawOcToPusHidden2(int x, int y);
 void DrawBulletToLeft(POINT &bullet);
-void DrawKeyCapp();
+void DrawKeyCap(int x, int y, const char* c);
 
 //Menu-related functions
 void DrawMenu();
@@ -194,6 +187,7 @@ void DrawAboutScreen();
 void DrawSettingsScreen();
 void DrawLoadGameScreen();
 void DrawLeaderBoardScreen();
+void DrawGuideScreen();
 void DrawMiniSnake();
 void GetWidthAndHeightFile(const char* FileName, int& width, int& height);
 void ToggleNormalStateButton(BUTTON a);

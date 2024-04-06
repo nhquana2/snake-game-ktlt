@@ -43,6 +43,7 @@ int SCREEN = 2;
 //SCREEN 4: SETTINGS
 //SCREEN 5: LOAD GAME
 //SCREEN 6: LEADERBOARD
+//SCREEN 7: GUIDE
 int MENU_OPTION = 0; //current option, change with W and S key
 int LOADGAME_OPTION = 0;
 int SOUND_OPTION = 0;
@@ -245,6 +246,12 @@ int main()
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
             }
+
+            if (temp == 'G') {
+                SCREEN = 7;
+                DrawGuideScreen();
+            }
+
             if (temp == 'W') {
                 ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION - 1 + 6) % 6; // 6 options in total
@@ -330,17 +337,6 @@ int main()
                 SCREEN = 1;
                 LoadGame(fileName);
             } 
-
-
-
-            /*if (temp == 'L') {
-                cout << "File name to load: ";
-                string fileName;
-                cin >> fileName;
-                fileName = "./data/" + fileName;
-                SCREEN = 1;
-                LoadGame(fileName);
-            }*/
 
             //Back
             if (temp == 'B') {
@@ -448,6 +444,24 @@ int main()
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
         }
+
+        //SCREEN: GUIDE
+        if (SCREEN == 7) {
+
+            temp = toupper(_getch());
+
+            if (temp == char(-32)) {
+                temp = toupper(_getch()); continue;
+            }
+
+            //Back
+            if (temp == 'B') {
+                SCREEN = 2;
+                DrawMenu();
+                ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
+            }
+        }
+
     }
 
 

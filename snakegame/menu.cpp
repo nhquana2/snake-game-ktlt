@@ -117,7 +117,6 @@ void DrawMenu() {
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
 	//PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 	PrintTitle2File(30, 0, "assets\\ascii\\snakegamenew.txt");
-	DrawKeyCap(0, 0, 'W');
 	//Menu outside border
 	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGHT_CONSOLE - 9 - 1);
 
@@ -128,16 +127,10 @@ void DrawMenu() {
 
 	
 	//PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
-	/*DrawPlayButton(1);
-	DrawLoadButton(1);
-	DrawAboutButton(1);
-	DrawSettingButton(1);
-	DrawLeaderButton(1);
-	DrawExitButton(1);*/
+	
 	//DrawOcToPus(130, 10);
 	//DrawOcToPusHidden(1, 1);
 	//DrawSettingButton(0);
-	DrawKeyCapp();
 }
 
 void DrawAboutScreen() {
@@ -147,6 +140,9 @@ void DrawAboutScreen() {
 	PrintFile(8, 18, "assets\\ascii\\ttcuong.txt");
 	PrintFile(8, 23, "assets\\ascii\\ttmy.txt");
 	PrintFile(8, 28, "assets\\ascii\\thphuc.txt");
+
+	PrintFile(92, 34, "assets\\ascii\\presstogoback.txt");
+	DrawKeyCap(110, 31, "B");
 }
 
 void DrawLoadGameScreen() {
@@ -160,6 +156,9 @@ void DrawLoadGameScreen() {
 		GoToXY(save_entries[i].st.x + 5, save_entries[i].st.y);
 		cout << save_entries[i].text_value;
 	}
+
+	PrintFile(92, 34, "assets\\ascii\\presstogoback.txt");
+	DrawKeyCap(110, 31, "B");
 }
 
 void DrawSettingsScreen() {
@@ -174,6 +173,35 @@ void DrawSettingsScreen() {
 	for (int j = 0; j < 4; ++j) {
 		ToggleNormalStateButton(color_button[j]);
 	}
+
+	PrintFile(92, 34, "assets\\ascii\\presstogoback.txt");
+	DrawKeyCap(110, 31, "B");
+}
+
+void DrawGuideScreen() {
+	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
+	PrintFile(19, 11, "assets\\ascii\\navigation.txt");
+	PrintFile(108, 11, "assets\\ascii\\howtoplay.txt");
+	DrawKeyCap(30, 16 , "W");
+	DrawKeyCap(15, 23, "A");
+	DrawKeyCap(30, 23, "S");
+	DrawKeyCap(45, 23, "D");
+	GoToXY(93, 16);
+	cout << "Navigate the snake to eat food \xfe (and big food after each level) and gain points";
+	GoToXY(93, 18);
+	cout << "For each piece of food eaten, you will gain +10 points, +1 power";
+	GoToXY(93, 20);
+	cout << "Power is used to shoot poison and destroy obstacles";
+	GoToXY(93, 22);
+	cout << "After eating enough amount of food, move to next level by going through the gate";
+	GoToXY(93, 24);
+	cout << "You will lose if your snake hit the board and obstacles, or be shot by bullets";
+	GoToXY(93, 26);
+	cout << "You can save game when you play";
+	GoToXY(93, 28);
+	cout << "You can enter your name to save results to leaderboard when you lose";
+	PrintFile(92, 34, "assets\\ascii\\presstogoback.txt");
+	DrawKeyCap(110, 31, "B");
 }
 
 void DrawLeaderBoardScreen() {
@@ -183,7 +211,7 @@ void DrawLeaderBoardScreen() {
 	SetConsoleColor(Yellow, Red);
 	PrintFile(13, 12, "assets\\ascii\\leaderboard.txt");
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
-	PrintCup(82, 16);
+	PrintCup(82, 12);
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	GoToXY(13, 16);
@@ -202,6 +230,9 @@ void DrawLeaderBoardScreen() {
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+
+	PrintFile(92, 34, "assets\\ascii\\presstogoback.txt");
+	DrawKeyCap(110, 31, "B");
 }
 
 void DrawButton(DECOR_BUTTON a, int mode) {
@@ -238,107 +269,22 @@ void DrawSettingButton(int mode) {
 
 }
 
-void DrawKeyCapp() {
-	int x = 130, y = 10;
-	//Ko thay doi
+void DrawKeyCap(int x, int y, const char *c) {
+
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap1.txt", LightPurple, DefaultBgColor);
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap2.txt", LightRed, LightPurple);
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap3.txt", Purple, LightRed);
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap4.txt", DefaultBgColor, LightPurple);
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\fix1keycap.txt", DefaultBgColor, LightRed);
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\fix2keycap.txt", Purple, DefaultBgColor);
-	
-	//Thay doi o day 
-	PrintColorFile_Ver2(x, y, "assets\\ascii\\W.txt", White, LightPurple);
-}
 
-/*void DrawPlayButton(int mode) {
-	
-	if (mode == 0) {//normal
-		PrintColorFile_Ver2(15, 10, "assets\\ascii\\playbutton.txt", Black, LightRed);
-		PrintColorFile_Ver2(15, 10, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(15, 10, "assets\\ascii\\shadowbutton.txt", Red, Black);
-		PrintColorFile_Ver2(15, 10, "assets\\ascii\\fix2button.txt", LightRed, Red);
-	}
-	else {//active
-		PrintColorFile_Ver2(15, 10, "assets\\ascii\\playbutton.txt", Black, LightYellow);
-		PrintColorFile_Ver2(15, 10, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(15, 10, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
-		PrintColorFile_Ver2(15, 10, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
-	}
-	
-	
+	char path[1000] = {};
+	strcat(path, "assets\\ascii\\");
+	strcat(path, c);
+	strcat(path, ".txt");
+
+	PrintColorFile_Ver2(x, y, path, White, LightPurple);
 }
-void DrawLoadButton(int mode) {
-	if (mode ==0) {//normal
-		PrintColorFile_Ver2(15, 20, "assets\\ascii\\loadbutton.txt", Black, LightRed);
-		PrintColorFile_Ver2(15, 20, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(15, 20, "assets\\ascii\\shadowbutton.txt", Red, Black);
-		PrintColorFile_Ver2(15, 20, "assets\\ascii\\fix2button.txt", LightRed, Red);
-	}
-	else {//active
-		PrintColorFile_Ver2(15, 20, "assets\\ascii\\loadbutton.txt", Black, LightYellow);
-		PrintColorFile_Ver2(15, 20, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(15, 20, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
-		PrintColorFile_Ver2(15, 20, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
-	}
-}
-void DrawSettingButton(int mode) {
-	if (mode == 0) {//normal
-		PrintColorFile_Ver2(15, 30, "assets\\ascii\\settingbutton.txt", Black, LightRed);
-		PrintColorFile_Ver2(15, 30, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(15, 30, "assets\\ascii\\shadowbutton.txt", Red, Black);
-		PrintColorFile_Ver2(15, 30, "assets\\ascii\\fix2button.txt", LightRed, Red);
-	}
-	else {//active
-		PrintColorFile_Ver2(15, 30, "assets\\ascii\\settingbutton.txt", Black, LightYellow);
-		PrintColorFile_Ver2(15, 30, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(15, 30, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
-		PrintColorFile_Ver2(15, 30, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
-	}
-}
-void DrawAboutButton(int mode) {
-	if (mode == 0) {//normal
-		PrintColorFile_Ver2(65, 10, "assets\\ascii\\aboutbutton.txt", Black, LightRed);
-		PrintColorFile_Ver2(65, 10, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(65, 10, "assets\\ascii\\shadowbutton.txt", Red, Black);
-		PrintColorFile_Ver2(65, 10, "assets\\ascii\\fix2button.txt", LightRed, Red);
-	}
-	else {//active
-		PrintColorFile_Ver2(65, 10, "assets\\ascii\\aboutbutton.txt", Black, LightYellow);
-		PrintColorFile_Ver2(65, 10, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(65, 10, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
-		PrintColorFile_Ver2(65, 10, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
-	}
-}
-void DrawLeaderButton(int mode) {
-	if (mode == 0) {//normal
-		PrintColorFile_Ver2(65, 20, "assets\\ascii\\rankbutton.txt", Black, LightRed);
-		PrintColorFile_Ver2(65, 20, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(65, 20, "assets\\ascii\\shadowbutton.txt", Red, Black);
-		PrintColorFile_Ver2(65, 20, "assets\\ascii\\fix2button.txt", LightRed, Red);
-	}
-	else {//active
-		PrintColorFile_Ver2(65, 20, "assets\\ascii\\rankbutton.txt", Black, LightYellow);
-		PrintColorFile_Ver2(65, 20, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(65, 20, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
-		PrintColorFile_Ver2(65, 20, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
-	}
-}
-void DrawExitButton(int mode) {
-	if (mode == 0) {//normal
-		PrintColorFile_Ver2(65, 30, "assets\\ascii\\exitbutton.txt", Black, LightRed);
-		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(65, 30, "assets\\ascii\\shadowbutton.txt", Red, Black);
-		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fix2button.txt", LightRed, Red);
-	}
-	else {//active
-		PrintColorFile_Ver2(65, 30, "assets\\ascii\\exitbutton.txt", Black, LightYellow);
-		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(65, 30, "assets\\ascii\\shadowbutton.txt", Yellow, Black);
-		PrintColorFile_Ver2(65, 30, "assets\\ascii\\fix2button.txt", LightYellow, Yellow);
-	}
-}*/
 
 void DrawOcToPus(int x, int y) {
 	//int x = 100, y = 15;
