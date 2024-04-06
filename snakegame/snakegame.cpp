@@ -132,25 +132,29 @@ int main()
                 temp = toupper(_getch()); continue;
             }
             if (STATE == 1) {
-                /*if (PAUSE && temp == 'M') {
+                if (PAUSE && temp == 'M') {
+                    PAUSE = 0;
+                    threadPaused = false;
+                    cvThread.notify_one();
                     STATE = 0;
                     playSound("assets\\sounds\\intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
-                }*/
+                    ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
+                }
                 if (PAUSE && temp == 'L') {
                     string fileName;
                     
                     //while to handle valid input file name (<= 15 chars)
                     while (1) {
-                        GoToXY(18, 30);
+                        GoToXY(18, 25);
                         cout << "File name to save (without extension): ";
-                        GoToXY(18, 31);
+                        GoToXY(18, 26);
                         for (int i = 0; i < fileName.length(); ++i) cout << " "; //clear input buffer
-                        GoToXY(18, 31); 
+                        GoToXY(18, 26); 
                         cin >> fileName;
                         if (fileName.length() <= 15) break; else {
-                            GoToXY(18, 33);
+                            GoToXY(18, 27);
                             cout << "File name should be less than 15 characters, try again.";
                         }
                     }
@@ -208,14 +212,14 @@ int main()
 
                     //while to handle valid input user name (<= 15 chars)
                     while (1) {
-                        GoToXY(18, 35);
+                        GoToXY(18, 30);
                         cout << "Username to save high score: ";
-                        GoToXY(18, 36);
+                        GoToXY(18, 31);
                         for (int i = 0; i < username.length(); ++i) cout << " "; //clear input buffer
-                        GoToXY(18, 36);
+                        GoToXY(18, 31);
                         cin >> username;
                         if (username.length() <= 15) break; else {
-                            GoToXY(18, 37);
+                            GoToXY(18, 32);
                             cout << "Username should be less than 15 characters, try again.";
                         }
                     }
@@ -224,7 +228,7 @@ int main()
                     output.open("highscore.txt",ios::app);
                     output << username << ',' << TIME << ',' << SCORE << '\n';
                     GoToXY(18, 36);
-                    cout << "High score saved! Press any key to continue ";
+                    cout << "High score saved! Press M to go back to menu, Y to play again";
                     continue;
 
                 }
@@ -232,6 +236,7 @@ int main()
                     playSound("assets\\sounds\\intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
+                    ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
                 }
             }
         }

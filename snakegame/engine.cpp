@@ -326,6 +326,10 @@ void ProcessDead() {
 	FillAreaColor(128, 2,175,17, Yellow);
 	
 	PrintColorFile_Ver2(board[0].x + WIDTH_BOARD + board[0].x +4, board[0].y - 5, "assets\\ascii\\deadtext.txt", Red, Yellow);
+
+	GoToXY(28, 25);
+	cout << "Press M to go back to menu (without saving gameplay score)";
+
 	//SetConsoleColor(Yellow, Black);
 	//cout<<"Dead, press Y to continue!";
 	//SetConsoleColor(White, Black);

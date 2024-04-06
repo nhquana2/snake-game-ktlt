@@ -320,7 +320,7 @@ void Pause()
 	PrintFile(50, 16, "assets\\ascii\\newpaused.txt");
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	GoToXY(18, 29);
-	cout << "Press any key to continue, or press L to save game";
+	cout << "Press M to go back to menu without saving, press L to save game, press any other key to continue";
 }
 
 void PostPauseDraw() {

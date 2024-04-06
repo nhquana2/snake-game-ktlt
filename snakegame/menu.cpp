@@ -112,6 +112,7 @@ void ToggleActiveStateSaveEntry(SAVE_ENTRY a, int pos) {
 
 void DrawMenu() {
 	system("cls");
+
 	//ASCII art title
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
@@ -126,7 +127,7 @@ void DrawMenu() {
 	}
 
 	
-	//PrintSnakeTextFile(116, 13, "assets\\ascii\\happysnake.txt");
+	PrintSnakeTextFile(120, 11, "assets\\ascii\\happysnake.txt");
 	
 	//DrawOcToPus(130, 10);
 	//DrawOcToPusHidden(1, 1);
