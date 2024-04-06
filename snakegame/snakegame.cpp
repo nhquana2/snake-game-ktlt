@@ -138,7 +138,7 @@ int main()
                     threadPaused = false;
                     cvThread.notify_one();
                     STATE = 0;
-                    playSound("assets\\sounds\\intro");
+                    //playSound("assets\\sounds\\intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
                     ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
