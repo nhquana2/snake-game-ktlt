@@ -56,6 +56,7 @@ bool CHECK_SNAKE;
 int LEVEL;
 int SOUND = 0;
 int MUSIC = 0;
+int VOLUME = 60;
 bool Flag_PoisonSpray, Spraying, Flag_emotions;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
 int previousAction_tmp;
@@ -100,7 +101,7 @@ int main()
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor
     SetConsoleColor(DefaultTextColor, DefaultBgColor);
-    playMusic("assets\\sounds\\intro", "bgmusic");
+    PlayMusic("assets\\sounds\\intro", "bgmusic");
     //playSound("assets\\sounds\\intro");
     FixConsoleWindow();
     ResetData();
@@ -233,7 +234,7 @@ int main()
 
                 }
                 if (!BLINKING_MAP && temp == 'M') {
-                    playSound("assets\\sounds\\intro");
+                    //PlayMusic("assets\\sounds\\intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
                     ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
@@ -245,7 +246,6 @@ int main()
         if (SCREEN == 2) {
             //Mini snake moving
             
-           
             //PrintColorFile_Ver2(30, 20, "assets\\ascii\\minisnake2.txt", Red, DefaultBgColor);
             temp = toupper(_getch());
             if (temp == char(-32)) {
@@ -352,7 +352,7 @@ int main()
 
         }
 
-        if (SCREEN == 4) {//Screen: Setting
+        if (SCREEN == 4) {//Screen: Settings
             //int MINI_SNAKE_COLOR;
            
             
@@ -367,14 +367,16 @@ int main()
 
             //Options for sounds
             if (temp == 'W') {
-                ToggleNormalStateButton(sound_button[SOUND_OPTION]);
-                SOUND_OPTION = (SOUND_OPTION - 1 + 2) % 2;
-                ToggleActiveStateButton(sound_button[SOUND_OPTION]);
+                if (VOLUME < 100) {
+                    VOLUME += 20;
+                    SetVolume_Pt2(VOLUME);
+                }
             }
             if (temp == 'S') {
-                ToggleNormalStateButton(sound_button[SOUND_OPTION]);
-                SOUND_OPTION = (SOUND_OPTION + 1) % 2;
-                ToggleActiveStateButton(sound_button[SOUND_OPTION]);
+                if (VOLUME > 0) {
+                    VOLUME -= 20;
+                    SetVolume_Pt2(VOLUME);
+                }
             }
 
             ////Options for snake's colors
@@ -390,19 +392,25 @@ int main()
                 ToggleActiveStateButton(color_button[COLOR_OPTION]);
             }
 
-            if (temp == 13 && SOUND_OPTION == 0) {
-                SOUND = 1, MUSIC = 1;
-                PrintFile(58, 14, "assets\\ascii\\soundon.txt");
-                playMusic("assets\\sounds\\intro", "bgmusic");
-                if (COLOR_OPTION == 0) ChangeSnakeColor(Blue, White);
-                else if (COLOR_OPTION == 1) ChangeSnakeColor(Green, White);
-                else if (COLOR_OPTION == 2) ChangeSnakeColor(LightYellow, Black);
-                else if (COLOR_OPTION == 3) ChangeSnakeColor(LightPurple, White);
+            //Turn on/off sounds
+            if (temp == 'N') {
+                SOUND = (SOUND - 1 + 2) % 2;
+                if (SOUND == 1) PrintFile(58, 14, "assets\\ascii\\soundon.txt");
+                else PrintFile(58, 14, "assets\\ascii\\soundoff.txt");
             }
-            if (temp == 13 && SOUND_OPTION == 1) {
-                SOUND = 0;
-                PlaySound(NULL, NULL, 0);
-                PrintFile(58, 14, "assets\\ascii\\soundoff.txt");
+            //Turn on/off music
+            if (temp == 'M') {
+                if (MUSIC == 1) {
+                    MUSIC = 0;
+                    mciSendString(L"stop bgmusic", NULL, 0, NULL);
+                    mciSendString(L"close bgmusic", NULL, 0, NULL);
+                }
+                else {
+                    MUSIC = 1;
+                    PlayMusic("assets\\sounds\\intro", "bgmusic");
+                }
+            }
+            if (temp == 13) {
                 if (COLOR_OPTION == 0) ChangeSnakeColor(Blue, White);
                 else if (COLOR_OPTION == 1) ChangeSnakeColor(Green, White);
                 else if (COLOR_OPTION == 2) ChangeSnakeColor(LightYellow, Black);

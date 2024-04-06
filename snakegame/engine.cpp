@@ -4,7 +4,7 @@
 using namespace std;
 
 //the function 'PlaySound' in Windows API requires 'const wchar_t*' (pointer to a wide string)
-void playSound(const string& soundFile) {
+void PlaySoundEffect(const string& soundFile) {
 	if (SOUND == 1) {
 		wstring wideSoundFile(soundFile.begin(), soundFile.end()); //convert regular string to wide string
 		PlaySound(wideSoundFile.c_str(), NULL, SND_FILENAME | SND_ASYNC); //convert string to wchar_t*
@@ -15,25 +15,36 @@ void playSound(const string& soundFile) {
 }
 
 /*Standard: 
-	mciSendString(L"open check.mp3 type mpegvideo alias music1", nullptr, 0, nullptr);
-    mciSendString(L"play music1", nullptr, 0, nullptr);
+	mciSendString(L"open check.mp3 type mpegvideo alias music", nullptr, 0, nullptr);
+    mciSendString(L"play music", nullptr, 0, nullptr);
 */
-void playMusic(const string& musicFile, const string& alias) {
+void PlayMusic(const string& musicFile, const string& alias) {
 	if (MUSIC == 1) {
 		wstring wSoundFile(musicFile.begin(), musicFile.end());
 		wstring wAlias(alias.begin(), alias.end());
 
-		wstring command = L"open ";
-		command.append(wSoundFile);
-		command.append(L".mp3 type mpegvideo alias ");
-		command.append(wAlias);
-		mciSendString(command.c_str(), nullptr, 0, nullptr);
+		wstring command = L"open " + wSoundFile + L".mp3 type mpegvideo alias " + wAlias;
+		mciSendString(command.c_str(), NULL, 0, NULL);
 
-		wstring playCommand = L"play ";
-		playCommand.append(wAlias);
-		playCommand.append(L" repeat");
-		mciSendString(playCommand.c_str(), nullptr, 0, nullptr);
+		wstring playCommand = L"play " + wAlias + L" repeat";
+		mciSendString(playCommand.c_str(), NULL, 0, NULL);
 	}
+}
+
+void SetVolume(DWORD volume)
+{
+	DWORD leftVolume = volume & 0xFFFF;
+	DWORD rightVolume = (volume & 0xFFFF) << 16;
+	waveOutSetVolume(0, leftVolume | rightVolume);
+}
+
+void SetVolume_Pt2(int volume) {
+	if (volume == 0) SetVolume(0x0000);
+	else if (volume == 20) SetVolume(0x3333);
+	else if (volume == 40) SetVolume(0x6666);
+	else if (volume == 60) SetVolume(0x9999);
+	else if (volume == 80) SetVolume(0xCCCC);
+	else if (volume == 100) SetVolume(0xFFFF);
 }
 
 int RandomInRange(int a, int b) {
@@ -255,7 +266,7 @@ void ResetData() {
 
 void StartGame() {
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
-	playSound("assets\\sounds\\startGame");
+	PlaySoundEffect("assets\\sounds\\startGame");
 	//BoardInit(5, 10);
 	WIN_POINT.x = 0;
 	WIN_POINT.y = 0;
@@ -299,7 +310,7 @@ void ExitGame(HANDLE t) {
 }
 
 void PauseGame(HANDLE t) {
-	playSound("assets\\sounds\\pauseGame");
+	PlaySoundEffect("assets\\sounds\\pauseGame");
 	SuspendThread(t);
 }
 
@@ -307,7 +318,7 @@ void ProcessDead() {
 	STATE = 0;
 	
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\angrysnake.txt");
-	playSound("assets\\sounds\\deathSound");
+	PlaySoundEffect("assets\\sounds\\deathSound");
 	
 	BlinkingMap();
 	GoToXY(WIDTH_CONSOLE/2, HEIGHT_CONSOLE/2);
@@ -338,7 +349,7 @@ void ProcessDead() {
 void LevelUp() {
 	//process when the snake eat enough food and open the gate
 	//when the head of the snake hit the win point
-	playSound("assets\\sounds\\levelup");
+	PlaySoundEffect("assets\\sounds\\levelup");
 	DeleteGate();
 	FOOD_INDEX = 0;
 	LEVEL += 1;
@@ -376,7 +387,7 @@ void LevelUp() {
 }
 void Eat() {
 
-	playSound("assets\\sounds\\eat");
+	PlaySoundEffect("assets\\sounds\\eat");
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\happysnake.txt");
 	emotionstime = 10;
 	if (!Spraying) snake[SIZE_SNAKE] = food[FOOD_INDEX];
@@ -455,7 +466,7 @@ void MoveRight()
 	//check if the snake touch the big food
 	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
-		playSound("assets\\sounds\\bigfood");
+		PlaySoundEffect("assets\\sounds\\bigfood");
 		//delete big food, parameters is its coordinates
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		PowerScore = 3;
@@ -499,7 +510,7 @@ void MoveLeft()
 
 	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
-		playSound("assets\\sounds\\bigfood");
+		PlaySoundEffect("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		PowerScore = 3;
 		SCORE += 100;
@@ -534,7 +545,7 @@ void MoveUp()
 	
 	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
-		playSound("assets\\sounds\\bigfood");
+		PlaySoundEffect("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		PowerScore = 3;
 		SCORE += 100;
@@ -568,7 +579,7 @@ void MoveDown()
 	
 	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
-		playSound("assets\\sounds\\bigfood");
+		PlaySoundEffect("assets\\sounds\\bigfood");
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		PowerScore = 3;
 		SCORE += 100;
@@ -601,7 +612,7 @@ void PoisonSpray() {
 		spray.x++;
 		if (LEVEL==6 && checkTouchBoss(spray.x,spray.y)) {//win game neu HP == 0
 			HP_OF_BOSS--;
-			playSound("assets\\sounds\\explosion");
+			PlaySoundEffect("assets\\sounds\\explosion");
 			Spraying = false;
 			
 		}
@@ -609,7 +620,7 @@ void PoisonSpray() {
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
 				obstacles[i].x = obstacles[i].y = 3;
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -617,7 +628,7 @@ void PoisonSpray() {
 		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i) 
 			if (spray.x == gate[i].x && spray.y == gate[i].y){
 				spray.x = spray.y = 5;
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -628,7 +639,7 @@ void PoisonSpray() {
 		}
 		//check touch big food
 		if (CheckBigFood(spray.x, spray.y)){
-			playSound("assets\\sounds\\bigfood");
+			PlaySoundEffect("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
 			PowerScore = 3;
@@ -640,7 +651,7 @@ void PoisonSpray() {
 				Spraying = false;
 			}
 			else if (spray.x == board[0].x + WIDTH_BOARD - 2) {
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 			}
 		}
@@ -651,7 +662,7 @@ void PoisonSpray() {
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
 				obstacles[i].x = obstacles[i].y = 3;
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -659,7 +670,7 @@ void PoisonSpray() {
 		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i)
 			if (spray.x == gate[i].x && spray.y == gate[i].y) {
 				spray.x = spray.y = 5;
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -674,7 +685,7 @@ void PoisonSpray() {
 		//check touch big food
 		if (CheckBigFood(spray.x, spray.y))
 		{
-			playSound("assets\\sounds\\bigfood");
+			PlaySoundEffect("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
 			PowerScore = 3;
@@ -686,7 +697,7 @@ void PoisonSpray() {
 				Spraying = false;
 			}
 			else if (spray.x == board[0].x + 1) {
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 			}
 		}
@@ -697,7 +708,7 @@ void PoisonSpray() {
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
 				obstacles[i].x = obstacles[i].y = 3;
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -705,13 +716,13 @@ void PoisonSpray() {
 		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i)
 			if (spray.x == gate[i].x && spray.y == gate[i].y) {
 				spray.x = spray.y = 5;
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
 		//check touch big food
 		if (CheckBigFood(spray.x, spray.y)){
-			playSound("assets\\sounds\\bigfood");
+			PlaySoundEffect("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
 			PowerScore = 3;
@@ -723,7 +734,7 @@ void PoisonSpray() {
 				Spraying = false;
 			}
 			else if (spray.y == board[0].y + 1) {
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 			}
 		}
@@ -734,7 +745,7 @@ void PoisonSpray() {
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
 			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
 				obstacles[i].x = obstacles[i].y = 3;
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
@@ -743,13 +754,13 @@ void PoisonSpray() {
 		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i)
 			if (spray.x == gate[i].x && spray.y == gate[i].y) {
 				spray.x = spray.y = 5;
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 				break;
 			}
 		//check touch food
 		if (CheckBigFood(spray.x, spray.y)){
-			playSound("assets\\sounds\\bigfood");
+			PlaySoundEffect("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
 			PowerScore = 3;
@@ -761,7 +772,7 @@ void PoisonSpray() {
 				Spraying = false;
 			}
 			else if (spray.y == board[0].y + HEIGHT_BOARD - 2) {
-				playSound("assets\\sounds\\explosion");
+				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
 			}
 		}
@@ -820,7 +831,7 @@ void ThreadFunc() {
 				else if (MOVING == 'S') previousAction = 4;//move down
 				Spraying = true;
 				PowerScore--;
-				playSound("assets\\sounds\\shooting");
+				PlaySoundEffect("assets\\sounds\\shooting");
 				Flag_PoisonSpray = false;
 			}
 			else Flag_PoisonSpray = false;

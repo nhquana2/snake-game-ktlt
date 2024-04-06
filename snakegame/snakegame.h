@@ -121,6 +121,7 @@ extern int TIME;
 extern int SCORE;
 extern int SOUND;
 extern int MUSIC;
+extern int VOLUME;
 extern int OLD_SIZE_SNAKE;
 extern bool CHECK_SNAKE; 
 extern bool Flag_PoisonSpray;
@@ -202,8 +203,10 @@ void InitColorButtons();
 void DrawButton(DECOR_BUTTON a, int mode);
 
 //Logic and game engine functions
-void playSound(const std::string& soundFile);
-void playMusic(const string& musicFile, const string& alias);
+void PlaySoundEffect(const string& soundFile);
+void PlayMusic(const string& musicFile, const string& alias);
+void SetVolume(DWORD volume);
+void SetVolume_Pt2(int volume);
 bool IsValidFood(int x, int y);
 void GenerateFood();
 void ResetData();

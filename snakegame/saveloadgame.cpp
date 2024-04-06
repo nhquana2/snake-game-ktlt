@@ -33,7 +33,7 @@ void SaveGame(string FileName) {
 }
 
 void LoadGame(string FileName) {
-	playSound("assets\\sounds\\startGame");
+	PlaySoundEffect("assets\\sounds\\startGame");
 	system("cls"); //Clear screen
 	BoardInit(3, 9, WIDTH_BOARD, HEIGHT_BOARD);
 
