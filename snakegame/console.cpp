@@ -137,7 +137,14 @@ void DrawBulletToLeft(POINT &bullet_to_left) {
 	--bullet_to_left.x;
 	GoToXY(bullet_to_left.x, bullet_to_left.y);
 	cout << "\x11";
+	if (Spraying) {
+		if (checkBullet(spray.x, spray.y)) {
 
+			//playSound("assets\\sounds\\explosion");
+			Spraying = false;
+
+		}
+	}
 	for (int i = 0; i < SIZE_SNAKE; ++i) {
 		if (bullet_to_left.x == snake[i].x && bullet_to_left.y == snake[i].y)
 			ProcessDead();
@@ -244,7 +251,7 @@ void PrintStatusBoard() {
 			else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
 			else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
 		
-		if (LEVEL == 0) {
+		if (LEVEL == 1) {//Level == 5
 			GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 8);
 			cout << "HP of BOSS: "<<HP_OF_BOSS;
 		}

@@ -1,4 +1,4 @@
-//Snake game 23CLC01
+﻿//Snake game 23CLC01
 
 #include <iostream>
 #include "snakegame.h"
@@ -78,10 +78,12 @@ int MINI_SNAKE_COLOR;
 int octopus_time = 0;
 int octopus_hidden_time = 0;
 int HP_OF_BOSS = 5;
+
 using namespace std;
 
 int main()
 {
+    
     CONSOLE_SCREEN_BUFFER_INFOEX info;
     info.cbSize = sizeof(CONSOLE_SCREEN_BUFFER_INFOEX);
 

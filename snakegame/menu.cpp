@@ -1,4 +1,4 @@
-#include "snakegame.h"
+﻿#include "snakegame.h"
 
 using namespace std;
 
@@ -132,6 +132,8 @@ void DrawMenu() {
 	//DrawOcToPus(130, 10);
 	//DrawOcToPusHidden(1, 1);
 	//DrawSettingButton(0);
+	GoToXY(150, 15);
+	cout << "▄";
 }
 
 void DrawAboutScreen() {
@@ -279,10 +281,10 @@ void DrawSettingButton(int mode) {
 void DrawKeyCap(int x, int y, const char *c) {
 
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap1.txt", LightPurple, DefaultBgColor);
-	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap2.txt", LightRed, LightPurple);
-	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap3.txt", Purple, LightRed);
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap2.txt", Red, LightPurple);
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap3.txt", Purple, Red);
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\keycap4.txt", DefaultBgColor, LightPurple);
-	PrintColorFile_Ver2(x, y, "assets\\ascii\\fix1keycap.txt", DefaultBgColor, LightRed);
+	PrintColorFile_Ver2(x, y, "assets\\ascii\\fix1keycap.txt", DefaultBgColor, Red);
 	PrintColorFile_Ver2(x, y, "assets\\ascii\\fix2keycap.txt", Purple, DefaultBgColor);
 
 	char path[1000] = {};

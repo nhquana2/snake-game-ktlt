@@ -144,6 +144,7 @@ extern int MINI_SNAKE_COLOR;
 extern int octopus_time;
 extern int octopus_hidden_time;
 extern int HP_OF_BOSS;
+
 extern POINT MINI_Snake;
 
 //Utility
@@ -175,13 +176,14 @@ void ColorStatusBoard();
 void FillAreaColor(int x1, int y1, int x2, int y2, int color);
 void DrawSettingButton(int mode);
 
-void DrawOcToPus(int x, int y);
 
+
+void DrawKeyCap(int x, int y, const char* c);
+//final map
+void DrawOcToPus(int x, int y);
 void DrawOcToPusHidden1(int x, int y);
 void DrawOcToPusHidden2(int x, int y);
-void DrawBulletToLeft(POINT &bullet);
-void DrawKeyCap(int x, int y, const char* c);
-
+void DrawBulletToLeft(POINT& bullet);
 //Menu-related functions
 void DrawMenu();
 void DrawAboutScreen();
@@ -216,12 +218,14 @@ void PauseGame(HANDLE t);
 void BoardInit(int x, int y, int width, int height);
 void ThreadFunc();
 void Eat();
+bool checkBullet(int x, int y);
 void ProcessDead();
 void InitGate();//return size of gate
 void PrintAuCup(int x, int y);
 void PrintAgCup(int x, int y);
 void PrintCuCup(int x, int y);
 void PrintCup(int x, int y);
+bool checkPoisonSpray();
 //map
 bool CheckTouchObstacles(int x, int y);//parameters is the coordinate of the head of the snake
 void DeleteMap();

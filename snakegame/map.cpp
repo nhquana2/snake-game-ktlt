@@ -164,17 +164,6 @@ int MapLevel5() {
 		obstacles[pos] = { board[0].x + 41 + i, board[0].y + 13 };
 		pos++;
 	}
-/*	for (int i = 0; i < 5; i++)
-	{
-		GoToXY(board[0].x + 76, board[0].y + 9 + i);
-		cout << '\xb2';
-		obstacles[pos] = { board[0].x + 76, board[0].y + 9 + i };
-		pos++;
-		GoToXY(board[0].x + 75, board[0].y + 9 + i);
-		cout << '\xb2';
-		obstacles[pos] = { board[0].x + 75, board[0].y + 9 + i };
-		pos++;
-	}*/
 	GoToXY(board[0].x + 76, board[0].y + 13);
 	for (int i = 0; i < 26; i++)
 	{
@@ -293,25 +282,66 @@ int MapLevel4() {
 }
 int FinalMap() {
 	int pos = 0;
+	obstacles[pos++] = { 86,10 };
+	GoToXY(86, 10);
+	cout << '\xb2';
+	obstacles[pos++] = { 87,10 };
+	GoToXY(87, 10);
+	cout << '\xb2';
+	//obstacles[pos++] = { 87,11 };
+	GoToXY(87, 11);
+	cout << '\xb2';
+	obstacles[pos++] = { 86,12 };
+	GoToXY(86, 12);
+	cout << '\xb2';
+	obstacles[pos++] = { 87,12 };
+	GoToXY(87, 12);
+	cout << '\xb2';
+	TELE_POINT_2.x = 86;
+	TELE_POINT_2.y = 11;
+
+	obstacles[pos++] = { 4,35 };
+	GoToXY(4, 35);
+	cout << '\xb2';
+	//obstacles[pos++] = { 4,36 };
+	GoToXY(4, 36);
+	cout << '\xb2';
+	obstacles[pos++] = { 4,37 };
+	GoToXY(4, 37);
+	cout << '\xb2';
+	obstacles[pos++] = { 5,35 };
+	GoToXY(5, 35);
+	cout << '\xb2';
+	obstacles[pos++] = { 5,37 };
+	GoToXY(5, 37);
+	cout << '\xb2';
+	TELE_POINT_1.x = 5;
+	TELE_POINT_1.y = 36;
+
 	for (int i = board[0].y + 1; i < board[0].y + HEIGHT_BOARD - 1; i++) {
-		if (i == board[0].y + 4 || i == board[0].y + 12 || i == board[0].y + 22) continue;
+		if (i == board[0].y + 4 || i == board[0].y + 13 || i == board[0].y + 22) continue;
 		SetConsoleColor(Red, DefaultBgColor);
-		obstacles[pos] = { 89,i };
+		obstacles[pos++] = { 89,i };
 		GoToXY(89, i); cout << '\xb2';
-		obstacles[pos] = { 88,i };
+		obstacles[pos++] = { 88,i };
 		GoToXY(88, i); cout << '\xb2';
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		pos++;
+		//pos++;
 	}
 	for (int i = board[0].y + 1; i < board[0].y + HEIGHT_BOARD - 1; i++) {
-		if(i==board[0].y+4||i== board[0].y + 5||i== board[0].y + 6||i== board[0].y + 12||i== board[0].y + 13||i== board[0].y + 14||i== board[0].y + 22||i== board[0].y + 23||i== board[0].y + 24) {
+		if(i==board[0].y+4||i== board[0].y + 13||i== board[0].y + 22) {
 		continue;
 	    }
-		obstacles[pos] = { 40,i };
+		obstacles[pos++] = { 40,i };
 		GoToXY(40, i); cout << '\xb2';
-		pos++;
+		//pos++;
 
 	}
+	//obstacles[pos++] = {}
+	
+
+	
+	
 	return pos;
 }
 void DrawTelePoint(int x1, int y1, int x2, int y2) {
