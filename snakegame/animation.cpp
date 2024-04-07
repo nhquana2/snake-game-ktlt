@@ -55,6 +55,8 @@ void BlinkingMap(){//blinking when the snake died
 			NUMBER_OF_OBSTACLES = MapLevel3();
 		}*/
 		Sleep(100);
+
 	}
-	
+	DrawRectangle_Ver2(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD);
+
 }

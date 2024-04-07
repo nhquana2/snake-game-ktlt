@@ -148,9 +148,12 @@ void DrawAboutScreen() {
 
 void DrawLoadGameScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	GoToXY(10, 12);
-	cout << "Load game";
-	GoToXY(10, 13);
+	//GoToXY(10, 12);
+	PrintColorFile_Ver2(65,11,"assets\\ascii\\loadbutton.txt", Black, LightRed);
+	PrintColorFile_Ver2(65, 11, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
+	PrintColorFile_Ver2(65, 11, "assets\\ascii\\shadowbutton.txt", Red, Black);
+	PrintColorFile_Ver2(65, 11, "assets\\ascii\\fix2button.txt", LightRed, Red);
+	GoToXY(55, 16);
 	for (int i = 0; i < save_entries.size(); ++i) {
 		GoToXY(save_entries[i].st.x, save_entries[i].st.y);
 		cout << i+1 << ". ";
@@ -208,15 +211,19 @@ void DrawGuideScreen() {
 void DrawLeaderBoardScreen() {
 	NUMBER_OF_PLAYERS = LeaderBoard(Player);
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	FillAreaColor(11,11, 56, 18+NUMBER_OF_PLAYERS, Red);
-	SetConsoleColor(Yellow, Red);
-	PrintFile(13, 12, "assets\\ascii\\leaderboard.txt");
-	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	//FillAreaColor(11,11, 56, 18+NUMBER_OF_PLAYERS, Red);
+	PrintColorFile_Ver2(13, 12,"assets\\ascii\\leaderboard1.txt" , Black, LightGreen);
+	PrintColorFile_Ver2(13, 12, "assets\\ascii\\leaderboard2.txt", DefaultBgColor, Black);
+	PrintColorFile_Ver2(13, 12, "assets\\ascii\\leaderboard3.txt", Green, Black);
+	PrintColorFile_Ver2(13, 12, "assets\\ascii\\leaderboard4.txt", LightGreen, Green);
+	//SetConsoleColor(Yellow, Red);
+	//PrintFile(13, 12, "assets\\ascii\\leaderboard.txt");
+	//SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	PrintCup(82, 12);
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
-	GoToXY(13, 16);
-	SetConsoleColor(DefaultTextColor, Red);
+	GoToXY(13, 19);
+	//SetConsoleColor(DefaultTextColor, Red);
 	cout << "USERNAME     SCORE     TIME PLAYED";
 
 	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
@@ -228,9 +235,8 @@ void DrawLeaderBoardScreen() {
 		cout << Player[i].TIME;
 
 	}
-	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 
-	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	
 
 	PrintFile(92, 34, "assets\\ascii\\presstogoback.txt");
 	DrawKeyCap(110, 31, "B");

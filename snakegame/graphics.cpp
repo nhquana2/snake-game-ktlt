@@ -165,20 +165,22 @@ void PrintTextFile(int x, int y, const char* FileName) {
 	GoToXY(x, y);
 	while (ifs.get(c)) {
 		if (c == 'o') {
-			SetConsoleColor(Blue, DefaultBgColor);
+			SetConsoleColor(Red, Red);
 			cout << '\xb2';
-			SetConsoleColor(DefaultTextColor, DefaultBgColor);
+			SetConsoleColor(DefaultTextColor, Red);
 		}
 		else if (c == '/') {
-			SetConsoleColor(Red, DefaultBgColor);
+			SetConsoleColor(Yellow, Red);
 			cout << '\xb2';
 			SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		}
 		else if (c == ' ') {
+			SetConsoleColor(Yellow, Red);
 			cout << c;
+			SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		}
 		else {
-			SetConsoleColor(Yellow, DefaultBgColor);
+			SetConsoleColor(Yellow, Red);
 			cout << c;
 			SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		}

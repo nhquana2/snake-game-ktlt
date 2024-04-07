@@ -325,11 +325,16 @@ void ProcessDead() {
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
 	TEXTINCONSOLE = 1;
 	//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
-	FillAreaColor(34, 14, 91, 20,Red);
+	//FillAreaColor(34, 14, 91, 20,Red);
 	SetConsoleColor(Yellow, Red);
-	DrawRectangle(35, 14, 90 - 34, 20 - 13);
+	//DrawRectangle(35, 14, 90 - 34, 20 - 13);
 	
-	PrintFile(40, 16, "assets\\ascii\\newgameover.txt");
+	//FillAreaColor(15, 16, 110, 20, Red);
+	SetConsoleColor(Yellow, Red);
+	//DrawRectangle(45, 14, 70 - 34, 20 - 13);
+
+	PrintTextFile(23, 12, "assets\\ascii\\gameover.txt");
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	BLINKING_MAP = 0;
 	//GoToXY(18, 34);
@@ -338,7 +343,7 @@ void ProcessDead() {
 	
 	PrintColorFile_Ver2(board[0].x + WIDTH_BOARD + board[0].x +4, board[0].y - 5, "assets\\ascii\\deadtext.txt", Red, Yellow);
 
-	GoToXY(28, 25);
+	GoToXY(28, 35);
 	cout << "Press M to go back to menu (without saving gameplay score)";
 
 	//SetConsoleColor(Yellow, Black);

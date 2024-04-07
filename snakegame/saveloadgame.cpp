@@ -144,7 +144,7 @@ void LoadSaveEntries() {
 			if (entry.is_regular_file()) {
 				SAVE_ENTRY se;
 				se.text_value = entry.path().filename().string();
-				se.st = { 10, 13 + pos };
+				se.st = { 75, 17 + pos };
 				save_entries.push_back(se);
 				++pos;
 			}

@@ -313,11 +313,11 @@ void Pause()
 	cvMain.wait(lock, [] { return threadPaused.load();  });
 	lock.unlock();
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
-	FillAreaColor(44, 14, 81, 20, Red);
+	FillAreaColor(15, 16, 110, 20, Red);
 	SetConsoleColor(Yellow, Red);
-	DrawRectangle(45, 14, 70 - 34, 20 - 13);
+	//DrawRectangle(45, 14, 70 - 34, 20 - 13);
 
-	PrintFile(50, 16, "assets\\ascii\\newpaused.txt");
+	PrintTextFile(15, 16, "assets\\ascii\\paused.txt");
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	GoToXY(18, 29);
 	cout << "Press M to go back to menu without saving, press L to save game, press any other key to continue";
