@@ -150,14 +150,14 @@ int main()
                     
                     //while to handle valid input file name (<= 15 chars)
                     while (1) {
-                        GoToXY(18, 25);
+                        GoToXY(18, 30);
                         cout << "File name to save (without extension): ";
-                        GoToXY(18, 26);
+                        GoToXY(18, 31);
                         for (int i = 0; i < fileName.length(); ++i) cout << " "; //clear input buffer
-                        GoToXY(18, 26); 
+                        GoToXY(18, 31); 
                         cin >> fileName;
                         if (fileName.length() <= 15) break; else {
-                            GoToXY(18, 27);
+                            GoToXY(18, 32);
                             cout << "File name should be less than 15 characters, try again.";
                         }
                     }
@@ -215,14 +215,14 @@ int main()
 
                     //while to handle valid input user name (<= 15 chars)
                     while (1) {
-                        GoToXY(18, 30);
+                        GoToXY(18, 35);
                         cout << "Username to save high score: ";
-                        GoToXY(18, 31);
+                        GoToXY(18, 36);
                         for (int i = 0; i < username.length(); ++i) cout << " "; //clear input buffer
-                        GoToXY(18, 31);
+                        GoToXY(18, 36);
                         cin >> username;
                         if (username.length() <= 15) break; else {
-                            GoToXY(18, 32);
+                            GoToXY(18, 37);
                             cout << "Username should be less than 15 characters, try again.";
                         }
                     }

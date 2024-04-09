@@ -224,16 +224,16 @@ void DrawLeaderBoardScreen() {
 	PrintCup(82, 12);
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
-	GoToXY(13, 19);
+	GoToXY(15, 18);
 	//SetConsoleColor(DefaultTextColor, Red);
 	cout << "USERNAME     SCORE     TIME PLAYED";
 
 	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
-		GoToXY(13, 17+i + 1);
+		GoToXY(15, 19+i + 1);
 		cout << Player[i].name; 
-		GoToXY(26,17+ i + 1);
+		GoToXY(28,19+ i + 1);
 		cout << Player[i].SCORE;
-		GoToXY(38, 17 + i + 1);
+		GoToXY(40, 19 + i + 1);
 		cout << Player[i].TIME;
 
 	}
