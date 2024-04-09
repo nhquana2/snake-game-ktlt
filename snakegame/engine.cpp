@@ -14,9 +14,9 @@ void PlaySoundEffect(const string& soundFile) {
 	}
 }
 
-/*Standard: 
+/*Standard:
 	mciSendString(L"open check.mp3 type mpegvideo alias music1", nullptr, 0, nullptr);
-    mciSendString(L"play music1", nullptr, 0, nullptr);
+	mciSendString(L"play music1", nullptr, 0, nullptr);
 */
 void PlayMusic(const string& musicFile, const string& alias) {
 	if (MUSIC == 1) {
@@ -48,7 +48,6 @@ void SetVolume_Pt2(int volume) {
 
 
 int RandomInRange(int a, int b) {
-	//srand(time(NULL));
 	return a + rand() % (b - a + 1);
 }
 
@@ -76,8 +75,8 @@ bool IsValidFood(int x, int y) {
 	for (int i = 0; i < SIZE_SNAKE; ++i) {
 		if (snake[i].x == x && snake[i].y == y) return false;
 	}
-	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++){
-		if ((obstacles[i].x == x && obstacles[i].y == y)|| (obstacles[i].x + 1 == x && obstacles[i].y == y))//check if the food is near the obstacles
+	for (int i = 0; i < NUMBER_OF_OBSTACLES; i++) {
+		if ((obstacles[i].x == x && obstacles[i].y == y) || (obstacles[i].x + 1 == x && obstacles[i].y == y))//check if the food is near the obstacles
 			return false;
 	}
 	return true;
@@ -86,9 +85,9 @@ void GenerateFood() {
 	int x, y;
 	srand(time(NULL));
 	for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
-		if (LEVEL ==1) {
+		if (LEVEL == 1) {
 			do {
-				x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD/2 - 2);
+				x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD / 2 - 2);
 				y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2);
 			} while (!IsValidFood(x, y));
 			food[i] = { x , y };
@@ -102,23 +101,21 @@ void GenerateFood() {
 		}
 	}
 }
-void DeleteBigFood(int x, int y){
+void DeleteBigFood(int x, int y) {
 	GoToXY(x, y);
-	for (int i = 0; i < BIG_FOOD_SIZE; i++){
-		for (int j = 0; j < BIG_FOOD_SIZE; j++){
+	for (int i = 0; i < BIG_FOOD_SIZE; i++) {
+		for (int j = 0; j < BIG_FOOD_SIZE; j++) {
 			cout << " ";
 			big_food[i][j] = { 0, HEIGHT_CONSOLE + 2 };
-
 		}
 		GoToXY(x, y + i + 1);
-		//break;
 	}
 }
-bool CheckBigFood(int x,int y){//check if the snake touches the big food
-	for (int i = 0; i < BIG_FOOD_SIZE; i++){
-		for (int j = 0; j < BIG_FOOD_SIZE; j++){
+bool CheckBigFood(int x, int y) {//check if the snake touches the big food
+	for (int i = 0; i < BIG_FOOD_SIZE; i++) {
+		for (int j = 0; j < BIG_FOOD_SIZE; j++) {
 			//cout << " ";
-			if (x == big_food[i][j].x && y == big_food[i][j].y){
+			if (x == big_food[i][j].x && y == big_food[i][j].y) {
 				//SIZE_SNAKE+=3;//
 				//FOOD_INDEX++;
 				//skillState = 1;
@@ -131,9 +128,9 @@ bool CheckBigFood(int x,int y){//check if the snake touches the big food
 	return false;
 }
 
-bool CheckValidBigFood(){
-	for (int i = 0; i < BIG_FOOD_SIZE; i++){
-		for (int j = 0; j < BIG_FOOD_SIZE; j++){
+bool CheckValidBigFood() {
+	for (int i = 0; i < BIG_FOOD_SIZE; i++) {
+		for (int j = 0; j < BIG_FOOD_SIZE; j++) {
 			if (!IsValidFood(big_food[i][j].x, big_food[i][j].y))
 			{
 				return false;
@@ -143,16 +140,14 @@ bool CheckValidBigFood(){
 	return true;
 }
 void GenerateBigFood() {
-	int x, y;//need to be write with thread because the while loop paused the thread
-	//srand(time(NULL));
-	//for (int i = 0; i < MAX_SIZE_FOOD; ++i) {
+	int x, y;
 	do {
 		do {
 			x = RandomInRange(board[0].x + 1, board[0].x + WIDTH_BOARD - 2 - BIG_FOOD_SIZE);
 			y = RandomInRange(board[0].y + 1, board[0].y + HEIGHT_BOARD - 2 - BIG_FOOD_SIZE);
 		} while (!IsValidFood(x, y));
-		for (int i = 0; i < BIG_FOOD_SIZE; i++){
-			for (int j = 0; j < BIG_FOOD_SIZE; j++){
+		for (int i = 0; i < BIG_FOOD_SIZE; i++) {
+			for (int j = 0; j < BIG_FOOD_SIZE; j++) {
 				big_food[i][j] = { x + i, y + j };
 			}
 		}
@@ -164,22 +159,13 @@ bool CheckValidGate(int size) {
 			return false;
 		}
 	}
-	/*if (LEVEL >= 1) {
-			for (int i = 0; i < 5; i++) {
-				for (int j = 0; j < 5; j++) {
-				{
-						if ((gate[i].x = big_food[i][j].x) && (gate[i].y = big_food[i][j].y))
-							return false;
-					}
-				}
-	}*/
 	return true;
 }
-	
+
 
 
 //Create gate[] array, use to store coordinates 
-void InitGate(){//return size of gate
+void InitGate() {//return size of gate
 	int x, y;
 	//pos: number of pixels in gate[]
 	int pos = 0;
@@ -187,7 +173,7 @@ void InitGate(){//return size of gate
 		pos = 0;
 		x = RandomInRange(board[0].x + 2, board[0].x + WIDTH_BOARD - 1 - WIDTH_GATE - 1); //random coordinates such that the gate is inside the playzone
 		y = RandomInRange(board[0].y + 2, board[0].y + HEIGHT_BOARD - 1 - HEIGHT_GATE - 1);
-	
+
 		gate[pos] = { x, y };
 		pos++;
 
@@ -210,32 +196,23 @@ void InitGate(){//return size of gate
 	}
 	WIN_POINT = { x,y + 1 };
 }
-void DeleteGate(){
-	for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; i++){
+void DeleteGate() {
+	for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; i++) {
 		GoToXY(gate[i].x, gate[i].y);
 		cout << " ";
 		gate[i] = { 0,HEIGHT_CONSOLE + 5 };
 	}
 	WIN_POINT = { 0, 0 }; //Reset win point
 }
-void RespawnSnake(){
-	for (int i = 0; i < SIZE_SNAKE; i++){
+void RespawnSnake() {
+	for (int i = 0; i < SIZE_SNAKE; i++) {
 		snake[i] = { 10 + i, 10 };
 	}
 }
 void ResetData() {
-	//con muc o giua
-	bullet1_to_left.x = 100;
-	bullet1_to_left.y = 22;
 
-	//con muc o tren
-	bullet2_to_left.x = 100;
-	bullet2_to_left.y = 13;
-	//con muc o duoi
-	bullet3_to_left.x = 100;
-	bullet3_to_left.y = 32;
-	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0, 
-	WIDTH_CONSOLE = 180, HEIGHT_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 1;
+	CHAR_LOCK = 'A', MOVING = 'D', SPEED = 10; FOOD_INDEX = 0,
+		WIDTH_CONSOLE = 180, HEIGHT_CONSOLE = 40, SIZE_SNAKE = 6; BLINKING_MAP = 1;
 	TIME = 0;
 	LEVEL = 0;
 	SCORE = 0;
@@ -279,30 +256,30 @@ void StartGame() {
 	DrawRectangle_Ver2(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD); // Draw board game
 
 	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_CONSOLE - board[0].y - (HEIGHT_CONSOLE - board[0].y - HEIGHT_BOARD)); // Draw status board
-	
+
 	//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
 
 	SetConsoleColor(Black, DefaultStatusColor);
-	DrawLineStatusBoard(board[0].x + WIDTH_BOARD + board[0].x, 1, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD+8);
+	DrawLineStatusBoard(board[0].x + WIDTH_BOARD + board[0].x, 1, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD + 8);
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	//int title_width, title_height;
 	//GetWidthAndHeightFile("title.txt", title_width, title_height);
 	//SetConsoleColor(Green, Black);
 	//PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 	//DrawLineStatusBoard(2, 0, 122, 9);
-	PrintTitle2File(1,0, "assets\\ascii\\snakegamenew.txt");
+	PrintTitle2File(1, 0, "assets\\ascii\\snakegamenew.txt");
 	//PrintTitleShadowFile(5, 2, "assets\\ascii\\snakegamenewshadow.txt");
 	//PrintTitleFile(5, 2, "assets\\ascii\\snakegamenew.txt");
-	
+
 	//PrintTitleShadowFixedFile(5, 2, "assets\\ascii\\snakegametitleshadowfixed.txt");
 	//PrintTitleShadowFixed_2File(5, 2, "assets\\ascii\\snaketitleshadow.txt");
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	//SetConsoleColor(White, Black);
 
-	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y -7, "assets\\ascii\\level 1.txt", DefaultStatusColor);
+	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 1.txt", DefaultStatusColor);
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 	STATE = 1; //Start running Thread
-	
+
 }
 
 void ExitGame(HANDLE t) {
@@ -317,19 +294,19 @@ void PauseGame(HANDLE t) {
 
 void ProcessDead() {
 	STATE = 0;
-	
+
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\angrysnake.txt");
 	PlaySoundEffect("assets\\sounds\\deathSound");
-	
+
 	BlinkingMap();
-	GoToXY(WIDTH_CONSOLE/2, HEIGHT_CONSOLE/2);
+	GoToXY(WIDTH_CONSOLE / 2, HEIGHT_CONSOLE / 2);
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
 	TEXTINCONSOLE = 1;
 	//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\angrysnake.txt");
 	//FillAreaColor(34, 14, 91, 20,Red);
 	SetConsoleColor(Yellow, Red);
 	//DrawRectangle(35, 14, 90 - 34, 20 - 13);
-	
+
 	//FillAreaColor(15, 16, 110, 20, Red);
 	SetConsoleColor(Yellow, Red);
 	//DrawRectangle(45, 14, 70 - 34, 20 - 13);
@@ -340,9 +317,9 @@ void ProcessDead() {
 	BLINKING_MAP = 0;
 	//GoToXY(18, 34);
 	//cout << "Dead! Press O to save highscore";
-	FillAreaColor(128, 2,175,17, Yellow);
-	
-	PrintColorFile_Ver2(board[0].x + WIDTH_BOARD + board[0].x +4, board[0].y - 5, "assets\\ascii\\deadtext.txt", Red, Yellow);
+	FillAreaColor(128, 2, 175, 17, Yellow);
+
+	PrintColorFile_Ver2(board[0].x + WIDTH_BOARD + board[0].x + 4, board[0].y - 5, "assets\\ascii\\deadtext.txt", Red, Yellow);
 	//SetConsoleColor(Yellow, Black);
 	//cout<<"Dead, press Y to continue!";
 	//SetConsoleColor(White, Black);
@@ -357,33 +334,37 @@ void LevelUp() {
 	LEVEL += 1;
 	SPEED += 3;
 
-	if (LEVEL == 1){
-		
-		NUMBER_OF_OBSTACLES = FinalMap();
+	if (LEVEL == 1) {
+
+		NUMBER_OF_OBSTACLES = MapLevel1();
 	}
-	if (LEVEL == 2){
+	if (LEVEL == 4) {
 		//DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
 		DeleteMap();//delete old map before switch to next map
 		NUMBER_OF_OBSTACLES = MapLevel2();
 	}
-	if (LEVEL == 3){
+	if (LEVEL == 2) {
 		DeleteMap();
 		NUMBER_OF_OBSTACLES = MapLevel3();
+
 	}
-	if (LEVEL == 4) {
-		DeleteMap();
-		NUMBER_OF_OBSTACLES = MapLevel4();
+	if (LEVEL == 3) {
+	//	YouWin();
+
+		//	DeleteMap();
+		//	DrawTelePoint(board[0].x, board[0].y + 23, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
+			//NUMBER_OF_OBSTACLES = FinalMap();
 	}
-	if (LEVEL == 5) {
-		
+	/*if (LEVEL == 5) {
+
 		DeleteMap();
 		DrawTelePoint(board[0].x, board[0].y + 23, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
-		NUMBER_OF_OBSTACLES = MapLevel5();
+		NUMBER_OF_OBSTACLES = FinalMap();
 	}
 	if (LEVEL == 6) {
 		DeleteMap();
 		NUMBER_OF_OBSTACLES = FinalMap();
-	}
+	}*/
 	RespawnSnake();
 	//GenerateBigFood();
 }
@@ -403,20 +384,17 @@ void Eat() {
 	++SIZE_SNAKE;
 	if (FOOD_INDEX == MAX_SIZE_FOOD - 1)//if the player met the requirement of food
 	{
-		
+
 		PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 32, board[0].y + 2, "assets\\ascii\\food3.txt", DefaultStatusColor);
 		//If gate is not inside board, max number of food spawned -> DrawGate
 		if (WIN_POINT.x == 0 && WIN_POINT.y == 0) {
 			if (LEVEL >= 1) {
-				if(big_food[0][0].x!=0&& big_food[0][0].y!= HEIGHT_CONSOLE + 2)
-				DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+				if (big_food[0][0].x != 0 && big_food[0][0].y != HEIGHT_CONSOLE + 2)
+					DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			}
 			InitGate();
-			//SetConsoleColor(Yellow, Black);
 			DrawGate();
-			//SetConsoleColor(White, Black);
 		}
-		//GenerateFood();
 	}
 	else
 	{
@@ -425,7 +403,7 @@ void Eat() {
 		if (FOOD_INDEX == 2) PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 17, board[0].y + 2, "assets\\ascii\\food2.txt", DefaultStatusColor);
 	}
 }
-bool Suicide(int x,int y)//return true if the snake touch its body
+bool Suicide(int x, int y)//return true if the snake touch its body
 {
 	for (int i = 0; i < SIZE_SNAKE; i++) {
 		if (x == snake[i].x && y == snake[i].y)
@@ -439,30 +417,23 @@ void MoveRight()
 {
 	POINT nextpoint = { snake[SIZE_SNAKE - 1].x + 1 , snake[SIZE_SNAKE - 1].y };
 	//Snake touch telepoint
-	if (nextpoint.x == TELE_POINT_2.x +2 && nextpoint.y == TELE_POINT_2.y) {
-		if (LEVEL == 1) {
+	if (nextpoint.x == TELE_POINT_2.x + 2 && nextpoint.y == TELE_POINT_2.y) {
+		if (LEVEL == 4) {
 			GoToXY(TELE_POINT_2.x + 1, TELE_POINT_2.y);
 			cout << '\xb2';
 		}
 		snake[SIZE_SNAKE - 1] = TELE_POINT_1;
 		nextpoint.x = snake[SIZE_SNAKE - 1].x + 1;
 		nextpoint.y = snake[SIZE_SNAKE - 1].y;
-		
+
 	}
-	
+
 	//Snake touch Win point
 	if (nextpoint.x == WIN_POINT.x && nextpoint.y == WIN_POINT.y)
 	{
 		//check if the player ate the big food (big food only be drawn if level up function is called)
 		if (!CHECK_SNAKE) OLD_SIZE_SNAKE = SIZE_SNAKE;
 		CHECK_SNAKE = true;
-		//LevelUp();
-		//DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
-		
-
-		//GenerateBigFood();
-		//DrawBigFood();
-		//GenerateFood(); //generate new food for next level
 	}
 	//Snake touch Gate
 	if (nextpoint.x == WIN_POINT.x && (nextpoint.y == WIN_POINT.y + 1 || nextpoint.y == WIN_POINT.y - 1))
@@ -474,14 +445,14 @@ void MoveRight()
 	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
 		PlaySoundEffect("assets\\sounds\\bigfood");
-		//delete big food, parameters is its coordinates
+		//delete big food, parameters are its coordinates
 		DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 		PowerScore = 3;
 		SCORE += 100;
 	}
 
 	// If snake hit wall or snake suicide
-	if (nextpoint.x == WIDTH_BOARD+board[0].x - 1 || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
+	if (nextpoint.x == WIDTH_BOARD + board[0].x - 1 || Suicide(nextpoint.x, nextpoint.y) || CheckTouchObstacles(nextpoint.x, nextpoint.y))
 	{
 		ProcessDead();
 	}
@@ -504,12 +475,12 @@ void MoveLeft()
 {
 	POINT nextpoint = { snake[SIZE_SNAKE - 1].x - 1 , snake[SIZE_SNAKE - 1].y };
 	//Snake touch telepoint
-	if (nextpoint.x == TELE_POINT_1.x-2 && nextpoint.y == TELE_POINT_1.y) {
+	if (nextpoint.x == TELE_POINT_1.x - 2 && nextpoint.y == TELE_POINT_1.y) {
 		if (LEVEL == 1) {
-			GoToXY(TELE_POINT_1.x -1, TELE_POINT_1.y);
+			GoToXY(TELE_POINT_1.x - 1, TELE_POINT_1.y);
 			cout << '\xb2';
 		}
-		snake[SIZE_SNAKE - 1]= TELE_POINT_2;
+		snake[SIZE_SNAKE - 1] = TELE_POINT_2;
 		nextpoint.x = snake[SIZE_SNAKE - 1].x - 1;
 		nextpoint.y = snake[SIZE_SNAKE - 1].y;
 	}
@@ -527,7 +498,7 @@ void MoveLeft()
 		SCORE += 100;
 	}
 
-	if (nextpoint.x == board[0].x || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
+	if (nextpoint.x == board[0].x || Suicide(nextpoint.x, nextpoint.y) || CheckTouchObstacles(nextpoint.x, nextpoint.y))
 	{
 		ProcessDead();
 	}
@@ -550,10 +521,10 @@ void MoveUp()
 {
 	POINT nextpoint = { snake[SIZE_SNAKE - 1].x , snake[SIZE_SNAKE - 1].y - 1 };
 	//Snake touch Gate
-	if (nextpoint.y ==WIN_POINT.y+1&&(nextpoint.x ==WIN_POINT.x|| nextpoint.x == WIN_POINT.x+1)) {
+	if (nextpoint.y == WIN_POINT.y + 1 && (nextpoint.x == WIN_POINT.x || nextpoint.x == WIN_POINT.x + 1)) {
 		ProcessDead();
 	}
-	
+
 	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
 		PlaySoundEffect("assets\\sounds\\bigfood");
@@ -561,7 +532,7 @@ void MoveUp()
 		PowerScore = 3;
 		SCORE += 100;
 	}
-	if (nextpoint.y == board[0].y || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
+	if (nextpoint.y == board[0].y || Suicide(nextpoint.x, nextpoint.y) || CheckTouchObstacles(nextpoint.x, nextpoint.y))
 	{
 		ProcessDead();
 	}
@@ -587,7 +558,7 @@ void MoveDown()
 	if (nextpoint.y == WIN_POINT.y - 1 && (snake[SIZE_SNAKE - 1].x == WIN_POINT.x || snake[SIZE_SNAKE - 1].x == WIN_POINT.x + 1)) {
 		ProcessDead();
 	}
-	
+
 	if (CheckBigFood(nextpoint.x, nextpoint.y))
 	{
 		PlaySoundEffect("assets\\sounds\\bigfood");
@@ -595,7 +566,7 @@ void MoveDown()
 		PowerScore = 3;
 		SCORE += 100;
 	}
-	if (nextpoint.y == HEIGHT_BOARD+board[0].y - 1 || Suicide(nextpoint.x, nextpoint.y)|| CheckTouchObstacles(nextpoint.x, nextpoint.y))
+	if (nextpoint.y == HEIGHT_BOARD + board[0].y - 1 || Suicide(nextpoint.x, nextpoint.y) || CheckTouchObstacles(nextpoint.x, nextpoint.y))
 	{
 		ProcessDead();
 	}
@@ -624,64 +595,64 @@ void PoisonSpray() {
 	cout << " ";
 	if (previousAction == 1) {//move right
 		spray.x++;
-		if (LEVEL==1 && checkTouchBoss(spray.x,spray.y)) {//win game neu HP == 0
+		if (LEVEL == 1 && checkTouchBoss(spray.x, spray.y)) {//win game neu HP == 0
 			HP_OF_BOSS--;
 			PlaySoundEffect("assets\\sounds\\explosion");
 			Spraying = false;
-			
+
 		}
-		else if (LEVEL==1 && checkBullet(spray.x, spray.y)) {
+		else if (LEVEL == 1 && checkBullet(spray.x, spray.y)) {
 			PlaySoundEffect("assets\\sounds\\explosion");
 			Spraying = false;
 		}
-			
-	 
-			//check touch obstacles
-			for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
-				if (spray.x == obstacles[i].x && spray.y == obstacles[i].y) {
-					obstacles[i].x = obstacles[i].y = 3;
-					PlaySoundEffect("assets\\sounds\\explosion");
-					Spraying = false;
-					break;
-				}
-			//check touch gate
-			for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i)
-				if (spray.x == gate[i].x && spray.y == gate[i].y) {
-					spray.x = spray.y = 5;
-					PlaySoundEffect("assets\\sounds\\explosion");
-					Spraying = false;
-					break;
-				}
-			//check touch tele point
-			if (spray.x == TELE_POINT_2.x - 1 && spray.y == TELE_POINT_2.y) {
-				spray.x = TELE_POINT_1.x + 1;
-				spray.y = TELE_POINT_1.y;
+
+
+		//check touch obstacles
+		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
+			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y) {
+				obstacles[i].x = obstacles[i].y = 3;
+				PlaySoundEffect("assets\\sounds\\explosion");
+				Spraying = false;
+				break;
 			}
-			//check touch big food
-			if (CheckBigFood(spray.x, spray.y)) {
-				PlaySoundEffect("assets\\sounds\\bigfood");
-				DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
-				SCORE += 100;
-				PowerScore = 3;
+		//check touch gate
+		for (int i = 0; i < WIDTH_GATE * HEIGHT_GATE - 1; ++i)
+			if (spray.x == gate[i].x && spray.y == gate[i].y) {
+				spray.x = spray.y = 5;
+				PlaySoundEffect("assets\\sounds\\explosion");
+				Spraying = false;
+				break;
+			}
+		//check touch tele point
+		if (spray.x == TELE_POINT_2.x - 1 && spray.y == TELE_POINT_2.y) {
+			spray.x = TELE_POINT_1.x + 1;
+			spray.y = TELE_POINT_1.y;
+		}
+		//check touch big food
+		if (CheckBigFood(spray.x, spray.y)) {
+			PlaySoundEffect("assets\\sounds\\bigfood");
+			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
+			SCORE += 100;
+			PowerScore = 3;
+			Spraying = false;
+		}
+		else {
+			if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) { //check touch big food
+				Eat();
 				Spraying = false;
 			}
-			else {
-				if ((spray.x == food[FOOD_INDEX].x && spray.y == food[FOOD_INDEX].y)) { //check touch big food
-					Eat();
-					Spraying = false;
-				}
-				else if (spray.x == board[0].x + WIDTH_BOARD - 2) {
-					PlaySoundEffect("assets\\sounds\\explosion");
-					Spraying = false;
-				}
+			else if (spray.x == board[0].x + WIDTH_BOARD - 2) {
+				PlaySoundEffect("assets\\sounds\\explosion");
+				Spraying = false;
 			}
-		
+		}
+
 	}
 	else if (previousAction == 2) {//move left
 		spray.x--;
 		//check touch obstacles
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
-			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
+			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y) {
 				obstacles[i].x = obstacles[i].y = 3;
 				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
@@ -727,7 +698,7 @@ void PoisonSpray() {
 		spray.y--;
 		//check touch obstacles
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
-			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
+			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y) {
 				obstacles[i].x = obstacles[i].y = 3;
 				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
@@ -742,7 +713,7 @@ void PoisonSpray() {
 				break;
 			}
 		//check touch big food
-		if (CheckBigFood(spray.x, spray.y)){
+		if (CheckBigFood(spray.x, spray.y)) {
 			//playSound("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
@@ -764,7 +735,7 @@ void PoisonSpray() {
 		spray.y++;
 		//check touch obstacles
 		for (int i = 0; i < NUMBER_OF_OBSTACLES; ++i)
-			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y){
+			if (spray.x == obstacles[i].x && spray.y == obstacles[i].y) {
 				obstacles[i].x = obstacles[i].y = 3;
 				PlaySoundEffect("assets\\sounds\\explosion");
 				Spraying = false;
@@ -780,7 +751,7 @@ void PoisonSpray() {
 				break;
 			}
 		//check touch food
-		if (CheckBigFood(spray.x, spray.y)){
+		if (CheckBigFood(spray.x, spray.y)) {
 			PlaySoundEffect("assets\\sounds\\bigfood");
 			DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 			SCORE += 100;
@@ -810,23 +781,23 @@ void ThreadFunc() {
 		unique_lock<mutex> lock(mtx);
 		cvThread.wait(lock, [] { return !threadPaused;  });
 		if (STATE == 1) {
-			
+
 			DrawSnakeAndFood(" ");
-			
+
 			switch (MOVING) {
-				case 'A':
+			case 'A':
 				MoveLeft();
 				break;
-				case 'D':
+			case 'D':
 				MoveRight();
 				break;
-				case 'W':
+			case 'W':
 				MoveUp();
 				break;
-				case 'S':
+			case 'S':
 				MoveDown();
 				break;
-				}
+			}
 			//Snake moving through gate animation
 			if (CHECK_SNAKE) {
 				if (SnakeGoThroughGate()) {
@@ -837,13 +808,14 @@ void ThreadFunc() {
 					DeleteBigFood(big_food[0][0].x, big_food[0][0].y);
 
 					GenerateBigFood();
-					DrawBigFood();
+					if (LEVEL != 3)
+						DrawBigFood();
 					GenerateFood();
 				}
 			}
 			//End snake animation
 
-			if (Flag_PoisonSpray && PowerScore >0 ) {
+			if (Flag_PoisonSpray && PowerScore > 0) {
 				spray.x = snake[SIZE_SNAKE - 1].x;
 				spray.y = snake[SIZE_SNAKE - 1].y;
 				if (MOVING == 'A') previousAction = 2;//move left
@@ -858,7 +830,7 @@ void ThreadFunc() {
 			else Flag_PoisonSpray = false;
 
 			if (Spraying) PoisonSpray();
-			
+
 			/*if (LEVEL == 4) {
 				DrawBulletDown();
 				DrawBulletUp();
@@ -866,9 +838,9 @@ void ThreadFunc() {
 			DrawSnakeAndFood(MSSV);
 			PrintStatusBoard();
 
-			
-			
-			if (LEVEL == 1) {//lelvel 6
+
+
+			if (LEVEL == 4) {
 				if (STATE != 0) DrawOcToPus(100, 19);
 				if (STATE != 0) DrawBulletToLeft(bullet1_to_left);
 				if (STATE != 0) DrawBulletToLeft(bullet2_to_left);
@@ -881,16 +853,16 @@ void ThreadFunc() {
 				if (STATE != 0) DrawBulletToLeft(bullet1_to_left);
 				if (STATE != 0) DrawBulletToLeft(bullet2_to_left);
 				if (STATE != 0) DrawBulletToLeft(bullet3_to_left);
-				
+
 				if (STATE != 0) DrawOcToPusHidden1(100, 12);
 				if (STATE != 0) DrawOcToPusHidden2(100, 32);
 
 			}
-			
-			
-			
+
+
+
 			Sleep(1000 / SPEED);
-			if (STATE!=0 && Spraying) PoisonSpray();
+			if (STATE != 0 && Spraying) PoisonSpray();
 			TIME += 1000 / SPEED;
 		}
 		if (STATE == 2) {
