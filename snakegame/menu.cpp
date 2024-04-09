@@ -13,7 +13,7 @@ void InitMainButtons() {
 	main_button[2].file_path = "assets\\ascii\\settingbutton.txt";
 
 	main_button[3].st = { 65, 11 };
-	main_button[3].file_path = "assets\\ascii\\aboutbutton.txt";
+	main_button[3].file_path = "assets\\ascii\\aboutusbutton.txt";
 
 	main_button[4].st = { 65, 21 };
 	main_button[4].file_path = "assets\\ascii\\rankbutton.txt";
