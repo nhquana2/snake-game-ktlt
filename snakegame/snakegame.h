@@ -42,7 +42,7 @@ namespace fs = std::filesystem;
 #define HEIGHT_GATE 3
 #define BIG_FOOD_SIZE 3
 #define MAX_SIZE_SNAKE 40
-#define MAX_SIZE_FOOD 3
+
 #define MAX_BOARD_SIZE 400
 #define MAX_SPEED 20
 #define HEIGHT_BOARD 30
@@ -62,6 +62,7 @@ struct SAVE_ENTRY {
 	POINT st; //top left point
 	string text_value;
 };
+extern int  MAX_SIZE_FOOD;
 
 extern mutex mtx;
 extern condition_variable cvThread;
@@ -75,7 +76,7 @@ extern POINT obstacles[1000];
 extern POINT gate[WIDTH_GATE * HEIGHT_GATE - 1];//-1 because of the win point
 extern POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 extern POINT snake[MAX_SIZE_SNAKE];
-extern POINT food[MAX_SIZE_FOOD];
+extern POINT food[50];
 extern POINT board[MAX_BOARD_SIZE];
 extern POINT WIN_POINT;
 extern POINT bullet_up, bullet_down, bullet1_to_left, bullet2_to_left, bullet3_to_left;

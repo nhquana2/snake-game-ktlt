@@ -97,11 +97,13 @@ void DrawBigFood()
 		{
 			//cout << "?";
 			//big_food[i][j] = { x + i,y + j };
+			SetConsoleColor(Red, DefaultBgColor);
 			GoToXY(big_food[i][j].x, big_food[i][j].y);
-			if (IsValidPoint(big_food[i][j].x, big_food[i][j].y)) cout << "\xdb";
+			if (IsValidPoint(big_food[i][j].x, big_food[i][j].y)) cout << "\x03";
 		}
 		GoToXY(big_food[i][0].x, big_food[i][0].y + 1);
 	}
+	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 }
 
 void DrawBulletDown() {
@@ -134,13 +136,14 @@ void DrawBulletToLeft(POINT &bullet_to_left) {
 	GoToXY(bullet_to_left.x, bullet_to_left.y);
 	cout << " ";
 	if (bullet_to_left.x <= board[0].x+1) bullet_to_left.x = 100;
+	
 	--bullet_to_left.x;
 	GoToXY(bullet_to_left.x, bullet_to_left.y);
 	cout << "\x11";
 	if (Spraying) {
 		if (checkBullet(spray.x, spray.y)) {
-
-			//playSound("assets\\sounds\\explosion");
+			//bullet_to_left.x = 100;
+			PlaySoundEffect("assets\\sounds\\explosion");
 			Spraying = false;
 
 		}
@@ -149,6 +152,7 @@ void DrawBulletToLeft(POINT &bullet_to_left) {
 		if (bullet_to_left.x == snake[i].x && bullet_to_left.y == snake[i].y)
 			ProcessDead();
 	}
+	
 }
 
 void DrawRectangle(int x, int y, int width, int height) {
@@ -251,12 +255,11 @@ void PrintStatusBoard() {
 			else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
 			else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
 		
-		if (LEVEL == 1) {//Level == 5
+		if (LEVEL == 3) {//Level == 5
 			GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 8);
 			cout << "HP of BOSS: "<<HP_OF_BOSS;
 		}
 		
-
 		if (emotionstime == 5) {
 			PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\swagsnake.txt");
 			emotionstime = 4;

@@ -9,7 +9,7 @@ POINT gate[WIDTH_GATE * HEIGHT_GATE - 1];
 POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 POINT snake[MAX_SIZE_SNAKE];
 POINT board[MAX_BOARD_SIZE];
-POINT food[MAX_SIZE_FOOD];
+POINT food[50];
 POINT bullet_up,bullet_down,bullet1_to_left, bullet2_to_left, bullet3_to_left;
 POINT spray;
 POINT WIN_POINT;
@@ -64,7 +64,7 @@ int BLINKING_MAP;
 int TEXTINCONSOLE; //1 if text is in console (game over, ...)
 int DefaultTextColor = Black;
 int DefaultBgColor = 7;
-int DefaultStatusColor = Yellow;
+int DefaultStatusColor = LightRed;
 int DefaultStatusTextColor = BrightWhite;
 int SnakeColor = Red;
 int IDColor = White;
@@ -77,8 +77,8 @@ int minisnake = 1;
 int MINI_SNAKE_COLOR;
 int octopus_time = 0;
 int octopus_hidden_time = 0;
-int HP_OF_BOSS = 5;
-
+int HP_OF_BOSS = 3;
+int MAX_SIZE_FOOD = 3;
 using namespace std;
 
 int main()

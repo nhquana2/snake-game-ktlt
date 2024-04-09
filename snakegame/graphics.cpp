@@ -225,8 +225,6 @@ void PrintColorFile_Ver2(int x, int y, const char* FileName,int colortext, int b
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		if (c != '\n') ++x; else ++y, x = st_x;
 		GoToXY(x, y);
-	
-		
 	}
 }
 

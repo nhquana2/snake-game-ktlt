@@ -132,8 +132,6 @@ void DrawMenu() {
 	//DrawOcToPus(130, 10);
 	//DrawOcToPusHidden(1, 1);
 	//DrawSettingButton(0);
-	GoToXY(150, 15);
-	cout << "▄";
 }
 
 void DrawAboutScreen() {
@@ -188,23 +186,25 @@ void DrawGuideScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
 	PrintFile(19, 11, "assets\\ascii\\navigation.txt");
 	PrintFile(108, 11, "assets\\ascii\\howtoplay.txt");
-	DrawKeyCap(30, 16 , "W");
+	DrawKeyCap(30, 16, "W");
 	DrawKeyCap(15, 23, "A");
 	DrawKeyCap(30, 23, "S");
 	DrawKeyCap(45, 23, "D");
-	GoToXY(93, 16);
+	GoToXY(93, 15);
 	cout << "Navigate the snake to eat food \xfe (and big food after each level) and gain points";
-	GoToXY(93, 18);
+	GoToXY(93, 17);
 	cout << "For each piece of food eaten, you will gain +10 points, +1 power";
-	GoToXY(93, 20);
+	GoToXY(93, 19);
 	cout << "Power is used to shoot poison and destroy obstacles";
-	GoToXY(93, 22);
-	cout << "After eating enough amount of food, move to next level by going through the gate";
-	GoToXY(93, 24);
+	GoToXY(93, 21);
+	cout << "Press L to shoot poison";
+	GoToXY(93, 23);
+	cout << "After eating enough amount of food, move to next levx`el by going through the gate";
+	GoToXY(93, 25);
 	cout << "You will lose if your snake hit the board and obstacles, or be shot by bullets";
-	GoToXY(93, 26);
+	GoToXY(93, 27);
 	cout << "You can save game when you play";
-	GoToXY(93, 28);
+	GoToXY(93, 29);
 	cout << "You can enter your name to save results to leaderboard when you lose";
 	PrintFile(92, 34, "assets\\ascii\\presstogoback.txt");
 	DrawKeyCap(110, 31, "B");
@@ -300,32 +300,60 @@ void DrawOcToPus(int x, int y) {
 
 	if (octopus_time == 3) {
 		//pic1
-		FillAreaColor(x - 3, y - 2, x + 12, y + 8, DefaultBgColor);
+		FillAreaColor(x - 3, y - 2, x + 12, y + 11, DefaultBgColor);
 		PrintColorFile_Ver2(x, y, "assets\\ascii\\octopus3.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x, y, "assets\\ascii\\fixotp3.txt", DefaultBgColor, Black);
 		PrintColorFile_Ver2(x, y, "assets\\ascii\\eyesotp.txt", White, Black);
+		SetConsoleColor(Red, DefaultBgColor);
+		GoToXY(x + 2, y + 10);
+		if (HP_OF_BOSS == 0) cout << "[\xFA\xFA\xFA\xFA\xFA\xFA]";
+		else if (HP_OF_BOSS == 1) cout << "[\xFE\xFE\xFA\xFA\xFA\xFA]";
+		else if (HP_OF_BOSS == 2) cout << "[\xFE\xFE\xFE\xFE\xFA\xFA]";
+		else if (HP_OF_BOSS == 3) cout << "[\xFE\xFE\xFE\xFE\xFE\xFE]";
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
+
 	}
 	else if (octopus_time == 4) {
 		//pic2
-		FillAreaColor(x - 2, y -2, x + 12, y + 8, DefaultBgColor);
+		FillAreaColor(x - 2, y -2, x + 12, y + 11, DefaultBgColor);
 		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\octopus1.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\fixotp1.txt", DefaultBgColor, Black);
 		PrintColorFile_Ver2(x, y +1, "assets\\ascii\\eyesotp.txt", White, Black);
+		SetConsoleColor(Red, DefaultBgColor);
+		GoToXY(x + 2, y + 10);
+		if (HP_OF_BOSS == 0) cout << "[\xFA\xFA\xFA\xFA\xFA\xFA]";
+		else if (HP_OF_BOSS == 1) cout << "[\xFE\xFE\xFA\xFA\xFA\xFA]";
+		else if (HP_OF_BOSS == 2) cout << "[\xFE\xFE\xFE\xFE\xFA\xFA]";
+		else if (HP_OF_BOSS == 3) cout << "[\xFE\xFE\xFE\xFE\xFE\xFE]";
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	}
 	else if (octopus_time == 5) {
 		//pic3
-		FillAreaColor(x - 2, y -2, x + 12, y + 8, DefaultBgColor);
+		FillAreaColor(x - 2, y -2, x + 12, y + 11, DefaultBgColor);
 		PrintColorFile_Ver2(x, y +2, "assets\\ascii\\octopus2.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x, y +2, "assets\\ascii\\fixotp2.txt", DefaultBgColor, Black);
 		PrintColorFile_Ver2(x, y +2, "assets\\ascii\\eyesotp.txt", White, Black);
-
+		SetConsoleColor(Red, DefaultBgColor);
+		GoToXY(x + 2, y + 9);
+		if (HP_OF_BOSS == 0) cout << "[\xFA\xFA\xFA\xFA\xFA\xFA]";
+		else if (HP_OF_BOSS == 1) cout << "[\xFE\xFE\xFA\xFA\xFA\xFA]";
+		else if (HP_OF_BOSS == 2) cout << "[\xFE\xFE\xFE\xFE\xFA\xFA]";
+		else if (HP_OF_BOSS == 3) cout << "[\xFE\xFE\xFE\xFE\xFE\xFE]";
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	}
 	else if (octopus_time == 6) {
 		//pic4
-		FillAreaColor(x - 2, y - 2, x + 12, y + 8, DefaultBgColor);
+		FillAreaColor(x - 2, y - 2, x + 12, y + 11, DefaultBgColor);
 		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\octopus4.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\fixotp4.txt", DefaultBgColor, Black);
 		PrintColorFile_Ver2(x, y -1, "assets\\ascii\\eyesotp.txt", White, Black);
+		SetConsoleColor(Red, DefaultBgColor);
+		GoToXY(x + 2, y + 9);
+		if (HP_OF_BOSS == 0) cout << "[\xFA\xFA\xFA\xFA\xFA\xFA]";
+		else if (HP_OF_BOSS == 1) cout << "[\xFE\xFE\xFA\xFA\xFA\xFA]";
+		else if (HP_OF_BOSS == 2) cout << "[\xFE\xFE\xFE\xFE\xFA\xFA]";
+		else if (HP_OF_BOSS == 3) cout << "[\xFE\xFE\xFE\xFE\xFE\xFE]";
+		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		octopus_time = 2;
 	}
 
@@ -338,7 +366,7 @@ void DrawOcToPusHidden1(int x, int y) {
 	
 	if (octopus_hidden_time == 1) {
 		//pic1
-		FillAreaColor(x - 1, y - 1, x + 16, y + 5, DefaultBgColor);
+		FillAreaColor(x - 1, y - 1, x + 20, y + 5, DefaultBgColor);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden2.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", LightPurple, White);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water2.txt", BrightWhite, LightPurple);
@@ -360,7 +388,7 @@ void DrawOcToPusHidden1(int x, int y) {
 	}
 	else if (octopus_hidden_time ==30 ) {
 		//pic3
-		//FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
+		FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden1.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", White, Black);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water1.txt", BrightWhite, LightPurple);
@@ -372,7 +400,7 @@ void DrawOcToPusHidden1(int x, int y) {
 	}
 	else if (octopus_hidden_time == 45) {
 		//pic4
-		FillAreaColor(x - 2, y - 2, x + 16, y + 3, DefaultBgColor);
+		FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden2.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", LightPurple, White);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water2.txt", BrightWhite, LightPurple);
@@ -390,7 +418,7 @@ void DrawOcToPusHidden2(int x, int y) {
 
 	if (octopus_hidden_time == 1) {
 		//pic1
-		FillAreaColor(x - 1, y - 1, x + 15, y + 3, DefaultBgColor);
+		FillAreaColor(x - 1, y - 1, x + 20, y + 3, DefaultBgColor);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden2.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", LightPurple, White);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water2.txt", BrightWhite, LightPurple);
@@ -412,7 +440,7 @@ void DrawOcToPusHidden2(int x, int y) {
 	}
 	else if (octopus_hidden_time == 30) {
 		//pic3
-		//FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
+		FillAreaColor(x - 2, y - 2, x + 20, y + 3, DefaultBgColor);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\otphidden1.txt", Black, LightPurple);
 		PrintColorFile_Ver2(x + 4, y - 1, "assets\\ascii\\eyesotp.txt", White, Black);
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water1.txt", BrightWhite, LightPurple);
