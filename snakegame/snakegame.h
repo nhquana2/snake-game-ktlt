@@ -72,13 +72,13 @@ extern atomic<bool> threadPaused;
 extern int NUMBER_OF_OBSTACLES; //number of obstacles is updated every time the map function is called
 extern const char* MSSV;
 extern POINT obstacles[1000];
-extern POINT gate[WIDTH_GATE * HEIGHT_GATE-1];//-1 because of the win point
+extern POINT gate[WIDTH_GATE * HEIGHT_GATE - 1];//-1 because of the win point
 extern POINT big_food[BIG_FOOD_SIZE][BIG_FOOD_SIZE];
 extern POINT snake[MAX_SIZE_SNAKE];
 extern POINT food[MAX_SIZE_FOOD];
 extern POINT board[MAX_BOARD_SIZE];
 extern POINT WIN_POINT;
-extern POINT bullet_up, bullet_down,bullet1_to_left, bullet2_to_left, bullet3_to_left;
+extern POINT bullet_up, bullet_down, bullet1_to_left, bullet2_to_left, bullet3_to_left;
 extern POINT spray;
 extern POINT TELE_POINT_1, TELE_POINT_2;
 extern PLAYER Player[100];
@@ -93,7 +93,7 @@ struct BUTTON {
 };
 
 struct DECOR_BUTTON {
-	POINT st; 
+	POINT st;
 	string file_path;
 };
 
@@ -123,7 +123,7 @@ extern int SOUND;
 extern int MUSIC;
 extern int VOLUME;
 extern int OLD_SIZE_SNAKE;
-extern bool CHECK_SNAKE; 
+extern bool CHECK_SNAKE;
 extern bool Flag_PoisonSpray;
 extern bool Spraying;
 extern bool Flag_emotions;
@@ -232,12 +232,9 @@ void DeleteMap();
 int MapLevel1();
 int MapLevel2();
 int MapLevel3();
-int MapLevel4();
 void DrawMap();
 bool checkTouchBoss(int x, int y);
 int FinalMap();
-
-int MapLevel5();
 //animations
 bool SnakeGoThroughGate();
 void BlinkingMap();
@@ -255,5 +252,6 @@ void PrintSnakeStatusTextFile(int x, int y, const char* FileName);
 void ChangeSnakeColor(int id, int snake);
 void PrintTitle2File(int x, int y, const char* FileName);
 void PrintColorFile_Ver2(int x, int y, const char* FileName, int colortext, int background);
+void YouWin();
 //highscore
 int LeaderBoard(PLAYER Player[]);
