@@ -140,6 +140,7 @@ int main()
                     threadPaused = false;
                     cvThread.notify_one();
                     STATE = 0;
+                    StopMusic("map2");
                     ResumeMusic("intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
@@ -236,6 +237,7 @@ int main()
 
                 }
                 if (!BLINKING_MAP && temp == 'M') {
+                    StopMusic("map2");
                     ResumeMusic("intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();

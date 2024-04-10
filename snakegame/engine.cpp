@@ -310,8 +310,8 @@ void StartGame() {
 
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 1.txt", DefaultStatusColor);
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
-	//PlayMusic("assets\\sounds\\map1", "map1");
-
+	PlayMusic("assets\\sounds\\map2", "map2");
+	
 	STATE = 1; //Start running Thread
 }
 
@@ -326,8 +326,8 @@ void PauseGame(HANDLE t) {
 }
 
 void ProcessDead() {
+	
 	STATE = 0;
-
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\angrysnake.txt");
 	PlaySoundEffect("assets\\sounds\\deathSound");
 
@@ -369,8 +369,7 @@ void LevelUp() {
 	SPEED += 3;
 
 	if (LEVEL == 1){
-
-		NUMBER_OF_OBSTACLES = FinalMap();
+		NUMBER_OF_OBSTACLES = MapLevel1();
 	}
 	/*if (LEVEL == 4) {
 		//DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
