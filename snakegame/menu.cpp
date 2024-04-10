@@ -147,6 +147,16 @@ void DrawSettingsScreen() {
 	PrintFile(122, 18, "assets\\ascii\\music.txt");
 	DrawKeyCap(25, 10, "N");
 	DrawKeyCap(25, 17, "M");
+	FillAreaColor(171, 22, 174, 26, Green);
+	FillAreaColor(171, 27, 174, 31, Blue);
+	FillAreaColor(171, 32, 174, 36, Black);
+	GoToXY(165, 10); cout << "100%__";
+	GoToXY(166, 16); cout << "80%__";
+	GoToXY(166, 21); cout << "60%__";
+	GoToXY(166, 26); cout << "40%__";
+	GoToXY(166, 31); cout << "20%__";
+	GoToXY(167, 36); cout << "0%__";
+
 	if (SOUND == 1)	PrintFile(130, 12, "assets\\ascii\\soundon.txt");
 	for (int j = 0; j < 4; ++j) {
 		DrawSettingsButton(color_button[j], 0);

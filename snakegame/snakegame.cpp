@@ -376,12 +376,22 @@ int main()
                 if (VOLUME < 100) {
                     VOLUME += 20;
                     SetVolume_Pt2(VOLUME);
+                    if (VOLUME == 100) FillAreaColor(171, 11, 174, 16, Red);
+                    if (VOLUME == 80) FillAreaColor(171, 17, 174, 21, Yellow);
+                    if (VOLUME == 60) FillAreaColor(171, 22, 174, 26, Green);
+                    if (VOLUME == 40) FillAreaColor(171, 27, 174, 31, Blue);
+                    if (VOLUME == 20) FillAreaColor(171, 32, 174, 36, Black);
                 }
             }
             if (temp == 'S') {
                 if (VOLUME > 0) {
                     VOLUME -= 20;
                     SetVolume_Pt2(VOLUME);
+                    if (VOLUME == 80) FillAreaColor(171, 11, 174, 16, DefaultBgColor);
+                    if (VOLUME == 60) FillAreaColor(171, 17, 174, 21, DefaultBgColor);
+                    if (VOLUME == 40) FillAreaColor(171, 22, 174, 26, DefaultBgColor);
+                    if (VOLUME == 20) FillAreaColor(171, 27, 174, 31, DefaultBgColor);
+                    if (VOLUME == 0) FillAreaColor(171, 32, 174, 36, DefaultBgColor);
                 }
             }
 
