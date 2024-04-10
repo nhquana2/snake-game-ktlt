@@ -326,7 +326,6 @@ void PauseGame(HANDLE t) {
 }
 
 void ProcessDead() {
-	
 	STATE = 0;
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\angrysnake.txt");
 	PlaySoundEffect("assets\\sounds\\deathSound");

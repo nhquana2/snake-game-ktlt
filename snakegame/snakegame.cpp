@@ -128,7 +128,6 @@ int main()
     char temp;
     while (1) {
         //SCREEN: PLAY
-        
         if (SCREEN == 1) {
             temp = toupper(_getch());
             if (temp == char(-32)) {
@@ -147,6 +146,7 @@ int main()
                     ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
                 }
                 if (PAUSE && temp == 'L') {
+                    PauseMusic("map2");
                     string fileName;
                     
                     //while to handle valid input file name (<= 15 chars)
@@ -171,6 +171,10 @@ int main()
                 }
                 if (!PAUSE && temp == 'P') {
                     Pause();
+                    PauseMusic("map2");
+                }
+                else if (temp == '2') {
+                    PauseMusic("map2");
                 }
                 else if (temp == 27) {
                     //ResumeThread(handle_t1);
@@ -182,6 +186,7 @@ int main()
                 }
                 else if (PAUSE == 1) {
                     PAUSE = 0;
+                    ResumeMusic("map2");
                     ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
                     PostPauseDraw();
                     threadPaused = false;
@@ -202,7 +207,10 @@ int main()
                 }
             }
             else {
-                if ( !BLINKING_MAP && temp == 'Y') StartGame();
+                if (!BLINKING_MAP && temp == 'Y') {
+                    StopMusic("map2");
+                    StartGame();
+                }
                 if (temp == 27) {
                     //ExitGame(handle_t1);
                     STATE = 2;
@@ -460,6 +468,7 @@ int main()
             
             //Back
             if (temp == 'B') {
+                PlaySoundEffect("assets\\sounds\\button");
                 SCREEN = 2;
                 DrawMenu();
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);

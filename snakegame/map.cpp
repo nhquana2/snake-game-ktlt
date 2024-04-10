@@ -29,7 +29,6 @@ void DeleteMap() {
 	NUMBER_OF_OBSTACLES = 0;
 }
 int MapLevel1() {
-	PlayMusic("assets\\sounds\\map2", "map2");
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 2.txt", DefaultStatusColor);
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
 
@@ -187,7 +186,8 @@ int MapLevel3() {
 	return pos;
 }
 int FinalMap() {
-	PlayMusic("finalMap", "finalMap");
+	//StopMusic("map2");
+	//PlayMusic("assets\\sounds\\finalMap", "finalMap");
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 5.txt", DefaultStatusColor);
 
 	int pos = 0;
