@@ -14,10 +14,11 @@ void PlaySoundEffect(const string& soundFile) {
 	}
 }
 
-/*Standard:
-	mciSendString(L"open check.mp3 type mpegvideo alias music1", nullptr, 0, nullptr);
-	mciSendString(L"play music1", nullptr, 0, nullptr);
+/*Standard: 
+	mciSendString(L"open check.mp3 type mpegvideo alias music", nullptr, 0, nullptr);
+    mciSendString(L"play music", NULL, 0, NULL);
 */
+
 void PlayMusic(const string& musicFile, const string& alias) {
 	if (MUSIC == 1) {
 		wstring wSoundFile(musicFile.begin(), musicFile.end());
@@ -30,6 +31,31 @@ void PlayMusic(const string& musicFile, const string& alias) {
 		mciSendString(playCommand.c_str(), NULL, 0, NULL);
 	}
 }
+
+void StopMusic(const string& alias) {
+	wstring wAlias(alias.begin(), alias.end());
+
+	wstring command = L"stop " + wAlias;
+	mciSendString(command.c_str(), NULL, 0, NULL);
+
+	wstring closeCommand = L"close " + wAlias;
+	mciSendString(closeCommand.c_str(), NULL, 0, NULL);
+}
+
+void PauseMusic(const string& alias) {
+	wstring wAlias(alias.begin(), alias.end());
+
+	wstring command = L"pause " + wAlias;
+	mciSendString(command.c_str(), NULL, 0, NULL);
+}
+
+void ResumeMusic(const string& alias) {
+	wstring wAlias(alias.begin(), alias.end());
+
+	wstring command = L"play " + wAlias + L" repeat";
+	mciSendString(command.c_str(), NULL, 0, NULL);
+}
+ 
 void SetVolume(DWORD volume)
 {
 	DWORD leftVolume = volume & 0xFFFF;
@@ -249,6 +275,7 @@ void ResetData() {
 
 void StartGame() {
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
+	PauseMusic("intro");
 	PlaySoundEffect("assets\\sounds\\startGame");
 	//BoardInit(5, 10);
 	WIN_POINT.x = 0;
@@ -283,8 +310,9 @@ void StartGame() {
 
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 1.txt", DefaultStatusColor);
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 1, "assets\\ascii\\battery.txt", DefaultStatusColor);
-	STATE = 1; //Start running Thread
+	//PlayMusic("assets\\sounds\\map1", "map1");
 
+	STATE = 1; //Start running Thread
 }
 
 void ExitGame(HANDLE t) {
@@ -340,9 +368,9 @@ void LevelUp() {
 	LEVEL += 1;
 	SPEED += 3;
 
-	if (LEVEL == 1) {
+	if (LEVEL == 1){
 
-		NUMBER_OF_OBSTACLES = MapLevel1();
+		NUMBER_OF_OBSTACLES = FinalMap();
 	}
 	/*if (LEVEL == 4) {
 		//DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
@@ -377,8 +405,7 @@ void LevelUp() {
 	//GenerateBigFood();
 }
 void Eat() {
-
-	PlaySoundEffect("assets\\sounds\\eat");
+	PlaySoundEffect("assets\\sounds\\button");
 	PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\happysnake.txt");
 	emotionstime = 10;
 	if (!Spraying) snake[SIZE_SNAKE] = food[FOOD_INDEX];

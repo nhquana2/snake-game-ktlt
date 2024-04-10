@@ -8,7 +8,6 @@
 #include <fstream>
 #include <iostream>
 #include <ctime>
-#include <mmsystem.h>
 #include <mutex>
 #include <condition_variable>
 #include <atomic>
@@ -99,8 +98,7 @@ struct DECOR_BUTTON {
 };
 
 extern DECOR_BUTTON main_button[6];
-extern BUTTON sound_button[2];
-extern BUTTON color_button[4];
+extern DECOR_BUTTON color_button[4];
 
 
 extern int CHAR_LOCK;//used to determine the direction my snake cannot move (At a moment, there is one direction my snake cannot move to)
@@ -175,9 +173,6 @@ void Pause();
 void PostPauseDraw();
 void ColorStatusBoard();
 void FillAreaColor(int x1, int y1, int x2, int y2, int color);
-void DrawSettingButton(int mode);
-
-
 
 void DrawKeyCap(int x, int y, const char* c);
 //final map
@@ -201,13 +196,17 @@ void ToggleActiveStateDecorButton(DECOR_BUTTON a);
 void ToggleNormalStateSaveEntry(SAVE_ENTRY a, int pos);
 void ToggleActiveStateSaveEntry(SAVE_ENTRY a, int pos);
 void InitMainButtons();
-void InitSoundButtons();
 void InitColorButtons();
 void DrawButton(DECOR_BUTTON a, int mode);
+void DrawSettingsButton(DECOR_BUTTON a, int mode);
+
 
 //Logic and game engine functions
 void PlaySoundEffect(const string& soundFile);
 void PlayMusic(const string& musicFile, const string& alias);
+void StopMusic(const string& alias);
+void PauseMusic(const string& alias);
+void ResumeMusic(const string& alias);
 void SetVolume(DWORD volume);
 void SetVolume_Pt2(int volume);
 bool IsValidFood(int x, int y);

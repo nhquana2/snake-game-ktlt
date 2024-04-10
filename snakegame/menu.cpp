@@ -22,44 +22,18 @@ void InitMainButtons() {
 	main_button[5].file_path = "assets\\ascii\\exitbutton.txt";
 }
 
-void InitSoundButtons() {
-	sound_button[0].st = { 30, 21 };
-	sound_button[0].width = 20;
-	sound_button[0].height = 3;
-	sound_button[0].text_st = { 30+10-1, 22 };
-	sound_button[0].text_value = "ON";
-
-	sound_button[1].st = { 30, 25 };
-	sound_button[1].width = 20;
-	sound_button[1].height = 3;
-	sound_button[1].text_st = { 30+10-2, 26 };
-	sound_button[1].text_value = "OFF";
-}
-
 void InitColorButtons() {
-	color_button[0].st = { 75, 25 };
-	color_button[0].width = 20;
-	color_button[0].height = 3;
-	color_button[0].text_st = { 75+10-2, 26};
-	color_button[0].text_value = "BLUE";
+	color_button[0].st = { 7, 25 };
+	color_button[0].file_path = "assets\\ascii\\redbutton.txt";
 
-	color_button[1].st = { 100, 25 };
-	color_button[1].width = 20;
-	color_button[1].height = 3;
-	color_button[1].text_st = { 100+10-3, 26 };
-	color_button[1].text_value = "GREEN";
+	color_button[1].st = { 39, 25 };
+	color_button[1].file_path = "assets\\ascii\\bluebutton.txt";
 
-	color_button[2].st = { 125, 25 };
-	color_button[2].width = 20;
-	color_button[2].height = 3;
-	color_button[2].text_st = { 125+10-3, 26 };
-	color_button[2].text_value = "YELLOW";
+	color_button[2].st = { 71, 25 };
+	color_button[2].file_path = "assets\\ascii\\greenbutton.txt";
 
-	color_button[3].st = { 150, 25 };
-	color_button[3].width = 20;
-	color_button[3].height = 3;
-	color_button[3].text_st = { 150+10-2, 26 };
-	color_button[3].text_value = "PINK";
+	color_button[3].st = { 104, 25 };
+	color_button[3].file_path = "assets\\ascii\\yellowbutton.txt";
 }
 
 void ToggleNormalStateDecorButton(DECOR_BUTTON a) {
@@ -167,17 +141,16 @@ void DrawLoadGameScreen() {
 
 void DrawSettingsScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	PrintFile(22, 14, "assets\\ascii\\sounds.txt");
-	PrintFile(75, 16, "assets\\ascii\\color.txt");
-	
-	if (SOUND == 1)	PrintFile(58, 14, "assets\\ascii\\soundon.txt");
-	for (int i = 0; i < 2; ++i) {
-		ToggleNormalStateButton(sound_button[i]);
-	}
+	PrintFile(8, 13, "assets\\ascii\\presstoplaysound.txt");
+	PrintFile(8, 20, "assets\\ascii\\presstoplaymusic.txt");
+	PrintFile(123, 12, "assets\\ascii\\sounds.txt");
+	PrintFile(122, 18, "assets\\ascii\\music.txt");
+	DrawKeyCap(25, 10, "N");
+	DrawKeyCap(25, 17, "M");
+	if (SOUND == 1)	PrintFile(130, 12, "assets\\ascii\\soundon.txt");
 	for (int j = 0; j < 4; ++j) {
-		ToggleNormalStateButton(color_button[j]);
+		DrawSettingsButton(color_button[j], 0);
 	}
-
 	PrintFile(92, 34, "assets\\ascii\\presstogoback.txt");
 	DrawKeyCap(110, 31, "B");
 }
@@ -261,21 +234,21 @@ void DrawButton(DECOR_BUTTON a, int mode) {
 	}
 }
 
-void DrawSettingButton(int mode) {
-	
+void DrawSettingsButton(DECOR_BUTTON a, int mode) {
+	char s[100];
+	strcpy(s, a.file_path.c_str());
 	if (mode == 0) {//normal
-		PrintColorFile_Ver2(120, 10, "assets\\ascii\\yellowbutton.txt", Black, LightRed);
-		PrintColorFile_Ver2(120, 10, "assets\\ascii\\fixsettingbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(120, 10, "assets\\ascii\\shadowsettingbutton.txt", Red, Black);
-		PrintColorFile_Ver2(120, 10, "assets\\ascii\\fix2settingbutton.txt", LightRed, Red);
+		PrintColorFile_Ver2(a.st.x, a.st.y, s, Black, LightRed);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fixsettingbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\shadowsettingbutton.txt", Red, Black);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fix2settingbutton.txt", LightRed, Red);
 	}
 	else {//active
-		PrintColorFile_Ver2(120, 10, "assets\\ascii\\yellowbutton.txt", Black, LightYellow);
-		PrintColorFile_Ver2(120, 10, "assets\\ascii\\fixsettingbutton.txt", DefaultBgColor, Black);
-		PrintColorFile_Ver2(120, 10, "assets\\ascii\\shadowsettingbutton.txt", Yellow, Black);
-		PrintColorFile_Ver2(120, 10, "assets\\ascii\\fix2settingbutton.txt", LightYellow, Yellow);
+		PrintColorFile_Ver2(a.st.x, a.st.y, s, Black, LightYellow);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fixsettingbutton.txt", DefaultBgColor, Black);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\shadowsettingbutton.txt", Yellow, Black);
+		PrintColorFile_Ver2(a.st.x, a.st.y, "assets\\ascii\\fix2settingbutton.txt", LightYellow, Yellow);
 	}
-
 }
 
 void DrawKeyCap(int x, int y, const char *c) {

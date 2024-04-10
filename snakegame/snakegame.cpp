@@ -18,7 +18,7 @@ POINT MINI_Snake;
 PLAYER Player[100];
 DECOR_BUTTON main_button[6];
 BUTTON sound_button[2];
-BUTTON color_button[4];
+DECOR_BUTTON color_button[4];
 vector<SAVE_ENTRY> save_entries;
 
 mutex mtx;
@@ -54,8 +54,8 @@ int SCORE;
 int OLD_SIZE_SNAKE;
 bool CHECK_SNAKE;
 int LEVEL;
-int SOUND = 0;
-int MUSIC = 0;
+int SOUND = 1;
+int MUSIC = 1;
 int VOLUME = 60;
 bool Flag_PoisonSpray, Spraying, Flag_emotions;
 int previousAction;//1 is move right, 2 is move left, 3 is move up, 4 is move down
@@ -103,7 +103,8 @@ int main()
     cin.tie(NULL);
     SetCursor(0, 0); //No cursor
     SetConsoleColor(DefaultTextColor, DefaultBgColor);
-    PlayMusic("assets\\sounds\\intro", "bgmusic");
+    PlayMusic("assets\\sounds\\intro2", "intro");
+
     //playSound("assets\\sounds\\intro");
     FixConsoleWindow();
     ResetData();
@@ -111,7 +112,6 @@ int main()
     emotionstime = 5;
     ///Initiate buttons
     InitMainButtons();
-    InitSoundButtons();
     InitColorButtons();
 
     //First draw menu
@@ -129,7 +129,7 @@ int main()
     while (1) {
         //SCREEN: PLAY
         
-        if (SCREEN == 1) { 
+        if (SCREEN == 1) {
             temp = toupper(_getch());
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
@@ -140,7 +140,7 @@ int main()
                     threadPaused = false;
                     cvThread.notify_one();
                     STATE = 0;
-                    //playSound("assets\\sounds\\intro");
+                    ResumeMusic("intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
                     ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
@@ -236,7 +236,7 @@ int main()
 
                 }
                 if (!BLINKING_MAP && temp == 'M') {
-                    //PlayMusic("assets\\sounds\\intro");
+                    ResumeMusic("intro");
                     SCREEN = 2; //SCREEN: MAIN MENU
                     DrawMenu();
                     ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
@@ -260,23 +260,27 @@ int main()
             }
 
             if (temp == 'W') {
+                PlaySoundEffect("assets\\sounds\\button");
                 ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION - 1 + 6) % 6; // 6 options in total
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
             if (temp == 'S') {
+                PlaySoundEffect("assets\\sounds\\button");
                 ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION + 1) % 6; 
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
 
             if (temp == 'A') {
+                PlaySoundEffect("assets\\sounds\\button");
                 ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION - 3 + 6) % 6; // 6 options in total
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
             }
 
             if (temp == 'D') {
+                PlaySoundEffect("assets\\sounds\\button");
                 ToggleNormalStateDecorButton(main_button[MENU_OPTION]);
                 MENU_OPTION = (MENU_OPTION + 3 + 6) % 6; // 6 options in total
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
@@ -347,6 +351,7 @@ int main()
 
             //Back
             if (temp == 'B') {
+                PlaySoundEffect("assets\\sounds\\button");
                 SCREEN = 2;
                 DrawMenu();
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
@@ -359,8 +364,7 @@ int main()
            
             
             DrawMiniSnake();
-            ToggleActiveStateButton(sound_button[SOUND_OPTION]);
-            ToggleActiveStateButton(color_button[COLOR_OPTION]);
+            DrawSettingsButton(color_button[COLOR_OPTION], 1);
             temp = toupper(_getch());
 
             if (temp == char(-32)) {
@@ -383,43 +387,50 @@ int main()
 
             ////Options for snake's colors
             if (temp == 'A') {
-                ToggleNormalStateButton(color_button[COLOR_OPTION]);
+                PlaySoundEffect("assets\\sounds\\button");
+                DrawSettingsButton(color_button[COLOR_OPTION], 0);
                 COLOR_OPTION = (COLOR_OPTION - 1 + 4) % 4;
-                ToggleActiveStateButton(color_button[COLOR_OPTION]);
+                DrawSettingsButton(color_button[COLOR_OPTION], 1);
             }
             if (temp == 'D') {
-                
-                ToggleNormalStateButton(color_button[COLOR_OPTION]);
+                PlaySoundEffect("assets\\sounds\\button");
+                DrawSettingsButton(color_button[COLOR_OPTION], 0);
                 COLOR_OPTION = (COLOR_OPTION + 1) % 4;
-                ToggleActiveStateButton(color_button[COLOR_OPTION]);
+                DrawSettingsButton(color_button[COLOR_OPTION], 1);
             }
 
             //Turn on/off sounds
             if (temp == 'N') {
                 SOUND = (SOUND - 1 + 2) % 2;
-                if (SOUND == 1) PrintFile(58, 14, "assets\\ascii\\soundon.txt");
-                else PrintFile(58, 14, "assets\\ascii\\soundoff.txt");
+                if (SOUND == 1) {
+                    PlaySoundEffect("assets\\sounds\\button");
+                    PrintFile(130, 12, "assets\\ascii\\soundon.txt");
+                }
+                else PrintFile(130, 12, "assets\\ascii\\soundoff.txt");
             }
             //Turn on/off music
             if (temp == 'M') {
+                PlaySoundEffect("assets\\sounds\\button");
                 if (MUSIC == 1) {
                     MUSIC = 0;
-                    mciSendString(L"stop bgmusic", NULL, 0, NULL);
-                    mciSendString(L"close bgmusic", NULL, 0, NULL);
+                    PrintFile(122, 18, "assets\\ascii\\musicoff.txt");
+                    PauseMusic("intro");
                 }
                 else {
                     MUSIC = 1;
-                    PlayMusic("assets\\sounds\\intro", "bgmusic");
+                    PrintFile(122, 18, "assets\\ascii\\music.txt");
+                    ResumeMusic("intro");
                 }
             }
             if (temp == 13) {
-                if (COLOR_OPTION == 0) ChangeSnakeColor(Blue, White);
-                else if (COLOR_OPTION == 1) ChangeSnakeColor(Green, White);
-                else if (COLOR_OPTION == 2) ChangeSnakeColor(LightYellow, Black);
-                else if (COLOR_OPTION == 3) ChangeSnakeColor(LightPurple, White);
+                if (COLOR_OPTION == 0) ChangeSnakeColor(Red, White);
+                else if (COLOR_OPTION == 1) ChangeSnakeColor(Blue, White);
+                else if (COLOR_OPTION == 2) ChangeSnakeColor(Green, Black);
+                else if (COLOR_OPTION == 3) ChangeSnakeColor(Yellow, Black);
             }
 
             if (temp == 'B') {
+                PlaySoundEffect("assets\\sounds\\button");
                 SCREEN = 2;
                 DrawMenu();
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
@@ -454,6 +465,7 @@ int main()
 
             //Back
             if (temp == 'B') {
+                PlaySoundEffect("assets\\sounds\\button");
                 SCREEN = 2;
                 DrawMenu();
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
@@ -471,6 +483,7 @@ int main()
 
             //Back
             if (temp == 'B') {
+                PlaySoundEffect("assets\\sounds\\button");
                 SCREEN = 2;
                 DrawMenu();
                 ToggleActiveStateDecorButton(main_button[MENU_OPTION]);
