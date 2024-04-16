@@ -177,7 +177,7 @@ int main()
                     PauseMusic("map2");
                 }
                 else if (temp == 27) {
-                    //ResumeThread(handle_t1);
+      
                     STATE = 2;
                     threadPaused = false;
                     cvThread.notify_one();
@@ -191,7 +191,7 @@ int main()
                     PostPauseDraw();
                     threadPaused = false;
                     cvThread.notify_one();
-                    //ResumeThread(handle_t1);
+             
                 }
                 else  {
                     if ((temp != CHAR_LOCK) && (temp == 'D' || temp == 'A' || temp == 'W' || temp == 'S' || temp == 'L')) {
@@ -212,7 +212,7 @@ int main()
                     StartGame();
                 }
                 if (temp == 27) {
-                    //ExitGame(handle_t1);
+       
                     STATE = 2;
                     t1.join();
                     return 0;
@@ -257,8 +257,6 @@ int main()
         //SCREEN: MAIN MENU
         if (SCREEN == 2) {
             //Mini snake moving
-            
-            //PrintColorFile_Ver2(30, 20, "assets\\ascii\\minisnake2.txt", Red, DefaultBgColor);
             temp = toupper(_getch());
             if (temp == char(-32)) {
                 temp = toupper(_getch()); continue;
@@ -309,7 +307,6 @@ int main()
             if (temp == 13 && MENU_OPTION == 3) {
                 SCREEN = 3;
                 DrawAboutScreen();
-             //   playSound("assets\\sounds\\startGame");
 
             }
             if (temp == 13 && MENU_OPTION == 2) {
@@ -370,7 +367,7 @@ int main()
         }
 
         if (SCREEN == 4) {//Screen: Settings
-            //int MINI_SNAKE_COLOR;
+
            
             
             DrawMiniSnake();

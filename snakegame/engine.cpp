@@ -105,11 +105,7 @@ bool IsValidFood(int x, int y) {
 		if ((obstacles[i].x == x && obstacles[i].y == y) || (obstacles[i].x + 1 == x && obstacles[i].y == y))//check if the food is near the obstacles
 			return false;
 	}
-	/*for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			if (x == big_food[i][j].x && y == big_food[i][j].y) return false;
-		}
-	}*/
+
 	return true;
 }
 void GenerateFood() {
@@ -370,11 +366,7 @@ void LevelUp() {
 	if (LEVEL == 1){
 		NUMBER_OF_OBSTACLES = MapLevel1();
 	}
-	/*if (LEVEL == 4) {
-		//DrawTelePoint(board[0].x, board[0].y + 10, board[0].x + WIDTH_BOARD - 1, board[0].y + 8);
-		DeleteMap();//delete old map before switch to next map
-		NUMBER_OF_OBSTACLES = FinalMap();
-	}*/
+
 	if (LEVEL == 2) {
 		DeleteMap();
 		NUMBER_OF_OBSTACLES = MapLevel3();
@@ -386,21 +378,11 @@ void LevelUp() {
 		NUMBER_OF_OBSTACLES = FinalMap();
 		MAX_SIZE_FOOD = 20;
 		GenerateFood();
-		//	DrawTelePoint(board[0].x, board[0].y + 23, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
 		
 	}
-	/*if (LEVEL == 5) {
 
-		DeleteMap();
-		DrawTelePoint(board[0].x, board[0].y + 23, board[0].x + WIDTH_BOARD - 1, board[0].y + 5);
-		NUMBER_OF_OBSTACLES = FinalMap();
-	}
-	if (LEVEL == 6) {
-		DeleteMap();
-		NUMBER_OF_OBSTACLES = FinalMap();
-	}*/
 	RespawnSnake();
-	//GenerateBigFood();
+
 }
 void Eat() {
 	PlaySoundEffect("assets\\sounds\\button");
@@ -876,11 +858,6 @@ void ThreadFunc() {
 			else Flag_PoisonSpray = false;
 
 			if (Spraying) PoisonSpray();
-
-			/*if (LEVEL == 4) {
-				DrawBulletDown();
-				DrawBulletUp();
-			}*/
 			DrawSnakeAndFood(MSSV);
 			PrintStatusBoard();
 

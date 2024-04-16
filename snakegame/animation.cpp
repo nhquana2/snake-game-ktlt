@@ -10,9 +10,7 @@ bool SnakeGoThroughGate() {
 		}
 		else
 		{
-			//GoToXY(snake[SIZE_SNAKE -1].x, snake[SIZE_SNAKE - 1].y);
-			//cout << " ";
-			//snake[snake_pos - 1] = { 0, HEIGHT_CONSOLE + 2 };
+
 			--SIZE_SNAKE;
 			return false;
 		}
@@ -29,31 +27,12 @@ void BlinkingMap(){//blinking when the snake died
 			GoToXY(board[i].x, board[i].y);
 			cout << " ";
 		}
-		//for (int i = 0; i < NUMBER_OF_OBSTACLES; i++)
-		//{
-		//	GoToXY(obstacles[i].x, obstacles[i].y);
-		//	cout << " ";
-		//}
 		Sleep(100);
 		int x=RandomInRange(0, 15);
 		SetConsoleColor(x, DefaultBgColor);
 		DrawRectangle_Ver2(board[0].x, board[0].y, WIDTH_BOARD, HEIGHT_BOARD);
 		DrawSnakeAndFood(MSSV);
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		/*if (LEVEL == 1)
-		{
-			NUMBER_OF_OBSTACLES = MapLevel1();
-		}
-		if (LEVEL == 2)
-		{
-			DeleteMap();//delete old map before switch to next map
-			NUMBER_OF_OBSTACLES = MapLevel2();
-		}
-		if (LEVEL == 3)
-		{
-			DeleteMap();
-			NUMBER_OF_OBSTACLES = MapLevel3();
-		}*/
 		Sleep(100);
 
 	}

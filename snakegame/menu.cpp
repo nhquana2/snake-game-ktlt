@@ -73,7 +73,6 @@ void ToggleNormalStateSaveEntry(SAVE_ENTRY a, int pos) {
 }
 
 void ToggleActiveStateSaveEntry(SAVE_ENTRY a, int pos) {
-	//SetConsoleColor(DefaultBgColor, DefaultBgColor);
 	FillRectangle(a.st.x, a.st.y, 20, 1);
 	SetConsoleColor(DefaultBgColor, DefaultTextColor);
 	GoToXY(a.st.x, a.st.y);
@@ -90,7 +89,6 @@ void DrawMenu() {
 	//ASCII art title
 	int title_width, title_height;
 	GetWidthAndHeightFile("title.txt", title_width, title_height);
-	//PrintTextFile((WIDTH_CONSOLE - title_width) / 2, 1, "title.txt");
 	PrintTitle2File(30, 0, "assets\\ascii\\snakegamenew.txt");
 	//Menu outside border
 	DrawRectangle(3, 9, WIDTH_CONSOLE - 3 * 2, HEIGHT_CONSOLE - 9 - 1);
@@ -99,17 +97,10 @@ void DrawMenu() {
 	for (int i = 0; i < 6; ++i) {
 		ToggleNormalStateDecorButton(main_button[i]);
 	}
-
-	
 	PrintSnakeTextFile(120, 11, "assets\\ascii\\happysnake.txt");
-	
-	//DrawOcToPus(130, 10);
-	//DrawOcToPusHidden(1, 1);
-	//DrawSettingButton(0);
 }
 
 void DrawAboutScreen() {
-	//playSound("assets\\sounds\\aboutus");
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
 	PrintFile(8, 13, "assets\\ascii\\nhquan.txt");
 	PrintFile(8, 18, "assets\\ascii\\ttcuong.txt");
@@ -122,7 +113,6 @@ void DrawAboutScreen() {
 
 void DrawLoadGameScreen() {
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	//GoToXY(10, 12);
 	PrintColorFile_Ver2(65,11,"assets\\ascii\\loadbutton.txt", Black, LightRed);
 	PrintColorFile_Ver2(65, 11, "assets\\ascii\\fixbutton.txt", DefaultBgColor, Black);
 	PrintColorFile_Ver2(65, 11, "assets\\ascii\\shadowbutton.txt", Red, Black);
@@ -196,19 +186,14 @@ void DrawGuideScreen() {
 void DrawLeaderBoardScreen() {
 	NUMBER_OF_PLAYERS = LeaderBoard(Player);
 	ClearScreen(4, 10, 4 + WIDTH_CONSOLE - 3 * 2 - 3, 10 + HEIGHT_CONSOLE - 9 - 1 - 3);
-	//FillAreaColor(11,11, 56, 18+NUMBER_OF_PLAYERS, Red);
 	PrintColorFile_Ver2(13, 12,"assets\\ascii\\leaderboard1.txt" , Black, LightGreen);
 	PrintColorFile_Ver2(13, 12, "assets\\ascii\\leaderboard2.txt", DefaultBgColor, Black);
 	PrintColorFile_Ver2(13, 12, "assets\\ascii\\leaderboard3.txt", Green, Black);
 	PrintColorFile_Ver2(13, 12, "assets\\ascii\\leaderboard4.txt", LightGreen, Green);
-	//SetConsoleColor(Yellow, Red);
-	//PrintFile(13, 12, "assets\\ascii\\leaderboard.txt");
-	//SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	PrintCup(82, 12);
 
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
 	GoToXY(15, 18);
-	//SetConsoleColor(DefaultTextColor, Red);
 	cout << "USERNAME     SCORE     TIME PLAYED";
 
 	for (int i = 0; i < NUMBER_OF_PLAYERS; i++) {
@@ -279,7 +264,6 @@ void DrawKeyCap(int x, int y, const char *c) {
 }
 
 void DrawOcToPus(int x, int y) {
-	//int x = 100, y = 15;
 
 	if (octopus_time == 3) {
 		//pic1
@@ -393,7 +377,7 @@ void DrawOcToPusHidden1(int x, int y) {
 		PrintColorFile_Ver2(x, y - 1, "assets\\ascii\\water5.txt", BrightWhite, DefaultBgColor);
 		octopus_hidden_time = -15;
 	}
-	//octopus_hidden_time++;
+
 	
 }
 

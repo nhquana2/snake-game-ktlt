@@ -186,8 +186,6 @@ int MapLevel3() {
 	return pos;
 }
 int FinalMap() {
-	//StopMusic("map2");
-	//PlayMusic("assets\\sounds\\finalMap", "finalMap");
 	PrintColorFile(board[0].x + WIDTH_BOARD + board[0].x + 12, board[0].y - 7, "assets\\ascii\\level 5.txt", DefaultStatusColor);
 
 	int pos = 0;
@@ -197,7 +195,6 @@ int FinalMap() {
 	obstacles[pos++] = { 87,10 };
 	GoToXY(87, 10);
 	cout << '\xb2';
-	//obstacles[pos++] = { 87,11 };
 	GoToXY(87, 11);
 	cout << '\xb2';
 	obstacles[pos++] = { 86,12 };
@@ -212,7 +209,6 @@ int FinalMap() {
 	obstacles[pos++] = { 4,35 };
 	GoToXY(4, 35);
 	cout << '\xb2';
-	//obstacles[pos++] = { 4,36 };
 	GoToXY(4, 36);
 	cout << '\xb2';
 	obstacles[pos++] = { 4,37 };
@@ -235,7 +231,6 @@ int FinalMap() {
 		obstacles[pos++] = { 88,i };
 		GoToXY(88, i); cout << '\xb2';
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
-		//pos++;
 	}
 	for (int i = board[0].y + 1; i < board[0].y + HEIGHT_BOARD - 1; i++) {
 		if (i == board[0].y + 4 || i == board[0].y + 13 || i == board[0].y + 22) {
@@ -243,19 +238,11 @@ int FinalMap() {
 		}
 		obstacles[pos++] = { 40,i };
 		GoToXY(40, i); cout << '\xb2';
-		//pos++;
-
 	}
-	//obstacles[pos++] = {}
-
-
-
-
 	return pos;
 }
 void DrawTelePoint(int x1, int y1, int x2, int y2) {
 	//delete old pixel
-	//SetConsoleColor(Red, Black);
 	GoToXY(TELE_POINT_1.x, TELE_POINT_1.y);
 	cout << "\xba";
 	GoToXY(TELE_POINT_2.x, TELE_POINT_2.y);
@@ -270,5 +257,4 @@ void DrawTelePoint(int x1, int y1, int x2, int y2) {
 	cout << " ";
 	GoToXY(TELE_POINT_2.x, TELE_POINT_2.y);
 	cout << " ";
-	//SetConsoleColor(White, Black);
 }

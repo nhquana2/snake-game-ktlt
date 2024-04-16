@@ -25,23 +25,14 @@ int LeaderBoard(PLAYER Player[]) {
     int arr_pos = 0;
     while (ifs.getline(s, 100)) {
         char* ptr = strtok(s, ",");
-        //cout << ptr << " ";
         Player[arr_pos].name = ptr;
         ptr = strtok(NULL, ",");
-        //cout << ptr << " ";
         string tmp = ptr;
         Player[arr_pos].TIME = stoll(tmp);
         ptr = strtok(NULL, ",");
-        //cout << ptr << " ";
         tmp = ptr;
         Player[arr_pos].SCORE = stoi(tmp);
-        //cout << "\n";
         ++arr_pos;
-		/*cout << s << " ";
-		//pos++;
-		if (pos == 3) {
-			pos = 0;
-			i++; GoToXY(18, 24+i);*/
 	}
     SortLeaderBoard(Player, arr_pos);
 	return arr_pos;//size of the array

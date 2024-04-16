@@ -89,14 +89,10 @@ void FillRectangle(int x1, int y1, int width, int height) {
 
 void DrawBigFood()
 {
-	//GenerateBigFood();
-	//GoToXY(x, y);
 	for (int i = 0; i < BIG_FOOD_SIZE; i++)
 	{
 		for (int j = 0; j < BIG_FOOD_SIZE; j++)
 		{
-			//cout << "?";
-			//big_food[i][j] = { x + i,y + j };
 			SetConsoleColor(Red, DefaultBgColor);
 			GoToXY(big_food[i][j].x, big_food[i][j].y);
 			if (IsValidPoint(big_food[i][j].x, big_food[i][j].y)) cout << "\x03";
@@ -142,7 +138,6 @@ void DrawBulletToLeft(POINT &bullet_to_left) {
 	cout << "\x11";
 	if (Spraying) {
 		if (checkBullet(spray.x, spray.y)) {
-			//bullet_to_left.x = 100;
 			PlaySoundEffect("assets\\sounds\\explosion");
 			Spraying = false;
 
@@ -185,7 +180,6 @@ void DrawRectangle_Ver2(int x, int y, int width, int height) {
 }
 void DrawLineStatusBoard(int x, int y, int width, int height) {
 	//nhquan: print characters using code page 437
-	//SetConsoleColor(Red, Black);
 	
 	GoToXY(x, y); cout << '\xdb';
 	for (int i = 1; i < width - 1; i++) cout << '\xdf';
@@ -198,10 +192,9 @@ void DrawLineStatusBoard(int x, int y, int width, int height) {
 		GoToXY(x + width - 1, i);
 		if (i != y + height - 1) cout << '\xba'; else cout << '\xdb';
 	}
-	//SetConsoleColor(White, Black);
+
 }
 void DrawGate(){
-	//InitGate();
 	GoToXY(gate[0].x, gate[0].y);
 	cout << '\xc4';
 
@@ -229,10 +222,8 @@ void DrawSnakeAndFood(const char* str) {
 		
 		for (int i = 0; i < SIZE_SNAKE; i++)
 		{
-			//SetConsoleColor(RandomInRange(0, 15), DefaultBgColor);
 			GoToXY(snake[i].x, snake[i].y);
 			cout << str[(i % len)];
-			//SetConsoleColor(IDColor, SnakeColor);
 		}
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		GoToXY(0, 0);
@@ -255,7 +246,7 @@ void PrintStatusBoard() {
 			else if (PowerScore == 2) cout << "Power:[\xFE\xFE\xFE\xFE\xFA\xFA]";
 			else if (PowerScore == 3) cout << "Power:[\xFE\xFE\xFE\xFE\xFE\xFE]";
 		
-		if (LEVEL == 3) {//Level == 5
+		if (LEVEL == 3) {
 			GoToXY(board[0].x + WIDTH_BOARD + board[0].x + 2, board[0].y + 8);
 			cout << "HP of BOSS: "<<HP_OF_BOSS;
 		}
@@ -264,11 +255,6 @@ void PrintStatusBoard() {
 			PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 12, "assets\\ascii\\swagsnake.txt");
 			emotionstime = 4;
 		}
-		else if (emotionstime > 5) {
-			//PrintSnakeStatusTextFile(board[0].x + WIDTH_BOARD + board[0].x + 5, board[0].y + 13, "assets\\ascii\\swagsnake.txt");
-			emotionstime--;
-		}
-		//emotionstime++;
 
 		SetConsoleColor(Black, DefaultBgColor);
 	}
@@ -316,7 +302,6 @@ void GetWidthAndHeightFile(const char* FileName, int &width, int &height) {
 void Pause()
 {
 	PAUSE = 1;
-	//PauseGame(handle_t1);
 	threadPaused = true;
 	cvThread.notify_one();
 	unique_lock<mutex> lock(mtx);
@@ -325,7 +310,6 @@ void Pause()
 	ClearScreen(board[0].x + 1, board[0].y + 1, board[0].x + WIDTH_BOARD - 2, board[0].y + HEIGHT_BOARD - 2);
 	FillAreaColor(15, 16, 110, 20, Red);
 	SetConsoleColor(Yellow, Red);
-	//DrawRectangle(45, 14, 70 - 34, 20 - 13);
 
 	PrintTextFile(15, 16, "assets\\ascii\\paused.txt");
 	SetConsoleColor(DefaultTextColor, DefaultBgColor);
@@ -342,7 +326,6 @@ void PostPauseDraw() {
 	DrawBigFood();
 }
 
-//DrawRectangle(board[0].x + WIDTH_BOARD + board[0].x, board[0].y, WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x, HEIGHT_BOARD); // Draw status board
 void ColorStatusBoard() {
 	for (int i = 126; i < 126+ WIDTH_CONSOLE - WIDTH_BOARD - 3 * board[0].x; i++) {
 		for (int j = 2; j < 9 + HEIGHT_BOARD; j++) {
