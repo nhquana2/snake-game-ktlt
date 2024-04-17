@@ -227,7 +227,7 @@ void DrawSnakeAndFood(const char* str) {
 		}
 		SetConsoleColor(DefaultTextColor, DefaultBgColor);
 		GoToXY(0, 0);
-		cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX << " " << SIZE_SNAKE << " ";
+		//cout << WIN_POINT.x << " " << WIN_POINT.y << " " << FOOD_INDEX << " " << SIZE_SNAKE << " ";
 	}
 }
 
